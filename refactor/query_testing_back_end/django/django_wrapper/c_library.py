@@ -1,6 +1,6 @@
 import ctypes
 
 try:
-    lib_django = ctypes.CDLL('/home/joschout/Repos/Django-subsumption/lib/libdjango_1_0.so')
+    lib_django = ctypes.CDLL('/mnt/d/workcode/Django/libdjango.so')
 except Exception as err:
     lib_django = None

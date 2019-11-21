@@ -5,9 +5,9 @@ from mai_version.run.run_keys import run_keys
 from mai_version.trees.TreeBuilder import TreeBuilderType
 from mai_version.trees.stop_criterion import StopCriterionMinimalCoverage
 
-file_name_labeled_examples = "/home/joschout/Documents/tilde_data/ACE-examples-data/ace/muta/muta.kb"
-file_name_settings = "/home/joschout/Documents/tilde_data/ACE-examples-data/ace/muta/muta.s"
-file_name_background = "/home/joschout/Documents/tilde_data/ACE-examples-data/ace/muta/\muta.bg"
+file_name_labeled_examples = "/mnt/e/courses/thesis/datasets/ace-examples/ace/muta/muta.kb" # "/home/joschout/Documents/tilde_data/ACE-examples-data/ace/muta/muta.kb"
+file_name_settings = "/mnt/e/courses/thesis/datasets/ace-examples/ace/muta/muta.s" # "/home/joschout/Documents/tilde_data/ACE-examples-data/ace/muta/muta.s"
+file_name_background =  "/mnt/e/courses/thesis/datasets/ace-examples/ace/muta/muta.bg" # /home/joschout/Documents/tilde_data/ACE-examples-data/ace/muta/\muta.bg"
 
 # file_name_labeled_examples = 'D:\\KUL\\KUL MAI\\Masterproef\\data\\ACE-examples-data\\ace\\muta\\muta.kb'
 # file_name_settings = 'D:\\KUL\\KUL MAI\\Masterproef\\data\\ACE-examples-data\\ace\\muta\\muta.s'
