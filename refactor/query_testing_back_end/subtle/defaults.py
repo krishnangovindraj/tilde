@@ -8,7 +8,7 @@ from refactor.query_testing_back_end.subtle.clause_handling import build_clause
 from refactor.query_testing_back_end.subtle.evaluation import SubtleQueryEvaluator
 from refactor.query_testing_back_end.subtle.test_generation import SubtleTestGeneratorBuilder
 from refactor.representation.example_collection import ExampleCollection
-from tilde_config import subtle_path, split_criterion
+from tilde_config import subtle_path, split_criterion, leaf_strategy
 
 
 class SubtleDefaultHandler(DefaultHandler):
@@ -21,7 +21,7 @@ class SubtleDefaultHandler(DefaultHandler):
 
         splitter = Splitter(split_criterion_str=split_criterion(), test_evaluator=test_evaluator,
                             test_generator_builder=test_generator_builder)
-        leaf_builder = LeafBuilder()
+        leaf_builder = LeafBuilder.get_leaf_builder(leaf_strategy())
         stop_criterion = StopCriterion()
         tree_builder = TreeBuilder(splitter=splitter, leaf_builder=leaf_builder, stop_criterion=stop_criterion)
         return tree_builder

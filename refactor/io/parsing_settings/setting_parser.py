@@ -15,21 +15,21 @@ way in which the program traverses the search space but is more complicated.
 """
 from refactor.io.input_format import KnowledgeBaseFormat, KnowledgeBaseFormatException
 from refactor.io.parsing_settings.token_parser import ClassesTokenParser, TypeTokenParser, RmodeTokenParser, \
-    PredictionTokenParser
+    PredictionTokenParser, TildeAlgorithmSettingParser
 from refactor.io.parsing_settings.utils import FileSettings, SettingsParsingError
 
 
 class SettingParser:
     def __init__(self):
         self.first_setting_token_parser = None
-        self.settings = FileSettings()
 
     def parse(self, file_path) -> FileSettings:
+        settings = FileSettings()
         if self.first_setting_token_parser is not None:
             with open(file_path, 'r') as f:
                 for line in f:
-                    self.first_setting_token_parser.parse_line(line, self.settings)
-            return self.settings
+                    self.first_setting_token_parser.parse_line(line, settings)
+            return settings
         else:
             raise SettingsParsingError("No SettingTokenParser set as first token parser")
 
@@ -55,11 +55,12 @@ class KeysSettingsParser(SettingParser):
         prediction_token_parser = PredictionTokenParser()
         type_token_parser = TypeTokenParser()
         rmode_token_parser = RmodeTokenParser()
+        algo_token_parser =  TildeAlgorithmSettingParser()
 
         self.first_setting_token_parser = prediction_token_parser
         prediction_token_parser.set_successor(type_token_parser)
         type_token_parser.set_successor(rmode_token_parser)
-
+        rmode_token_parser.set_successor(algo_token_parser)
 
 class SettingsParserMapper:
     @staticmethod
