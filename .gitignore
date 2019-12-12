@@ -183,8 +183,14 @@ ENV/
 # modules.xml
 .idea/misc.xml
 # *.ipr
+
 .idea/dictionaries/Jonas.xml
-/data
 .idea/TILDE.iml
-tilde/fold/data
 *.cprofile
+
+# vscode
+**/.vscode/**
+
+# Tilde specific
+tilde/fold/data
+/data
