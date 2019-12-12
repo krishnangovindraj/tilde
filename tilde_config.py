@@ -8,19 +8,20 @@ _absolute_default_config_file_name = os.path.join(_package_directory, _default_c
 
 _subtle_path_key = 'SUBTLE_PATH'
 _split_criterion_key = 'SPLIT_CRITERION'
+_leaf_strategy_key = 'LEAF_STRATEGY'
 _kb_file_key = 'KB_FILE'
 _s_file_key = 'S_FILE'
 _bg_file_key = 'BG_FILE'
 
 
-_default_settings = {_subtle_path_key: '', _split_criterion_key: 'entropy',
-                     _kb_file_key: '', _s_file_key: '', _bg_file_key: ''}
+_default_settings = {_subtle_path_key: '', _split_criterion_key: 'entropy', _leaf_strategy_key: 'majority_class',
+                     _kb_file_key: '', _s_file_key: '', _bg_file_key: None}
 _config_file_data = {}
 
 
 def _get_setting(key):
     try:
-        return _config_file_data[key]
+        return _config_file_data.get(key, _default_settings.get(key))
     except KeyError as err:
         print(key, ' is not defined in ', _absolute_default_config_file_name)
         raise err
@@ -29,10 +30,11 @@ def _get_setting(key):
 def subtle_path():
     return _get_setting(_subtle_path_key)
 
-
 def split_criterion():
     return _get_setting(_split_criterion_key)
 
+def leaf_strategy():
+    return _get_setting(_leaf_strategy_key)
 
 def kb_file():
     return _get_setting(_kb_file_key)
@@ -44,7 +46,6 @@ def s_file():
 
 def bg_file():
     return _get_setting(_bg_file_key)
-
 
 try:
     with open(_absolute_default_config_file_name, "r") as config_file:

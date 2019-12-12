@@ -55,13 +55,12 @@ def parse_args(argv):
 # Read and setup according to arguments
 config_file_name, query_backend_name = parse_args(sys_argv)
 
-config = TildeConfig(config_file_name)
+config = TildeConfig.create_instance(config_file_name)
+
 backend_enum = default_handlers[query_backend_name]
 backend = get_back_end_default(backend_enum)
 
-
 parsed_settings = KeysSettingsParser().parse(config.s_file)
-
 
 debug_printing_example_parsing = False
 # These don't seem to be used, but could be useful
