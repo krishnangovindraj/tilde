@@ -35,3 +35,5 @@ class LeafBuilder:
         elif leaf_strategy == 'majority_class':
             from refactor.tilde_essentials.leaf_strategies import MajorityClassLeafBuilder 
             return MajorityClassLeafBuilder()
+        else:
+            raise KeyError("Unknown leaf strategy: " + leaf_strategy)
