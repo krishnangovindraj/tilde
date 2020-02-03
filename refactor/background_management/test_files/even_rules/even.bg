@@ -1,0 +1,3 @@
+divides(X, Y, Z):-
+	0 is mod(X,Y),
+	Z is X / Y.

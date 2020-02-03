@@ -1,0 +1,12 @@
+num(1, odd).
+num(3, odd).
+num(5, odd).
+num(7, odd).
+
+
+num(12, even).
+num(41, odd).
+num(6, even).
+num(81, odd).
+
+num(18, even).
