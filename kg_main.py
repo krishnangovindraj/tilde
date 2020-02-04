@@ -17,7 +17,7 @@ from sys import argv as sys_argv
 
 # Some defaults
 
-DEFAULT_BACKEND_NAME = 'subtle'
+DEFAULT_BACKEND_NAME = 'problog-simple' # 'subtle'
 
 default_handlers = {
     'django': QueryBackEnd.DJANGO,
@@ -117,7 +117,14 @@ average_run_time_list = []
 
 examples = backend.get_transformed_example_list(training_examples_collection)
 
-    # =================================================================================================================
+# Saturate the examples with background knowledge (using prolog for now).
+from refactor.background_management.background_manager import BackgroundManager
+background_manager = BackgroundManager(prediction_goal, parsed_settings.language, config.bg_file)
+background_manager.setup()
+background_manager.saturate_examples(examples)
+
+
+# =================================================================================================================
 
 run_time_list = []
 
@@ -130,7 +137,7 @@ for i in range(0, 1):
     tree_builder = backend.get_default_decision_tree_builder(language, prediction_goal)  # type: TreeBuilder
     decision_tree = DecisionTree()
     start_time = time.time()
-    decision_tree.fit(examples=examples, tree_builder=tree_builder)
+    decision_tree.fit(examples=examples, tree_builder=tree_builder) # , background_knowledge_wrapper) # If we're doing forward chaining, it may be.
     end_time = time.time()
     run_time_sec = end_time - start_time
     run_time_ms = 1000.0 * run_time_sec

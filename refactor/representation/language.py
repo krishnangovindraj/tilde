@@ -398,6 +398,10 @@ class TypeModeLanguage(BaseLanguage):
         for args in product(*arguments):
             yield Term(functor, *args)
 
+    def get_refinement_modes(self):
+        """ Returns list of (functor:str,arity:int) which can be used in tests"""
+        return [ (m[0], len(m[1]), m[1]) for m in self._refinement_modes ]
+
     def get_type_values(self, typename: TypeName) -> ValueSet:
         """Get all values that occur in the data for a given type.
 

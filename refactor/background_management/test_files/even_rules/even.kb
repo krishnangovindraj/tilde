@@ -4,9 +4,7 @@ num(5, odd).
 num(7, odd).
 
 
-num(12, even).
-num(41, odd).
+num(2, even).
+num(4, even).
 num(6, even).
-num(81, odd).
-
-num(18, even).
+num(8, even).
