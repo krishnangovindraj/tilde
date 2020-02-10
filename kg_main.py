@@ -17,7 +17,7 @@ from sys import argv as sys_argv
 
 # Some defaults
 
-DEFAULT_BACKEND_NAME = 'problog-simple' # 'subtle'
+DEFAULT_BACKEND_NAME = 'problog-simple'
 
 default_handlers = {
     'django': QueryBackEnd.DJANGO,
@@ -118,11 +118,15 @@ average_run_time_list = []
 examples = backend.get_transformed_example_list(training_examples_collection)
 
 # Saturate the examples with background knowledge (using prolog for now).
-from refactor.background_management.background_manager import BackgroundManager
-background_manager = BackgroundManager(prediction_goal, parsed_settings.language, config.bg_file)
-background_manager.setup()
-background_manager.saturate_examples(examples)
+# from refactor.background_management.background_manager import BackgroundManager
+# background_manager = BackgroundManager(prediction_goal, parsed_settings.language, config.bg_file)
+# background_manager.setup()
+# background_manager.saturate_examples(examples)
 
+from refactor.background_management.groundedkb import SubtleGroundedKB, PrologGroundedKB 
+groundedkb = SubtleGroundedKB(full_background_knowledge_sp)
+groundedkb.setup()
+groundedkb.saturate_examples(examples)
 
 # =================================================================================================================
 
