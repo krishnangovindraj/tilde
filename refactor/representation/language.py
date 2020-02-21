@@ -372,43 +372,6 @@ class TypeModeLanguage(BaseLanguage):
         return ref_state
 
 
-    def _generate_lookahead_extensions(self, conj_to_extend : List[Term], already_generated_literals, variables_in_query_by_type, depth=1):
-        # Find all the relevant extensions
-        def get_fixed_args_and_refinement_mode(candidate, extension_template):
-            flat_args = LookaheadMode.flatten_args(extension_template)
-            fixed_args = {i: flat_args[i] for i in candidate.reused_arg_indices }
-            # TODO: Caching
-            arg_mode = None
-            for rf in self._refinement_modes:
-                if rf[0] == extension_template.functor and rf[1] == extension_template.arity:
-                    arg_mode = rf[2]
-                    break
-
-            if arg_mode is None:
-                raise ValueError("Lookahead extension " + str(extension_template) + " has unknown refinement mode")
-            
-            return fixed_args, arg_mode
-
-
-        suffix = [ (t.functor, t.arity) for t in conj_to_extend]
-        while len(suffix) > 0:
-            sig = tuple(suffix)
-            for candidate in self._lookahead[sig]:
-                if candidate.matches_pattern(suffix):
-                    extension_template = candidate.get_extension_for_term(suffix)
-                    # We still have to consider the arguments not specified by the lookahead description
-                    arg_mode_indicators = self._lookahead_refinement_modes[candidate]
-                    fixed_args = get_fixed_args_and_refinement_mode(scandidate, extension_template)
-                    for extension in self.__get_possible_term_arguments_for(extension.functor, variables_in_query_by_type, fixed_args):
-                        if extension in already_generated_literals:
-                            continue
-                        extended_conj = suffix + extension
-                        yield LookaheadMode.list_to_conjunction(extended_conj)
-                        if depth < self._lookahead_max_depth:
-                            self.__get_lookahead_extensions(extended_conj, variables_in_query_by_type, 1)
-            suffix.pop()
-        # Should be done
-
     def __get_possible_term_arguments_for(self, functor, argument_mode_indicators, variables_in_query_by_type: Dict[TypeName, List[Term]], fixed_args: Dict[int,Term]):
         """
         Returns the possible arguments of the term with the given functor and as arity the length of the given list of

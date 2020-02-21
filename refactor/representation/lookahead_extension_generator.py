@@ -30,6 +30,14 @@ class LookaheadExtensionGenerator:
         
         return fixed_args, arg_mode
     
+    def _add_new_variables_in_term_by_type(self, generated_literal, extension, arg_types, variables_in_query_by_type):
+        added_vars = set()
+        for i in range(len(extension.args)):
+            if extension.args[i] != generated_literal.args[i]:
+                added_vars.add( (arg_types[i], extension.args[i]) )
+                variables_in_query_by_type[arg_types[i]].add(extension.args[i])
+        return added_vars 
+
     def generate_extensions(self):
         nb_of_vars_in_query = len(self.query.get_variables())
         
@@ -48,6 +56,7 @@ class LookaheadExtensionGenerator:
         
         var_renamer = TypeModeLanguage.ReplaceNew(nb_of_vars_in_query)
         suffix = [t for t in conj_to_extend]
+        freshly_generated_literals = set()
         while len(suffix) > 0:
             sig = LookaheadMode.get_sig(suffix)
             for candidate in self.language._lookahead[sig]:
@@ -60,18 +69,26 @@ class LookaheadExtensionGenerator:
                         generated_literal = Term(extension_template.functor, *extension_args)
                         if generated_literal in already_generated_literals:
                             continue
+                        freshly_generated_literals.add(generated_literal)
                         already_generated_literals.add(generated_literal)
                         extension = generated_literal.apply( var_renamer )
                         if extension in already_generated_literals:
                             continue
-                        extended_conj = suffix + [extension]
+                        extended_conj = conj_to_extend + [extension]
                         yield extended_conj
                         
                         # Do we need to recurse?
                         if depth < self._max_depth:
-                            self._generate(extended_conj, already_generated_literals, variables_in_query_by_type, var_renamer.count, depth+1)
-                        
-                        # cleanup
-                        already_generated_literals.remove(generated_literal)
-            suffix.pop()
-        # Should be done
+                            arg_types = self.language.get_argument_types(extension.functor, extension.arity)
+                            
+                            added_type_vars = self._add_new_variables_in_term_by_type(generated_literal, extension, arg_types, variables_in_query_by_type)
+                            for la in self._generate(extended_conj, already_generated_literals, variables_in_query_by_type, var_renamer.count, depth+1):
+                                yield la
+
+                            for (arg_type, var_name) in added_type_vars:
+                                variables_in_query_by_type[arg_type].remove(var_name)
+
+            suffix.pop(0) # We pop the first element
+        # cleanup
+        for g in freshly_generated_literals:
+            already_generated_literals.remove(g)
