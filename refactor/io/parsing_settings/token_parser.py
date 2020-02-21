@@ -148,6 +148,22 @@ class TypeTokenParser(SettingTokenParser):
             settings.language.add_types(functor, arguments)
 
 
+class LookaheadTokenParser(SettingTokenParser):
+    lookahead_regex = r'lookahead\((.*)\).'
+    lookahead_pattern = re.compile(lookahead_regex)
+
+    conjunction_regex = r'(\w*)\((.*)\)'
+    conjunction_pattern = re.compile(conjunction_regex)
+
+    def can_parse_pre(self, line: str) -> Optional[Match[str]]:
+        return self.lookahead_pattern.match(line)
+
+    def parse_token(self, line: str, settings: FileSettings, match: Match[str]):
+        from refactor.representation.lookahead_mode import LookaheadMode
+        settings.language.add_lookahead(LookaheadMode.from_declaration(match.group(1)))
+
+
+
 class RmodeTokenParser(SettingTokenParser):
     rmode_regex = r'rmode\((.*)\).'
     rmode_pattern = re.compile(rmode_regex)

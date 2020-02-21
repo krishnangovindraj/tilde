@@ -6,7 +6,9 @@ from problog.logic import Term, is_variable, Var
 from refactor.representation.TILDE_query import Rule, TILDEQuery
 
 from refactor.representation.language_types import *
+from refactor.representation.lookahead_mode import LookaheadMode
 
+from refactor.representation.lookahead_extension_generator import LookaheadExtensionGenerator
 
 class BaseLanguage(object):
     """Base class for languages."""
@@ -31,6 +33,8 @@ class TypeModeLanguage(BaseLanguage):
         self._types = {}  # type: TypeDict
         self._values = defaultdict(set)  # type: ValuesDict
         self._refinement_modes = []  # type: ModeList
+        self._lookahead = defaultdict(set)
+        self._lookahead_max_depth = 5
 
         self._symmetry_breaking = symmetry_breaking
         self._allow_negation = True
@@ -74,6 +78,11 @@ class TypeModeLanguage(BaseLanguage):
         """
         for value in values:
             self._values[typename].add(value)
+
+    def add_lookahead(self, lookahead_mode: LookaheadMode):
+        if lookahead_mode.sig not in self._lookahead:
+            self._lookahead[lookahead_mode.sig] = set()
+        self._lookahead[lookahead_mode.sig].add(lookahead_mode)
 
     def refine(self, rule: Rule):
         """ORIGINAL: generate ONE refinement for the given rule.
@@ -303,9 +312,14 @@ class TypeModeLanguage(BaseLanguage):
             #     t = Term(functor, *args)
 
             possible_term_generator = self.__get_possible_terms_for(functor, argument_mode_indicators, variables_in_query_by_type)
-
-            for t in possible_term_generator:
-                if t not in already_generated_literals:
+            all_variables_in_query = set( s for k in variables_in_query_by_type for s in variables_in_query_by_type[k])
+            
+            for base_term in possible_term_generator:
+                if base_term not in already_generated_literals:
+                    # Something to do with the generator class
+                    # But we get to keep the already_generated_literals separate.
+                    # If a literal has been generated, all it's extensions have too.
+                    t = base_term
                     if self._symmetry_breaking:
                         already_generated_literals.add(t)
                     t_i = t.apply(TypeModeLanguage.ReplaceNew(nb_of_vars_in_query))
@@ -314,9 +328,88 @@ class TypeModeLanguage(BaseLanguage):
                         t_i.refine_state = already_generated_literals.copy()
                     else:
                         t_i.refine_state = already_generated_literals | {t, -t, t_i, -t_i}
+                    
                     yield t_i
+                
+                    # Let's handle the extensions now
+                    extension_generator = LookaheadExtensionGenerator(query, t_i, self, self._lookahead_max_depth)
+                    for conj in extension_generator.generate_extensions():
+                        conj.refine_state = self._compute_refinement_state_for_conjunction(conj, already_generated_literals, all_variables_in_query)
+                        yield conj
+            # end
 
-    def __get_possible_term_arguments_for(self, functor, argument_mode_indicators, variables_in_query_by_type: Dict[TypeName, List[Term]]):
+    def _get_possible_term_arguments_for(self, functor, argument_mode_indicators, variables_in_query_by_type: Dict[TypeName, List[Term]], fixed_args: Dict[int,Term]):
+        return self.__get_possible_term_arguments_for(functor, argument_mode_indicators, variables_in_query_by_type, fixed_args)
+
+    def _compute_refinement_state_for_conjunction(self, conj, already_generated_literals, all_variables_in_query):
+        # Computes the refine_state : The literal (pattern) appearing in the root-node path including this conjunciton. 
+        ref_state = already_generated_literals.copy()
+        conj_list = LookaheadMode.flatten_conjunction(conj)
+        variables_in_conj = set()
+        renamed_conj_list = []
+        for t in conj_list:
+            # Bit complicated. Rename the newly introduced variables back to '#' and then add them.
+            args = []
+            vv = set()
+            for a in t.args:
+                if a in all_variables_in_query or a in variables_in_conj:
+                    # Old variables do not get replaced -> add as is
+                    args.append(a)
+                else:
+                    # Not seen before -> Should have been a #
+                    args.append(Var('#'))
+                    vv.add(a)
+
+            renamed_conj_list.append( Term(t.functor, *args) )        
+            variables_in_conj.update(vv)
+        
+        for t,t_i in zip(renamed_conj_list, conj_list):
+            if self._symmetry_breaking:
+                ref_state.update( t )
+            else:
+                ref_state.update( {t, -t, t_i, -t_i} )
+        
+        return ref_state
+
+
+    def _generate_lookahead_extensions(self, conj_to_extend : List[Term], already_generated_literals, variables_in_query_by_type, depth=1):
+        # Find all the relevant extensions
+        def get_fixed_args_and_refinement_mode(candidate, extension_template):
+            flat_args = LookaheadMode.flatten_args(extension_template)
+            fixed_args = {i: flat_args[i] for i in candidate.reused_arg_indices }
+            # TODO: Caching
+            arg_mode = None
+            for rf in self._refinement_modes:
+                if rf[0] == extension_template.functor and rf[1] == extension_template.arity:
+                    arg_mode = rf[2]
+                    break
+
+            if arg_mode is None:
+                raise ValueError("Lookahead extension " + str(extension_template) + " has unknown refinement mode")
+            
+            return fixed_args, arg_mode
+
+
+        suffix = [ (t.functor, t.arity) for t in conj_to_extend]
+        while len(suffix) > 0:
+            sig = tuple(suffix)
+            for candidate in self._lookahead[sig]:
+                if candidate.matches_pattern(suffix):
+                    extension_template = candidate.get_extension_for_term(suffix)
+                    # We still have to consider the arguments not specified by the lookahead description
+                    arg_mode_indicators = self._lookahead_refinement_modes[candidate]
+                    fixed_args = get_fixed_args_and_refinement_mode(scandidate, extension_template)
+                    for extension in self.__get_possible_term_arguments_for(extension.functor, variables_in_query_by_type, fixed_args):
+                        if extension in already_generated_literals:
+                            continue
+                        extended_conj = suffix + extension
+                        yield LookaheadMode.list_to_conjunction(extended_conj)
+                        if depth < self._lookahead_max_depth:
+                            self.__get_lookahead_extensions(extended_conj, variables_in_query_by_type, 1)
+            suffix.pop()
+        # Should be done
+
+    def __get_possible_term_arguments_for(self, functor, argument_mode_indicators, variables_in_query_by_type: Dict[TypeName, List[Term]], fixed_args: Dict[int,Term]):
         """
         Returns the possible arguments of the term with the given functor and as arity the length of the given list of
         mode indicators.
@@ -324,7 +417,8 @@ class TypeModeLanguage(BaseLanguage):
         the same type already in the query.
         :param functor: 
         :param argument_mode_indicators: 
-        :param variables_in_query_by_type: 
+        :param variables_in_query_by_type:
+        :param fixed_args:  
         :return: 
         """
         # INPUT e.g. 'parent', ['+', '+'], {person: A}
@@ -356,23 +450,26 @@ class TypeModeLanguage(BaseLanguage):
         #       'c' --> add to arguments
         #                   a list of all possible constants for the type of the argument
         for index, (argmode, argtype) in enumerate(zip(argument_mode_indicators, argument_types)):
-            if argmode == '+':
-                # All possible variables of the given type
-                #TODO: this is were key output file needs to be adapted
-
-
-                arguments.append(variables_in_query_by_type.get(argtype, []))
-            elif argmode == '-':
-                # A new variable
-                arguments.append([Var('#')])  # what about adding a term a(X,X) where X is new?
-            elif argmode == 'c':
-                # Add a constant
-                type = functor + '_' + str(index)
-                arguments.append(self.get_type_values(type))
-                # arguments.append(self.get_type_values(argtype))
-                # pass
+            if index in fixed_args:
+                arguments.append( [fixed_args[index]] )
             else:
-                raise ValueError("Unknown mode specifier '%s'" % argmode)
+                if argmode == '+':
+                    # All possible variables of the given type
+                    #TODO: this is were key output file needs to be adapted
+
+
+                    arguments.append(variables_in_query_by_type.get(argtype, []))
+                elif argmode == '-':
+                    # A new variable
+                    arguments.append([Var('#')])  # what about adding a term a(X,X) where X is new?
+                elif argmode == 'c':
+                    # Add a constant
+                    type = functor + '_' + str(index)
+                    arguments.append(self.get_type_values(type))
+                    # arguments.append(self.get_type_values(argtype))
+                    # pass
+                else:
+                    raise ValueError("Unknown mode specifier '%s'" % argmode)
         return arguments
 
     def __get_possible_terms_for(self, functor, argument_mode_indicators, variables_in_query_by_type: Dict[TypeName, List[Term]]):
@@ -386,7 +483,7 @@ class TypeModeLanguage(BaseLanguage):
         :param variables_in_query_by_type: 
         :return: 
         """
-        arguments = self.__get_possible_term_arguments_for(functor, argument_mode_indicators, variables_in_query_by_type)
+        arguments = self.__get_possible_term_arguments_for(functor, argument_mode_indicators, variables_in_query_by_type, [])
         # arguments is a list of lists.
         # It contains as many lists as the arity of the functor.
         # Each list corresponds to the possible values in the refined literal of the corresponding variable.
