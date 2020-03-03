@@ -75,7 +75,7 @@ class Splitter:
         for candidate_test in generator:
             if self.verbose:
                 print(candidate_test)
-            examples_satisfying_test, examples_not_satisfying_test = self._split_examples(candidate_test, examples)
+            examples_satisfying_test, examples_not_satisfying_test = self._split_examples(candidate_test, examples, split_criterion)
 
             candidate_test_score = split_criterion.calculate(examples_satisfying_test,
                                                              examples_not_satisfying_test
@@ -95,12 +95,14 @@ class Splitter:
 
         return current_best_split_info
 
-    def _split_examples(self, test, examples):
+    def _split_examples(self, test, examples, split_criterion):
         examples_satisfying_test = set()
         examples_not_satifying_test = set()
 
+        test_result = self.test_evaluator.evaluate_test(examples, test, split_criterion)
+        test_result_dict = {r[0]:r[1] for r in test_result.test_results}
         for example in examples:
-            succeeds_test = self.test_evaluator.evaluate(example, test)
+            succeeds_test = test_result_dict[example] # self.test_evaluator.evaluate(example, test)
             if succeeds_test:
                 examples_satisfying_test.add(example)
             else:

@@ -148,6 +148,18 @@ class TypeTokenParser(SettingTokenParser):
             settings.language.add_types(functor, arguments)
 
 
+class RealTypeTokenParser(SettingTokenParser):
+    real_regex = r'realtype\((.*)\).'
+    real_pattern = re.compile(real_regex)
+
+    def can_parse_pre(self, line: str) -> Optional[Match[str]]:
+        return self.real_pattern.match(line)
+
+    def parse_token(self, line: str, settings: FileSettings, match: Match[str]):
+        real_type_name = match.group(1)
+        settings.language.add_real_type(real_type_name)
+
+
 class RmodeTokenParser(SettingTokenParser):
     rmode_regex = r'rmode\((.*)\).'
     rmode_pattern = re.compile(rmode_regex)

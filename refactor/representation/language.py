@@ -2,11 +2,12 @@ from collections import defaultdict
 from itertools import product
 from typing import Iterable, Iterator
 
-from problog.logic import Term, is_variable, Var
+from problog.logic import Term, is_variable, Var, Constant
 from refactor.representation.TILDE_query import Rule, TILDEQuery
 
 from refactor.representation.language_types import *
 
+from refactor.special_tests import RealNumberLessThanTest
 
 class BaseLanguage(object):
     """Base class for languages."""
@@ -35,6 +36,8 @@ class TypeModeLanguage(BaseLanguage):
         self._symmetry_breaking = symmetry_breaking
         self._allow_negation = True
         self._allow_recursion = False
+        self.real_types = set()
+        self.special_tests = {}
 
     def add_types(self, functor: TypeName, argtypes: TypeArguments) -> None:
         """Add type information for a predicate.
@@ -74,6 +77,18 @@ class TypeModeLanguage(BaseLanguage):
         """
         for value in values:
             self._values[typename].add(value)
+
+    def add_real_type(self, real_typename):
+        self.real_types.add(real_typename)
+        new_test_name = RealNumberLessThanTest.TEST_FUNCTOR_PREFIX + real_typename
+        new_test_arity = 2
+        const_type_key = new_test_name + '_1'
+        
+        self.special_tests[new_test_name] = RealNumberLessThanTest(new_test_name, new_test_arity, real_typename)
+        self.add_types(new_test_name, (real_typename, 'tilde_real_const'))
+        self.add_modes(new_test_name, ('+', 'c'))
+        
+        self.add_values(const_type_key, Constant(RealNumberLessThanTest.TEST_PLACEHOLDER_TERM))
 
     def refine(self, rule: Rule):
         """ORIGINAL: generate ONE refinement for the given rule.
@@ -396,7 +411,10 @@ class TypeModeLanguage(BaseLanguage):
         # SO for each possible combination of arguments:
         #   create a term using the functor and the arguments.
         for args in product(*arguments):
-            yield Term(functor, *args)
+            term = Term(functor, *args)
+            term_sig = (term.functor, term.arity)
+            term.special_test = self.special_tests[term_sig] if term_sig in self.special_tests else None
+            yield term
 
     def get_type_values(self, typename: TypeName) -> ValueSet:
         """Get all values that occur in the data for a given type.
@@ -477,6 +495,9 @@ class TypeModeLanguage(BaseLanguage):
                 self._allow_negation = False
             elif str(optname) == 'recursion' and str(optvalue) == 'on':
                 self._allow_recursion = True
+
+    def list_refinement_modes(self):
+        return self._refinement_modes
 
     class ReplaceNew(object):
         """Helper class for replacing new variables (indicated by name '#') by unique variables.
