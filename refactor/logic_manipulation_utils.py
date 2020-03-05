@@ -1,6 +1,6 @@
 from typing import List
 
-from problog.logic import Term, And
+from problog.logic import Term, And, Not
 
 class PartialSubstitutionDict:
     def __init__(self, partial_dict):
@@ -28,8 +28,14 @@ class TermManipulationUtils:
     def list_to_conjunction(conj_list: List[Term]):
         def _list2conj_rec(conj_list, at_index):
             if at_index == len(conj_list) - 1:
-                return at_index[-1]
+                return conj_list[-1]
             else:
                 return And(conj_list[at_index], _list2conj_rec(conj_list, at_index+1))
 
         return _list2conj_rec(conj_list, 0)
+
+    @staticmethod
+    def term_is_functor_or_negation(term: Term, functor: str):
+            t = term.child if isinstance(term, Not) else term
+            return t.functor == functor
+        

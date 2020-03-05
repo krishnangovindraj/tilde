@@ -99,7 +99,7 @@ class Splitter:
         examples_satisfying_test = set()
         examples_not_satifying_test = set()
 
-        test_result = self.test_evaluator.evaluate_test(examples, test, split_criterion)
+        test_result = self.test_evaluator.evaluate_test(test, examples, split_criterion)
         test_result_dict = {r[0]:r[1] for r in test_result.test_results}
         for example in examples:
             succeeds_test = test_result_dict[example] # self.test_evaluator.evaluate(example, test)

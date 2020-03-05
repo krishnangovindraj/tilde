@@ -37,7 +37,7 @@ class TypeModeLanguage(BaseLanguage):
         self._allow_negation = True
         self._allow_recursion = False
         self.real_types = set()
-        self.special_tests = {}
+        self.special_tests = defaultdict(None)
 
     def add_types(self, functor: TypeName, argtypes: TypeArguments) -> None:
         """Add type information for a predicate.
@@ -207,6 +207,7 @@ class TypeModeLanguage(BaseLanguage):
                         generated.add(t)
                     t_i = t.apply(TypeModeLanguage.ReplaceNew(varcount))
                     t_i.prototype = t
+                    t_i.special_test = t.special_test
                     if self._symmetry_breaking:
                         t_i.refine_state = generated.copy()
                     else:
@@ -325,6 +326,7 @@ class TypeModeLanguage(BaseLanguage):
                         already_generated_literals.add(t)
                     t_i = t.apply(TypeModeLanguage.ReplaceNew(nb_of_vars_in_query))
                     t_i.prototype = t
+                    t_i.special_test = t.special_test
                     if self._symmetry_breaking:
                         t_i.refine_state = already_generated_literals.copy()
                     else:
@@ -412,8 +414,7 @@ class TypeModeLanguage(BaseLanguage):
         #   create a term using the functor and the arguments.
         for args in product(*arguments):
             term = Term(functor, *args)
-            term_sig = (term.functor, term.arity)
-            term.special_test = self.special_tests[term_sig] if term_sig in self.special_tests else None
+            term.special_test = self.special_tests[functor] if functor in self.special_tests else None
             yield term
 
     def get_type_values(self, typename: TypeName) -> ValueSet:

@@ -17,7 +17,7 @@ from sys import argv as sys_argv
 
 # Some defaults
 
-DEFAULT_BACKEND_NAME = 'subtle'
+DEFAULT_BACKEND_NAME = 'problog-simple'# 'subtle'
 
 default_handlers = {
     'django': QueryBackEnd.DJANGO,
@@ -117,7 +117,12 @@ average_run_time_list = []
 
 examples = backend.get_transformed_example_list(training_examples_collection)
 
-    # =================================================================================================================
+# TODO: Move all this stuff to some controller
+for k in language.special_tests:
+    special_test = language.special_tests[k]
+    special_test.setup(prediction_goal_handler, language, examples, full_background_knowledge_sp)
+
+# =================================================================================================================
 
 run_time_list = []
 
