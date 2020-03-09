@@ -19,6 +19,10 @@ class TildeConfig:
         return s if s.strip() else None
 
     @staticmethod
+    def reset_instance():
+        TildeConfig._static_instance = None
+
+    @staticmethod
     def get_instance():
         if TildeConfig._static_instance is not None:
             return TildeConfig._static_instance

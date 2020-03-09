@@ -1,0 +1,8 @@
+{
+    "SUBTLE_PATH": "test_datasets/theta-subsumption-engines/subtle/subtle-2.2.pl",
+    "SPLIT_CRITERION": "variance_reduction",
+    "LEAF_STRATEGY" : "mean_value",
+    "KB_FILE": "test_datasets/regression/noisy_lines/noisy_lines.kb",
+    "S_FILE": "test_datasets/regression/noisy_lines/noisy_lines.s",
+    "BG_FILE": "test_datasets/regression/noisy_lines/noisy_lines.bg"
+}

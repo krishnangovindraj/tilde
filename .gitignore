@@ -1,5 +1,6 @@
 results/
 config.json
+!test_datasets/**/config.json
 libs/
 # Created by https://www.gitignore.io/api/pycharm,python,intellij
 
