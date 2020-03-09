@@ -4,8 +4,23 @@ from io import StringIO as io_StringIO
 
 from kg_main import main as run_kg_main
 
+DEFAULT_TEST_BACKEND = 'problog-simple' # 'subtle' # 'django'
+
 def _encode_test(test):
-    return str(test.tilde_query.literal)
+    from refactor.query_testing_back_end.subtle.query_wrapping import SubtleQueryWrapper
+    from refactor.query_testing_back_end.django.django_wrapper.ClauseWrapper import HypothesisWrapper
+    from refactor.representation.TILDE_query import TILDEQuery
+    
+    # TODO: Write a get_query method for each wrapper. Introduce a wrapper for problog.
+    tilde_query = None
+    if isinstance(test, SubtleQueryWrapper):
+        tilde_query = test.tilde_query
+    elif isinstance(test, HypothesisWrapper):
+        tilde_query = test._prolog_hypothesis
+    elif isinstance(test, TILDEQuery):
+        tilde_query = test
+    
+    return str(tilde_query.literal)
 
 def _encode_tree(tree):
     if tree.is_leaf_node():
@@ -24,6 +39,7 @@ def _run_test(argv):
     f = io_StringIO()
     with redirect_stdout(f):
         tree = run_kg_main(argv)
+
     return tree
 
 class TestRegressionTrees(unittest.TestCase):
@@ -41,11 +57,10 @@ class TestRegressionTrees(unittest.TestCase):
                 )
         )
 
-        decision_tree = _run_test(['TestRegressionTrees__test_noisy_lines', 'test_datasets/regression/noisy_lines/config.json', 'subtle'])
+        decision_tree = _run_test(['TestRegressionTrees__test_noisy_lines', 'test_datasets/regression/noisy_lines/config.json', DEFAULT_TEST_BACKEND])
         
         self.assertEqual(expected_tree, _encode_tree(decision_tree.tree), "Tree mismatch")
 
 if __name__ == '__main__':
     unittest.main()
-    # test_regression_tree()
     pass
