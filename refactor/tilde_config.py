@@ -56,7 +56,12 @@ class TildeConfig:
 
     @property
     def subtle_path(self):
-        return self._get_setting(_subtle_path_key)
+        path_str = self._get_setting(_subtle_path_key)
+        from os import path, getcwd
+        if path.isabs(path_str):
+            return path_str
+        else:
+            return path.join(getcwd(), path_str)
 
     @property
     def split_criterion(self):

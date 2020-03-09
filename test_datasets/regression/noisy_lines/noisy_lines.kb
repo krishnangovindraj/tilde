@@ -1,0 +1,91 @@
+
+noisy_line(1, 35, 1226.509628).
+noisy_line(2, 17, 289.059711).
+noisy_line(3, 17, 288.327078).
+noisy_line(4, 35, 1225.461191).
+noisy_line(5, 3, 8.178320).
+noisy_line(6, 35, 1224.179174).
+noisy_line(7, 17, 290.104555).
+noisy_line(8, 48, 2306.344380).
+noisy_line(9, 35, 1223.885043).
+noisy_line(10, 48, 2303.810405).
+noisy_line(11, 3, 9.019020).
+noisy_line(12, 35, 1225.649550).
+noisy_line(13, 3, 9.768336).
+noisy_line(14, 48, 2303.323186).
+noisy_line(15, 3, 9.141951).
+noisy_line(16, 3, 7.898440).
+noisy_line(17, 17, 289.163322).
+noisy_line(18, 17, 290.597380).
+noisy_line(19, 17, 289.657548).
+noisy_line(20, 3, 8.654404).
+noisy_line(21, 48, 2302.707228).
+noisy_line(22, 3, 7.843560).
+noisy_line(23, 48, 2302.822699).
+noisy_line(24, 35, 1223.635528).
+noisy_line(25, 35, 1224.576132).
+
+divides(1, 5).
+divides(1, 7).
+
+divides(2, 17).
+
+divides(3, 17).	
+
+divides(4, 5).
+divides(4, 7).
+
+divides(5,3).
+
+divides(6, 5).
+divides(6, 7).
+
+divides(7,17).
+
+
+divides(8, 2).
+divides(8, 3).
+
+divides(9, 5).
+divides(9, 7).
+
+divides(10, 2).
+divides(10, 3).
+
+divides(11,3).
+
+divides(12,5).
+divides(12,7).
+
+divides(13,3).
+
+divides(14, 2).
+divides(14, 3).
+
+divides(15,3).
+
+divides(16,3).
+
+divides(17,17).
+
+divides(18,17).
+
+divides(19,17).
+
+divides(20,3).
+
+divides(21, 2).
+divides(21, 3).
+
+divides(22,3).
+
+divides(23, 2).
+divides(23, 3).
+
+
+divides(24, 5).
+divides(24, 7).
+
+
+divides(25, 5).
+divides(25, 7).

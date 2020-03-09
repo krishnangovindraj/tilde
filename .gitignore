@@ -194,3 +194,5 @@ ENV/
 # Tilde specific
 tilde/fold/data
 /data
+test_datasets/theta-subsumption-engines/subtle/subtle-2.2.pl
+test_datasets/theta-subsumption-engines/django/libdjango.so

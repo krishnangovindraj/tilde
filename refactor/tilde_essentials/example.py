@@ -18,6 +18,9 @@ class Example(Destructible):
         if callable(destruct_method):
             self.data.destruct()
 
+    @property
+    def regressand(self):
+        return self.label.value
 
 def get_labels(examples: Iterable):
     labels = set()

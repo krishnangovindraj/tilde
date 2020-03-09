@@ -250,3 +250,32 @@ class RmodeTokenParser(SettingTokenParser):
 
     def parse_token_experimental(self, line: str, settings: FileSettings, match: Match[str]):
         pass
+
+class TildeAlgorithmSettingParser(SettingTokenParser):
+    """ Generic algorithm parser """
+
+    fact_regex = r'([a-z][A-Za-z0-9_]*)\((.*)\).'
+    fact_pattern = re.compile(fact_regex)
+
+    supported_options = {'tilde_mode'}
+
+    def can_parse_pre(self, line: str) -> Optional[Match[str]]:
+        match = self.fact_pattern.match(line)
+        if match is not None and match.group(1) in self.supported_options:
+            return match
+        else:
+            return None
+
+    def parse_token(self, line: str, settings: FileSettings, match: Match[str]):
+        from .util_parsers import RecursivePrologFactLikeParser, TERM_TYPE
+        generic_parser = RecursivePrologFactLikeParser()
+        setting_term = generic_parser.parse(line)
+        if setting_term is not None:
+            if setting_term.term_type == TERM_TYPE.FUNCTOR:
+                if setting_term.name == 'tilde_mode':
+                    if len(setting_term.value_list) > 0:
+                        settings.algorithm_settings.set_tilde_mode(setting_term.value_list[0].name)
+        else:
+            # Silently fail? Nah, let's print an error
+            from sys import stderr as sys_stderr
+            print("Could not parse setting: " + match.group(1), file=sys_stderr)
