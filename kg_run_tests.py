@@ -86,11 +86,21 @@ class TestRules(unittest.TestCase):
                 ), 
                 (('neg', [('neg', '1.0')]), None, None)
             )
-
+        
         decision_tree = _run_test(['TestRules__test_divisibility_six', 'test_datasets/rules/divisibility_six/config.json', DEFAULT_TEST_BACKEND])
         #print(_encode_tree(decision_tree.tree))
         self.assertIn(_encode_tree(decision_tree.tree), [expected_tree_1, expected_tree_2],"Tree mismatch")
 
+    def test_squares(self):
+        TildeConfig.reset_instance()
+        expected_tree = \
+            (('divides(A,C,D), unify(C,D)',), 
+                (('pos', [('pos', '1.0')]), None, None), 
+                (('neg', [('neg', '1.0')]), None, None)
+            )
+        decision_tree = _run_test(['TestRules__test_squares', 'test_datasets/rules/squares/config.json', DEFAULT_TEST_BACKEND])
+        print(_encode_tree(decision_tree.tree))
+        self.assertEqual(_encode_tree(decision_tree.tree), expected_tree, "Tree mismatch")
 
 
 if __name__ == '__main__':

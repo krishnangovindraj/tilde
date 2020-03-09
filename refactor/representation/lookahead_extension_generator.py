@@ -72,7 +72,9 @@ class LookaheadExtensionGenerator:
                         freshly_generated_literals.add(generated_literal)
                         already_generated_literals.add(generated_literal)
                         extension = generated_literal.apply( var_renamer )
-                        if extension in already_generated_literals:
+                        # TODO: I'm unsure why I have two tests for this, but I ran into a collission.
+                        # So I'm adding the extension != generated_literal check
+                        if extension != generated_literal and extension in already_generated_literals:
                             continue
                         extended_conj = conj_to_extend + [extension]
                         yield extended_conj

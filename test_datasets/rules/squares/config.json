@@ -1,0 +1,7 @@
+{
+    "SUBTLE_PATH": "test_datasets/theta-subsumption-engines/subtle/subtle-2.2.pl",
+    "SPLIT_CRITERION": "entropy",
+    "KB_FILE": "test_datasets/rules/squares/squares.kb",
+    "S_FILE": "test_datasets/rules/squares/squares.s",
+    "BG_FILE": "test_datasets/rules/squares/squares.bg"
+}
