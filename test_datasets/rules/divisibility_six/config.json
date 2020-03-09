@@ -1,0 +1,7 @@
+{
+    "SUBTLE_PATH": "test_datasets/theta-subsumption-engines/subtle/subtle-2.2.pl",
+    "SPLIT_CRITERION": "entropy",
+    "KB_FILE": "test_datasets/rules/divisibility_six/div6.kb",
+    "S_FILE": "test_datasets/rules/divisibility_six/div6.s",
+    "BG_FILE": "test_datasets/rules/divisibility_six/div6.bg"
+}

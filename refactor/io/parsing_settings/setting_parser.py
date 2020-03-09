@@ -15,7 +15,7 @@ way in which the program traverses the search space but is more complicated.
 """
 from refactor.io.input_format import KnowledgeBaseFormat, KnowledgeBaseFormatException
 from refactor.io.parsing_settings.token_parser import ClassesTokenParser, TypeTokenParser, RmodeTokenParser, \
-    PredictionTokenParser, TildeAlgorithmSettingParser
+    PredictionTokenParser, LookaheadTokenParser, TildeAlgorithmSettingParser
 from refactor.io.parsing_settings.utils import FileSettings, SettingsParsingError
 
 
@@ -41,11 +41,13 @@ class ModelsSettingsParser(SettingParser):
         # TODO: ACE also supports the use of the predict() predicate in the Models format!
         classes_token_parser = ClassesTokenParser()
         type_token_parser = TypeTokenParser()
+        lookahead_parser = LookaheadTokenParser()
         rmode_token_parser = RmodeTokenParser()
 
         self.first_setting_token_parser = classes_token_parser
         classes_token_parser.set_successor(type_token_parser)
-        type_token_parser.set_successor(rmode_token_parser)
+        type_token_parser.set_successor(lookahead_parser)
+        lookahead_parser.set_successor(rmode_token_parser)
 
 
 class KeysSettingsParser(SettingParser):
@@ -54,12 +56,14 @@ class KeysSettingsParser(SettingParser):
 
         prediction_token_parser = PredictionTokenParser()
         type_token_parser = TypeTokenParser()
+        lookahead_parser = LookaheadTokenParser()
         rmode_token_parser = RmodeTokenParser()
         algo_token_parser =  TildeAlgorithmSettingParser()
 
         self.first_setting_token_parser = prediction_token_parser
         prediction_token_parser.set_successor(type_token_parser)
-        type_token_parser.set_successor(rmode_token_parser)
+        type_token_parser.set_successor(lookahead_parser)
+        lookahead_parser.set_successor(rmode_token_parser)
         rmode_token_parser.set_successor(algo_token_parser)
 
 class SettingsParserMapper:

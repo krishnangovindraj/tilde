@@ -4,7 +4,7 @@ from problog.logic import Term, Clause, And
 from problog.util import OrderedSet
 
 from refactor.representation.rule import Rule
-
+from refactor.logic_manipulation_utils import TermManipulationUtils
 
 class TILDEQuery(Rule):
     """Represents a query as used in tilde.
@@ -27,7 +27,7 @@ class TILDEQuery(Rule):
             else:
                 return [self.literal]
         else:
-            return self.parent.get_literals() + [self.literal]
+            return self.parent.get_literals() + TermManipulationUtils.conjunction_to_list(self.literal)
 
     def has_head(self) -> bool:
         # TODO: what if the literal of the root is None?

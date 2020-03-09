@@ -1,0 +1,31 @@
+divides(X,Y,Z):-
+    divides(X, Z, Y).
+    
+divides(X,Y,Z):-
+    divides(X, Y1, Z1),
+    divides(Z1, Y, Z2),
+    divides(Z, Y1, Z2).
+
+unify(X,X):-
+    divides(X,Y,Z).
+
+divides(1,1,1).
+divides(2,2,1).
+divides(3,3,1).
+divides(4,2,2).
+divides(5,5,1).
+divides(6,2,3).
+divides(7,7,1).
+divides(8,2,4).
+divides(9,3,3).
+divides(10,2,5).
+divides(11,11,1).
+divides(12,2,6).
+divides(13,13,1).
+divides(14,2,7).
+divides(15,15,1).
+divides(16,2,8).
+divides(17,17,1).
+divides(18,2,9).
+divides(19,19,1).
+divides(20,2,10).

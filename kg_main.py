@@ -16,7 +16,7 @@ from refactor.tilde_config import TildeConfig, _default_config_file_name
 
 # Some defaults
 
-DEFAULT_BACKEND_NAME = 'subtle'
+DEFAULT_BACKEND_NAME = 'problog-simple'
 
 default_handlers = {
     'django': QueryBackEnd.DJANGO,
@@ -117,9 +117,17 @@ def main(argv):
 
     average_run_time_list = []
 
+    # =================================================================================================================
     examples = backend.get_transformed_example_list(training_examples_collection)
 
-        # =================================================================================================================
+    # Saturate the examples with background knowledge (using prolog for now).
+
+    from refactor.background_management.groundedkb import SubtleGroundedKB, PrologGroundedKB 
+    groundedkb = SubtleGroundedKB(full_background_knowledge_sp)
+    groundedkb.setup()
+    groundedkb.saturate_examples(examples)
+
+    # =================================================================================================================
 
     run_time_list = []
 

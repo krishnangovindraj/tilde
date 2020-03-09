@@ -1,0 +1,42 @@
+specialnum(1, neg).
+specialnum(2, neg).
+specialnum(3, neg).
+specialnum(4, neg).
+specialnum(5, neg).
+specialnum(6, pos).
+specialnum(7, neg).
+specialnum(8, neg).
+specialnum(9, neg).
+specialnum(10,neg).
+specialnum(11,neg).
+specialnum(12,pos).
+specialnum(13,neg).
+specialnum(14,neg).
+specialnum(15,neg).
+
+specialnum(18,pos).
+specialnum(24,pos).
+specialnum(28,neg).
+specialnum(36,pos).
+
+
+divides(1,1,1).
+divides(2,2,1).
+divides(3,3,1).
+divides(4,2,2).
+divides(5,5,1).
+divides(6,2,3).
+divides(7,7,1).
+divides(8,2,4).
+divides(9,3,3).
+divides(10,2,5).
+divides(11,11,1).
+divides(12,2,6).
+divides(13,13,1).
+divides(14,2,7).
+divides(15,15,1).
+
+divides(18,2,9).
+divides(24,2,12).
+divides(28,2,14).
+divides(36,2,18).

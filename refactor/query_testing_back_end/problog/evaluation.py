@@ -45,7 +45,7 @@ class SimpleProgramQueryEvaluator(ProbLogQueryEvaluator):
             db_to_query += statement
 
         # TODO: remove ugly hack
-        if hasattr(instance,  'classification_term'):
+        if hasattr(instance,  'classification_term') and instance.classification_term is not None:
             db_to_query += instance.classification_term
 
         db_to_query += (self.to_query << query_conj)

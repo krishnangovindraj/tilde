@@ -37,5 +37,5 @@ class MajorityClassLS(DeterministicLeafStrategy):
             self.label_counts[label] = self.label_counts.get(label, 0) + other.label_counts[label]
         
     def encode_to_tuple(self):
-        return (self.majority_label, list(self.label_frequencies.items))
+        return ( str(self.majority_label), [ (str(t[0]), str(t[1])) for t in self.label_frequencies.items() ] )
     

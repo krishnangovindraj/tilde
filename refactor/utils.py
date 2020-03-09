@@ -43,3 +43,8 @@ def block_all_printouts():
 
 def enable_printouts():
     sys.stdout = sys.__stdout__
+
+def multidict_safe_add(d, k, v, value_collection_type=set):
+    if k not in d:
+        d[k] = value_collection_type()
+    d[k].add(v)
