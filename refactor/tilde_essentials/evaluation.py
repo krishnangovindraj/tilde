@@ -22,7 +22,7 @@ class TestEvaluator:
 
         seen_unstable = False    
         for l in TermManipulationUtils.conjunction_to_list(original_test_conj):
-            if hasattr(l, 'special_test'):
+            if hasattr(l, 'special_test') and l.special_test is not None:
                 if seen_unstable and not l.special_test.is_stable():
                     raise Exception("Two unstable tests aren't supported. The complexity would end up being the product. Pls no. Fix your language.")
                 else:

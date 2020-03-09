@@ -37,10 +37,9 @@ def _encode_tree(tree):
 
 
 def _run_test(argv):
-    # f = io_StringIO()
-    # with redirect_stdout(f):
-    #     tree = run_kg_main(argv)
-    tree = run_kg_main(argv)
+    f = io_StringIO()
+    with redirect_stdout(f):
+        tree = run_kg_main(argv)
     return tree
 
 class TestRegressionTrees(unittest.TestCase):
@@ -88,7 +87,7 @@ class TestRules(unittest.TestCase):
             )
         
         decision_tree = _run_test(['TestRules__test_divisibility_six', 'test_datasets/rules/divisibility_six/config.json', DEFAULT_TEST_BACKEND])
-        #print(_encode_tree(decision_tree.tree))
+        
         self.assertIn(_encode_tree(decision_tree.tree), [expected_tree_1, expected_tree_2],"Tree mismatch")
 
     def test_squares(self):
@@ -99,7 +98,23 @@ class TestRules(unittest.TestCase):
                 (('neg', [('neg', '1.0')]), None, None)
             )
         decision_tree = _run_test(['TestRules__test_squares', 'test_datasets/rules/squares/config.json', DEFAULT_TEST_BACKEND])
-        print(_encode_tree(decision_tree.tree))
+        
+        self.assertEqual(_encode_tree(decision_tree.tree), expected_tree, "Tree mismatch")
+
+class TestNumericalAttributes(unittest.TestCase):
+
+    def test_onedimensional_range_exact(self):
+        expected_tree = \
+            (('tilde__realnumber_lessthan_functor__realnum_x(A,10)',), 
+                (('tilde__realnumber_lessthan_functor__realnum_x(A,5)',), 
+                    (('pos', [('pos', '1.0')]), None, None), 
+                    (('neg', [('neg', '1.0')]), None, None)
+                ), 
+                (('pos', [('pos', '1.0')]), None, None)
+            )
+
+        decision_tree = _run_test(['TestRules__test_onedimensional_range_exact', 'test_datasets/numerical/onedimensional_range/config.json', DEFAULT_TEST_BACKEND])
+        
         self.assertEqual(_encode_tree(decision_tree.tree), expected_tree, "Tree mismatch")
 
 
