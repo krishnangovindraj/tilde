@@ -127,6 +127,11 @@ def main(argv):
     groundedkb.setup()
     groundedkb.saturate_examples(examples)
 
+    # TODO: Move all this stuff to some controller
+    for k in language.special_tests:
+        special_test = language.special_tests[k]
+        special_test.setup(prediction_goal_handler, language, examples, full_background_knowledge_sp)
+
     # =================================================================================================================
 
     run_time_list = []

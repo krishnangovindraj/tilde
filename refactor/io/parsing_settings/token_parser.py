@@ -162,6 +162,16 @@ class LookaheadTokenParser(SettingTokenParser):
         from refactor.representation.lookahead_mode import LookaheadMode
         settings.language.add_lookahead(LookaheadMode.from_declaration(match.group(1)))
 
+class RealTypeTokenParser(SettingTokenParser):
+    real_regex = r'realtype\((.*)\).'
+    real_pattern = re.compile(real_regex)
+
+    def can_parse_pre(self, line: str) -> Optional[Match[str]]:
+        return self.real_pattern.match(line)
+
+    def parse_token(self, line: str, settings: FileSettings, match: Match[str]):
+        real_type_name = match.group(1)
+        settings.language.add_real_type(real_type_name)
 
 
 class RmodeTokenParser(SettingTokenParser):

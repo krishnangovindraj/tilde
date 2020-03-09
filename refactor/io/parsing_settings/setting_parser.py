@@ -15,7 +15,8 @@ way in which the program traverses the search space but is more complicated.
 """
 from refactor.io.input_format import KnowledgeBaseFormat, KnowledgeBaseFormatException
 from refactor.io.parsing_settings.token_parser import ClassesTokenParser, TypeTokenParser, RmodeTokenParser, \
-    PredictionTokenParser, LookaheadTokenParser, TildeAlgorithmSettingParser
+    PredictionTokenParser, LookaheadTokenParser, RealTypeTokenParser, TildeAlgorithmSettingParser
+
 from refactor.io.parsing_settings.utils import FileSettings, SettingsParsingError
 
 
@@ -59,12 +60,14 @@ class KeysSettingsParser(SettingParser):
         lookahead_parser = LookaheadTokenParser()
         rmode_token_parser = RmodeTokenParser()
         algo_token_parser =  TildeAlgorithmSettingParser()
+        realtype_token_parser = RealTypeTokenParser()
 
         self.first_setting_token_parser = prediction_token_parser
         prediction_token_parser.set_successor(type_token_parser)
         type_token_parser.set_successor(lookahead_parser)
         lookahead_parser.set_successor(rmode_token_parser)
         rmode_token_parser.set_successor(algo_token_parser)
+        algo_token_parser.set_successor(realtype_token_parser)
 
 class SettingsParserMapper:
     @staticmethod

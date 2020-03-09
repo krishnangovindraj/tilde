@@ -2,13 +2,14 @@ from collections import defaultdict
 from itertools import product
 from typing import Iterable, Iterator
 
-from problog.logic import Term, is_variable, Var
+from problog.logic import Term, is_variable, Var, Constant
 from refactor.representation.TILDE_query import Rule, TILDEQuery
 
 from refactor.representation.language_types import *
 from refactor.representation.lookahead_mode import LookaheadMode
 
 from refactor.representation.lookahead_extension_generator import LookaheadExtensionGenerator
+from refactor.special_tests import RealNumberLessThanTest
 
 class BaseLanguage(object):
     """Base class for languages."""
@@ -39,6 +40,8 @@ class TypeModeLanguage(BaseLanguage):
         self._symmetry_breaking = symmetry_breaking
         self._allow_negation = True
         self._allow_recursion = False
+        self.real_types = set()
+        self.special_tests = defaultdict(None)
 
     def add_types(self, functor: TypeName, argtypes: TypeArguments) -> None:
         """Add type information for a predicate.
@@ -83,6 +86,18 @@ class TypeModeLanguage(BaseLanguage):
         if lookahead_mode.sig not in self._lookahead:
             self._lookahead[lookahead_mode.sig] = set()
         self._lookahead[lookahead_mode.sig].add(lookahead_mode)
+    
+    def add_real_type(self, real_typename):
+        self.real_types.add(real_typename)
+        new_test_name = RealNumberLessThanTest.TEST_FUNCTOR_PREFIX + real_typename
+        new_test_arity = 2
+        const_type_key = new_test_name + '_1'
+        
+        self.special_tests[new_test_name] = RealNumberLessThanTest(new_test_name, new_test_arity, real_typename)
+        self.add_types(new_test_name, (real_typename, 'tilde_real_const'))
+        self.add_modes(new_test_name, ('+', 'c'))
+        
+        self.add_values(const_type_key, Constant(RealNumberLessThanTest.TEST_PLACEHOLDER_TERM))
 
     def refine(self, rule: Rule):
         """ORIGINAL: generate ONE refinement for the given rule.
@@ -201,6 +216,7 @@ class TypeModeLanguage(BaseLanguage):
                         generated.add(t)
                     t_i = t.apply(TypeModeLanguage.ReplaceNew(varcount))
                     t_i.prototype = t
+                    t_i.special_test = t.special_test
                     if self._symmetry_breaking:
                         t_i.refine_state = generated.copy()
                     else:
@@ -324,6 +340,7 @@ class TypeModeLanguage(BaseLanguage):
                         already_generated_literals.add(t)
                     t_i = t.apply(TypeModeLanguage.ReplaceNew(nb_of_vars_in_query))
                     t_i.prototype = t
+                    t_i.special_test = t.special_test
                     if self._symmetry_breaking:
                         t_i.refine_state = already_generated_literals.copy()
                     else:
@@ -456,7 +473,9 @@ class TypeModeLanguage(BaseLanguage):
         # SO for each possible combination of arguments:
         #   create a term using the functor and the arguments.
         for args in product(*arguments):
-            yield Term(functor, *args)
+            term = Term(functor, *args)
+            term.special_test = self.special_tests[functor] if functor in self.special_tests else None
+            yield term
 
     def get_refinement_modes(self):
         """ Returns list of (functor:str,arity:int) which can be used in tests"""
@@ -541,6 +560,9 @@ class TypeModeLanguage(BaseLanguage):
                 self._allow_negation = False
             elif str(optname) == 'recursion' and str(optvalue) == 'on':
                 self._allow_recursion = True
+
+    def list_refinement_modes(self):
+        return self._refinement_modes
 
     class ReplaceNew(object):
         """Helper class for replacing new variables (indicated by name '#') by unique variables.
