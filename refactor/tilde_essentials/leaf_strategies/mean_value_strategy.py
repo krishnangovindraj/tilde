@@ -23,8 +23,9 @@ class MeanValueLS(DeterministicLeafStrategy):
         return self.mean_value
 
     def merge(self, other: 'MeanValueLS'):
-        our_y_sum = self.mean * self.n_examples
-        our_y2_sum = (self.variance + self.mean*self.mean) * self.n_examples
+        # TODO: This has not been tested
+        our_y_sum = self.mean_value * self.n_examples
+        our_y2_sum = (self.variance + self.mean_value*self.mean_value) * self.n_examples
         
         other_y_sum = other.mean * other.n_examples
         other_y2_sum = (other.variance + other.mean*other.mean) * other.n_examples
@@ -33,3 +34,6 @@ class MeanValueLS(DeterministicLeafStrategy):
         self.mean = (our_y_sum + other_y_sum) / self.n_examples
         self.variance = (our_y2_sum + other_y2_sum)/self.n_examples - (self.mean * self.mean)
         
+
+    def encode_to_tuple(self):
+        return ( round(self.mean_value,2), round(self.variance,2))

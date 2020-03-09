@@ -26,7 +26,10 @@ class LeafBuilder:
 
     def build(self, examples):
         raise NotImplementedError('abstract method')
-
+    
+    def encode_to_tuple(self):
+        raise NotImplementedError('abstract method')
+    
     @staticmethod
     def get_leaf_builder(leaf_strategy: str):
         if leaf_strategy == 'mean_value':
