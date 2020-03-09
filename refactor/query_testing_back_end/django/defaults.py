@@ -8,19 +8,20 @@ from refactor.query_testing_back_end.django.evaluation import DjangoQueryEvaluat
 from refactor.query_testing_back_end.django.splitter import DjangoSplitter
 from refactor.query_testing_back_end.django.test_generation import DjangoTestGeneratorBuilder
 from refactor.representation.example_collection import ExampleCollection
-from tilde_config import split_criterion
+from refactor.tilde_config import TildeConfig
 
 
 class DjangoDefaultHandler(DefaultHandler):
     @staticmethod
     def get_default_decision_tree_builder(language, prediction_goal) -> TreeBuilder:
+        tilde_config = TildeConfig.get_instance()
         test_evaluator = DjangoQueryEvaluator()
         test_generator_builder = DjangoTestGeneratorBuilder(language=language,
                                                             query_head_if_keys_format=prediction_goal)
 
-        splitter = DjangoSplitter(split_criterion_str=split_criterion(), test_evaluator=test_evaluator,
+        splitter = DjangoSplitter(split_criterion_str=tilde_config.split_criterion, test_evaluator=test_evaluator,
                                   test_generator_builder=test_generator_builder)
-        leaf_builder = LeafBuilder()
+        leaf_builder = LeafBuilder.get_leaf_builder(tilde_config.leaf_strategy)
         stop_criterion = StopCriterion()
         tree_builder = TreeBuilder(splitter=splitter, leaf_builder=leaf_builder, stop_criterion=stop_criterion)
         return tree_builder

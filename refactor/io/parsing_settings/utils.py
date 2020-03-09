@@ -62,6 +62,14 @@ class KeysPredictionGoalHandler:
                 return index
         raise SettingsParsingError("predicate to predict has no argument with arg_mode '-'")
 
+class TildeAlgorithmSettings:
+
+    def __init__(self):
+        self.tilde_mode = 'classification'
+
+    def set_tilde_mode(self, mode):
+        if mode in ['classification', 'regression']: # , 'clustering']
+            self.tilde_mode = mode
 
 class FileSettings:
     def __init__(self):
@@ -69,6 +77,7 @@ class FileSettings:
         self.language = TypeModeLanguage(False)
         self.is_typed = None  # type: Optional[bool]
         self.prediction_goal_handler = None  # type: KeysPredictionGoalHandler
+        self.algorithm_settings = TildeAlgorithmSettings()
 
     def add_labels(self, labels: List[Label]):
         self.possible_labels.extend(labels)

@@ -27,7 +27,7 @@ debug_printing_tree_pruning = False
 debug_printing_program_conversion = True
 debug_printing_get_classifier = False
 debug_printing_classification = False
-fname_background_knowledge = bg_file() # None
+fname_background_knowledge = bg_file() if bg_file() else None
 
 internal_ex_format = InternalExampleFormat.CLAUSEDB
 
@@ -96,6 +96,7 @@ for name, default_handler in default_handlers:
         # splitter = ProblogSplitter(language=language,split_criterion_str='entropy', test_evaluator=test_evaluator,
         #                            query_head_if_keys_format=prediction_goal)
         tree_builder = default_handler.get_default_decision_tree_builder(language, prediction_goal)  # type: TreeBuilder
+        from refactor.tilde_essentials.leaf_strategy import LeafBuilder
         decision_tree = DecisionTree()
         start_time = time.time()
         decision_tree.fit(examples=examples, tree_builder=tree_builder)

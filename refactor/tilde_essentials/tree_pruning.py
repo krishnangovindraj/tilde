@@ -1,4 +1,4 @@
-from refactor.tilde_essentials.leaf_strategy import MajorityClassLS
+from refactor.tilde_essentials.leaf_strategy import DeterministicLeafStrategy
 from refactor.tilde_essentials.tree_node import TreeNode
 
 #
@@ -52,11 +52,11 @@ def prune_leaf_nodes_with_same_label(node: TreeNode):
 
     # if both children are leaf node
     if left_is_leaf and right_is_leaf:
-        if not isinstance(left_child_node.leaf_strategy, MajorityClassLS):
+        if not isinstance(left_child_node.leaf_strategy, DeterministicLeafStrategy):
             print("can only prune leaves with DeterministicLeafStrategy")
             return
 
-        if not isinstance(right_child_node.leaf_strategy, MajorityClassLS):
+        if not isinstance(right_child_node.leaf_strategy, DeterministicLeafStrategy):
             print("can only prune leaves with DeterministicLeafStrategy")
             return
 
