@@ -3,13 +3,13 @@ import ctypes
 from problog.logic import Term
 
 from refactor.query_testing_back_end.django.django_wrapper.c_library import lib_django
-
+from refactor.tilde_essentials.destuctable import Destructible
 
 class ConversionException(Exception):
     pass
 
 
-class ClauseWrapper:
+class ClauseWrapper(Destructible):
     __ajoute_tete = lib_django.AjouteTete
     __ajoute_clause = lib_django.AjouteClause
 
@@ -96,7 +96,7 @@ class ClauseWrapper:
         self._problog_representation = problog_representation
 
 
-class HypothesisWrapper():
+class HypothesisWrapper(Destructible):
     __new_hypothese_base = lib_django.NewHypotheseBase
 
     __libere_hypothese = lib_django.LibereHypothese

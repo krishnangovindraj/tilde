@@ -149,7 +149,11 @@ class RealNumberLessThanTest(SpecialTest):
             example.data.add_fact(gf)
 
         instantiated_query = self._replace_placeholder(placeholder_tilde_query, Constant(split_point))
-        return test_evaluator.evaluate(example, instantiated_query)
+        test = test_evaluator.wrap_query(instantiated_query)
+        test_result = test_evaluator.evaluate(example, test)
+        test.destruct()
+        
+        return test_result
 
     def _replace_placeholder_in_term(self, conj: Term, split_value):
         conj_list = TermManipulationUtils.conjunction_to_list(conj)

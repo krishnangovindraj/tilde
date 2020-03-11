@@ -41,4 +41,4 @@ def build_clause(example: ExampleWrapper, training=True) -> str:
 
 
 def build_hypothesis(tilde_query:  TILDEQuery) -> str:
-    return "[" + literals_to_clause_string(tilde_query.get_literals_as_subsumption_list()) + "]"
+    return literals_to_clause_string(tilde_query.get_literals_as_subsumption_list())

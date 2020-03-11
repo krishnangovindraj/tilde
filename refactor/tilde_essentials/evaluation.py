@@ -1,13 +1,12 @@
 from typing import List, Tuple
 
-from refactor.tilde_essentials.example import Example
-from refactor.representation.TILDE_query import TILDEQuery
-from refactor.tilde_essentials.split_criterion import SplitCriterion
-from refactor.special_tests.special_test import TildeTestResult
 from refactor.logic_manipulation_utils import TermManipulationUtils
-
-# HAX:
+from refactor.representation.TILDE_query import TILDEQuery
+from refactor.special_tests.special_test import TildeTestResult
+from refactor.tilde_essentials.example import Example
 from refactor.tilde_essentials.query_wrapping import QueryWrapper
+from refactor.tilde_essentials.split_criterion import SplitCriterion
+
 class TestEvaluator:
     
     # TODO: Probably decide against how things are done now and favour theta-subsumption with result caching rather than bypassing that system.
@@ -21,6 +20,7 @@ class TestEvaluator:
         current_query = tilde_query
 
         seen_unstable = False    
+        
         for l in TermManipulationUtils.conjunction_to_list(original_test_conj):
             if hasattr(l, 'special_test') and l.special_test is not None:
                 if seen_unstable and not l.special_test.is_stable():
@@ -39,14 +39,19 @@ class TestEvaluator:
         tilde_query.literal = current_query.literal
         
         results = []
+        test = self.wrap_query(tilde_query)
         for ex in examples:
-            results.append( (ex, self.evaluate(ex, tilde_query)) )
-        
+            results.append( (ex, self.evaluate(ex, test)) )
+        test.destruct()
+
         return TildeTestResult(tilde_query, results)
 
     def _evaluate_special_test(self, query, examples):
         special_test_result = query.get_special_test().run(examples, self)
         raise NotImplementedError('I should actually implement this')
 
-    def evaluate(self, example, test) -> bool:
+    def evaluate(self, example, test: QueryWrapper) -> bool:
+        raise NotImplementedError('abstract method')
+
+    def wrap_query(self, tilde_query: TILDEQuery) -> QueryWrapper:
         raise NotImplementedError('abstract method')

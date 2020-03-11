@@ -1,5 +1,6 @@
 from refactor.tilde_essentials.query_wrapping import QueryWrapper
+from refactor.representation.TILDE_query import TILDEQuery
 
-class SubtleQueryWrapper(QueryWrapper):
+class ProblogQueryWrapper(QueryWrapper):
     def __str__(self):
         return self.external_representation

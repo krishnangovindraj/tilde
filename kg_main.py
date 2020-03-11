@@ -16,7 +16,7 @@ from refactor.tilde_config import TildeConfig, _default_config_file_name
 
 # Some defaults
 
-DEFAULT_BACKEND_NAME = 'problog-simple'
+DEFAULT_BACKEND_NAME = 'problog-simple' # 'django'
 
 default_handlers = {
     'django': QueryBackEnd.DJANGO,
@@ -122,10 +122,10 @@ def main(argv):
 
     # Saturate the examples with background knowledge (using prolog for now).
 
-    from refactor.background_management.groundedkb import SubtleGroundedKB, PrologGroundedKB 
-    groundedkb = SubtleGroundedKB(full_background_knowledge_sp)
-    groundedkb.setup()
-    groundedkb.saturate_examples(examples)
+    # from refactor.background_management.groundedkb import SubtleGroundedKB, PrologGroundedKB 
+    # groundedkb = SubtleGroundedKB(full_background_knowledge_sp)
+    # groundedkb.setup()
+    # groundedkb.saturate_examples(examples)
 
     # TODO: Move all this stuff to some controller
     for k in language.special_tests:
@@ -163,7 +163,7 @@ def main(argv):
     if backend_enum == QueryBackEnd.DJANGO:
         print("=== start destructing examples ===")
         for instance in examples:
-            instance.data.destruct()
+            instance.destruct()
         print("=== end destructing examples ===")
 
         print("=== start destructing tree queries ===")

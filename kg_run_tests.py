@@ -5,7 +5,7 @@ from io import StringIO as io_StringIO
 from kg_main import main as run_kg_main
 from refactor.tilde_config import TildeConfig
 
-DEFAULT_TEST_BACKEND = 'problog-simple' # 'subtle' # 'django'
+DEFAULT_TEST_BACKEND = 'subtle' #'problog-simple' # 'subtle' # 'django'
 
 def _encode_test(test):
     from refactor.query_testing_back_end.subtle.query_wrapping import SubtleQueryWrapper
