@@ -1,3 +1,6 @@
+from typing import Iterable
+from problog.logic import Term
+
 from refactor.tilde_essentials.example import Example
 
 from refactor.representation.example import ExampleWrapper
@@ -7,17 +10,15 @@ class DjangoExample(Example):
     Container class for an example, storing its data and label (types undefined)
 
     """
-    # TODO: Krishnan: This is a test update for homogenization. It is nowhere near complete.
-    def __init__(self, example: ExampleWrapper, label, is_training):
-        #raise NotImplementedError("No. This is a bit too complicated to take on first.")
+    def __init__(self, data: Iterable[Term], label, classification_term: Term = None):
         self.external_rep = ClauseWrapper(clause_id=None)
 
-        if is_training:
-            if hasattr(example, 'classification_term'):
-                self.external_rep.add_literal_to_body(example.classification_term)
+        if classification_term is not None:
+            self.external_representation.add_literal_as_head(classification_term)
+            # self.external_rep.add_literal_to_body(~classification_term) # Does not work
         
-        super().__init__(example, label)
-        self.external_rep.lock_adding_to_clause() # TODO: Do we need this?
+        super().__init__(data, label)
+        self.external_rep.lock_adding_to_clause() # We need this. Things don't work without it. Bad news for the rules.
         
         
     def destruct(self):
@@ -28,6 +29,9 @@ class DjangoExample(Example):
 
         for fact in facts:  # type: Term
             self.external_rep.add_literal_to_body(fact)
-            # TODO: this: 
+            # TODO: Do we want this, given we have an equivalent representation right here? It's redundant but doesn't break anything
             # self.external_rep.add_problog_clause(fact)
-    
+
+    @property
+    def external_representation(self):
+        return self.external_rep

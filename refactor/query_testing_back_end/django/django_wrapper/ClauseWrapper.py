@@ -102,6 +102,7 @@ class HypothesisWrapper(Destructible):
     __libere_hypothese = lib_django.LibereHypothese
 
     def __init__(self, clause_wrapper: ClauseWrapper):
+        self._DEBUG_clause_wrapper = clause_wrapper
         if clause_wrapper.is_destructed:
             raise ConversionException("cannot turn destructed clause into a hypothesis")
         elif not clause_wrapper.is_locked:

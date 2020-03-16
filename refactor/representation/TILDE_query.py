@@ -35,6 +35,11 @@ class TILDEQuery(Rule):
         root = self._get_root()
         return isinstance(root, TILDEQueryHiddenLiteral)
 
+    def get_head(self):
+        root = self._get_root()
+        return root.literal if isinstance(root, TILDEQueryHiddenLiteral) else None
+
+
     def get_literals_of_body(self) -> List[Term]:
         """Get literals in the body of the rule.
 

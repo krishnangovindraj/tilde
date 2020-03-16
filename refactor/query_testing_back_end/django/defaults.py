@@ -32,7 +32,8 @@ class DjangoDefaultHandler(DefaultHandler):
         examples = []
         for ex_wr_sp in training_examples_collection.get_example_wrappers_sp():
             # example_clause = build_clause(ex_wr_sp)
-            example = DjangoExample(ex_wr_sp, ex_wr_sp.label, True)
+            classification_term = ex_wr_sp.classification_term if hasattr(ex_wr_sp, 'classification_term') else None
+            example = DjangoExample(ex_wr_sp.logic_program, ex_wr_sp.label, classification_term)
             example.classification_term = ex_wr_sp.classification_term
             examples.append(example)
         return examples

@@ -13,8 +13,7 @@ from refactor.query_testing_back_end.django.clause_handling import build_hypothe
 
 class DjangoQueryEvaluator(TestEvaluator):
     def evaluate(self, example: DjangoExample, test: HypothesisWrapper) -> bool:
-        example_clause_wrapper = example.external_rep  # type: ClauseWrapper
-
+        example_clause_wrapper = example.external_representation  # type: ClauseWrapper
         does_subsume, run_time_ms = check_subsumption(test, example_clause_wrapper)
         return does_subsume
 

@@ -29,7 +29,12 @@ def build_clause(example: ExampleWrapper, training=True) -> ClauseWrapper:
 def build_hypothesis(tilde_query: TILDEQuery) -> HypothesisWrapper:
     clause = ClauseWrapper(clause_id=None)
 
-    literals = tilde_query.get_literals_of_body()  # NOTE: only of query body
+    head_literal = tilde_query.get_head()
+    if head_literal is not None:
+        clause.add_literal_as_head(head_literal)
+        # clause.add_literal_to_body(~head_literal) # does not work
+
+    literals = tilde_query.get_literals_of_body()  # NOTE: only of query body - Why?
     for literal in literals:
         clause.add_literal_to_body(literal)
 

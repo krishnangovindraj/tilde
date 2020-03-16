@@ -29,8 +29,9 @@ class DjangoSplitter(Splitter):
                                                     score=candidate_test_score,
                                                     threshold=split_criterion.get_threshold(),
                                                     split_criterion=split_criterion.get_name())
-            else:
-                # if we do not keep the query, destruct it
-                candidate_test.destruct()
+            # else:
+            #     # We no longer need this.
+            #     # if we do not keep the query, destruct it
+            #     candidate_test.destruct()
         return current_best_split_info
 
