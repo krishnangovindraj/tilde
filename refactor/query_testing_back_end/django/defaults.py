@@ -42,7 +42,8 @@ class DjangoDefaultHandler(DefaultHandler):
         test_examples_reformed = []
         for ex_wr_sp in simple_example_wrapper_list:
             # example_clause = build_clause(ex_wr_sp, training=False)
-            example = DjangoExample(ex_wr_sp, ex_wr_sp.label, training)
+            classification_term = ex_wr_sp.classification_term if hasattr(ex_wr_sp, 'classification_term') else None
+            example = DjangoExample(ex_wr_sp.logic_program, ex_wr_sp.label, classification_term)
             example.classification_term = ex_wr_sp.classification_term
             test_examples_reformed.append(example)
         return test_examples_reformed

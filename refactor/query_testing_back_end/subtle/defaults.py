@@ -32,7 +32,8 @@ class SubtleDefaultHandler(DefaultHandler):
     def get_transformed_example_list(training_examples_collection: ExampleCollection):
         examples = []
         for ex_wr_sp in training_examples_collection.get_example_wrappers_sp():
-            example = SubtleExample(ex_wr_sp, ex_wr_sp.label, False)
+            classification_term = ex_wr_sp.classification_term if hasattr(ex_wr_sp, 'classification_term') else None
+            example = SubtleExample(ex_wr_sp, ex_wr_sp.label, classification_term)
             example.classification_term = ex_wr_sp.classification_term
             examples.append(example)
         return examples
@@ -41,8 +42,9 @@ class SubtleDefaultHandler(DefaultHandler):
     def get_transformed_test_example_list(simple_example_wrapper_list, training=False):
         test_examples_reformed = []
         for ex_wr_sp in simple_example_wrapper_list:
+            classification_term = ex_wr_sp.classification_term if hasattr(ex_wr_sp, 'classification_term') else None
             # example_clause = build_clause(ex_wr_sp, training=False)
-            example = SubtleExample(ex_wr_sp, ex_wr_sp.label, training)
+            example = SubtleExample(ex_wr_sp, ex_wr_sp.label, classification_term)
             example.classification_term = ex_wr_sp.classification_term
             test_examples_reformed.append(example)
         return test_examples_reformed

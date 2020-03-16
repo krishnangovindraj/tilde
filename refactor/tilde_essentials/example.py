@@ -12,10 +12,10 @@ class Example(Destructible):
 
     """
 
-    def __init__(self, example: ExampleWrapper, label):
+    def __init__(self, data: Iterable[Term], label, classification_term: Term = None):
         self.label = label
         self.data = set()
-        self.add_facts(example.logic_program)
+        self.add_facts(data)
 
     def destruct(self):
         pass
