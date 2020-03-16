@@ -93,7 +93,7 @@ class PythonStoreForSubsumptionBasedGroundedKB(GroundedKB):
             lhm = self.derive_groundings_for_example(example)
             for t in lhm:
                 if t not in existing_facts: # and t != example.classification_term:
-                    example.data.add_fact(t)
+                    example.add_fact(t)
             # It is unfortunately, not enough to add just those facts derived by adding example.data to bg.
             # We must also add ALL clauses within BG which may be queried during the tree building.
             # This is a subset of the facts in BG (that part was obvious) such that the (typed) variables currently in example.data
@@ -101,7 +101,7 @@ class PythonStoreForSubsumptionBasedGroundedKB(GroundedKB):
             # But for now, Lazy Krishnan will simply add ALL the facts in bg and leave this as a 
             # TODO: what's described above
             for bg_fact in self.bg_groundings:
-                example.data.add_fact(bg_fact)
+                example.add_fact(bg_fact)
 
     def derive_groundings_for_example(self, example):
         db_extension = set()
@@ -146,7 +146,7 @@ class PythonStoreForSubsumptionBasedGroundedKB(GroundedKB):
         # This should be in rule_grounder. For now, We piggy back on prolog
         for entry in bg_program_sp:
             if type(entry) == Term:
-                self.bg_groundings.add(entry)
+                self.add_fact(entry)
             elif type(entry) == Clause:
                 self._process_bg_rule(entry)
     

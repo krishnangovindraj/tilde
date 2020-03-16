@@ -146,7 +146,7 @@ class RealNumberLessThanTest(SpecialTest):
         lt_grounded_facts = [ Term(self.test_functor, v, split_point) for v in self.example_values[example] if v < split_point ]
         # example.data.update(lt_grounded_facts)
         for gf in lt_grounded_facts:
-            example.data.add_fact(gf)
+            example.add_fact(gf)
 
         instantiated_query = self._replace_placeholder(placeholder_tilde_query, Constant(split_point))
         test = test_evaluator.wrap_query(instantiated_query)
@@ -223,7 +223,7 @@ class RealNumberLessThanTest(SpecialTest):
             for v in self.example_values[e]:
                 # Here's another place the test is
                 if v < best_split:
-                    e.data.add_fact(Term(self.test_functor, Constant(v), best_split_constant))
+                    e.add_fact(Term(self.test_functor, Constant(v), best_split_constant))
 
     def _fix_refine_state(self, test_conj: Term, split_value: float):
         def _term_matches(term: Term):

@@ -20,6 +20,9 @@ class Example(Destructible):
     def destruct(self):
         pass
 
+    def add_fact(self, fact: Term):
+        self.add_facts([fact])
+
     def add_facts(self, facts: Iterable[Term]):
         self.data.update(facts)
     

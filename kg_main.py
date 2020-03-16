@@ -122,10 +122,10 @@ def main(argv):
 
     # Saturate the examples with background knowledge (using prolog for now).
 
-    # from refactor.background_management.groundedkb import SubtleGroundedKB, PrologGroundedKB 
-    # groundedkb = SubtleGroundedKB(full_background_knowledge_sp)
-    # groundedkb.setup()
-    # groundedkb.saturate_examples(examples)
+    from refactor.background_management.groundedkb import SubtleGroundedKB, PrologGroundedKB
+    groundedkb = SubtleGroundedKB(full_background_knowledge_sp)
+    groundedkb.setup()
+    groundedkb.saturate_examples(examples)
 
     # TODO: Move all this stuff to some controller
     for k in language.special_tests:

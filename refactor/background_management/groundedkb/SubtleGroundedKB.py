@@ -4,7 +4,7 @@ from .pythonstore_externalsubsumption_kb import PythonStoreForSubsumptionBasedGr
 
 class SubtleGroundedKB(PythonStoreForSubsumptionBasedGroundedKB):
 
-    SUBTLE_WRAPPER_PATH = '/mnt/d/workcode/subtle/subtle-wrapper.pl'
+    SUBTLE_WRAPPER_PATH = 'test_datasets/theta-subsumption-engines/subtle/subtle-wrapper.pl'
     SUBTLE_QUERY_TEMPLATE = "subsumes_pyswip(%s, %s)"
 
     def __init__(self, bg_program_sp):
@@ -31,5 +31,4 @@ class SubtleGroundedKB(PythonStoreForSubsumptionBasedGroundedKB):
         query_string = str(rule_body)
         
         subtle_query = self.SUBTLE_QUERY_TEMPLATE%(query_string, db_string) 
-
         return self._subtle.query(subtle_query)

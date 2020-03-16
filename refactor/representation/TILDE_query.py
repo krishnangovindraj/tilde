@@ -118,12 +118,12 @@ class TILDEQuery(Rule):
             if self.literal is None:
                 return []
             else:
-                # if isinstance(self, TILDEQueryHiddenLiteral):
-                #     head = self.literal
-                #     return [~ head]
-                # else:
-                #     return [self.literal]
-                return []
+                if isinstance(self, TILDEQueryHiddenLiteral):
+                    head = self.literal
+                    return [~ head]
+                else:
+                    return [self.literal]
+                # return []
         else:
             return self.parent.get_literals_as_subsumption_list() + [self.literal]
 
