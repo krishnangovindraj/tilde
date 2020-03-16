@@ -118,14 +118,15 @@ def main(argv):
     average_run_time_list = []
 
     # =================================================================================================================
-    examples = backend.get_transformed_example_list(training_examples_collection)
 
     # Saturate the examples with background knowledge (using prolog for now).
 
     from refactor.background_management.groundedkb import SubtleGroundedKB, PrologGroundedKB
     groundedkb = SubtleGroundedKB(full_background_knowledge_sp)
     groundedkb.setup()
-    groundedkb.saturate_examples(examples)
+    groundedkb.saturate_examples(training_examples_collection)
+
+    examples = backend.get_transformed_example_list(training_examples_collection)
 
     # TODO: Move all this stuff to some controller
     for k in language.special_tests:
