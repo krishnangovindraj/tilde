@@ -17,7 +17,7 @@ class DjangoSplitter(Splitter):
         for candidate_test in generator:
             if self.verbose:
                 print(candidate_test)
-            examples_satisfying_test, examples_not_satisfying_test = self._split_examples(candidate_test, examples)
+            examples_satisfying_test, examples_not_satisfying_test = self._split_examples(candidate_test, examples, split_criterion)
 
             candidate_test_score = split_criterion.calculate(examples_satisfying_test,
                                                              examples_not_satisfying_test
@@ -29,8 +29,9 @@ class DjangoSplitter(Splitter):
                                                     score=candidate_test_score,
                                                     threshold=split_criterion.get_threshold(),
                                                     split_criterion=split_criterion.get_name())
-            else:
-                # if we do not keep the query, destruct it
-                candidate_test.destruct()
+            # else:
+            #     # We no longer need this.
+            #     # if we do not keep the query, destruct it
+            #     candidate_test.destruct()
         return current_best_split_info
 

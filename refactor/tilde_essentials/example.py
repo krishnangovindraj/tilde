@@ -1,5 +1,8 @@
-from typing import Iterable
+from typing import Iterable, Set
+from problog.logic import Term
 
+
+from refactor.representation.example import ExampleWrapper
 from refactor.tilde_essentials.destuctable import Destructible
 
 
@@ -9,18 +12,31 @@ class Example(Destructible):
 
     """
 
-    def __init__(self, data, label):
-        self.data = data
+    def __init__(self, data: Iterable[Term], label, classification_term: Term = None):
         self.label = label
+        self.data = set()
+        self.add_facts(data)
+        self.classification_term = classification_term
 
     def destruct(self):
-        destruct_method = getattr(self.data, 'destruct', None)
-        if callable(destruct_method):
-            self.data.destruct()
+        pass
+
+    def add_fact(self, fact: Term):
+        self.add_facts([fact])
+
+    def add_facts(self, facts: Iterable[Term]):
+        self.data.update(facts)
+
+    def clone(self):
+        return Example(self.data, self.label, self.classification_term)
+    
+    def lock_example(self):
+        pass
 
     @property
     def regressand(self):
         return self.label.value
+
 
 def get_labels(examples: Iterable):
     labels = set()

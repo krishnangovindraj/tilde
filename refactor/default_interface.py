@@ -19,4 +19,7 @@ class DefaultHandler:
     def get_transformed_test_example_list(simple_example_wrapper_list, training=True):
         raise NotImplementedError('abstract method')
 
-
+    @staticmethod
+    def create_example(data, label):
+        raise NotImplementedError('abstract method')
+    

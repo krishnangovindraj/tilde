@@ -3,7 +3,7 @@ from problog.engine import DefaultEngine
 from refactor.representation.example_collection import ExampleCollection
 from refactor.default_interface import DefaultHandler
 from refactor.query_testing_back_end.problog.evaluation import SimpleProgramQueryEvaluator
-from refactor.query_testing_back_end.problog.test_generation import ProbLogTestGeneratorBuilder
+from refactor.tilde_essentials.test_generation import FOLTestGeneratorBuilder
 from refactor.tilde_essentials.example import Example
 from refactor.tilde_essentials.leaf_strategy import LeafBuilder
 from refactor.tilde_essentials.splitter import Splitter
@@ -21,7 +21,7 @@ class ProblogDefaultHandler(DefaultHandler):
 
         test_evaluator = SimpleProgramQueryEvaluator(engine=engine)
 
-        test_generator_builder = ProbLogTestGeneratorBuilder(language=language,
+        test_generator_builder = FOLTestGeneratorBuilder(language=language,
                                                              query_head_if_keys_format=prediction_goal)
         splitter = Splitter(split_criterion_str=tilde_config.split_criterion, test_evaluator=test_evaluator,
                             test_generator_builder=test_generator_builder)
@@ -36,7 +36,7 @@ class ProblogDefaultHandler(DefaultHandler):
     def get_transformed_example_list(training_examples_collection: ExampleCollection):
         examples = []
         for ex_wr_sp in training_examples_collection.get_example_wrappers_sp():
-            example = Example(data=ex_wr_sp.logic_program, label=ex_wr_sp.label)
+            example = Example(ex_wr_sp, ex_wr_sp.label)
             example.classification_term = ex_wr_sp.classification_term
             examples.append(example)
         return examples

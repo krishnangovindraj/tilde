@@ -1,16 +1,15 @@
-realtest(0, pos).
 realtest(1, pos).
 realtest(2, pos).
 realtest(3, pos).
 realtest(4, pos).
+realtest(5, pos).
 
-realtest(5, neg).
 realtest(6, neg).
 realtest(7, neg).
 realtest(8, neg).
 realtest(9, neg).
+realtest(10, neg).
 
-realtest(10, pos).
 realtest(11, pos).
 realtest(12, pos).
 realtest(13, pos).

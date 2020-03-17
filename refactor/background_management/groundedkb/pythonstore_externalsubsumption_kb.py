@@ -88,12 +88,12 @@ class PythonStoreForSubsumptionBasedGroundedKB(GroundedKB):
             
     """ examples is _inout_, specifically example.data is updated for example in examples """
     def saturate_examples(self, examples):
-        for example in examples:
-            existing_facts = set(example.data)
+        for example in examples.get_example_wrappers_sp():
+            existing_facts = set(example.logic_program)
             lhm = self.derive_groundings_for_example(example)
             for t in lhm:
                 if t not in existing_facts: # and t != example.classification_term:
-                    example.data.add_fact(t)
+                    example.logic_program.add_fact(t)
             # It is unfortunately, not enough to add just those facts derived by adding example.data to bg.
             # We must also add ALL clauses within BG which may be queried during the tree building.
             # This is a subset of the facts in BG (that part was obvious) such that the (typed) variables currently in example.data
@@ -101,7 +101,7 @@ class PythonStoreForSubsumptionBasedGroundedKB(GroundedKB):
             # But for now, Lazy Krishnan will simply add ALL the facts in bg and leave this as a 
             # TODO: what's described above
             for bg_fact in self.bg_groundings:
-                example.data.add_fact(bg_fact)
+                example.logic_program.add_fact(bg_fact)
 
     def derive_groundings_for_example(self, example):
         db_extension = set()
@@ -109,7 +109,7 @@ class PythonStoreForSubsumptionBasedGroundedKB(GroundedKB):
         
         # example_data = Term.from_string(example.data).args[1].args
         
-        pending_groundings = set(example.data)
+        pending_groundings = set(example.logic_program)
         derived_groundings = set()
         lhm_iterations = 0
         while len(pending_groundings) > 0:      # You're not seeing double.
@@ -146,7 +146,7 @@ class PythonStoreForSubsumptionBasedGroundedKB(GroundedKB):
         # This should be in rule_grounder. For now, We piggy back on prolog
         for entry in bg_program_sp:
             if type(entry) == Term:
-                self.bg_groundings.add(entry)
+                self.add_fact(entry)
             elif type(entry) == Clause:
                 self._process_bg_rule(entry)
     

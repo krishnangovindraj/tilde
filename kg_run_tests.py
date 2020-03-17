@@ -105,16 +105,14 @@ class TestNumericalAttributes(unittest.TestCase):
 
     def test_onedimensional_range_exact(self):
         expected_tree = \
-            (('tilde__realnumber_lessthan_functor__realnum_x(A,10)',), 
-                (('tilde__realnumber_lessthan_functor__realnum_x(A,5)',), 
+            (('tilde__realnumber_leq_functor__realnum_x(A,10)',),
+                (('tilde__realnumber_leq_functor__realnum_x(A,5)',),
                     (('pos', [('pos', '1.0')]), None, None), 
-                    (('neg', [('neg', '1.0')]), None, None)
-                ), 
+                    (('neg', [('neg', '1.0')]), None, None)),
                 (('pos', [('pos', '1.0')]), None, None)
             )
 
         decision_tree = _run_test(['TestRules__test_onedimensional_range_exact', 'test_datasets/numerical/onedimensional_range/config.json', DEFAULT_TEST_BACKEND])
-        
         self.assertEqual(_encode_tree(decision_tree.tree), expected_tree, "Tree mismatch")
 
 

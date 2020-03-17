@@ -9,9 +9,8 @@ except ImportError as err:
 from refactor.representation.TILDE_query import TILDEQuery
 from refactor.representation.example import ExampleWrapper
 
-
 def build_clause(example: ExampleWrapper, training=True) -> ClauseWrapper:
-
+    # TODO: deprecate? 
     clause = ClauseWrapper(clause_id=None)
 
     for fact_statement in example.logic_program:  # type: Term
@@ -30,7 +29,12 @@ def build_clause(example: ExampleWrapper, training=True) -> ClauseWrapper:
 def build_hypothesis(tilde_query: TILDEQuery) -> HypothesisWrapper:
     clause = ClauseWrapper(clause_id=None)
 
-    literals = tilde_query.get_literals_of_body()  # NOTE: only of query body
+    head_literal = tilde_query.get_head()
+    if head_literal is not None:
+        clause.add_literal_as_head(head_literal)
+        # clause.add_literal_to_body(~head_literal) # does not work
+
+    literals = tilde_query.get_literals_of_body()  # NOTE: only of query body - Why?
     for literal in literals:
         clause.add_literal_to_body(literal)
 
@@ -40,8 +44,9 @@ def build_hypothesis(tilde_query: TILDEQuery) -> HypothesisWrapper:
     hypothesis = HypothesisWrapper(clause)
     return hypothesis
 
-
+# DEPRECATE! Destruct tests immediately. Store tilde_query in the leaves. Not wrapepd tests.
 def destruct_tree_tests(tree_node: TreeNode):
+    return
     if tree_node.test is not None:
         tree_node.test.destruct()
 

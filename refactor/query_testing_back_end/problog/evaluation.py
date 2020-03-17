@@ -5,8 +5,10 @@ from problog.engine import GenericEngine, DefaultEngine, ClauseDB
 from problog.logic import Term, Var
 from problog.program import LogicProgram, SimpleProgram, PrologString
 
+from refactor.query_testing_back_end.problog.query_wrapping import ProblogQueryWrapper
 from refactor.tilde_essentials.evaluation import TestEvaluator
 from refactor.tilde_essentials.example import Example
+from refactor.tilde_essentials.query_wrapping import QueryWrapper
 from refactor.representation.TILDE_query import TILDEQuery
 
 
@@ -35,9 +37,9 @@ class SimpleProgramQueryEvaluator(ProbLogQueryEvaluator):
 
         self.db += Term('query')(self.to_query)
 
-    def evaluate(self, instance: Example, test: TILDEQuery) -> bool:
+    def evaluate(self, instance: Example, test: QueryWrapper) -> bool:
 
-        query_conj = test.to_conjunction()
+        query_conj = test.external_representation
 
         db_to_query = self.db.extend()
 
@@ -53,6 +55,9 @@ class SimpleProgramQueryEvaluator(ProbLogQueryEvaluator):
         query_result = problog.get_evaluatable().create_from(db_to_query, engine=self.engine).evaluate()
 
         return query_result[self.to_query] > 0.5
+
+    def wrap_query(self, tilde_query: TILDEQuery):
+        return ProblogQueryWrapper(tilde_query, tilde_query.to_conjunction())
 
 
 if __name__ == '__main__':
