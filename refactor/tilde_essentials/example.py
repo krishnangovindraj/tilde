@@ -16,6 +16,7 @@ class Example(Destructible):
         self.label = label
         self.data = set()
         self.add_facts(data)
+        self.classification_term = classification_term
 
     def destruct(self):
         pass
@@ -25,7 +26,13 @@ class Example(Destructible):
 
     def add_facts(self, facts: Iterable[Term]):
         self.data.update(facts)
+
+    def clone(self):
+        return Example(self.data, self.label, self.classification_term)
     
+    def lock_example(self):
+        pass
+
     @property
     def regressand(self):
         return self.label.value

@@ -17,7 +17,7 @@ from refactor.logic_manipulation_utils import TermManipulationUtils, PartialSubs
 from .special_test import SpecialTest, TildeTestResult
 # from refactor.representation.language import TypeModeLanguage
 
-class RealNumberLessThanTest(SpecialTest):
+class RealNumberLEQTest(SpecialTest):
     # This doesn't support conjunctions of non-special tests and special tests yet. (I updated it so that it might, but I'm unlikely to have tested it)
     # It shouldn't be impossible to integrate though.
     # My ideal solution would look like this: 
@@ -25,8 +25,8 @@ class RealNumberLessThanTest(SpecialTest):
     #   So if you have 2 special tests, the first one would prepare the test and call evaluate_wrapper on the second,
     #   The second would prepare the test and then call evaluate: TILDEQuery_wrapper, which does the regular evaluate for every example. 
 
-    TEST_FUNCTOR_PREFIX = 'tilde__realnumber_lessthan_functor__'
-    TEST_PLACEHOLDER_TERM = 'tilde__realnumber_lessthan__placeholder'
+    TEST_FUNCTOR_PREFIX = 'tilde__realnumber_leq_functor__'
+    TEST_PLACEHOLDER_TERM = 'tilde__realnumber_leq__placeholder'
 
     TEST_VARIABLE_AUTOINC = 0
     _POS_INF = 99999999
@@ -38,16 +38,19 @@ class RealNumberLessThanTest(SpecialTest):
         self.all_values = set()
         self.bg_values = set()
         self.example_values = {}    # Example -> SortedCollection(values)
-        
-    def run(self, placeholder_tilde_query: TILDEQuery, examples: List[Example], test_evaluator
-    #: TestEvaluator
-    , split_criterion: SplitCriterion) -> TildeTestResult:
-        min_failing_vals = []
-        for e in examples:
-            val = self._find_smallest_failing_values(placeholder_tilde_query, e, test_evaluator)
-            min_failing_vals.append( (val, e) ) 
 
-        best_split_val = self._pick_best_split(examples, min_failing_vals, split_criterion)
+    def is_stable(self):
+        return False
+
+    def run(self, placeholder_tilde_query: TILDEQuery, examples: List[Example], test_evaluator: 'TestEvaluator', split_criterion: SplitCriterion) \
+        -> TildeTestResult:
+
+        min_passing_vals = []
+        for e in examples:
+            val = self._find_smallest_passing_values(placeholder_tilde_query, e, test_evaluator)
+            min_passing_vals.append( (val, e) )
+
+        best_split_val = self._pick_best_split(examples, min_passing_vals, split_criterion)
         test_conj = self._replace_placeholder(placeholder_tilde_query, best_split_val)
         
         self._augment_examples(examples, best_split_val)
@@ -56,7 +59,7 @@ class RealNumberLessThanTest(SpecialTest):
 
         self._fix_refine_state(test_conj, best_split_val)
         
-        test_results = [ (e, True if val < best_split_val else False) for (val,e) in min_failing_vals]
+        test_results = [ (e, True if val <= best_split_val else False) for (val,e) in min_passing_vals]
         
 
         return TildeTestResult( test_conj, test_results)
@@ -103,20 +106,21 @@ class RealNumberLessThanTest(SpecialTest):
                         bg_values.add(d.args[i].value)
                         self.all_values.add( d.args[i].value )
         
-        self.bg_values = list(bg_values)
+        self.bg_values = [float(i) for i in range(16)] # list(bg_values)
 
-    def notify_result(self, is_selected, test_result):
-        if is_selected:
-            conj = test_result.test_conj
-            boundary_value = conj.args[1]
-            for (e,passes_test) in test_result.test_results:
-                if passes_test:
-                    for v in self.example_values[e]:
-                        if v < boundary_value:
-                            e.example_data.add_fact( conj.apply( {conj.args[0]: Constant(v) } ) )
-                    for v in self.bg_values:
-                        if v < boundary_value:
-                            e.example_data.add_fact( conj.apply( {conj.args[0]: Constant(v) } ) )
+    # def notify_result(self, is_selected, test_result):
+    #     NOT IMPLEMENTED!
+    #     if is_selected:
+    #         conj = test_result.test_conj
+    #         boundary_value = conj.args[1]
+    #         for (e,passes_test) in test_result.test_results:
+    #             if passes_test:
+    #                 for v in self.example_values[e]:
+    #                     if v <= boundary_value:
+    #                         e.example_data.add_fact( conj.apply( {conj.args[0]: Constant(v) } ) )
+    #                 for v in self.bg_values:
+    #                     if v <= boundary_value:
+    #                         e.example_data.add_fact( conj.apply( {conj.args[0]: Constant(v) } ) )
                     
 
     @staticmethod
@@ -138,15 +142,13 @@ class RealNumberLessThanTest(SpecialTest):
         c.extend(b[j:])
         return c
     
-    def _run_test(self, placeholder_tilde_query: TILDEQuery, example: Example, split_point: Constant, test_evaluator
-    # : TestEvaluator
-    ) -> bool:
+    def _run_test(self, placeholder_tilde_query: TILDEQuery, example: Example, example_values: List[float], split_point: float, test_evaluator: 'TestEvaluator')\
+         -> bool:
         # TODO: Use value in self.example instead of the whole  constant
         # If you're wondering where the test is, it's here and one in _augment_examples:
-        lt_grounded_facts = [ Term(self.test_functor, v, split_point) for v in self.example_values[example] if v < split_point ]
-        # example.data.update(lt_grounded_facts)
-        for gf in lt_grounded_facts:
-            example.add_fact(gf)
+        if not self._needs_presaturation(example):
+            leq_grounded_facts = [ Term(self.test_functor, Constant(v), Constant(split_point)) for v in example_values if v <= split_point ]
+            example.add_facts(leq_grounded_facts)
 
         instantiated_query = self._replace_placeholder(placeholder_tilde_query, Constant(split_point))
         test = test_evaluator.wrap_query(instantiated_query)
@@ -179,51 +181,59 @@ class RealNumberLessThanTest(SpecialTest):
         modified_conj = self._replace_placeholder_in_term(placeholder_tilde_query.literal, split_value)
         return TILDEQuery(placeholder_tilde_query.parent, modified_conj)
         
-    def _find_smallest_failing_values(self, placeholder_tilde_query, e: Example, test_evaluator) -> float:
-        candidate_points = self.merge_sorted_lists(self.example_values[e], self.bg_values)
+    def _find_smallest_passing_values(self, placeholder_tilde_query, example: Example, test_evaluator) -> float:
+        candidate_points = self.merge_sorted_lists(self.example_values[example], self.bg_values)
         l = 0
         r = len(candidate_points)
         # Find first failing value - much more normal
-        # TODO: what if all pass / all fail? 
-        #   All fail should be impossible. All pass -> return biggest
+        if self._needs_presaturation(example):
+            e = self._presaturate_example(example, candidate_points)
+        else:
+            e = example.clone()
+
         while l < r:
             mid = (l+r)//2 
-            if self._run_test(placeholder_tilde_query, e, candidate_points[mid], test_evaluator):
-                l = mid + 1
-            else:
+            if self._run_test(placeholder_tilde_query, e, self.example_values[example], candidate_points[mid], test_evaluator):
                 r = mid
-           
+            else:
+                l = mid + 1
+
+        e.destruct()
+
         return candidate_points[l]
 
-    def _pick_best_split(self, examples: List[Example], min_failing_vals: List[Tuple[float, Example]], split_criterion: SplitCriterion ) -> float:
+    def _pick_best_split(self, examples: List[Example], min_passing_vals: List[Tuple[float, Example]], split_criterion: SplitCriterion ) -> float:
         # TODO: Make split criteria incremental
         
-        sorted_ex = sorted([t for t in min_failing_vals])
+        sorted_ex = sorted([t for t in min_passing_vals], key=lambda x: x[0])
         examples_satisfying = [t[1] for t in sorted_ex]
-        vals = [t[0] for t in sorted_ex]
+        vals = [-RealNumberLEQTest._POS_INF] + [t[0] for t in sorted_ex]
         examples_failing = []
 
-        best_split = RealNumberLessThanTest._POS_INF
+        best_split = vals[-1]
         best_split_score = split_criterion.calculate(examples_satisfying, examples_failing) 
 
         while len(examples_satisfying) > 0:
-            val = vals.pop()
+            vals.pop()
             e = examples_satisfying.pop()
             examples_failing.append(e)
             split_score = split_criterion.calculate(examples_satisfying, examples_failing)
             if split_score > best_split_score:
-                best_split = val
+                best_split = vals[-1]
                 best_split_score = split_score
 
         return best_split
         
     def _augment_examples(self, examples: List[Example], best_split: float):
         best_split_constant = Constant(best_split)
+
         for e in examples:
-            for v in self.example_values[e]:
-                # Here's another place the test is
-                if v < best_split:
-                    e.add_fact(Term(self.test_functor, Constant(v), best_split_constant))
+            new_facts = [ Term(self.test_functor, Constant(v), best_split_constant) for v in self.example_values[e] if v <= best_split]
+            if self._needs_presaturation(e):
+                with e.extension_context() as ec:
+                    ec.extend(new_facts)
+            else:
+                e.add_facts(new_facts)
 
     def _fix_refine_state(self, test_conj: Term, split_value: float):
         def _term_matches(term: Term):
@@ -236,6 +246,16 @@ class RealNumberLessThanTest(SpecialTest):
             l.refine_state.remove(t)
             modified_term = self._replace_placeholder_in_term(t, split_value)
             l.refine_state.add( modified_term )
-            
-    def is_stable(self):
-        return False
+
+    def _needs_presaturation(self, example: Example):
+        from refactor.query_testing_back_end.django.django_example import DjangoExample
+        return isinstance(example, DjangoExample)
+
+    def _presaturate_example(self, example: Example, candidate_points: List[float]):
+        e = example.clone()
+        for i in range(len(candidate_points)):
+            for j in range(i,len(candidate_points)): # i, not i+1 because leq
+                if candidate_points[i] <= candidate_points[j]:
+                    e.add_fact(Term(self.test_functor, Constant(candidate_points[i]), Constant(candidate_points[j])))
+        e.lock_example()
+        return e

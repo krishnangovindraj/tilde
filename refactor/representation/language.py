@@ -9,7 +9,7 @@ from refactor.representation.language_types import *
 from refactor.representation.lookahead_mode import LookaheadMode
 
 from refactor.representation.lookahead_extension_generator import LookaheadExtensionGenerator
-from refactor.special_tests import RealNumberLessThanTest
+from refactor.special_tests import RealNumberLEQTest
 
 class BaseLanguage(object):
     """Base class for languages."""
@@ -89,15 +89,15 @@ class TypeModeLanguage(BaseLanguage):
     
     def add_real_type(self, real_typename):
         self.real_types.add(real_typename)
-        new_test_name = RealNumberLessThanTest.TEST_FUNCTOR_PREFIX + real_typename
+        new_test_name = RealNumberLEQTest.TEST_FUNCTOR_PREFIX + real_typename
         new_test_arity = 2
         const_type_key = new_test_name + '_1'
         
-        self.special_tests[new_test_name] = RealNumberLessThanTest(new_test_name, new_test_arity, real_typename)
+        self.special_tests[new_test_name] = RealNumberLEQTest(new_test_name, new_test_arity, real_typename)
         self.add_types(new_test_name, (real_typename, 'tilde_real_const'))
         self.add_modes(new_test_name, ('+', 'c'))
         
-        self.add_values(const_type_key, Constant(RealNumberLessThanTest.TEST_PLACEHOLDER_TERM))
+        self.add_values(const_type_key, Constant(RealNumberLEQTest.TEST_PLACEHOLDER_TERM))
 
     def refine(self, rule: Rule):
         """ORIGINAL: generate ONE refinement for the given rule.

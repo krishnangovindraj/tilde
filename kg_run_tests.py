@@ -5,7 +5,7 @@ from io import StringIO as io_StringIO
 from kg_main import main as run_kg_main
 from refactor.tilde_config import TildeConfig
 
-DEFAULT_TEST_BACKEND = 'subtle' #'problog-simple' # 'subtle' # 'django'
+DEFAULT_TEST_BACKEND = 'problog-simple' # 'subtle' # 'django'
 
 def _encode_test(test):
     from refactor.query_testing_back_end.subtle.query_wrapping import SubtleQueryWrapper
@@ -105,16 +105,14 @@ class TestNumericalAttributes(unittest.TestCase):
 
     def test_onedimensional_range_exact(self):
         expected_tree = \
-            (('tilde__realnumber_lessthan_functor__realnum_x(A,10)',), 
-                (('tilde__realnumber_lessthan_functor__realnum_x(A,5)',), 
+            (('tilde__realnumber_leq_functor__realnum_x(A,10)',),
+                (('tilde__realnumber_leq_functor__realnum_x(A,5)',),
                     (('pos', [('pos', '1.0')]), None, None), 
-                    (('neg', [('neg', '1.0')]), None, None)
-                ), 
+                    (('neg', [('neg', '1.0')]), None, None)),
                 (('pos', [('pos', '1.0')]), None, None)
             )
 
         decision_tree = _run_test(['TestRules__test_onedimensional_range_exact', 'test_datasets/numerical/onedimensional_range/config.json', DEFAULT_TEST_BACKEND])
-        
         self.assertEqual(_encode_tree(decision_tree.tree), expected_tree, "Tree mismatch")
 
 
