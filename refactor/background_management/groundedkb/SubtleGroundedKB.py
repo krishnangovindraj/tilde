@@ -7,8 +7,8 @@ class SubtleGroundedKB(PythonStoreForSubsumptionBasedGroundedKB):
     SUBTLE_WRAPPER_PATH = 'test_datasets/theta-subsumption-engines/subtle/subtle-wrapper.pl'
     SUBTLE_QUERY_TEMPLATE = "subsumes_pyswip(%s, %s)"
 
-    def __init__(self, bg_program_sp):
-        super().__init__(bg_program_sp)
+    def __init__(self, bg_program_sp, language, prediction_goal_handler):
+        super().__init__(bg_program_sp, language, prediction_goal_handler)
         self.encoded_bg = "false"    # str: "fact1,fact2,...,factn," # Yes, a trailing ,
         self._subtle = None
 
