@@ -122,7 +122,7 @@ def main(argv):
     # Saturate the examples with background knowledge (using prolog for now).
 
     from refactor.background_management.groundedkb import SubtleGroundedKB, PrologGroundedKB
-    groundedkb = SubtleGroundedKB(full_background_knowledge_sp)
+    groundedkb = SubtleGroundedKB(full_background_knowledge_sp, language, prediction_goal_handler)
     groundedkb.setup()
     groundedkb.saturate_examples(training_examples_collection)
 

@@ -267,7 +267,7 @@ class TildeAlgorithmSettingParser(SettingTokenParser):
     fact_regex = r'([a-z][A-Za-z0-9_]*)\((.*)\).'
     fact_pattern = re.compile(fact_regex)
 
-    supported_options = {'tilde_mode'}
+    supported_options = {'tilde_mode', 'max_lookahead'}
 
     def can_parse_pre(self, line: str) -> Optional[Match[str]]:
         match = self.fact_pattern.match(line)
@@ -277,15 +277,14 @@ class TildeAlgorithmSettingParser(SettingTokenParser):
             return None
 
     def parse_token(self, line: str, settings: FileSettings, match: Match[str]):
-        from .util_parsers import RecursivePrologFactLikeParser, TERM_TYPE
-        generic_parser = RecursivePrologFactLikeParser()
-        setting_term = generic_parser.parse(line)
-        if setting_term is not None:
-            if setting_term.term_type == TERM_TYPE.FUNCTOR:
-                if setting_term.name == 'tilde_mode':
-                    if len(setting_term.value_list) > 0:
-                        settings.algorithm_settings.set_tilde_mode(setting_term.value_list[0].name)
-        else:
-            # Silently fail? Nah, let's print an error
-            from sys import stderr as sys_stderr
-            print("Could not parse setting: " + match.group(1), file=sys_stderr)
+        setting_term = Term.from_string(line)
+        if setting_term.functor == 'tilde_mode':
+            if setting_term.arity == 1:
+                settings.algorithm_settings.set_tilde_mode(setting_term.args[0])
+            else:
+                raise ValueError("Option 'tilde_mode' expected to be arity=1. Read " + line)
+        elif setting_term.functor == 'max_lookahead':
+            if setting_term.arity == 1:
+                settings.language.set_max_lookahead_depth(int(setting_term.args[0]))
+            else:
+                raise ValueError("Option 'max_lookahead' expected to be arity=1. Read " + line)

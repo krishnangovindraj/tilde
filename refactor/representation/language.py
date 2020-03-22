@@ -99,6 +99,9 @@ class TypeModeLanguage(BaseLanguage):
         
         self.add_values(const_type_key, Constant(RealNumberLEQTest.TEST_PLACEHOLDER_TERM))
 
+    def set_max_lookahead_depth(self, max_lookahead_depth):
+        self._lookahead_max_depth = max_lookahead_depth
+
     def refine(self, rule: Rule):
         """ORIGINAL: generate ONE refinement for the given rule.
 

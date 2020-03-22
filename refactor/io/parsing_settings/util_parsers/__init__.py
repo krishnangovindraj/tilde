@@ -1,2 +1,0 @@
-from .recursive_prolog_fact_like_parser import RecursivePrologFactLikeParser, TERM_TYPE
-from .flat_prolog_fact_like_parser import FlatPrologFactLikeParser

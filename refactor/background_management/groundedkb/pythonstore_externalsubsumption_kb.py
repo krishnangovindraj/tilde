@@ -5,6 +5,8 @@ from problog.program import LogicProgram
 
 from refactor.utils import multidict_safe_add
 from refactor.background_management.groundedkb.groundedkb import GroundedKB
+from refactor.representation.language import TypeModeLanguage
+from refactor.tilde_essentials.example import Example
 
 class RuleInstance:
     def __init__(self, clause):
@@ -34,12 +36,13 @@ class RuleInstance:
 
 
 class PythonStoreForSubsumptionBasedGroundedKB(GroundedKB):
-    
-    
-    def __init__(self, bg_program_sp :  LogicProgram, max_lhm_iterations= 10): # 
+
+    def __init__(self, bg_program_sp: LogicProgram, language: TypeModeLanguage, prediction_goal_handler, max_lhm_iterations= 10):
 
         self._bg_program_sp = bg_program_sp
-        
+        self.language = language
+        self.prediction_goal_handler = prediction_goal_handler
+
         self.max_lhm_iterations = max_lhm_iterations
 
         self.db = {}
@@ -51,6 +54,11 @@ class PythonStoreForSubsumptionBasedGroundedKB(GroundedKB):
         self.rules = {}         # functor:str -> rule:?
         self.bg_groundings = set()    # functor: str -> list(term:?)
         
+        # Index structures
+        self.vars_to_bg_terms = None
+        self.in_arg_indices = None  # Compulsory in arg. i.e., not +-
+        self.out_arg_indices = None
+
     def add_fact(self, fact):
         self.bg_groundings.add(fact) 
         self._update_encoded_bg([fact])
@@ -94,14 +102,8 @@ class PythonStoreForSubsumptionBasedGroundedKB(GroundedKB):
             for t in lhm:
                 if t not in existing_facts: # and t != example.classification_term:
                     example.logic_program.add_fact(t)
-            # It is unfortunately, not enough to add just those facts derived by adding example.data to bg.
-            # We must also add ALL clauses within BG which may be queried during the tree building.
-            # This is a subset of the facts in BG (that part was obvious) such that the (typed) variables currently in example.data
-            # fulfill the + mode arguments of the fact.
-            # But for now, Lazy Krishnan will simply add ALL the facts in bg and leave this as a 
-            # TODO: what's described above
-            for bg_fact in self.bg_groundings:
-                example.logic_program.add_fact(bg_fact)
+            existing_facts.update(lhm)
+            self._saturate_with_relevant_bg(example, existing_facts)
 
     def derive_groundings_for_example(self, example):
         db_extension = set()
@@ -133,6 +135,7 @@ class PythonStoreForSubsumptionBasedGroundedKB(GroundedKB):
     def setup(self):
         self._process_bg_program(self._bg_program_sp)
         self._compute_bg_LHM()
+        self._create_smart_saturation_indices()
 
     def _process_bg_rule(self, entry : Clause):
         rule = RuleInstance(entry)
@@ -216,6 +219,60 @@ class PythonStoreForSubsumptionBasedGroundedKB(GroundedKB):
             pending_groundings = newly_derived
             derived_groundings = set()
 
+    def _create_smart_saturation_indices(self):
+        # How do we handle constants? Treat them as a - variable.
+        self.vars_to_bg_terms = {}
+        self.in_arg_indices = {}
+        self.out_arg_indices = {}
+        self.const_arg_indices = {}
+        for functor,arity,modes in self.language.get_refinement_modes():
+            self.in_arg_indices[(functor, arity)] = [i for i in range(len(modes)) if '+'==modes[i]] # + == instead of + in, because these are COMPULSORY in args
+            self.out_arg_indices[(functor, arity)] = [i for i in range(len(modes)) if '-' in modes[i]]
+            self.const_arg_indices[(functor, arity)] = [i for i in range(len(modes)) if 'c'==modes[i]]
+
+        for fact in self.bg_groundings:
+            for arg in [fact.args[i] for i in self.in_arg_indices[(fact.functor, fact.arity)]]:
+                if arg not in self.vars_to_bg_terms:
+                    self.vars_to_bg_terms[arg] = set()
+                self.vars_to_bg_terms[arg].add(fact)
+
+    def _saturate_with_relevant_bg(self, example: Example, existing_facts: Set[Term]):
+        prediction_goal_index = self.prediction_goal_handler.get_predicate_goal_index_of_label_var()
+
+        pending_args = set()
+        completed_args = set()
+        for i,arg in enumerate(example.classification_term.args):
+            if i != prediction_goal_index:
+                pending_args.add(arg)
+
+        # Also add all the args in existing_facts
+        # TODO: This doesn't consider whether they're in args or out_args. Should it?
+        pending_args.update(arg for t in existing_facts for arg in t.args)
+
+        args_remaning = {}
+        while len(pending_args) > 0:
+            arg = pending_args.pop()
+            for term in self.vars_to_bg_terms.get(arg, []):
+                if term in existing_facts:
+                    continue
+
+                if term not in args_remaning:
+                    in_args = set(term.args[i] for i in self.in_arg_indices[(term.functor, term.arity)])
+                    args_remaning[term] = [t for t in in_args if t not in completed_args]
+
+                if arg in args_remaning[term]:
+                    args_remaning[term].remove(arg)
+
+                    if len(args_remaning[term]) == 0:
+                        example.logic_program.add_fact(term)
+                        existing_facts.add(term)
+                        out_args = [term.args[i] for i in range(len(term.args))
+                            if i in self.out_arg_indices[(term.functor, term.arity)]
+                            or i in self.const_arg_indices[(term.functor, term.arity)]]
+                        new_args = [a for a in out_args if (a not in completed_args and a not in pending_args and a!=arg)]
+                        pending_args.update(new_args)
+
+            completed_args.add(arg)
 
     ###############################
     # Theta-subsumption abstracts #
