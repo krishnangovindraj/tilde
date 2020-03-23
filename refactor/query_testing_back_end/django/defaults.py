@@ -16,7 +16,7 @@ class DjangoDefaultHandler(DefaultHandler):
     @staticmethod
     def get_default_decision_tree_builder(language, prediction_goal) -> TreeBuilder:
         tilde_config = TildeConfig.get_instance()
-        test_evaluator = DjangoQueryEvaluator()
+        test_evaluator = DjangoQueryEvaluator(language, prediction_goal)
         test_generator_builder = FOLTestGeneratorBuilder(language=language,
                                                             query_head_if_keys_format=prediction_goal)
 
