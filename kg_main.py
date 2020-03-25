@@ -16,7 +16,7 @@ from refactor.tilde_config import TildeConfig, _default_config_file_name
 
 # Some defaults
 
-DEFAULT_BACKEND_NAME = 'problog-simple' # 'django'
+DEFAULT_BACKEND_NAME = 'django'
 
 default_handlers = {
     'django': QueryBackEnd.DJANGO,
@@ -141,7 +141,14 @@ def main(argv):
         print('=== START tree building ===')
 
         tree_builder = backend.get_default_decision_tree_builder(language, prediction_goal)  # type: TreeBuilder
-        decision_tree = DecisionTree()
+        from refactor.random_forest.random_forest_splitter import RandomForestSplitter
+        
+        from refactor.random_forest.random_forest import RandomForest
+        tree_builder.splitter = RandomForestSplitter(tree_builder.splitter.split_criterion_str, tree_builder.splitter.test_evaluator, tree_builder.splitter.test_generator_builder, 5)
+        random_forest = RandomForest(5)
+        decision_tree = random_forest
+        
+        # decision_tree = DecisionTree()
         start_time = time.time()
         decision_tree.fit(examples=examples, tree_builder=tree_builder)
         end_time = time.time()
@@ -149,7 +156,6 @@ def main(argv):
         run_time_ms = 1000.0 * run_time_sec
         run_time_list.append(run_time_ms)
         print("run time (ms):", run_time_ms)
-
         print('=== END tree building ===\n')
 
         print("=== start destructing tree queries ===")
@@ -160,8 +166,16 @@ def main(argv):
     average_run_time_list.append((query_backend_name, average_run_time_ms))
 
     print("average tree build time (ms):", average_run_time_ms)
-    print(decision_tree)
+    # print(decision_tree)
 
+    from refactor.utils import print_confusion_matrix, training_confusion_matrix
+    for t in random_forest.trees:
+        print(t)
+        legend, mat = training_confusion_matrix(t)
+        correct, all = sum(mat[i][i] for i in range(len(legend))), sum(mat[i][j] for j in range(len(legend)) for i in range(len(legend)))
+        print("Acc: %d/%d = %f"%(correct, all, correct/all))
+        # print_confusion_matrix(legend, mat)
+        print("\n-\t-\t-\t-\t-\n")
     if backend_enum == QueryBackEnd.DJANGO:
         print("=== start destructing examples ===")
         for instance in examples:

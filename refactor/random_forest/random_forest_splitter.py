@@ -1,0 +1,2 @@
+from refactor.random_forest.splitters.sample_n_select_best import SampleNSelectBestGSSplitter as RandomForestSplitter
+
