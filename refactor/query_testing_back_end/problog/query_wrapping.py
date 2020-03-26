@@ -3,4 +3,4 @@ from refactor.representation.TILDE_query import TILDEQuery
 
 class ProblogQueryWrapper(QueryWrapper):
     def __str__(self):
-        return self.external_representation
+        return str(self.external_representation)

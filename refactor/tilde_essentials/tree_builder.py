@@ -20,14 +20,12 @@ class TreeBuilder:
         self.splitter = splitter  # type: Splitter
         self.leaf_builder = leaf_builder
         self.stop_criterion = stop_criterion  # type: StopCriterion
-        self.tree_root = None  # type: TreeNode
 
     def build(self, examples):
         if self._builder_check:
-            self.tree_root = TreeNode(parent=None, depth=0)
-
-            self._build_recursive(examples, self.tree_root)
-            return
+            tree_root = TreeNode(parent=None, depth=0)
+            self._build_recursive(examples, tree_root)
+            return tree_root
         # recurse
 
     def _build_recursive(self, examples, current_node):
@@ -41,7 +39,7 @@ class TreeBuilder:
             if self.stop_criterion.cannot_split_on_test(split_info):
                 current_node.leaf_strategy = self.leaf_builder.build(examples)
             else:
-                current_node.test = split_info.test
+                current_node.test = self.splitter.test_evaluator.wrap_query(split_info.test)
 
                 child_depth = current_node.depth + 1
                 # left_child

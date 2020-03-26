@@ -1,8 +1,10 @@
 from problog.logic import Term
 
+from refactor.tilde_essentials.query_wrapping import QueryWrapper
 from refactor.tilde_essentials.evaluation import TestEvaluator
 from refactor.representation.language import TypeModeLanguage
 from refactor.query_testing_back_end.django.django_example import DjangoExample
+from refactor.query_testing_back_end.django.query_wrapping import DjangoQueryWrapper
 try:
     from src.ClauseWrapper import ClauseWrapper, HypothesisWrapper
     from src.subsumption_checking import check_subsumption
@@ -26,10 +28,11 @@ class DjangoQueryEvaluator(TestEvaluator):
             self.reference_pin_clause.add_literal_to_body(Term(rmode[0], ["__refpin_arg__"] * rmode[1]))
         self.reference_pin_clause.lock_adding_to_clause()
 
-    def evaluate(self, example: DjangoExample, test: HypothesisWrapper) -> bool:
+    def evaluate(self, example: DjangoExample, test: DjangoQueryWrapper) -> bool:
+        hypothesis_wrapper = test.external_representation
         example_clause_wrapper = example.external_representation  # type: ClauseWrapper
-        does_subsume, run_time_ms = check_subsumption(test, example_clause_wrapper)
+        does_subsume, run_time_ms = check_subsumption(hypothesis_wrapper, example_clause_wrapper)
         return does_subsume
 
-    def wrap_query(self, tilde_query: TILDEQuery):
-        return build_hypothesis(tilde_query)
+    def wrap_query(self, tilde_query: TILDEQuery) -> QueryWrapper:
+        return DjangoQueryWrapper(tilde_query, build_hypothesis(tilde_query))

@@ -5,8 +5,7 @@ from refactor.tilde_essentials.stop_criterion import StopCriterion
 from refactor.tilde_essentials.tree_builder import TreeBuilder
 from refactor.query_testing_back_end.django.clause_handling import build_clause
 from refactor.query_testing_back_end.django.evaluation import DjangoQueryEvaluator
-# from refactor.query_testing_back_end.django.splitter import DjangoSplitter
-from refactor.tilde_essentials.splitter import Splitter
+from refactor.query_testing_back_end.django.splitter import DjangoSplitter
 from refactor.query_testing_back_end.django.django_example import DjangoExample
 from refactor.tilde_essentials.test_generation import FOLTestGeneratorBuilder
 from refactor.representation.example_collection import ExampleCollection
@@ -21,7 +20,7 @@ class DjangoDefaultHandler(DefaultHandler):
         test_generator_builder = FOLTestGeneratorBuilder(language=language,
                                                             query_head_if_keys_format=prediction_goal)
 
-        splitter = Splitter(split_criterion_str=tilde_config.split_criterion, test_evaluator=test_evaluator,
+        splitter = DjangoSplitter(split_criterion_str=tilde_config.split_criterion, test_evaluator=test_evaluator,
                                   test_generator_builder=test_generator_builder)
         leaf_builder = LeafBuilder.get_leaf_builder(tilde_config.leaf_strategy)
         stop_criterion = StopCriterion()

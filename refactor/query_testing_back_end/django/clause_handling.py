@@ -44,9 +44,11 @@ def build_hypothesis(tilde_query: TILDEQuery) -> HypothesisWrapper:
     hypothesis = HypothesisWrapper(clause)
     return hypothesis
 
-# DEPRECATE! Destruct tests immediately. Store tilde_query in the leaves. Not wrapepd tests.
+# DEPRECATED!: Use QueryWrapper.destruct instead (Not because of the deprecation comment below :p)
+# DEPRECATED DEPRECATION COMMENT:
+#       DEPRECATE! Destruct tests immediately. Store tilde_query in the leaves. Not wrapepd tests.
 def destruct_tree_tests(tree_node: TreeNode):
-    return
+    raise NotImplementedError("This method is deprecated. Use QueryWrapper::destruct instead")
     if tree_node.test is not None:
         tree_node.test.destruct()
 
