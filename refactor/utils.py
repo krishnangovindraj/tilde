@@ -57,8 +57,8 @@ def training_accuracy(tree: DecisionTree):
     cm = training_confusion_matrix(tree)
     return (cm[0][0] + cm[1][1]) / (cm[0][0] + cm[1][1] + cm[0][1] + cm[1][0])
 
-def training_confusion_matrix(tree: TreeNode):
-    ccm = _training_confusion_matrix_recursive(tree)
+def training_confusion_matrix(tree: DecisionTree):
+    ccm = _training_confusion_matrix_recursive(tree.tree)
     keys = sorted(list(set([k[0] for k in ccm] + [k[1] for k in ccm])))
 
     mat = [[0 for i in keys] for j in keys]
