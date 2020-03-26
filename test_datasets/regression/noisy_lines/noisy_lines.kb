@@ -25,67 +25,67 @@ noisy_line(23, 48, 2302.822699).
 noisy_line(24, 35, 1223.635528).
 noisy_line(25, 35, 1224.576132).
 
-divides(1, 5).
-divides(1, 7).
+divisible_by(1, 5).
+divisible_by(1, 7).
 
-divides(2, 17).
+divisible_by(2, 17).
 
-divides(3, 17).	
+divisible_by(3, 17).	
 
-divides(4, 5).
-divides(4, 7).
+divisible_by(4, 5).
+divisible_by(4, 7).
 
-divides(5,3).
+divisible_by(5,3).
 
-divides(6, 5).
-divides(6, 7).
+divisible_by(6, 5).
+divisible_by(6, 7).
 
-divides(7,17).
-
-
-divides(8, 2).
-divides(8, 3).
-
-divides(9, 5).
-divides(9, 7).
-
-divides(10, 2).
-divides(10, 3).
-
-divides(11,3).
-
-divides(12,5).
-divides(12,7).
-
-divides(13,3).
-
-divides(14, 2).
-divides(14, 3).
-
-divides(15,3).
-
-divides(16,3).
-
-divides(17,17).
-
-divides(18,17).
-
-divides(19,17).
-
-divides(20,3).
-
-divides(21, 2).
-divides(21, 3).
-
-divides(22,3).
-
-divides(23, 2).
-divides(23, 3).
+divisible_by(7,17).
 
 
-divides(24, 5).
-divides(24, 7).
+divisible_by(8, 2).
+divisible_by(8, 3).
+
+divisible_by(9, 5).
+divisible_by(9, 7).
+
+divisible_by(10, 2).
+divisible_by(10, 3).
+
+divisible_by(11,3).
+
+divisible_by(12,5).
+divisible_by(12,7).
+
+divisible_by(13,3).
+
+divisible_by(14, 2).
+divisible_by(14, 3).
+
+divisible_by(15,3).
+
+divisible_by(16,3).
+
+divisible_by(17,17).
+
+divisible_by(18,17).
+
+divisible_by(19,17).
+
+divisible_by(20,3).
+
+divisible_by(21, 2).
+divisible_by(21, 3).
+
+divisible_by(22,3).
+
+divisible_by(23, 2).
+divisible_by(23, 3).
 
 
-divides(25, 5).
-divides(25, 7).
+divisible_by(24, 5).
+divisible_by(24, 7).
+
+
+divisible_by(25, 5).
+divisible_by(25, 7).

@@ -140,9 +140,6 @@ def main(argv):
     for i in range(0, 1):
         print('=== START tree building ===')
 
-        # test_evaluator = SimpleProgramQueryEvaluator(engine=engine)
-        # splitter = ProblogSplitter(language=language,split_criterion_str='entropy', test_evaluator=test_evaluator,
-        #                            query_head_if_keys_format=prediction_goal)
         tree_builder = backend.get_default_decision_tree_builder(language, prediction_goal)  # type: TreeBuilder
         decision_tree = DecisionTree()
         start_time = time.time()
@@ -155,6 +152,10 @@ def main(argv):
 
         print('=== END tree building ===\n')
 
+        print("=== start destructing tree queries ===")
+        decision_tree.destruct()
+        print("=== start destructing tree queries ===")
+
     average_run_time_ms = statistics.mean(run_time_list)
     average_run_time_list.append((query_backend_name, average_run_time_ms))
 
@@ -166,11 +167,6 @@ def main(argv):
         for instance in examples:
             instance.destruct()
         print("=== end destructing examples ===")
-
-        print("=== start destructing tree queries ===")
-        destruct_tree_tests(decision_tree.tree)
-        print("=== start destructing tree queries ===")
-
 
     print ("\n=== average run times (ms) =======")
     for name, average_run_time_ms in average_run_time_list:

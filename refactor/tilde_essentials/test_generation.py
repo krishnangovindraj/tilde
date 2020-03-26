@@ -62,7 +62,7 @@ class FOLTestGeneratorBuilder(TestGeneratorBuilder):
 
                 parent_of_ancestor = ancestor.parent
                 if ancestor is parent_of_ancestor.left_child:
-                    query_to_refine = parent_of_ancestor.test
+                    query_to_refine = parent_of_ancestor.test.tilde_query
                 else:
                     ancestor = parent_of_ancestor
         return query_to_refine

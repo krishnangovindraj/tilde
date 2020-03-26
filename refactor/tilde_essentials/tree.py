@@ -21,9 +21,8 @@ class DecisionTree(Destructible):
 
     def fit(self, examples, tree_builder: TreeBuilder):
         self.tree_builder = tree_builder
-        self.tree_builder.build(examples)
         self.test_evaluator = self.tree_builder.splitter.test_evaluator
-        self.tree = tree_builder.tree_root
+        self.tree = self.tree_builder.build(examples)
 
         if self.tree_pruner is not None:
             self.tree = self.tree_pruner.prune(self.tree)
