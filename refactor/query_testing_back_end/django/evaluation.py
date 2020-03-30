@@ -25,7 +25,7 @@ class DjangoQueryEvaluator(TestEvaluator):
         self.reference_pin_clause = ClauseWrapper(clause_id=None)
         self.reference_pin_clause.add_literal_as_head(Term(prediction_goal.functor, ["__refpin_arg__"] * prediction_goal.arity) ) # Ok, how do i do that?
         for rmode in language.get_refinement_modes():
-            self.reference_pin_clause.add_literal_to_body(Term(rmode[0], ["__refpin_arg__"] * rmode[1]))
+            self.reference_pin_clause.add_literal_to_body(Term(rmode[0], *(["__refpin_arg__"] * rmode[1])))
         self.reference_pin_clause.lock_adding_to_clause()
 
     def evaluate(self, example: DjangoExample, test: DjangoQueryWrapper) -> bool:
