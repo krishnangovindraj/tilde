@@ -117,12 +117,11 @@ def main(argv):
     model_factory = ModelFactory(config, language, backend_enum)
 
     tree_builder = model_factory.get_default_decision_tree_builder()
-
     rule_grounder = model_factory.get_rule_grounder(full_background_knowledge_sp, language, prediction_goal_handler)
     rule_grounder.setup()
-    rule_grounder.saturate_examples(training_examples_collection)
+    rule_grounder.saturate_examples(training_examples_collection.get_example_wrappers_sp())
 
-    examples = tree_builder.splitter.test_evaluator.get_transformed_example_list(training_examples_collection)
+    examples = tree_builder.splitter.test_evaluator.get_transformed_example_list(training_examples_collection.get_example_wrappers_sp())
 
     # TODO: Move all this stuff to some controller
     for k in language.special_tests:

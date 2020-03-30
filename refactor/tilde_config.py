@@ -17,6 +17,10 @@ class TildeConfig:
         return s if s.strip() else None
 
     @staticmethod
+    def from_dict(config_data):
+        return TildeConfig(config_data)
+
+    @staticmethod
     def from_file(config_file_name):
         if config_file_name == TildeConfig.DEFAULT_CONFIG_FILE_NAME:
             config_file_path = os.path.join(_package_directory, config_file_name)
@@ -25,17 +29,17 @@ class TildeConfig:
 
         with open(config_file_path, "r") as config_file:
             print("Reading configuration from: ", config_file_path)
-            config_json = json.load(config_file)
-        return TildeConfig(config_json, config_file_path)
+            config_data = json.load(config_file)
+        return TildeConfig(config_data, config_file_path)
 
     """ Accepts a config.json """
-    def __init__(self, config_json, config_file_path='__direct_json__'):
-        self.config_file_data = config_json
+    def __init__(self, config_data, config_file_path='__direct_json__'):
+        self.config_data = config_data
         self.config_file_path = config_file_path
 
     def _get_setting(self, key):
         try:
-            return self.none_if_emptystr(self.config_file_data[key])
+            return self.none_if_emptystr(self.config_data[key])
         except KeyError as err:
             if key in self._default_settings:
                 return self.none_if_emptystr(self._default_settings[key])

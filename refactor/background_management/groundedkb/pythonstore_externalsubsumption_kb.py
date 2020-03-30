@@ -96,14 +96,16 @@ class PythonStoreForSubsumptionBasedGroundedKB(GroundedKB):
             
     """ examples is _inout_, specifically example.data is updated for example in examples """
     def saturate_examples(self, examples):
-        for example in examples.get_example_wrappers_sp():
+        for example in examples:
             existing_facts = set(example.logic_program)
             lhm = self.derive_groundings_for_example(example)
             for t in lhm:
                 if t not in existing_facts: # and t != example.classification_term:
                     example.logic_program.add_fact(t)
             existing_facts.update(lhm)
-            self._saturate_with_relevant_bg(example, existing_facts)
+            if example.classification_term is not None:
+                self._saturate_with_relevant_bg(example, existing_facts)
+            #else: TODO
 
     def derive_groundings_for_example(self, example):
         db_extension = set()
@@ -231,10 +233,11 @@ class PythonStoreForSubsumptionBasedGroundedKB(GroundedKB):
             self.const_arg_indices[(functor, arity)] = [i for i in range(len(modes)) if 'c'==modes[i]]
 
         for fact in self.bg_groundings:
-            for arg in [fact.args[i] for i in self.in_arg_indices[(fact.functor, fact.arity)]]:
-                if arg not in self.vars_to_bg_terms:
-                    self.vars_to_bg_terms[arg] = set()
-                self.vars_to_bg_terms[arg].add(fact)
+            if (fact.functor, fact.arity) in self.in_arg_indices:
+                for arg in [fact.args[i] for i in self.in_arg_indices[(fact.functor, fact.arity)]]:
+                    if arg not in self.vars_to_bg_terms:
+                        self.vars_to_bg_terms[arg] = set()
+                    self.vars_to_bg_terms[arg].add(fact)
 
     def _saturate_with_relevant_bg(self, example: Example, existing_facts: Set[Term]):
         prediction_goal_index = self.prediction_goal_handler.get_predicate_goal_index_of_label_var()

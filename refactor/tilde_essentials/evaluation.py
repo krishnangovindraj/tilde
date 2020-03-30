@@ -51,8 +51,8 @@ class TestEvaluator:
     def transform_example(self, example_wrapper: ExampleWrapper) -> Example:
         raise NotImplementedError('abstract method')
 
-    def get_transformed_example_list(self, examples_collection: ExampleCollection) -> List[Example]:
-        return [self.transform_example(example_wrapper) for example_wrapper in examples_collection.get_example_wrappers_sp()]
+    def get_transformed_example_list(self, example_wrapper_list: List[ExampleWrapper]) -> List[Example]:
+        return [self.transform_example(example_wrapper) for example_wrapper in example_wrapper_list]
 
     def wrap_query(self, tilde_query: TILDEQuery) -> QueryWrapper:
         raise NotImplementedError('abstract method')
