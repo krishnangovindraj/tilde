@@ -12,41 +12,26 @@ class TildeConfig:
     _default_settings = {_split_criterion_key: 'entropy', _leaf_strategy_key: "majority_class",
                         _kb_file_key: None, _bg_file_key: None}
 
-    _static_instance = None
-
     @staticmethod
     def none_if_emptystr(s):
         return s if s.strip() else None
 
     @staticmethod
-    def reset_instance():
-        TildeConfig._static_instance = None
-
-    @staticmethod
-    def get_instance():
-        if TildeConfig._static_instance is not None:
-            return TildeConfig._static_instance
+    def from_file(config_file_name):
+        if config_file_name == TildeConfig.DEFAULT_CONFIG_FILE_NAME:
+            config_file_path = os.path.join(_package_directory, config_file_name)
         else:
-            raise ReferenceError("The _static_instance has not been instantiated yet")
+            config_file_path = os.path.join(os.getcwd(), config_file_name)
 
-    @staticmethod
-    def create_instance(config_file):
-        if TildeConfig._static_instance is None:
-            TildeConfig._static_instance = TildeConfig(config_file)
-            return TildeConfig._static_instance
-        else:
-            raise ReferenceError("The _static_instance has previously been created. Cannot recreate.")
+        with open(config_file_path, "r") as config_file:
+            print("Reading configuration from: ", config_file_path)
+            config_json = json.load(config_file)
+        return TildeConfig(config_json, config_file_path)
 
     """ Accepts a config.json """
-    def __init__(self, config_file):
-        if config_file == TildeConfig.DEFAULT_CONFIG_FILE_NAME:
-            self.config_file_name = os.path.join(_package_directory, config_file)
-        else:
-            self.config_file_name = os.path.join(os.getcwd(), config_file)
-
-        with open(self.config_file_name, "r") as config_file:
-            print("Reading configuration from: ", self.config_file_name)
-            self.config_file_data = json.load(config_file)
+    def __init__(self, config_json, config_file_path='__direct_json__'):
+        self.config_file_data = config_json
+        self.config_file_path = config_file_path
 
     def _get_setting(self, key):
         try:
@@ -55,7 +40,7 @@ class TildeConfig:
             if key in self._default_settings:
                 return self.none_if_emptystr(self._default_settings[key])
             else:
-                print(key, ' is not defined in ', self.config_file_name)
+                print(key, ' is not defined in ', self.config_file_path)
                 raise err
 
     @property
