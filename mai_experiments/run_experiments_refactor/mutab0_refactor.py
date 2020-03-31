@@ -1,17 +1,31 @@
-import sys
-
-sys.path.append("/home/joschout/Repos/Django-subsumption")
-
 from mai_experiments.experiment_settings import DebugPrintingOptions, FileNameData
 from mai_experiments.fold_control import FoldInfoController
 
+from mai_experiments.run_experiments_refactor.refactor_experiment_template import run_experiment
+from refactor.model_factory import ModelFactory
+from refactor.tilde_config import TildeConfig
+
+# # CHANGE THESE TWO FOR EACH TEST
+# test_name = 'bongard4'
+# logic_name = 'bongard'
+
 # CHANGE THESE TWO FOR EACH TEST
-from mai_experiments.run_experiments.refactor_experiment_template import run_experiment
-from refactor.back_end_picking import get_back_end_default, QueryBackEnd
-
-
 test_name = 'mutab0'
 logic_name = 'muta-d'
+
+import sys
+
+# sys.path.append("/home/joschout/Repos/Django-subsumption")
+from tilde_config import _default_config_file_name, _package_directory, \
+    _subtle_path_key, _split_criterion_key, _leaf_strategy_key, \
+    _s_file_key, _kb_file_key, _bg_file_key
+
+tilde_config_data = {
+    _subtle_path_key: "test_datasets/theta-subsumption-engines/subtle/subtle-2.2.pl",
+    _split_criterion_key: "entropy",
+    _leaf_strategy_key: "majority_class",
+}
+
 
 # --- command-line printing settings ---
 debug_printing_options = DebugPrintingOptions()
@@ -19,16 +33,8 @@ debug_printing_options = DebugPrintingOptions()
 filter_out_unlabeled_examples = False
 hide_printouts = False
 
-# # --- directories ---
-# droot = 'D:\\KUL\\KUL MAI\\Masterproef\\TILDE\\tilde\\fold\\data\\'
-# dlogic_relative = 't-0-0-0\\'
-# dfold_relative = 'folds\\'
-# dout_relative = 'output\\'
-#
-
 # --- directories ---
-droot = '/home/joschout/Repos/tilde/data-mai-experiments'
-# droot = '/home/joschout/Repos/tilde/mai_experiments/data'
+droot = '/home/krishnan/wprogs/workcode/tilde/data-mai-experiments'
 dlogic_relative = 't-0-0-0'
 dfold_relative = 'folds'
 dout_relative = 'output'
@@ -40,8 +46,6 @@ file_name_data = FileNameData(root_dir=droot,
                               output_relative_dir=dout_relative,
                               test_name=test_name,
                               logic_name=logic_name)
-
-default_handler = get_back_end_default(QueryBackEnd.SUBTLE)
 
 # --- fold settings ---
 fname_prefix_fold = 'test'
@@ -57,6 +61,8 @@ fold_info_controller = FoldInfoController(
     nb_folds=nb_folds,
     fold_suffix=fold_suffix)
 
-run_experiment(file_name_data, fold_info_controller, default_handler,
-               hide_printouts, filter_out_unlabeled_examples, debug_printing_options)
+tilde_config = TildeConfig.from_dict(tilde_config_data)
 
+run_experiment(tilde_config, ModelFactory.BackendChoice.DJANGO,
+               file_name_data, fold_info_controller,
+               hide_printouts, filter_out_unlabeled_examples, debug_printing_options)
