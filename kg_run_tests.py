@@ -36,7 +36,6 @@ def _run_test(argv):
 class TestRegressionTrees(unittest.TestCase):
 
     def test_noisy_lines(self):
-        TildeConfig.reset_instance()
         expected_tree = \
             (('divisible_by(A,2)',),
                 ((2303.8, 1.77), None, None),
@@ -58,7 +57,6 @@ class TestRules(unittest.TestCase):
 
     def test_divisibility_six(self):
         # Sorry but my example sux. There are 2 possible trees. div4 might not have this problem.
-        TildeConfig.reset_instance()
         expected_tree_1 = \
             (('divides(A,3,C)',),
                 (('divides(A,2,D)',),
@@ -82,7 +80,6 @@ class TestRules(unittest.TestCase):
         self.assertIn(_encode_tree(decision_tree.tree), [expected_tree_1, expected_tree_2],"Tree mismatch")
 
     def test_squares(self):
-        TildeConfig.reset_instance()
         expected_tree = \
             (('divides(A,C,D), unify(C,D)',), 
                 (('pos', [('pos', '1.0')]), None, None),

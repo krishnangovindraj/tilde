@@ -1,6 +1,8 @@
 from typing import List, Tuple
 
 from refactor.logic_manipulation_utils import TermManipulationUtils
+from refactor.representation.example import ExampleWrapper
+from refactor.representation.example_collection import ExampleCollection
 from refactor.representation.TILDE_query import TILDEQuery
 from refactor.special_tests.special_test import TildeTestResult
 from refactor.tilde_essentials.example import Example
@@ -8,9 +10,6 @@ from refactor.tilde_essentials.query_wrapping import QueryWrapper
 from refactor.tilde_essentials.split_criterion import SplitCriterion
 
 class TestEvaluator:
-    
-    # TODO: Probably decide against how things are done now and favour theta-subsumption with result caching rather than bypassing that system.
-        
     """
     Abstract TestEvaluator class: used for evaluating a test on an example
     """
@@ -46,12 +45,14 @@ class TestEvaluator:
 
         return TildeTestResult(tilde_query, results)
 
-    def _evaluate_special_test(self, query, examples):
-        special_test_result = query.get_special_test().run(examples, self)
-        raise NotImplementedError('I should actually implement this')
-
     def evaluate(self, example, test: QueryWrapper) -> bool:
         raise NotImplementedError('abstract method')
+
+    def transform_example(self, example_wrapper: ExampleWrapper) -> Example:
+        raise NotImplementedError('abstract method')
+
+    def get_transformed_example_list(self, example_wrapper_list: List[ExampleWrapper]) -> List[Example]:
+        return [self.transform_example(example_wrapper) for example_wrapper in example_wrapper_list]
 
     def wrap_query(self, tilde_query: TILDEQuery) -> QueryWrapper:
         raise NotImplementedError('abstract method')

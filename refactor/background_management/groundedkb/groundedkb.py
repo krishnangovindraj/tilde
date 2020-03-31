@@ -4,6 +4,10 @@ from pyswip import Prolog
 
 """ Abstract class/interface  """
 class GroundedKB:
+
+    def setup(self):
+        raise NotImplementedError("Abstract method")
+
     def add_fact(self, fact):
         raise NotImplementedError("Abstract method")
 
@@ -23,9 +27,3 @@ class GroundedKB:
 
     def saturate_examples(self, examples):
         raise NotImplementedError("Abstract method")
-        # for example in examples:
-        #     existing_facts = set(example.data)
-        #     lhm = self.derive_LHM_for_example(example)
-        #     for t in lhm:
-        #         if t not in existing_facts and t != example.classification_term:
-        #             example.data.add_fact(t)

@@ -80,7 +80,7 @@ class PredictionTokenParser(SettingTokenParser):
     conjunction_regex = r'(\w*)\((.*)\)'
     conjunction_pattern = re.compile(conjunction_regex)
 
-    argument_regex = '([+-])(\w*)'
+    argument_regex = r'([+-])(\w*)'
     argument_pattern = re.compile(argument_regex)
 
     def can_parse_pre(self, line: str) -> Optional[Match[str]]:
@@ -123,6 +123,7 @@ class PredictionTokenParser(SettingTokenParser):
             # TODO: think about this, I don't think it needs to be added to the possible refinement conjunctions
             # settings.language.add_modes(functor, modes)
             settings.prediction_goal_handler = KeysPredictionGoalHandler(functor, modes, types)
+            settings.language.set_prediction_goal(settings.prediction_goal_handler.get_prediction_goal())
         else:
             raise SettingsParsingError("invalid setting line: " + line)
 

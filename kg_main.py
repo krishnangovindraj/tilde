@@ -3,7 +3,6 @@ import time
 
 from problog.engine import DefaultEngine
 
-from refactor.back_end_picking import get_back_end_default, QueryBackEnd
 from refactor.tilde_essentials.tree import DecisionTree
 from refactor.tilde_essentials.tree_builder import TreeBuilder
 from refactor.query_testing_back_end.django.clause_handling import destruct_tree_tests
@@ -12,20 +11,19 @@ from refactor.io.parsing_background_knowledge import parse_background_knowledge_
 from refactor.io.parsing_examples import KeysExampleBuilder
 from refactor.io.parsing_settings.setting_parser import KeysSettingsParser
 from refactor.representation.example import InternalExampleFormat
-from refactor.tilde_config import TildeConfig, _default_config_file_name
+from refactor.tilde_config import TildeConfig
+from refactor.model_factory import ModelFactory
+
+# RANDOM_FOREST_OPTIONS = (5, 10)  # N_TREES, N_TESTS_TO_SAMPLE
+RANDOM_FOREST_OPTIONS = None     # To disasble random forest
 
 # Some defaults
 
-DEFAULT_BACKEND_NAME = 'django'
-
-RANDOM_FOREST_OPTIONS = (5, 10)  # N_TREES, N_TESTS_TO_SAMPLE
-# RANDOM_FOREST_OPTIONS = None     # To disasble random forest
-
-default_handlers = {
-    'django': QueryBackEnd.DJANGO,
-    'problog-simple': QueryBackEnd.SIMPLE_PROGRAM,
-    'subtle': QueryBackEnd.SUBTLE,
-    'FLGG': QueryBackEnd.FLGG,
+DEFAULT_BACKEND_NAME = 'django' # 'problog-simple' # 'django'
+backend_choice_map = {
+    'django': ModelFactory.BackendChoice.DJANGO,
+    'problog-simple': ModelFactory.BackendChoice.PROBLOG,
+    'subtle': ModelFactory.BackendChoice.SUBTLE,
 }
 
 internal_ex_format = InternalExampleFormat.CLAUSEDB
@@ -35,19 +33,19 @@ def usage():
     print("Usage:")
     print("\tpython3 %s [config_file] [backend_name]")
     print("Defaults:")
-    print("\tconfig_file: ", TildeConfig.DEFAULT_CONFIG_FILE_NAME)
+    print("\tconfig_file: ", TildeConfig.DEFAULT_CONFIG_FILE_PATH)
     print("\tbackend_name: ", DEFAULT_BACKEND_NAME)
 
 def parse_args(argv):
     # argv[1]: Config file
-    config_file_name = TildeConfig.DEFAULT_CONFIG_FILE_NAME
+    config_file_name = TildeConfig.DEFAULT_CONFIG_FILE_PATH
     if len(argv) > 1:
         config_file_name = argv[1]
 
     # argv[2]: Backend name
     query_backend_name = DEFAULT_BACKEND_NAME
     if len(argv) > 2:
-        if argv[2] in default_handlers:
+        if argv[2] in backend_choice_map:
             query_backend_name = argv[2]
         else:
             print("Unknown argument for backend: %s, using backend %s "%(argv[2], query_backend_name))
@@ -60,10 +58,9 @@ def main(argv, random_forest_options=None):
     # Read and setup according to arguments
     config_file_name, query_backend_name = parse_args(argv)
 
-    config = TildeConfig.create_instance(config_file_name)
+    config = TildeConfig.from_file(config_file_name)
 
-    backend_enum = default_handlers[query_backend_name]
-    backend = get_back_end_default(backend_enum)
+    backend_enum = backend_choice_map[query_backend_name]
 
     parsed_settings = KeysSettingsParser().parse(config.s_file)
 
@@ -82,8 +79,8 @@ def main(argv, random_forest_options=None):
     language = parsed_settings.language  # type: TypeModeLanguage
 
     # TODO: unify this with models --> let models use a prediction goal predicate label()
-    prediction_goal_handler = parsed_settings.get_prediction_goal_handler()  # type: KeysPredictionGoalHandler
-    prediction_goal = prediction_goal_handler.get_prediction_goal()  # type: Term
+    prediction_goal_handler = parsed_settings.get_prediction_goal_handler() # type: KeysPredictionGoalHandler
+    prediction_goal = language.get_prediction_goal()  # type: Term
 
     print('=== START parsing background ===')
     background_knowledge_wrapper \
@@ -115,21 +112,18 @@ def main(argv, random_forest_options=None):
     possible_labels = label_collector.get_labels()  # type: Set[Label]
     possible_labels = list(possible_labels)
     print('=== END collecting labels ===\n')
-
-
-
-    average_run_time_list = []
-
+    
     # =================================================================================================================
 
     # Saturate the examples with background knowledge (using prolog for now).
+    model_factory = ModelFactory(config, language, backend_enum)
 
-    from refactor.background_management.groundedkb import SubtleGroundedKB, PrologGroundedKB
-    groundedkb = SubtleGroundedKB(full_background_knowledge_sp, language, prediction_goal_handler)
-    groundedkb.setup()
-    groundedkb.saturate_examples(training_examples_collection)
+    tree_builder = model_factory.get_default_decision_tree_builder()
+    rule_grounder = model_factory.get_rule_grounder(full_background_knowledge_sp, language, prediction_goal_handler)
+    rule_grounder.setup()
+    rule_grounder.saturate_examples(training_examples_collection.get_example_wrappers_sp())
 
-    examples = backend.get_transformed_example_list(training_examples_collection)
+    examples = tree_builder.splitter.test_evaluator.get_transformed_example_list(training_examples_collection.get_example_wrappers_sp())
 
     # TODO: Move all this stuff to some controller
     for k in language.special_tests:
@@ -138,12 +132,11 @@ def main(argv, random_forest_options=None):
 
     # =================================================================================================================
 
+    average_run_time_list = []
     run_time_list = []
 
     for i in range(0, 1):
         print('=== START tree building ===')
-
-        tree_builder = backend.get_default_decision_tree_builder(language, prediction_goal)  # type: TreeBuilder
 
         if random_forest_options is not None:
             from refactor.random_forest.random_forest_splitter import RandomForestSplitter
@@ -154,7 +147,7 @@ def main(argv, random_forest_options=None):
             decision_tree = random_forest   # Little hack for convenience
         else:
             decision_tree = DecisionTree()
-
+        
         start_time = time.time()
         decision_tree.fit(examples=examples, tree_builder=tree_builder)
         end_time = time.time()
@@ -189,11 +182,10 @@ def main(argv, random_forest_options=None):
 
     print("average tree build time (ms):", average_run_time_ms)
 
-    if backend_enum == QueryBackEnd.DJANGO:
-        print("=== start destructing examples ===")
-        for instance in examples:
-            instance.destruct()
-        print("=== end destructing examples ===")
+    print("=== start destructing examples ===")
+    for instance in examples:
+        instance.destruct()
+    print("=== end destructing examples ===")
 
     print ("\n=== average run times (ms) =======")
     for name, average_run_time_ms in average_run_time_list:
