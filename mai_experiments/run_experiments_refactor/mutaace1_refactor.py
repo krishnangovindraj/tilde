@@ -5,14 +5,9 @@ from mai_experiments.run_experiments_refactor.refactor_experiment_template impor
 from refactor.model_factory import ModelFactory
 from refactor.tilde_config import TildeConfig
 
-# # CHANGE THESE TWO FOR EACH TEST
-# test_name = 'bongard4'
-# logic_name = 'bongard'
-
 # CHANGE THESE TWO FOR EACH TEST
 test_name = 'mutaace1'
 logic_name = 'muta-d'
-
 
 import sys
 
