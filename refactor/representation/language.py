@@ -34,12 +34,14 @@ class TypeModeLanguage(BaseLanguage):
         self._types = {}  # type: TypeDict
         self._values = defaultdict(set)  # type: ValuesDict
         self._refinement_modes = []  # type: ModeList
+        self._prediction_goal = None
         self._lookahead = defaultdict(set)
-        self._lookahead_max_depth = 5
 
+        self._lookahead_max_depth = 5
         self._symmetry_breaking = symmetry_breaking
         self._allow_negation = True
         self._allow_recursion = False
+
         self.real_types = set()
         self.special_tests = defaultdict(None)
 
@@ -98,6 +100,9 @@ class TypeModeLanguage(BaseLanguage):
         self.add_modes(new_test_name, ('+', 'c'))
         
         self.add_values(const_type_key, Constant(RealNumberLEQTest.TEST_PLACEHOLDER_TERM))
+
+    def set_prediction_goal(self, prediction_goal: Term):
+        self._prediction_goal = prediction_goal
 
     def set_max_lookahead_depth(self, max_lookahead_depth):
         self._lookahead_max_depth = max_lookahead_depth
@@ -537,6 +542,9 @@ class TypeModeLanguage(BaseLanguage):
                     if is_variable(arg) or arg.is_var():
                         result[argtype].add(arg)
         return result
+
+    def get_prediction_goal(self) -> Term:
+        return self._prediction_goal
 
     def __load(self, data):
         """Load from data.

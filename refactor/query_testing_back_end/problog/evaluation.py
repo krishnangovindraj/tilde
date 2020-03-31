@@ -5,6 +5,7 @@ from problog.engine import GenericEngine, DefaultEngine, ClauseDB
 from problog.logic import Term, Var
 from problog.program import LogicProgram, SimpleProgram, PrologString
 
+from refactor.representation.example import ExampleWrapper
 from refactor.query_testing_back_end.problog.query_wrapping import ProblogQueryWrapper
 from refactor.tilde_essentials.evaluation import TestEvaluator
 from refactor.tilde_essentials.example import Example
@@ -59,19 +60,23 @@ class SimpleProgramQueryEvaluator(ProbLogQueryEvaluator):
     def wrap_query(self, tilde_query: TILDEQuery):
         return ProblogQueryWrapper(tilde_query, tilde_query.to_conjunction())
 
+    def transform_example(self, example_wrapper: ExampleWrapper) -> Example:
+        classification_term = example_wrapper.classification_term if hasattr(example_wrapper, 'classification_term') else None
+        example = Example(example_wrapper.logic_program, example_wrapper.label, classification_term)
+        example.classification_term = example_wrapper.classification_term
+        return example
+
 
 if __name__ == '__main__':
-    instance = PrologString("""
+    instance = Example(PrologString("""
     color(blue).
     taste(sweet).
     texture(fruity).
     
-    """)
+    """), None)
     query = TILDEQuery(None, Term('color')(Var('X')))
 
     evaluator = SimpleProgramQueryEvaluator()
 
-    result = evaluator.evaluate(instance, query)
+    result = evaluator.evaluate(instance, evaluator.wrap_query(query))
     print(result)
-
-
