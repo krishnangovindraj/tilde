@@ -11,7 +11,7 @@ from refactor.io.parsing_background_knowledge import parse_background_knowledge_
 from refactor.io.parsing_examples import KeysExampleBuilder
 from refactor.io.parsing_settings.setting_parser import KeysSettingsParser
 from refactor.representation.example import InternalExampleFormat
-from refactor.tilde_config import TildeConfig, _default_config_file_name
+from refactor.tilde_config import TildeConfig
 
 from refactor.model_factory import ModelFactory
 
@@ -31,12 +31,12 @@ def usage():
     print("Usage:")
     print("\tpython3 %s [config_file] [backend_name]")
     print("Defaults:")
-    print("\tconfig_file: ", TildeConfig.DEFAULT_CONFIG_FILE_NAME)
+    print("\tconfig_file: ", TildeConfig.DEFAULT_CONFIG_FILE_PATH)
     print("\tbackend_name: ", DEFAULT_BACKEND_NAME)
 
 def parse_args(argv):
     # argv[1]: Config file
-    config_file_name = TildeConfig.DEFAULT_CONFIG_FILE_NAME
+    config_file_name = TildeConfig.DEFAULT_CONFIG_FILE_PATH
     if len(argv) > 1:
         config_file_name = argv[1]
 
