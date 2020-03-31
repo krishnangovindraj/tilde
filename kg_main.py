@@ -13,9 +13,10 @@ from refactor.io.parsing_settings.setting_parser import KeysSettingsParser
 from refactor.representation.example import InternalExampleFormat
 from refactor.tilde_config import TildeConfig
 from refactor.model_factory import ModelFactory
+from refactor.random_forest.random_forest import RandomForest
 
-# RANDOM_FOREST_OPTIONS = (5, 10)  # N_TREES, N_TESTS_TO_SAMPLE
-RANDOM_FOREST_OPTIONS = None     # To disasble random forest
+RANDOM_FOREST_OPTIONS = ModelFactory.RandomForestOptions(5, 0, 10)
+# RANDOM_FOREST_OPTIONS = None     # To disasble random forest
 
 # Some defaults
 
@@ -53,7 +54,7 @@ def parse_args(argv):
     return config_file_name, query_backend_name
 
 
-def main(argv, random_forest_options=None):
+def main(argv, random_forest_options : ModelFactory.RandomForestOptions=None):
 
     # Read and setup according to arguments
     config_file_name, query_backend_name = parse_args(argv)
@@ -139,17 +140,14 @@ def main(argv, random_forest_options=None):
         print('=== START tree building ===')
 
         if random_forest_options is not None:
-            from refactor.random_forest.random_forest_splitter import RandomForestSplitter
-            from refactor.random_forest.random_forest import RandomForest
-
-            tree_builder.splitter = RandomForestSplitter(tree_builder.splitter.split_criterion_str, tree_builder.splitter.test_evaluator, tree_builder.splitter.test_generator_builder, random_forest_options[1])
-            random_forest = RandomForest(random_forest_options[0], len(examples))
-            decision_tree = random_forest   # Little hack for convenience
+            tree_builder = model_factory.get_default_random_forest_tree_builder(random_forest_options)
+            model = model_factory.create_random_forest(random_forest_options)
         else:
-            decision_tree = DecisionTree()
+            tree_builder = model_factory.get_default_decision_tree_builder()
+            model = model_factory.create_decision_tree()
         
         start_time = time.time()
-        decision_tree.fit(examples=examples, tree_builder=tree_builder)
+        model.fit(examples=examples, tree_builder=tree_builder)
         end_time = time.time()
         run_time_sec = end_time - start_time
         run_time_ms = 1000.0 * run_time_sec
@@ -157,24 +155,28 @@ def main(argv, random_forest_options=None):
         print("run time (ms):", run_time_ms)
         print('=== END tree building ===')
 
-        if random_forest_options is not None:
-            from refactor.utils import print_confusion_matrix, training_confusion_matrix
-            for t_i, t in enumerate(random_forest.trees):
+        if isinstance(model, RandomForest):
+            from refactor.utils import confusion_matrix, print_confusion_matrix
+            for t_i, t in enumerate(model.trees):
+                print("---tree[%d]---\n"%(t_i,))
                 print(t)
-                legend, mat = training_confusion_matrix(t)
+                truth = [e.label for e in examples]
+                predictions = [ t.predict(e) for e in examples]
+                legend, mat = confusion_matrix(truth, predictions)
+                # legend, mat = training_confusion_matrix(t)
                 correct, all = sum(mat[i][i] for i in range(len(legend))), sum(mat[i][j] for j in range(len(legend)) for i in range(len(legend)))
+                print_confusion_matrix(legend, mat)
                 print("Training acc of tree[%d]: %d/%d = %f"%(t_i,correct, all, correct/all))
-                # print_confusion_matrix(legend, mat)
-                print("\n-\t-\t-\t-\t-\n")
+                print("-\t-\t-\t-\t-\n")
         else:
-            print(decision_tree)
+            print(model)
 
-        predictions = [ decision_tree.predict(e) for e in examples]
+        predictions = [ model.predict(e) for e in examples]
         n_correct = sum(1 if predictions[i] == examples[i].label else 0 for i in range(len(examples)) )
         print("Training acc=%d/%d=%f" % (n_correct, len(examples), n_correct/len(examples)) )
 
         print("=== start destructing tree queries ===")
-        decision_tree.destruct()
+        model.destruct()
         print("=== end destructing tree queries ===\n")
 
     average_run_time_ms = statistics.mean(run_time_list)
@@ -191,7 +193,7 @@ def main(argv, random_forest_options=None):
     for name, average_run_time_ms in average_run_time_list:
         print(name, ':', average_run_time_ms)
 
-    return decision_tree
+    return model
 
 
 if __name__ == '__main__':
