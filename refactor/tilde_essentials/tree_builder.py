@@ -32,15 +32,16 @@ class TreeBuilder:
 
         if self.stop_criterion.cannot_split_before_test(examples, current_node.depth):
             current_node.leaf_strategy = self.leaf_builder.build(examples)
+            current_node.examples = examples
         else:
 
             split_info = self.splitter.get_split(examples, current_node)
 
             if self.stop_criterion.cannot_split_on_test(split_info):
                 current_node.leaf_strategy = self.leaf_builder.build(examples)
+                current_node.examples = examples
             else:
                 current_node.test = self.splitter.test_evaluator.wrap_query(split_info.test)
-
                 child_depth = current_node.depth + 1
                 # left_child
                 current_node.left_child = TreeNode(current_node, child_depth)

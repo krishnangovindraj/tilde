@@ -15,8 +15,10 @@ from refactor.tilde_config import TildeConfig
 from refactor.model_factory import ModelFactory
 from refactor.random_forest.random_forest import RandomForest
 
-RANDOM_FOREST_OPTIONS = ModelFactory.RandomForestOptions(5, 0, 10)
-# RANDOM_FOREST_OPTIONS = None     # To disasble random forest
+
+MODEL_OPTIONS = ModelFactory.IsolationForestOptions(2, 15, 20)
+# MODEL_OPTIONS = ModelFactory.RandomForestOptions(5, 0, 10)
+# MODEL_OPTIONS = None     # Use a simple DecisionTree
 
 # Some defaults
 
@@ -54,7 +56,7 @@ def parse_args(argv):
     return config_file_name, query_backend_name
 
 
-def main(argv, random_forest_options : ModelFactory.RandomForestOptions=None):
+def main(argv, model_options=None):
 
     # Read and setup according to arguments
     config_file_name, query_backend_name = parse_args(argv)
@@ -136,13 +138,23 @@ def main(argv, random_forest_options : ModelFactory.RandomForestOptions=None):
     average_run_time_list = []
     run_time_list = []
 
-    for i in range(0, 1):
+    # all_examples = examples
+    # pos_examples = [e for e in examples if str(e.label) != 'pos']
+    # neg_examples = [e for e in examples if str(e.label) == 'pos']
+    # from random import sample as random_sample
+    # examples = pos_examples + random_sample(neg_examples, 3)
+    # print([str(e.label) + str(e.classification_term) for e in examples])
+    
+    for _trial_i in range(0, 1):
         print('=== START tree building ===')
 
-        if random_forest_options is not None:
-            tree_builder = model_factory.get_default_random_forest_tree_builder(random_forest_options)
-            model = model_factory.create_random_forest(random_forest_options)
-        else:
+        if isinstance(model_options, ModelFactory.RandomForestOptions):
+            tree_builder = model_factory.get_default_random_forest_tree_builder(model_options)
+            model = model_factory.create_random_forest(model_options)
+        elif isinstance(model_options, ModelFactory.IsolationForestOptions):
+            tree_builder = model_factory.get_default_isolation_forest_tree_builder(model_options)        
+            model = model_factory.create_isolation_forest(model_options)
+        else: # elif isinstance(model_options, ModelFactory.DecisionTreeOptions):
             tree_builder = model_factory.get_default_decision_tree_builder()
             model = model_factory.create_decision_tree()
         
@@ -155,30 +167,12 @@ def main(argv, random_forest_options : ModelFactory.RandomForestOptions=None):
         print("run time (ms):", run_time_ms)
         print('=== END tree building ===')
 
-        if isinstance(model, RandomForest):
-            from refactor.utils import confusion_matrix, print_confusion_matrix
-            for t_i, t in enumerate(model.trees):
-                print("---tree[%d]---\n"%(t_i,))
-                print(t)
-                truth = [e.label for e in examples]
-                predictions = [ t.predict(e) for e in examples]
-                legend, mat = confusion_matrix(truth, predictions)
-                # legend, mat = training_confusion_matrix(t)
-                correct, all = sum(mat[i][i] for i in range(len(legend))), sum(mat[i][j] for j in range(len(legend)) for i in range(len(legend)))
-                print_confusion_matrix(legend, mat)
-                print("Training acc of tree[%d]: %d/%d = %f"%(t_i,correct, all, correct/all))
-                print("-\t-\t-\t-\t-\n")
-        else:
-            print(model)
-
-        predictions = [ model.predict(e) for e in examples]
-        n_correct = sum(1 if predictions[i] == examples[i].label else 0 for i in range(len(examples)) )
-        print("Training acc=%d/%d=%f" % (n_correct, len(examples), n_correct/len(examples)) )
-
+        from refactor.utils import print_model_summary
+        print_model_summary(model, examples)
+        
         print("=== start destructing tree queries ===")
         model.destruct()
         print("=== end destructing tree queries ===\n")
-
     average_run_time_ms = statistics.mean(run_time_list)
     average_run_time_list.append((query_backend_name, average_run_time_ms))
 
@@ -198,4 +192,4 @@ def main(argv, random_forest_options : ModelFactory.RandomForestOptions=None):
 
 if __name__ == '__main__':
     from sys import argv as sys_argv
-    main(sys_argv, random_forest_options=RANDOM_FOREST_OPTIONS)
+    main(sys_argv, model_options=MODEL_OPTIONS)

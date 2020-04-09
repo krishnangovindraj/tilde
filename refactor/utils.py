@@ -50,6 +50,8 @@ def multidict_safe_add(d, k, v, value_collection_type=set):
     d[k].add(v)
 
 
+# Confusion matrix
+
 from typing import Dict, List
 from refactor.tilde_essentials.tree import DecisionTree
 from refactor.tilde_essentials.tree_node import TreeNode
@@ -111,3 +113,51 @@ def print_confusion_matrix(legend, matrix):
         print( _format_row(key, row) )
         print(sep)
     print()
+
+# Model summary printing 
+
+def print_model_summary(model, examples):
+    from refactor.random_forest.random_forest import RandomForest
+    from refactor.random_forest.isolation_forest import IsolationForest
+    from refactor.tilde_essentials.tree import DecisionTree
+    
+    if isinstance(model, IsolationForest):
+        _print_isolation_forest_summary(model, examples)
+    elif isinstance(model, RandomForest):
+        _print_random_forest_summary(model, examples)
+    elif isinstance(model, DecisionTree):
+        _print_decision_tree_summary(model, examples)
+    else:
+        print("Unrecognized model type:" + type(model) )
+
+def _print_isolation_forest_summary(model: 'IsolationForest', examples:'List[Example]'):
+    dist = model.get_length_distribution(examples)
+    for t in model.trees:
+        print(t)
+    for e in examples :
+        print(str(e.classification_term) + " : " + str(dist[e]))
+
+
+def _print_random_forest_summary(model: 'RandomForest', examples:'List[Example]'):
+    from refactor.utils import confusion_matrix, print_confusion_matrix
+    print("-\t-\t-\t-\t-\n")
+    for t_i, t in enumerate(model.trees):
+        # print("---tree[%d]---\n"%(t_i,))
+        # print(t)
+        truth = [e.label for e in examples]
+        predictions = [ t.predict(e) for e in examples]
+        legend, mat = confusion_matrix(truth, predictions)
+        # legend, mat = training_confusion_matrix(t)
+        correct, all = sum(mat[i][i] for i in range(len(legend))), sum(mat[i][j] for j in range(len(legend)) for i in range(len(legend)))
+        # print_confusion_matrix(legend, mat)
+        print("Training acc of tree[%d]: %d/%d = %f"%(t_i,correct, all, correct/all))
+    print("-\t-\t-\t-\t-\n")
+
+    predictions = [ model.predict(e) for e in examples]
+    n_correct = sum(1 if predictions[i] == examples[i].label else 0 for i in range(len(examples)) )
+    print("RandomForest training acc=%d/%d=%f" % (n_correct, len(examples), n_correct/len(examples)) )
+        
+
+
+def _print_decision_tree_summary(model: 'DecisionTree', examples:'List[Example]'):
+    print(model)

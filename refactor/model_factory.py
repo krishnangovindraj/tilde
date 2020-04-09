@@ -24,6 +24,12 @@ class ModelFactory:
             self.resample_size = resample_size
             self.n_tests_to_sample = n_tests_to_sample
 
+    class IsolationForestOptions:
+        def __init__(self, n_trees: int, max_branch_depth: int, n_tests_before_giveup: int):
+            self.n_trees = n_trees
+            self.max_branch_depth = max_branch_depth
+            self.n_tests_before_giveup = n_tests_before_giveup
+
     def __init__(self, tilde_config: TildeConfig, language: TypeModeLanguage, backend_choice: BackendChoice):
         self.tilde_config = tilde_config
         self.language = language
@@ -78,3 +84,19 @@ class ModelFactory:
     def get_rule_grounder(self, full_background_knowledge_sp, language, prediction_goal_handler) -> GroundedKB:
         from refactor.background_management.groundedkb import SubtleGroundedKB
         return SubtleGroundedKB(full_background_knowledge_sp, language, prediction_goal_handler)
+
+    def get_default_isolation_forest_tree_builder(self, isolation_forest_options: IsolationForestOptions):
+        from refactor.random_forest.isolation_forest_stop_criterion import IsolationForestStopCriterion
+        from refactor.random_forest.isolation_forest import IsolationForest
+        from refactor.random_forest.splitters.isolation_forest_random_with_retry import IsolationForestRandomRetrySplitter
+        
+        tree_builder = self.get_default_decision_tree_builder()
+        tree_builder.stop_criterion = IsolationForestStopCriterion(isolation_forest_options.max_branch_depth)
+        tree_builder.splitter = IsolationForestRandomRetrySplitter(tree_builder.splitter.test_evaluator, tree_builder.splitter.test_generator_builder, isolation_forest_options.n_tests_before_giveup)
+        
+        return tree_builder
+
+    def create_isolation_forest(self, isolation_forest_options: IsolationForestOptions):
+        from refactor.random_forest.isolation_forest import IsolationForest
+        isolation_forest = IsolationForest(isolation_forest_options.n_trees)
+        return isolation_forest
