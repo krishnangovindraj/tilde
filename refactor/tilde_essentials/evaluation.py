@@ -4,10 +4,14 @@ from refactor.logic_manipulation_utils import TermManipulationUtils
 from refactor.representation.example import ExampleWrapper
 from refactor.representation.example_collection import ExampleCollection
 from refactor.representation.TILDE_query import TILDEQuery
-from refactor.special_tests.special_test import TildeTestResult
 from refactor.tilde_essentials.example import Example
 from refactor.tilde_essentials.query_wrapping import QueryWrapper
 from refactor.tilde_essentials.split_criterion import SplitCriterion
+
+class TildeTestResult:
+    def __init__(self, test_query: TILDEQuery, test_results: Tuple[Example, bool]):
+        self.test_query = test_query
+        self.test_results = test_results
 
 class TestEvaluator:
     """

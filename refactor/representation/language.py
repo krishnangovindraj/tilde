@@ -9,7 +9,7 @@ from refactor.representation.language_types import *
 from refactor.representation.lookahead_mode import LookaheadMode
 
 from refactor.representation.lookahead_extension_generator import LookaheadExtensionGenerator
-from refactor.special_tests import RealNumberLEQTest
+from refactor.special_tests.special_test import SpecialTest
 
 class BaseLanguage(object):
     """Base class for languages."""
@@ -42,7 +42,6 @@ class TypeModeLanguage(BaseLanguage):
         self._allow_negation = True
         self._allow_recursion = False
 
-        self.real_types = set()
         self.special_tests = defaultdict(None)
 
     def add_types(self, functor: TypeName, argtypes: TypeArguments) -> None:
@@ -89,17 +88,12 @@ class TypeModeLanguage(BaseLanguage):
             self._lookahead[lookahead_mode.sig] = set()
         self._lookahead[lookahead_mode.sig].add(lookahead_mode)
     
-    def add_real_type(self, real_typename):
-        self.real_types.add(real_typename)
-        new_test_name = RealNumberLEQTest.TEST_FUNCTOR_PREFIX + real_typename
-        new_test_arity = 2
-        const_type_key = new_test_name + '_1'
-        
-        self.special_tests[new_test_name] = RealNumberLEQTest(new_test_name, new_test_arity, real_typename)
-        self.add_types(new_test_name, (real_typename, 'tilde_real_const'))
-        self.add_modes(new_test_name, ('+', 'c'))
-        
-        self.add_values(const_type_key, Constant(RealNumberLEQTest.TEST_PLACEHOLDER_TERM))
+    def register_special_test(self, special_test: SpecialTest):
+        self.special_tests[special_test.functor] = special_test
+        self.add_modes(special_test.functor, special_test.arg_modes)
+        self.add_types(special_test.functor, special_test.arg_types)
+        for arg_type, arg_value_list in special_test.const_arg_values:
+            self.add_values(arg_type, arg_value_list)
 
     def set_prediction_goal(self, prediction_goal: Term):
         self._prediction_goal = prediction_goal
