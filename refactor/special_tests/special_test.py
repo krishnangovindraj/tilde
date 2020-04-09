@@ -1,18 +1,22 @@
 from typing import Tuple
+from refactor.tilde_essentials.evaluation import TildeTestResult
 from refactor.tilde_essentials.example import Example
 from refactor.representation.TILDE_query import TILDEQuery
-class TildeTestResult:
-    def __init__(self, test_query: TILDEQuery, test_results: Tuple[Example, bool]):
-        self.test_query = test_query
-        self.test_results = test_results
 
 class SpecialTest:
+
+    def __init__(self, functor, arity, arg_modes, arg_types, const_arg_values = []):
+        self.functor = functor
+        self.arity = arity
+        self.arg_modes = arg_modes
+        self.arg_types = arg_types
+        self.const_arg_values = const_arg_values
+
     """
-     Returns a SpecialTestResult object
+     Returns a TildeTestResult object
     """
     def run(self, examples):
         raise NotImplementedError('abstract method')
-
 
     """
      Called once before the tree building begins so that any required pre-processing may be performed.

@@ -28,13 +28,17 @@ class RealNumberLEQTest(SpecialTest):
     TEST_FUNCTOR_PREFIX = 'tilde__realnumber_leq_functor__'
     TEST_PLACEHOLDER_TERM = 'tilde__realnumber_leq__placeholder'
 
+    ARG_MODES = ('+', 'c')
+    REAL_CONST_TYPENAME = 'tilde_real_const'
     TEST_VARIABLE_AUTOINC = 0
     _POS_INF = 99999999
 
-    def __init__(self, test_functor, test_arity, type_name):
+    def __init__(self, test_functor, type_name):
+
+        super().__init__(test_functor, 2, self.ARG_MODES, (type_name, self.REAL_CONST_TYPENAME), [(test_functor+'_1', Constant(self.TEST_PLACEHOLDER_TERM))] )
         self.test_functor = test_functor
-        self.test_arity = test_arity
         self.type_name = type_name
+
         self.all_values = set()
         self.bg_values = set()
         self.example_values = {}    # Example -> SortedCollection(values)
@@ -106,7 +110,7 @@ class RealNumberLEQTest(SpecialTest):
                         bg_values.add(d.args[i].value)
                         self.all_values.add( d.args[i].value )
         
-        self.bg_values = [float(i) for i in range(16)] # list(bg_values)
+        self.bg_values = [float(i) for i in list(bg_values)]
 
     # def notify_result(self, is_selected, test_result):
     #     NOT IMPLEMENTED!
