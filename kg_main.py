@@ -16,7 +16,7 @@ from refactor.model_factory import ModelFactory
 from refactor.random_forest.random_forest import RandomForest
 
 
-MODEL_OPTIONS = ModelFactory.IsolationForestOptions(2, 15, 20)
+MODEL_OPTIONS = ModelFactory.IsolationForestOptions(50, 15, 20)
 # MODEL_OPTIONS = ModelFactory.RandomForestOptions(5, 0, 10)
 # MODEL_OPTIONS = None     # Use a simple DecisionTree
 
