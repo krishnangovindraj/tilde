@@ -11,12 +11,9 @@ from refactor.tilde_essentials.tree_builder import TreeBuilder
 from refactor.tilde_essentials.test_generation import FOLTestGeneratorBuilder
 from refactor.background_management.groundedkb import GroundedKB
 
-class ModelFactory:
+from refactor.query_testing_back_end import BackendChoice
 
-    class BackendChoice(Enum):
-        PROBLOG = 1
-        SUBTLE = 2
-        DJANGO = 3
+class ModelFactory:
 
     class RandomForestOptions:
         def __init__(self, n_trees: int, resample_size: int, n_tests_to_sample: int):
@@ -27,22 +24,22 @@ class ModelFactory:
     def __init__(self, tilde_config: TildeConfig, language: TypeModeLanguage, backend_choice: BackendChoice):
         self.tilde_config = tilde_config
         self.language = language
-        if backend_choice in self.BackendChoice:
+        if backend_choice in BackendChoice:
             self.backend_choice = backend_choice
         else:
-            raise ValueError("Unknown backend choice" + self.backend_choice)
+            raise ValueError("Unknown backend choice: " + backend_choice)
 
     def instantiate_backend(self, backend_choice: BackendChoice) -> TestEvaluator:
-        if self.backend_choice == self.BackendChoice.PROBLOG:
+        if self.backend_choice == BackendChoice.PROBLOG:
             from refactor.query_testing_back_end.problog.evaluation import SimpleProgramQueryEvaluator
             from problog.engine import DefaultEngine
             engine = DefaultEngine()
             engine.unknown = 1
             return SimpleProgramQueryEvaluator(engine=engine)
-        elif self.backend_choice == self.BackendChoice.SUBTLE:
+        elif self.backend_choice == BackendChoice.SUBTLE:
             from refactor.query_testing_back_end.subtle.evaluation import SubtleQueryEvaluator
             return SubtleQueryEvaluator.build(self.tilde_config.subtle_path)
-        elif self.backend_choice == self.BackendChoice.DJANGO:
+        elif self.backend_choice == BackendChoice.DJANGO:
             from refactor.query_testing_back_end.django.evaluation import DjangoQueryEvaluator
             return DjangoQueryEvaluator(self.language)
         else:

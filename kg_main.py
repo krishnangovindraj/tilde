@@ -1,120 +1,48 @@
 import statistics
 import time
 
-from problog.engine import DefaultEngine
 
 from refactor.tilde_essentials.tree import DecisionTree
 from refactor.tilde_essentials.tree_builder import TreeBuilder
 from refactor.query_testing_back_end.django.clause_handling import destruct_tree_tests
-from refactor.io.label_collector import LabelCollectorMapper
-from refactor.io.parsing_background_knowledge import parse_background_knowledge_keys
-from refactor.io.parsing_examples import KeysExampleBuilder
-from refactor.io.parsing_settings.setting_parser import KeysSettingsParser
 from refactor.representation.example import InternalExampleFormat
 from refactor.tilde_config import TildeConfig
+from refactor.tilde_tasks.tilde_task import TildeTask
 
 from refactor.model_factory import ModelFactory
-
+from refactor.query_testing_back_end import BackendChoice
 # Some defaults
 
-DEFAULT_BACKEND_NAME = 'django' # 'problog-simple' # 'django'
-backend_choice_map = {
-    'django': ModelFactory.BackendChoice.DJANGO,
-    'problog-simple': ModelFactory.BackendChoice.PROBLOG,
-    'subtle': ModelFactory.BackendChoice.SUBTLE,
-}
+DEFAULT_BACKEND_NAME = 'DJANGO'
 
 internal_ex_format = InternalExampleFormat.CLAUSEDB
 
-# Some util functions to keep things neat
-def usage():
-    print("Usage:")
-    print("\tpython3 %s [config_file] [backend_name]")
-    print("Defaults:")
-    print("\tconfig_file: ", TildeConfig.DEFAULT_CONFIG_FILE_PATH)
-    print("\tbackend_name: ", DEFAULT_BACKEND_NAME)
-
-def parse_args(argv):
-    # argv[1]: Config file
-    config_file_name = TildeConfig.DEFAULT_CONFIG_FILE_PATH
-    if len(argv) > 1:
-        config_file_name = argv[1]
-
-    # argv[2]: Backend name
-    query_backend_name = DEFAULT_BACKEND_NAME
-    if len(argv) > 2:
-        if argv[2] in backend_choice_map:
-            query_backend_name = argv[2]
-        else:
-            print("Unknown argument for backend: %s, using backend %s "%(argv[2], query_backend_name))
-
-    return config_file_name, query_backend_name
+debug_printing_tree_building = False
+debug_printing_tree_pruning = False
+debug_printing_program_conversion = True
+debug_printing_get_classifier = False
+debug_printing_classification = False
 
 
-def main(argv):
-
-    # Read and setup according to arguments
-    config_file_name, query_backend_name = parse_args(argv)
-
-    config = TildeConfig.from_file(config_file_name)
-
-    backend_enum = backend_choice_map[query_backend_name]
-
-    parsed_settings = KeysSettingsParser().parse(config.s_file)
-
+def run_task(config: TildeConfig):
     debug_printing_example_parsing = False
     # These don't seem to be used, but could be useful
-    debug_printing_tree_building = False
-    debug_printing_tree_pruning = False
-    debug_printing_program_conversion = True
-    debug_printing_get_classifier = False
-    debug_printing_classification = False
 
-
-    engine = DefaultEngine()
-    engine.unknown = 1
-
-    language = parsed_settings.language  # type: TypeModeLanguage
+    tilde_task = TildeTask.from_tilde_config(config, internal_ex_format, debug_printing_example_parsing)
+    language = tilde_task.settings.language  # type: TypeModeLanguage
 
     # TODO: unify this with models --> let models use a prediction goal predicate label()
-    prediction_goal_handler = parsed_settings.get_prediction_goal_handler() # type: KeysPredictionGoalHandler
+    prediction_goal_handler = tilde_task.settings.get_prediction_goal_handler() # type: KeysPredictionGoalHandler
     prediction_goal = language.get_prediction_goal()  # type: Term
 
-    print('=== START parsing background ===')
-    background_knowledge_wrapper \
-        = parse_background_knowledge_keys(config.bg_file,
-                                        prediction_goal)  # type: BackgroundKnowledgeWrapper
+    full_background_knowledge_sp = \
+        tilde_task.background_knowledge_wrapper.get_full_background_knowledge_simple_program()  # type: Optional[SimpleProgram]
 
-    full_background_knowledge_sp \
-        = background_knowledge_wrapper.get_full_background_knowledge_simple_program()  # type: Optional[SimpleProgram]
-    print('=== END parsing background ===\n')
-
-    # =================================================================================================================
-
-
-    print('=== START parsing examples ===')
-    # EXAMPLES
-    example_builder = KeysExampleBuilder(prediction_goal, debug_printing_example_parsing)
-    training_examples_collection = example_builder.parse(internal_ex_format, config.kb_file,
-                                                        full_background_knowledge_sp)  # type: ExampleCollection
-    # =================================================================================================================
-
-
-    print('=== START collecting labels ===')
-    # LABELS
-    index_of_label_var = prediction_goal_handler.get_predicate_goal_index_of_label_var()  # type: int
-    label_collector = LabelCollectorMapper.get_label_collector(internal_ex_format, prediction_goal, index_of_label_var,
-                                                            engine=engine)
-    label_collector.extract_labels(training_examples_collection)
-
-    possible_labels = label_collector.get_labels()  # type: Set[Label]
-    possible_labels = list(possible_labels)
-    print('=== END collecting labels ===\n')
-    
+    training_examples_collection = tilde_task.training_examples  # type: ExampleCollection
     # =================================================================================================================
 
     # Saturate the examples with background knowledge (using prolog for now).
-    model_factory = ModelFactory(config, language, backend_enum)
+    model_factory = ModelFactory(config, language, config.backend_choice)
 
     tree_builder = model_factory.get_default_decision_tree_builder()
     rule_grounder = model_factory.get_rule_grounder(full_background_knowledge_sp, language, prediction_goal_handler)
@@ -152,7 +80,7 @@ def main(argv):
         print("=== start destructing tree queries ===")
 
     average_run_time_ms = statistics.mean(run_time_list)
-    average_run_time_list.append((query_backend_name, average_run_time_ms))
+    average_run_time_list.append((config.backend_choice, average_run_time_ms))
 
     print("average tree build time (ms):", average_run_time_ms)
     print(decision_tree)
@@ -167,6 +95,40 @@ def main(argv):
         print(name, ':', average_run_time_ms)
 
     return decision_tree
+
+
+# Some util functions to keep things neat
+def usage():
+    print("Usage:")
+    print("\tpython3 %s [config_file] [backend_name]")
+    print("Defaults:")
+    print("\tconfig_file: ", TildeConfig.DEFAULT_CONFIG_FILE_PATH)
+    print("\tbackend_name: ", DEFAULT_BACKEND_NAME)
+
+def parse_args(argv):
+    # argv[1]: Config file
+    config_file_name = TildeConfig.DEFAULT_CONFIG_FILE_PATH
+    if len(argv) > 1:
+        config_file_name = argv[1]
+
+    # argv[2]: Backend name
+    query_backend_name = None
+    if len(argv) > 2:
+        query_backend_name = argv[2]
+
+    return config_file_name, query_backend_name
+
+def main(argv):
+    # Read and setup according to arguments
+    config_file_name, query_backend_name_override = parse_args(argv)
+    config = TildeConfig.from_file(config_file_name)
+
+    # TODO: Remove this line
+    # query_backend_name_override = DEFAULT_BACKEND_NAME
+    if query_backend_name_override is not None:
+        config.override_setting(TildeConfig.SettingsKeys._backend_choice, query_backend_name_override)
+
+    return run_task(config)
 
 
 if __name__ == '__main__':
