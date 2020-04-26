@@ -35,7 +35,7 @@ def run_task(config: TildeConfig):
     # These don't seem to be used, but could be useful
 
     tilde_task = TildeTask.from_tilde_config(config, internal_ex_format, debug_printing_example_parsing)
-    model_options = MODEL_OPTIONS # TODO:  ModelFactory.model_options_from_settings()
+    model_options = ModelFactory.model_options_from_settings(tilde_task.settings.algorithm_settings.tilde_mode)
     
     language = tilde_task.settings.language  # type: TypeModeLanguage
 

@@ -63,13 +63,20 @@ class KeysPredictionGoalHandler:
         raise SettingsParsingError("predicate to predict has no argument with arg_mode '-'")
 
 class TildeAlgorithmSettings:
-
+    VALID_MODES = ['classification', 'regression', 'random_forest_classification', 'isolation_forest']  # 'clustering;
     def __init__(self):
-        self.tilde_mode = 'classification'
+        self.tilde_mode = Term('classification')
 
-    def set_tilde_mode(self, mode):
-        if mode in ['classification', 'regression']: # , 'clustering']
-            self.tilde_mode = mode
+    def set_tilde_mode(self, mode : Term):
+        from refactor.model_factory import ModelFactory
+        from problog.parser import ParseError
+        try:
+            if mode.functor in self.VALID_MODES:
+                self.tilde_mode = mode
+            else:
+                raise(SettingsParsingError("Unrecognized tilde_mode: " + mode.functor))
+        except ParseError as e:
+            raise(SettingsParsingError("Error while parsing tilde_mode: " + str(e)))
 
 class FileSettings:
     def __init__(self):
