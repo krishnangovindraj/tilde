@@ -28,7 +28,7 @@ class DjangoExample(Example):
     def destruct(self):
         self.external_rep.destruct()
 
-    def add_facts(self, facts):
+    def _add_facts_to_external_representation(self, facts):
         if self.external_rep.is_locked:
             raise ConversionException("Adding to a locked clause is not allowed. Please use the extend method")
         super().add_facts(facts)

@@ -8,7 +8,7 @@ from refactor.tilde_config import TildeConfig
 from refactor.tilde_essentials.query_wrapping import QueryWrapper
 from refactor.tilde_essentials.tree_node import TreeNode
 
-DEFAULT_TEST_BACKEND = 'problog-simple' # 'subtle' # 'django'
+DEFAULT_TEST_BACKEND = 'PROBLOG' # 'SUBTLE' # 'DJANGO'
 
 def _encode_test(test: QueryWrapper) -> str:
     tilde_query = test.tilde_query
