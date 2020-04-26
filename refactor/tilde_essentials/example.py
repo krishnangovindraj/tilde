@@ -25,7 +25,13 @@ class Example(Destructible):
         self.add_facts([fact])
 
     def add_facts(self, facts: Iterable[Term]):
-        self.data.update(facts)
+        new_facts = [f for f in facts if f not in self.data]
+        if len(new_facts) > 0:
+            self.data.update(new_facts)
+            self._add_facts_to_external_representation(new_facts)
+
+    def _add_facts_to_external_representation(self, fresh_facts):
+        pass
 
     def clone(self):
         return Example(self.data, self.label, self.classification_term)

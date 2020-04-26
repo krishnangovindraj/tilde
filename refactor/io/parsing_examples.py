@@ -47,8 +47,8 @@ class ExampleBuilder:
     def _parse_ex_simpleprogram(self, fname_examples: str) -> ExampleCollection:
         if self.debug_printing:
             print('start parsing kb examples into SimpleProgramExampleWrappers')
-        example_wrappers_sp = self._parse_ex_simpleprogram_input_format(fname_examples)
-        # type: List[SimpleProgramExampleWrapper]
+        example_wrappers_sp = self._parse_ex_simpleprogram_input_format(fname_examples) \
+            # type: List[SimpleProgramExampleWrapper]
 
         example_collection = ExampleCollection()
         example_collection.set_example_wrappers_sp(example_wrappers_sp)
