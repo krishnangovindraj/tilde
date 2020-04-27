@@ -28,10 +28,12 @@ class ModelFactory:
 
     class IsolationForestOptions(ModelOptions):
         DEFAULT_MAX_DEPTH = 15; DEFAULT_TESTS_TO_SAMPLE = 20
-        def __init__(self, n_trees: int, max_branch_depth: int, n_tests_before_giveup: int):
+    class IsolationForestOptions:
+        def __init__(self, n_trees: int, max_branch_depth: int, n_tests_before_giveup: int, store_length_distribution : bool = False):
             self.n_trees = n_trees
             self.max_branch_depth = max_branch_depth
             self.n_tests_before_giveup = n_tests_before_giveup
+            self.store_length_distribution = store_length_distribution
 
     # The actual class
 
@@ -102,8 +104,11 @@ class ModelFactory:
         return tree_builder
 
     def create_isolation_forest(self, isolation_forest_options: IsolationForestOptions):
-        from refactor.random_forest.isolation_forest import IsolationForest
-        isolation_forest = IsolationForest(isolation_forest_options.n_trees)
+        from refactor.random_forest.isolation_forest import IsolationForest, ResultStoringIsolationForest
+        if isolation_forest_options.store_length_distribution:
+            isolation_forest = IsolationForest(isolation_forest_options.n_trees)
+        else:
+            isolation_forest = ResultStoringIsolationForest(isolation_forest_options.n_trees)
         return isolation_forest
 
     # Some useful statics

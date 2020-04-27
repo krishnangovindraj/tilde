@@ -27,7 +27,7 @@ def _encode_tree(tree: TreeNode) -> str:
     return ( (encoded_info), el, er)
 
 
-def _run_test(argv):
+def _run_test(argv, model_options=None):
     f = io_StringIO()
     with redirect_stdout(f):
         tree = run_kg_main(argv)
@@ -100,9 +100,20 @@ class TestNumericalAttributes(unittest.TestCase):
                 (('pos', [('pos', '1.0')]), None, None)
             )
 
-        decision_tree = _run_test(['TestRules__test_onedimensional_range_exact', 'test_datasets/numerical/onedimensional_range/config.json', DEFAULT_TEST_BACKEND])
+        decision_tree = _run_test(['TestNumericalAttributes__test_onedimensional_range_exact', 'test_datasets/numerical/onedimensional_range/config.json', DEFAULT_TEST_BACKEND])
         self.assertEqual(_encode_tree(decision_tree.tree), expected_tree, "Tree mismatch")
 
+# class TestIsolationForest(unittest.TestCase):
+    
+#     def test_gaussian2d_outliers(self):
+#         from refactor.model_factory import ModelFactory
+#         isolation_forest_options = ModelFactory.IsolationForestOptions(40, 10, 5)
+#         isolation_forest = _run_test(['TestIsolationForest__test_gaussian2d_outliers', 'test_datasets/isolation/gaussian/config.json', DEFAULT_TEST_BACKEND], isolation_forest_options)
+#         length_dist = isolation_forest.stored_length_distribution
+
+#         top6 = sorted([(sum(length_dist[k]),str(k)) for k in length_dist])[:6]
+#         print(top6)
+#         assert( len([ct for ct in top6 if 'pos' in ct[1]]) == 4 )
 
 if __name__ == '__main__':
     unittest.main()
