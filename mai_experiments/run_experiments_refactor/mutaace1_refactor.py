@@ -3,6 +3,7 @@ from mai_experiments.fold_control import FoldInfoController
 
 from mai_experiments.run_experiments_refactor.refactor_experiment_template import run_experiment
 from refactor.model_factory import ModelFactory
+from refactor.query_testing_back_end import BackendChoice
 from refactor.tilde_config import TildeConfig
 
 # RANDOM_FOREST_OPTIONS = ModelFactory.RandomForestOptions(5, 0, 10)
@@ -62,7 +63,7 @@ fold_info_controller = FoldInfoController(
 
 tilde_config = TildeConfig.from_dict(tilde_config_data)
 
-run_experiment(tilde_config, ModelFactory.BackendChoice.DJANGO,
+run_experiment(tilde_config, BackendChoice.DJANGO,
                file_name_data, fold_info_controller,
                hide_printouts, filter_out_unlabeled_examples, debug_printing_options,
                random_forest_options=RANDOM_FOREST_OPTIONS)

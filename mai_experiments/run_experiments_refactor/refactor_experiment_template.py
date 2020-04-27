@@ -10,6 +10,7 @@ from mai_experiments.fold_control import FoldInfoController
 from mai_experiments.fold_example_splitting import FoldExampleSplitter
 from mai_experiments.run_experiments_refactor.example_preprocessing_refactor import Experiment
 from refactor.model_factory import ModelFactory
+from refactor.query_testing_back_end import BackendChoice
 from refactor.tilde_config import TildeConfig
 from refactor.tilde_essentials.tree import DecisionTree, write_out_tree
 from refactor.tilde_essentials.tree_builder import TreeBuilder
@@ -19,7 +20,7 @@ from mai_version.representation.example import ExampleWrapper
 from mai_version.representation.example_collection import ExampleCollection
 
 
-def run_experiment(tilde_config: TildeConfig, backend_choice: ModelFactory.BackendChoice,
+def run_experiment(tilde_config: TildeConfig, backend_choice: BackendChoice,
                    file_name_data: FileNameData, fold_info_controller: FoldInfoController,
                    hide_printouts: bool = False,
                    filter_out_unlabeled_examples=False,

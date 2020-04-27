@@ -63,7 +63,7 @@ class KeysPredictionGoalHandler:
         raise SettingsParsingError("predicate to predict has no argument with arg_mode '-'")
 
 class TildeAlgorithmSettings:
-    VALID_MODES = ['classification', 'regression', 'random_forest_classification', 'isolation_forest']  # 'clustering;
+    VALID_MODES = ['classification', 'classify', 'regression', 'random_forest_classification', 'isolation_forest']  # 'clustering;
     def __init__(self):
         self.tilde_mode = Term('classification')
 
