@@ -14,13 +14,7 @@ from refactor.random_forest.random_forest import RandomForest
 from refactor.tilde_tasks.tilde_task import TildeTask
 from refactor.query_testing_back_end import BackendChoice
 
-# MODEL_OPTIONS = ModelFactory.IsolationForestOptions(50, 15, 20)
-# MODEL_OPTIONS = ModelFactory.RandomForestOptions(5, 0, 10)
-MODEL_OPTIONS = None     # Use a simple DecisionTree
-
 # Some defaults
-DEFAULT_BACKEND_NAME = 'DJANGO'
-
 internal_ex_format = InternalExampleFormat.CLAUSEDB
 
 debug_printing_tree_building = False
@@ -69,13 +63,6 @@ def run_task(config: TildeConfig):
     average_run_time_list = []
     run_time_list = []
 
-    # all_examples = examples
-    # pos_examples = [e for e in examples if str(e.label) != 'pos']
-    # neg_examples = [e for e in examples if str(e.label) == 'pos']
-    # from random import sample as random_sample
-    # examples = pos_examples + random_sample(neg_examples, 3)
-    # print([str(e.label) + str(e.classification_term) for e in examples])
-    
     for _trial_i in range(0, 1):
         print('=== START tree building ===')
 
@@ -147,8 +134,6 @@ def main(argv):
     config_file_name, query_backend_name_override = parse_args(argv)
     config = TildeConfig.from_file(config_file_name)
 
-    # TODO: Remove this line
-    # query_backend_name_override = DEFAULT_BACKEND_NAME
     if query_backend_name_override is not None:
         config.override_setting(TildeConfig.SettingsKeys._backend_choice, query_backend_name_override)
 

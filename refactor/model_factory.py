@@ -76,9 +76,9 @@ class ModelFactory:
         return DecisionTree()
 
     def get_default_random_forest_tree_builder(self, random_forest_options: RandomForestOptions):
-        from refactor.random_forest.random_forest_splitter import RandomForestSplitter
+        from refactor.random_forest.splitters.sample_n_select_best import SampleNSelectBestGSSplitter
         tree_builder = self.get_default_decision_tree_builder()
-        tree_builder.splitter = RandomForestSplitter(tree_builder.splitter.split_criterion_str, tree_builder.splitter.test_evaluator, tree_builder.splitter.test_generator_builder, random_forest_options.n_tests_to_sample)
+        tree_builder.splitter = SampleNSelectBestGSSplitter(tree_builder.splitter.split_criterion_str, tree_builder.splitter.test_evaluator, tree_builder.splitter.test_generator_builder, random_forest_options.n_tests_to_sample)
         return tree_builder
 
     def create_random_forest(self, random_forest_options: RandomForestOptions):
