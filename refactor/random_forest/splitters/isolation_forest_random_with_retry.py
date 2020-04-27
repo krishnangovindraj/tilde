@@ -47,10 +47,7 @@ class IsolationForestRandomRetrySplitter(GenerateAndSampleSplitter):
             #     failed_tests.append(str(candidate_test))
             tests_tried += 1
 
-        # The examples could not be separated?
-        # print(failed_tests)
-        # print([e.classification_term for e in examples])
-        print('raise NotImplementedError("Either this is not implemented correctly, or the examples could not be separated")')
+        # The examples could not be separated
         return [None]
 
     def _select_test(self, candidate_tests: Iterable[TILDEQuery], examples: List[Example], split_criterion: SplitCriterion) -> SplitInfo:

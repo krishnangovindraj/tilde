@@ -23,10 +23,14 @@ class RandomForest(DecisionTree):
         self.resample_size = resample_size
 
         self.labels = None
+        self._trees_left = 0
+
 
     def fit(self, examples, tree_builder: TreeBuilder):
         self.tree_builder = tree_builder
         self.test_evaluator = self.tree_builder.splitter.test_evaluator
+
+        self._trees_left = self.n_trees
         self.trees = [self._build_one_tree(examples, tree_builder) for _ in range(self.n_trees)]
 
         labels = set()
@@ -39,6 +43,11 @@ class RandomForest(DecisionTree):
         resampled_examples = random_choices(examples, k=resample_size)
         decision_tree = DecisionTree()
         decision_tree.fit(resampled_examples, tree_builder)
+
+        self._trees_left -= 1
+        if self._trees_left % (self.n_trees/10)==0:
+            print("Built ~%d%% of trees"%( 100*(1-float(self._trees_left)/self.n_trees)))
+
         return decision_tree
 
     def prune(self, pruning_function):
