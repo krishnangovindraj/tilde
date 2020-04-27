@@ -109,7 +109,7 @@ class ModelFactory:
     # Some useful statics
     @staticmethod
     def model_options_from_settings(tilde_mode_term: 'problog.logic.Term'):
-        if tilde_mode_term.functor == 'classification':
+        if tilde_mode_term.functor == 'classification' or tilde_mode_term.functor == 'classify':
             return ModelFactory.ClassificationOptions()
         elif tilde_mode_term.functor == 'regression':
             return ModelFactory.RegressionTreeOptions()
