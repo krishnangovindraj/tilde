@@ -44,14 +44,15 @@ def run_experiment(tilde_config: TildeConfig, backend_choice: ModelFactory.Backe
             experiment):  # type: FoldInfo, ExampleCollection, List[ExampleWrapper]
         print("fold: ", fold_info.index)
         
-        tree_builder = model_factory.get_default_decision_tree_builder()  # type: TreeBuilder
-                                                                 
-        training_examples = tree_builder.splitter.test_evaluator.get_transformed_example_list(training_examples_collection.get_example_wrappers_sp())
-
         if random_forest_options is None:
+            tree_builder = model_factory.get_default_decision_tree_builder()  # type: TreeBuilder
             model = DecisionTree()
         else:
-            model = model_factory._create_random_forest(tree_builder, random_forest_options)    
+            tree_builder = model_factory.get_default_random_forest_tree_builder(random_forest_options)
+            model = model_factory.create_random_forest(random_forest_options)
+
+        training_examples = tree_builder.splitter.test_evaluator.get_transformed_example_list(training_examples_collection.get_example_wrappers_sp())
+
         start_build_time = time.time()
         model.fit(examples=training_examples, tree_builder=tree_builder)
 

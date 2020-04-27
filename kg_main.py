@@ -7,14 +7,14 @@ from refactor.tilde_essentials.tree_builder import TreeBuilder
 from refactor.query_testing_back_end.django.clause_handling import destruct_tree_tests
 from refactor.representation.example import InternalExampleFormat
 from refactor.tilde_config import TildeConfig
-from refactor.tilde_tasks.tilde_task import TildeTask
 
 from refactor.model_factory import ModelFactory
+from refactor.random_forest.random_forest import RandomForest
+
+from refactor.tilde_tasks.tilde_task import TildeTask
 from refactor.query_testing_back_end import BackendChoice
+
 # Some defaults
-
-DEFAULT_BACKEND_NAME = 'DJANGO'
-
 internal_ex_format = InternalExampleFormat.CLAUSEDB
 
 debug_printing_tree_building = False
@@ -29,6 +29,8 @@ def run_task(config: TildeConfig):
     # These don't seem to be used, but could be useful
 
     tilde_task = TildeTask.from_tilde_config(config, internal_ex_format, debug_printing_example_parsing)
+    model_options = ModelFactory.model_options_from_settings(tilde_task.settings.algorithm_settings.tilde_mode)
+    
     language = tilde_task.settings.language  # type: TypeModeLanguage
 
     # TODO: unify this with models --> let models use a prediction goal predicate label()
@@ -61,29 +63,38 @@ def run_task(config: TildeConfig):
     average_run_time_list = []
     run_time_list = []
 
-    for i in range(0, 1):
+    for _trial_i in range(0, 1):
         print('=== START tree building ===')
 
-        decision_tree = DecisionTree()
+        if isinstance(model_options, ModelFactory.RandomForestOptions):
+            tree_builder = model_factory.get_default_random_forest_tree_builder(model_options)
+            model = model_factory.create_random_forest(model_options)
+        elif isinstance(model_options, ModelFactory.IsolationForestOptions):
+            tree_builder = model_factory.get_default_isolation_forest_tree_builder(model_options)        
+            model = model_factory.create_isolation_forest(model_options)
+        else: # elif isinstance(model_options, ModelFactory.DecisionTreeOptions):
+            tree_builder = model_factory.get_default_decision_tree_builder()
+            model = model_factory.create_decision_tree()
+        
         start_time = time.time()
-        decision_tree.fit(examples=examples, tree_builder=tree_builder)
+        model.fit(examples=examples, tree_builder=tree_builder)
         end_time = time.time()
         run_time_sec = end_time - start_time
         run_time_ms = 1000.0 * run_time_sec
         run_time_list.append(run_time_ms)
         print("run time (ms):", run_time_ms)
+        print('=== END tree building ===')
 
-        print('=== END tree building ===\n')
-
+        from refactor.utils import print_model_summary
+        print_model_summary(model, examples)
+        
         print("=== start destructing tree queries ===")
-        decision_tree.destruct()
-        print("=== start destructing tree queries ===")
-
+        model.destruct()
+        print("=== end destructing tree queries ===\n")
     average_run_time_ms = statistics.mean(run_time_list)
     average_run_time_list.append((config.backend_choice, average_run_time_ms))
 
     print("average tree build time (ms):", average_run_time_ms)
-    print(decision_tree)
 
     print("=== start destructing examples ===")
     for instance in examples:
@@ -94,7 +105,7 @@ def run_task(config: TildeConfig):
     for name, average_run_time_ms in average_run_time_list:
         print(name, ':', average_run_time_ms)
 
-    return decision_tree
+    return model
 
 
 # Some util functions to keep things neat
@@ -123,8 +134,6 @@ def main(argv):
     config_file_name, query_backend_name_override = parse_args(argv)
     config = TildeConfig.from_file(config_file_name)
 
-    # TODO: Remove this line
-    # query_backend_name_override = DEFAULT_BACKEND_NAME
     if query_backend_name_override is not None:
         config.override_setting(TildeConfig.SettingsKeys._backend_choice, query_backend_name_override)
 

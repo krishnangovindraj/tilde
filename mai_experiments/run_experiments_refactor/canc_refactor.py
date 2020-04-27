@@ -5,6 +5,9 @@ from mai_experiments.run_experiments_refactor.refactor_experiment_template impor
 from refactor.model_factory import ModelFactory
 from refactor.tilde_config import TildeConfig
 
+# RANDOM_FOREST_OPTIONS = ModelFactory.RandomForestOptions(5, 0, 10)
+RANDOM_FOREST_OPTIONS = None
+
 # CHANGE THESE TWO FOR EACH TEST
 test_name = 'canc'
 logic_name = 'canc-d'
@@ -62,4 +65,5 @@ tilde_config = TildeConfig.from_dict(tilde_config_data)
 
 run_experiment(tilde_config, ModelFactory.BackendChoice.DJANGO,
                file_name_data, fold_info_controller,
-               hide_printouts, filter_out_unlabeled_examples, debug_printing_options)
+               hide_printouts, filter_out_unlabeled_examples, debug_printing_options,
+               random_forest_options=RANDOM_FOREST_OPTIONS)

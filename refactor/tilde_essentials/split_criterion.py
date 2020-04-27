@@ -30,5 +30,8 @@ class SplitCriterionBuilder:
         elif split_criterion_str == 'variance_reduction':
             from refactor.split_criteria import VarianceReduction
             return VarianceReduction(examples)
+        elif split_criterion_str == 'dummy_all_equal':
+            from refactor.split_criteria import DummyAllEqual
+            return DummyAllEqual(examples, node_labels)
         else:
             raise KeyError("Unknown leaf strategy: " + split_criterion_str)

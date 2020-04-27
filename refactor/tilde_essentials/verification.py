@@ -3,7 +3,7 @@ from refactor.tilde_essentials.classification_statistics_handler import Classifi
 
 
 def verify(decision_tree: DecisionTree, test_examples, debug_printing=False):
-    possible_labels = decision_tree.tree.labels
+    possible_labels = decision_tree.get_labels()
 
     statistics_handler = ClassificationStatisticsHandler(possible_labels)
 

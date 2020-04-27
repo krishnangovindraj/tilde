@@ -49,6 +49,9 @@ class DecisionTree(Destructible):
     def destruct(self):
         self.tree.destruct()
 
+    def get_labels(self):
+        return self.tree.labels
+
     def get_nb_of_nodes(self) -> int:
         return count_nb_of_nodes(self.tree)
 
