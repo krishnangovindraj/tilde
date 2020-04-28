@@ -164,7 +164,7 @@ class LookaheadTokenParser(SettingTokenParser):
         settings.language.add_lookahead(LookaheadMode.from_declaration(match.group(1)))
 
 class SpecialTestTokenParser(SettingTokenParser):
-    specialtest_regex = r'special_test\((.*)\).'
+    specialtest_regex = r'(special_test\(.*\)).'
     specialtest_pattern = re.compile(specialtest_regex)
 
     def can_parse_pre(self, line: str) -> Optional[Match[str]]:
@@ -173,7 +173,8 @@ class SpecialTestTokenParser(SettingTokenParser):
     def parse_token(self, line: str, settings: FileSettings, match: Match[str]):
         from refactor.special_tests import create_from_settings_term
         special_test_term = Term.from_string(match.group(1))
-        special_test = create_from_settings_term(special_test_term)
+        custom_functor = str(special_test_term.args[1]) if special_test_term.arity > 1 else None
+        special_test = create_from_settings_term(special_test_term.args[0], custom_functor)
         settings.language.register_special_test(special_test)
 
 
