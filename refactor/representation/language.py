@@ -342,18 +342,22 @@ class TypeModeLanguage(BaseLanguage):
                         already_generated_literals.add(t)
                     t_i = t.apply(TypeModeLanguage.ReplaceNew(nb_of_vars_in_query))
                     t_i.prototype = t
-                    t_i.special_test = t.special_test
+
                     if self._symmetry_breaking:
                         t_i.refine_state = already_generated_literals.copy()
                     else:
                         t_i.refine_state = already_generated_literals | {t, -t, t_i, -t_i}
                     
+                    t_i.special_test = self.special_tests[t_i.functor] if t_i.functor in self.special_tests else None
+
                     yield t_i
                 
                     # Let's handle the extensions now
                     extension_generator = LookaheadExtensionGenerator(query, t_i, self, self._lookahead_max_depth)
                     for conj in extension_generator.generate_extensions():
                         conj.refine_state = self._compute_refinement_state_for_conjunction(conj, already_generated_literals, all_variables_in_query)
+                        for c in LookaheadMode.flatten_conjunction(conj):
+                            c.special_test = self.special_tests[c.functor] if c.functor in self.special_tests else None
                         yield conj
             # end
 
@@ -475,9 +479,7 @@ class TypeModeLanguage(BaseLanguage):
         # SO for each possible combination of arguments:
         #   create a term using the functor and the arguments.
         for args in product(*arguments):
-            term = Term(functor, *args)
-            term.special_test = self.special_tests[functor] if functor in self.special_tests else None
-            yield term
+            yield Term(functor, *args)
 
     def get_refinement_modes(self):
         """ Returns list of (functor:str,arity:int) which can be used in tests"""
