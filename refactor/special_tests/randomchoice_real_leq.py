@@ -87,17 +87,15 @@ class RandomChoiceRealNumberLEQTest(SpecialTest):
             arity = len(arg_modes)
             arg_types = language.get_argument_types(functor, arity)
             for i in range(len(arg_modes)):
-                if arg_modes[i] == '-' and arg_types[i] == self.type_name:
+                if arg_types[i] == self.type_name: # and arg_modes[i] == '-' :
                     locations.append(i)
 
             if len(locations) > 0:
                 value_locations[(functor, arity)] = locations
 
-
-        # TODO: Add occurences in prediction_goal to value_locations
         locations = []
         for i in range(len(prediction_goal_handler.modes)):
-            if prediction_goal_handler.modes[i] == '+' and prediction_goal_handler.types[i] == self.type_name:
+            if prediction_goal_handler.types[i] == self.type_name:  # and prediction_goal_handler.modes[i] == '+':
                 locations.append(i)
 
         if len(locations) > 0:

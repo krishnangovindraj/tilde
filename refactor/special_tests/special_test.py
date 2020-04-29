@@ -5,6 +5,7 @@ from refactor.representation.TILDE_query import TILDEQuery
 
 class SpecialTest:
 
+    # There's a language argument to setup incase you need it.
     def __init__(self, functor, arity, arg_modes, arg_types, const_arg_values = []):
         self.functor = functor
         self.arity = arity
