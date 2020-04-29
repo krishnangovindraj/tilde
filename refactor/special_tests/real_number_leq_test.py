@@ -11,7 +11,7 @@ from refactor.representation.TILDE_query import TILDEQuery
 from refactor.tilde_essentials.split_criterion import SplitCriterion
 
 from problog.program import SimpleProgram
-from problog.logic import Term, Constant, Not
+from problog.logic import Term, Constant, Not, Clause
 
 from refactor.logic_manipulation_utils import TermManipulationUtils, PartialSubstitutionDict
 from .special_test import SpecialTest, TildeTestResult
@@ -104,12 +104,19 @@ class RealNumberLEQTest(SpecialTest):
         
         bg_values = set()
         for b in bg_sp:
-            if b.body is None and (b.head.functor, b.head.arity) in value_locations:
+            if type(b) == Clause and (b.head.functor, b.head.arity) in value_locations:
+                d = b.head
+            elif type(b) == Term and (b.functor, b.arity) in value_locations:
+                d = b
+            else:
+                d = None
+            if d is not None:
+                # This code is pointless if we are saturating examples.
                 for i in value_locations[(d.functor, d.arity)]:
-                    if isinstance(d.args[i], Constant): 
+                    if isinstance(d.args[i], Constant):
                         bg_values.add(d.args[i].value)
                         self.all_values.add( d.args[i].value )
-        
+
         self.bg_values = [float(i) for i in list(bg_values)]
 
     # def notify_result(self, is_selected, test_result):
