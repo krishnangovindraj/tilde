@@ -18,12 +18,6 @@ from .special_test import SpecialTest, TildeTestResult
 # from refactor.representation.language import TypeModeLanguage
 
 class RealNumberLEQTest(SpecialTest):
-    # This doesn't support conjunctions of non-special tests and special tests yet. (I updated it so that it might, but I'm unlikely to have tested it)
-    # It shouldn't be impossible to integrate though.
-    # My ideal solution would look like this: 
-    #   Chain special_tests to just be a wrapper around evaluate (evaluate_wrapper) function, which is still a theta-subsumption.
-    #   So if you have 2 special tests, the first one would prepare the test and call evaluate_wrapper on the second,
-    #   The second would prepare the test and then call evaluate: TILDEQuery_wrapper, which does the regular evaluate for every example. 
 
     TEST_FUNCTOR_PREFIX = 'tilde__realnumber_leq_functor__'
     TEST_PLACEHOLDER_TERM = 'tilde__realnumber_leq__placeholder'
@@ -56,15 +50,13 @@ class RealNumberLEQTest(SpecialTest):
 
         best_split_val = self._pick_best_split(examples, min_passing_vals, split_criterion)
         test_conj = self._replace_placeholder(placeholder_tilde_query, best_split_val)
-        
-        self._augment_examples(examples, best_split_val)
 
         test_conj.literal.refine_state = placeholder_tilde_query.literal.refine_state
 
         self._fix_refine_state(test_conj, best_split_val)
-        
-        test_results = [ (e, True if val <= best_split_val else False) for (val,e) in min_passing_vals]
-        
+
+        test_results = [ (e, True if val.value <= best_split_val.value else False) for (val,e) in min_passing_vals]
+
 
         return TildeTestResult( test_conj, test_results)
 
@@ -78,30 +70,30 @@ class RealNumberLEQTest(SpecialTest):
             for i in range(len(arg_modes)):
                 if arg_types[i] == self.type_name: # and arg_modes[i] == '-' :
                     locations.append(i)
-            
+
             if len(locations) > 0:
                 value_locations[(functor, arity)] = locations
-        
-        
+
+
         # TODO: Add occurences in prediction_goal to value_locations
         locations = []
         for i in range(len(prediction_goal_handler.modes)):
             if prediction_goal_handler.types[i] == self.type_name:  # and prediction_goal_handler.modes[i] == '+':
                 locations.append(i) 
-        
+
         if len(locations) > 0:
             value_locations[(prediction_goal_handler.functor, len(prediction_goal_handler.modes))] = locations
-        
-                    
+
+
         for e in examples:
             self.example_values[e] = []
             for d in list(e.data) + [e.classification_term]:
                 if (d.functor, d.arity) in value_locations:
                     for i in value_locations[(d.functor, d.arity)]:
-                        self.example_values[e].append(d.args[i].value)
-                        self.all_values.add( d.args[i].value )
+                        self.example_values[e].append(d.args[i])
+                        self.all_values.add( d.args[i] )
             sorted(self.example_values[e])
-        
+
         bg_values = set()
         for b in bg_sp:
             if type(b) == Clause and (b.head.functor, b.head.arity) in value_locations:
@@ -114,25 +106,12 @@ class RealNumberLEQTest(SpecialTest):
                 # This code is pointless if we are saturating examples.
                 for i in value_locations[(d.functor, d.arity)]:
                     if isinstance(d.args[i], Constant):
-                        bg_values.add(d.args[i].value)
-                        self.all_values.add( d.args[i].value )
+                        bg_values.add(d.args[i])
+                        self.all_values.add( d.args[i] )
 
-        self.bg_values = [float(i) for i in list(bg_values)]
+        self.bg_values = list(bg_values)
 
-    # def notify_result(self, is_selected, test_result):
-    #     NOT IMPLEMENTED!
-    #     if is_selected:
-    #         conj = test_result.test_conj
-    #         boundary_value = conj.args[1]
-    #         for (e,passes_test) in test_result.test_results:
-    #             if passes_test:
-    #                 for v in self.example_values[e]:
-    #                     if v <= boundary_value:
-    #                         e.example_data.add_fact( conj.apply( {conj.args[0]: Constant(v) } ) )
-    #                 for v in self.bg_values:
-    #                     if v <= boundary_value:
-    #                         e.example_data.add_fact( conj.apply( {conj.args[0]: Constant(v) } ) )
-                    
+        self._saturate_examples(examples)
 
     @staticmethod
     def merge_sorted_lists(a,b):
@@ -142,30 +121,24 @@ class RealNumberLEQTest(SpecialTest):
         while i < len(a) and j < len(b):
             if a[i] == b[j]:
                 j+=1
-            elif a[i] < b[j]:
+            elif a[i].value < b[j].value:
                 c.append(a[i])
                 i+=1
             else:
                 c.append(b[j])
                 j += 1
-        
+
         c.extend(a[i:])
         c.extend(b[j:])
         return c
-    
-    def _run_test(self, placeholder_tilde_query: TILDEQuery, example: Example, example_values: List[float], split_point: float, test_evaluator: 'TestEvaluator')\
-         -> bool:
-        # TODO: Use value in self.example instead of the whole  constant
-        # If you're wondering where the test is, it's here and one in _augment_examples:
-        if not self._needs_presaturation(example):
-            leq_grounded_facts = [ Term(self.test_functor, Constant(v), Constant(split_point)) for v in example_values if v <= split_point ]
-            example.add_facts(leq_grounded_facts)
 
+    def _run_test(self, placeholder_tilde_query: TILDEQuery, example: Example, split_point: float, test_evaluator: 'TestEvaluator')\
+         -> bool:
         instantiated_query = self._replace_placeholder(placeholder_tilde_query, Constant(split_point))
         test = test_evaluator.wrap_query(instantiated_query)
         test_result = test_evaluator.evaluate(example, test)
         test.destruct()
-        
+
         return test_result
 
     def _replace_placeholder_in_term(self, conj: Term, split_value):
@@ -176,14 +149,14 @@ class RealNumberLEQTest(SpecialTest):
         simple_match = conj_list[matches[0]]
 
         match = simple_match.child if isinstance(simple_match, Not) else simple_match
-        
+
         modified_args = list(match.args)
         modified_args[1] = Constant(split_value)
         simple_replaced_literal = Term(match.functor, *modified_args)
         replaced_literal = Not(simple_match.functor, simple_replaced_literal) if isinstance(simple_match, Not) else simple_replaced_literal  
 
         conj_list[matches[0]] = replaced_literal
-        
+
         return TermManipulationUtils.list_to_conjunction( conj_list )
 
     # WARNING: This does not handle multiple occurences of this test in the conjunction.
@@ -191,32 +164,26 @@ class RealNumberLEQTest(SpecialTest):
         # The test for multiple occurences
         modified_conj = self._replace_placeholder_in_term(placeholder_tilde_query.literal, split_value)
         return TILDEQuery(placeholder_tilde_query.parent, modified_conj)
-        
+
     def _find_smallest_passing_values(self, placeholder_tilde_query, example: Example, test_evaluator) -> float:
         candidate_points = self.merge_sorted_lists(self.example_values[example], self.bg_values)
         l = 0
         r = len(candidate_points)
         # Find first failing value - much more normal
-        if self._needs_presaturation(example):
-            e = self._presaturate_example(example, candidate_points)
-        else:
-            e = example.clone()
 
         while l < r:
             mid = (l+r)//2 
-            if self._run_test(placeholder_tilde_query, e, self.example_values[example], candidate_points[mid], test_evaluator):
+            if self._run_test(placeholder_tilde_query, example, candidate_points[mid], test_evaluator):
                 r = mid
             else:
                 l = mid + 1
-
-        e.destruct()
 
         return candidate_points[l]
 
     def _pick_best_split(self, examples: List[Example], min_passing_vals: List[Tuple[float, Example]], split_criterion: SplitCriterion ) -> float:
         # TODO: Make split criteria incremental
-        
-        sorted_ex = sorted([t for t in min_passing_vals], key=lambda x: x[0])
+
+        sorted_ex = sorted([t for t in min_passing_vals], key=lambda x: x[0].value)
         examples_satisfying = [t[1] for t in sorted_ex]
         vals = [-RealNumberLEQTest._POS_INF] + [t[0] for t in sorted_ex]
         examples_failing = []
@@ -234,12 +201,12 @@ class RealNumberLEQTest(SpecialTest):
                 best_split_score = split_score
 
         return best_split
-        
-    def _augment_examples(self, examples: List[Example], best_split: float):
-        best_split_constant = Constant(best_split)
 
+    def _saturate_examples(self, examples: List[Example]):
         for e in examples:
-            new_facts = [ Term(self.test_functor, Constant(v), best_split_constant) for v in self.example_values[e] if v <= best_split]
+            visible_values = set(self.bg_values)  # These are silly outdated thanks to saturation, but meh.
+            visible_values.update(self.example_values[e])
+            new_facts = [Term(self.test_functor, l, g) for l in visible_values for g in self.all_values if l.value <= g.value]
             if self._needs_presaturation(e):
                 with e.extension_context() as ec:
                     ec.extend(new_facts)
@@ -250,7 +217,7 @@ class RealNumberLEQTest(SpecialTest):
         def _term_matches(term: Term):
             t = term.args[0] if term.functor == '\\+' else term
             return t.functor == self.test_functor and self.TEST_PLACEHOLDER_TERM in t.args
-        
+
         l = test_conj.literal
         placeholder_terms = [t for t in l.refine_state if _term_matches(t)]
         for t in placeholder_terms:
@@ -261,12 +228,3 @@ class RealNumberLEQTest(SpecialTest):
     def _needs_presaturation(self, example: Example):
         from refactor.query_testing_back_end.django.django_example import DjangoExample
         return isinstance(example, DjangoExample)
-
-    def _presaturate_example(self, example: Example, candidate_points: List[float]):
-        e = example.clone()
-        for i in range(len(candidate_points)):
-            for j in range(i,len(candidate_points)): # i, not i+1 because leq
-                if candidate_points[i] <= candidate_points[j]:
-                    e.add_fact(Term(self.test_functor, Constant(candidate_points[i]), Constant(candidate_points[j])))
-        e.lock_example()
-        return e

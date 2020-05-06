@@ -8,19 +8,13 @@ from problog.program import SimpleProgram
 from problog.logic import Term, Constant, Not, Clause
 
 from refactor.logic_manipulation_utils import TermManipulationUtils, PartialSubstitutionDict
-from .special_test import SpecialTest, TildeTestResult
+from refactor.special_tests.special_test import SpecialTest, TildeTestResult
 # from refactor.representation.language import TypeModeLanguage
 
-class RangeRandomRealNumberLEQTest(SpecialTest):
-    # This doesn't support conjunctions of non-special tests and special tests yet. (I updated it so that it might, but I'm unlikely to have tested it)
-    # It shouldn't be impossible to integrate though.
-    # My ideal solution would look like this:
-    #   Chain special_tests to just be a wrapper around evaluate (evaluate_wrapper) function, which is still a theta-subsumption.
-    #   So if you have 2 special tests, the first one would prepare the test and call evaluate_wrapper on the second,
-    #   The second would prepare the test and then call evaluate: TILDEQuery_wrapper, which does the regular evaluate for every example.
+class JitRandomChoiceRealNumberLEQTest(SpecialTest):
 
-    TEST_FUNCTOR_PREFIX = 'tilde__rangerandom_realnumber_leq_functor__'
-    TEST_PLACEHOLDER_TERM = 'tilde__rangerandom_realnumber_leq__placeholder'
+    TEST_FUNCTOR_PREFIX = 'tilde__jit_randchoice_real_leq_functor__'
+    TEST_PLACEHOLDER_TERM = 'tilde__jit_randchoice_real_leq_placeholder'
 
     ARG_MODES = ('+', 'c')
     REAL_CONST_TYPENAME = 'tilde_real_const'
@@ -30,7 +24,7 @@ class RangeRandomRealNumberLEQTest(SpecialTest):
 
     DEFAULT_MAX_RETRIES = 5
 
-    def __init__(self, test_functor: str, type_name: str, value_range: Tuple[int,int], max_retries: int = DEFAULT_MAX_RETRIES):
+    def __init__(self, test_functor : str, type_name : str, max_retries: int = DEFAULT_MAX_RETRIES):
         super().__init__(test_functor, 2, self.ARG_MODES, (type_name, self.REAL_CONST_TYPENAME), [(test_functor+'_1', Constant(self.TEST_PLACEHOLDER_TERM))] )
         self.test_functor = test_functor
 
@@ -38,7 +32,6 @@ class RangeRandomRealNumberLEQTest(SpecialTest):
         self.all_values = set()
         self.bg_values = set()
         self.example_values = {}    # Example -> SortedCollection(values)
-        self.value_range = value_range
         self.max_retries = max_retries
 
     def is_stable(self):
@@ -47,16 +40,13 @@ class RangeRandomRealNumberLEQTest(SpecialTest):
     def run(self, placeholder_tilde_query: TILDEQuery, examples: List[Example], test_evaluator: 'TestEvaluator', split_criterion: SplitCriterion) \
         -> TildeTestResult:
 
-        from random import uniform as random_uniform
+        from random import sample as random_sample
         insufficient_split = 0
 
         # Pre-generate split_vals so django can be pre-saturated.
-        candidate_split_vals = [random_uniform(self.value_range[0], self.value_range[1]) for _ in range(self.max_retries)]
-
+        candidate_split_vals = random_sample(self.all_values, self.max_retries)
         example_clone_map = {e:e.clone() for e in examples}
         self._augment_examples(example_clone_map, candidate_split_vals)
-
-        all_values_list = list(self.all_values)
 
         sample_i = 0
         while insufficient_split!=3 and sample_i < len(candidate_split_vals):
@@ -97,8 +87,6 @@ class RangeRandomRealNumberLEQTest(SpecialTest):
             if len(locations) > 0:
                 value_locations[(functor, arity)] = locations
 
-
-        # TODO: Add occurences in prediction_goal to value_locations
         locations = []
         for i in range(len(prediction_goal_handler.modes)):
             if prediction_goal_handler.types[i] == self.type_name:  # and prediction_goal_handler.modes[i] == '+':
@@ -116,7 +104,6 @@ class RangeRandomRealNumberLEQTest(SpecialTest):
                         self.example_values[e].append(d.args[i].value)
                         self.all_values.add( d.args[i].value )
             sorted(self.example_values[e])
-
 
         bg_values = set()
         for b in bg_sp:
@@ -189,11 +176,11 @@ class RangeRandomRealNumberLEQTest(SpecialTest):
         from refactor.query_testing_back_end.django.django_example import DjangoExample
         return isinstance(example, DjangoExample)
 
-    # def _presaturate_example(self, example: Example, candidate_points: List[float]):
-    #     e = example.clone()
-    #     for i in range(len(candidate_points)):
-    #         for j in range(i,len(candidate_points)): # i, not i+1 because leq
-    #             if candidate_points[i] <= candidate_points[j]:
-    #                 e.add_fact(Term(self.test_functor, Constant(candidate_points[i]), Constant(candidate_points[j])))
-    #     e.lock_example()
-    #     return e
+    def _presaturate_example(self, example: Example, candidate_points: List[float]):
+        e = example.clone()
+        for i in range(len(candidate_points)):
+            for j in range(i,len(candidate_points)): # i, not i+1 because leq
+                if candidate_points[i] <= candidate_points[j]:
+                    e.add_fact(Term(self.test_functor, Constant(candidate_points[i]), Constant(candidate_points[j])))
+        e.lock_example()
+        return e

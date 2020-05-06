@@ -135,7 +135,7 @@ def _print_isolation_forest_summary(model: 'IsolationForest', examples:'List[Exa
     for t in model.trees:
         print(t)
     for e in examples :
-        print(str(e.classification_term) + " : " + str(dist[e]))
+        print(str(e.classification_term) + " : " + str([round(x,3) for x in dist[e]]))
 
 
 def _print_random_forest_summary(model: 'RandomForest', examples:'List[Example]'):

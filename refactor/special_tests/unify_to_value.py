@@ -12,8 +12,9 @@ from .special_test import SpecialTest, TildeTestResult
 """ A really simple 'auto' mode for constants """
 class UnifyToValueTest(SpecialTest):
 
+    TEST_FUNCTOR_PREFIX = "tilde__unifyval_"
     ARG_MODES = ('+', 'c')
-   
+
     def __init__(self, test_functor, type_name):
         self.constant_type_name = type_name
         super().__init__(test_functor, 2, self.ARG_MODES, (type_name, self.constant_type_name), [])
@@ -82,15 +83,6 @@ class UnifyToValueTest(SpecialTest):
         # All work done here:
         language.add_values(self.test_functor+'_1', *self.all_values)
 
-
-    """
-     Notifies the test of whether or not it was selected.
-     Tests can then augment the examples with if required.
-    """
-    def notify_result(self, is_selected, test_result: TildeTestResult):
-        pass
-
-
     """
      If the test is stable, we can chain it with later ones.
      Else, an exception is thrown if chaining is attempted.
@@ -108,7 +100,7 @@ class UnifyToValueTest(SpecialTest):
                     ec.extend(new_facts)
             else:
                 e.add_facts(new_facts)
-    
+
     def _needs_presaturation(self, example: Example):
         from refactor.query_testing_back_end.django.django_example import DjangoExample
         return isinstance(example, DjangoExample)

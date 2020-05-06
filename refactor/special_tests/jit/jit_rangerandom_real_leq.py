@@ -8,13 +8,13 @@ from problog.program import SimpleProgram
 from problog.logic import Term, Constant, Not, Clause
 
 from refactor.logic_manipulation_utils import TermManipulationUtils, PartialSubstitutionDict
-from .special_test import SpecialTest, TildeTestResult
+from refactor.special_tests.special_test import SpecialTest, TildeTestResult
 # from refactor.representation.language import TypeModeLanguage
 
-class RandomChoiceRealNumberLEQTest(SpecialTest):
+class JitRangeRandomRealNumberLEQTest(SpecialTest):
 
-    TEST_FUNCTOR_PREFIX = 'tilde__randomchoice_realnumber_leq_functor__'
-    TEST_PLACEHOLDER_TERM = 'tilde__randomchoice_realnumber_leq__placeholder'
+    TEST_FUNCTOR_PREFIX = 'tilde__rangerandom_realnumber_leq_functor__'
+    TEST_PLACEHOLDER_TERM = 'tilde__rangerandom_realnumber_leq__placeholder'
 
     ARG_MODES = ('+', 'c')
     REAL_CONST_TYPENAME = 'tilde_real_const'
@@ -24,7 +24,7 @@ class RandomChoiceRealNumberLEQTest(SpecialTest):
 
     DEFAULT_MAX_RETRIES = 5
 
-    def __init__(self, test_functor : str, type_name : str, max_retries: int = DEFAULT_MAX_RETRIES):
+    def __init__(self, test_functor: str, type_name: str, value_range: Tuple[int,int], max_retries: int = DEFAULT_MAX_RETRIES):
         super().__init__(test_functor, 2, self.ARG_MODES, (type_name, self.REAL_CONST_TYPENAME), [(test_functor+'_1', Constant(self.TEST_PLACEHOLDER_TERM))] )
         self.test_functor = test_functor
 
@@ -32,6 +32,7 @@ class RandomChoiceRealNumberLEQTest(SpecialTest):
         self.all_values = set()
         self.bg_values = set()
         self.example_values = {}    # Example -> SortedCollection(values)
+        self.value_range = value_range
         self.max_retries = max_retries
 
     def is_stable(self):
@@ -40,11 +41,16 @@ class RandomChoiceRealNumberLEQTest(SpecialTest):
     def run(self, placeholder_tilde_query: TILDEQuery, examples: List[Example], test_evaluator: 'TestEvaluator', split_criterion: SplitCriterion) \
         -> TildeTestResult:
 
-        from random import sample as random_sample
+        from random import uniform as random_uniform
         insufficient_split = 0
 
         # Pre-generate split_vals so django can be pre-saturated.
-        candidate_split_vals = random_sample(self.all_values, self.max_retries)
+        candidate_split_vals = [random_uniform(self.value_range[0], self.value_range[1]) for _ in range(self.max_retries)]
+
+        example_clone_map = {e:e.clone() for e in examples}
+        self._augment_examples(example_clone_map, candidate_split_vals)
+
+        all_values_list = list(self.all_values)
 
         sample_i = 0
         while insufficient_split!=3 and sample_i < len(candidate_split_vals):
@@ -60,12 +66,14 @@ class RandomChoiceRealNumberLEQTest(SpecialTest):
             test = test_evaluator.wrap_query(test_conj)
 
             insufficient_split = 0
-            for e in examples:
-                passes_test = test_evaluator.evaluate(e, test)
+            for e in example_clone_map:
+                passes_test = test_evaluator.evaluate(example_clone_map[e], test)
                 insufficient_split |= 1 if passes_test else 2
                 test_results.append( (e, passes_test) )
 
             test.destruct()
+
+        self._augment_examples( {e:e for e in examples}, [random_split_val])
 
         return TildeTestResult( test_conj, test_results)
 
@@ -83,23 +91,26 @@ class RandomChoiceRealNumberLEQTest(SpecialTest):
             if len(locations) > 0:
                 value_locations[(functor, arity)] = locations
 
+
         # TODO: Add occurences in prediction_goal to value_locations
         locations = []
         for i in range(len(prediction_goal_handler.modes)):
             if prediction_goal_handler.types[i] == self.type_name:  # and prediction_goal_handler.modes[i] == '+':
-                locations.append(i) 
+                locations.append(i)
 
         if len(locations) > 0:
             value_locations[(prediction_goal_handler.functor, len(prediction_goal_handler.modes))] = locations
+
 
         for e in examples:
             self.example_values[e] = []
             for d in list(e.data) + [e.classification_term]:
                 if (d.functor, d.arity) in value_locations:
                     for i in value_locations[(d.functor, d.arity)]:
-                        self.example_values[e].append(d.args[i])
-                        self.all_values.add( d.args[i] )
-            sorted(self.example_values[e], key=lambda x: x.value)
+                        self.example_values[e].append(d.args[i].value)
+                        self.all_values.add( d.args[i].value )
+            sorted(self.example_values[e])
+
 
         bg_values = set()
         for b in bg_sp:
@@ -113,12 +124,10 @@ class RandomChoiceRealNumberLEQTest(SpecialTest):
                 # This code is pointless if we are saturating examples.
                 for i in value_locations[(d.functor, d.arity)]:
                     if isinstance(d.args[i], Constant):
-                        bg_values.add(d.args[i])
-                        self.all_values.add( d.args[i] )
+                        bg_values.add(d.args[i].value)
+                        self.all_values.add( d.args[i].value )
 
-        self.bg_values = list(bg_values)
-
-        self._saturate_examples(examples)
+        self.bg_values = [float(i) for i in list(bg_values)]
 
     def _replace_placeholder_in_term(self, conj: Term, split_value):
         conj_list = TermManipulationUtils.conjunction_to_list(conj)
@@ -144,6 +153,19 @@ class RandomChoiceRealNumberLEQTest(SpecialTest):
         modified_conj = self._replace_placeholder_in_term(placeholder_tilde_query.literal, split_value)
         return TILDEQuery(placeholder_tilde_query.parent, modified_conj)
 
+    def _augment_examples(self, example_target_map: Dict[Example,Example], split_vals: List[float] ):
+        split_constants = [Constant(split_val) for split_val in split_vals]
+
+        for original_e in example_target_map:
+            e = example_target_map.get(original_e,original_e)
+            new_facts = []
+            for split_val, split_constant in zip(split_vals, split_constants):
+                new_facts = [ Term(self.test_functor, Constant(v), split_constant) for v in self.example_values[original_e] if v <= split_val]
+            if self._needs_presaturation(e):
+                with e.extension_context() as ec:
+                    ec.extend(new_facts)
+            else:
+                e.add_facts(new_facts)
 
     def _fix_refine_state(self, test_conj: Term, split_value: float):
         def _term_matches(term: Term):
@@ -160,15 +182,3 @@ class RandomChoiceRealNumberLEQTest(SpecialTest):
     def _needs_presaturation(self, example: Example):
         from refactor.query_testing_back_end.django.django_example import DjangoExample
         return isinstance(example, DjangoExample)
-
-
-    def _saturate_examples(self, examples: List[Example]):
-        for e in examples:
-            visible_values = set(self.bg_values)  # These are silly outdated thanks to saturation, but meh.
-            visible_values.update(self.example_values[e])
-            new_facts = [Term(self.test_functor, l, g) for l in visible_values for g in self.all_values if l.value <= g.value]
-            if self._needs_presaturation(e):
-                with e.extension_context() as ec:
-                    ec.extend(new_facts)
-            else:
-                e.add_facts(new_facts)
