@@ -39,9 +39,11 @@ class IsolationForest:
         return dist
 
     def _get_example_branch_lengths(self, tree: TreeNode, examples, len_dict):
+        from math import log2
         if tree.is_leaf_node():
+            nonseparability_penalty = log2(len(tree.examples)) if len(tree.examples) > 0 else 0
             for e in tree.examples:
-                len_dict[e] = tree.depth
+                len_dict[e] = tree.depth + nonseparability_penalty
         else:
             self._get_example_branch_lengths(tree.left_child, examples, len_dict)
             self._get_example_branch_lengths(tree.right_child, examples, len_dict)
