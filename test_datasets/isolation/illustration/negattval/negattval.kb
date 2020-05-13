@@ -1,0 +1,80 @@
+% (a2 & !a4) 
+
+negattval(a0, 0, 0, 0, 0, 0, 0, dummyclass).
+negattval(a1, 0, 0, 0, 0, 0, 1, dummyclass).
+negattval(a2, 0, 0, 0, 0, 1, 0, dummyclass).
+negattval(a3, 0, 0, 0, 0, 1, 1, dummyclass).
+negattval(a4, 0, 0, 0, 1, 0, 0, dummyclass).
+negattval(a5, 0, 0, 0, 1, 0, 1, dummyclass).
+negattval(a6, 0, 0, 0, 1, 1, 0, dummyclass).
+negattval(a7, 0, 0, 0, 1, 1, 1, dummyclass).
+
+% negattval(a8,  0, 0, 1, 0, 0, 0, dummyclass).
+% negattval(a9,  0, 0, 1, 0, 0, 1, dummyclass).
+negattval(a10, 0, 0, 1, 0, 1, 0, dummyclass).
+negattval(a11, 0, 0, 1, 0, 1, 1, dummyclass).
+% negattval(a12, 0, 0, 1, 1, 0, 0, dummyclass).
+% negattval(a13, 0, 0, 1, 1, 0, 1, dummyclass).
+negattval(a14, 0, 0, 1, 1, 1, 0, dummyclass).
+negattval(a15, 0, 0, 1, 1, 1, 1, dummyclass).
+
+
+negattval(a16, 0, 1, 0, 0, 0, 0, dummyclass).
+negattval(a17, 0, 1, 0, 0, 0, 1, dummyclass).
+negattval(a18, 0, 1, 0, 0, 1, 0, dummyclass).
+negattval(a19, 0, 1, 0, 0, 1, 1, dummyclass).
+negattval(a20, 0, 1, 0, 1, 0, 0, dummyclass).
+negattval(a21, 0, 1, 0, 1, 0, 1, dummyclass).
+negattval(a22, 0, 1, 0, 1, 1, 0, dummyclass).
+negattval(a23, 0, 1, 0, 1, 1, 1, dummyclass).
+
+% negattval(a24, 0, 1, 1, 0, 0, 0, dummyclass).
+% negattval(a25, 0, 1, 1, 0, 0, 1, dummyclass).
+negattval(a26, 0, 1, 1, 0, 1, 0, dummyclass).
+negattval(a27, 0, 1, 1, 0, 1, 1, dummyclass).
+% negattval(a28, 0, 1, 1, 1, 0, 0, dummyclass).
+% negattval(a29, 0, 1, 1, 1, 0, 1, dummyclass).
+negattval(a30, 0, 1, 1, 1, 1, 0, dummyclass).
+negattval(a31, 0, 1, 1, 1, 1, 1, dummyclass).
+
+
+negattval(a32, 1, 0, 0, 0, 0, 0, dummyclass).
+negattval(a33, 1, 0, 0, 0, 0, 1, dummyclass).
+negattval(a34, 1, 0, 0, 0, 1, 0, dummyclass).
+negattval(a35, 1, 0, 0, 0, 1, 1, dummyclass).
+negattval(a36, 1, 0, 0, 1, 0, 0, dummyclass).
+negattval(a37, 1, 0, 0, 1, 0, 1, dummyclass).
+negattval(a38, 1, 0, 0, 1, 1, 0, dummyclass).
+negattval(a39, 1, 0, 0, 1, 1, 1, dummyclass).
+
+% negattval(a40, 1, 0, 1, 0, 0, 0, dummyclass).
+% negattval(a41, 1, 0, 1, 0, 0, 1, dummyclass).
+negattval(a42, 1, 0, 1, 0, 1, 0, dummyclass).
+negattval(a43, 1, 0, 1, 0, 1, 1, dummyclass).
+% negattval(a44, 1, 0, 1, 1, 0, 0, dummyclass).
+% negattval(a45, 1, 0, 1, 1, 0, 1, dummyclass).
+negattval(a46, 1, 0, 1, 1, 1, 0, dummyclass).
+negattval(a47, 1, 0, 1, 1, 1, 1, dummyclass).
+
+
+negattval(a48, 1, 1, 0, 0, 0, 0, dummyclass).
+negattval(a49, 1, 1, 0, 0, 0, 1, dummyclass).
+negattval(a50, 1, 1, 0, 0, 1, 0, dummyclass).
+negattval(a51, 1, 1, 0, 0, 1, 1, dummyclass).
+negattval(a52, 1, 1, 0, 1, 0, 0, dummyclass).
+negattval(a53, 1, 1, 0, 1, 0, 1, dummyclass).
+negattval(a54, 1, 1, 0, 1, 1, 0, dummyclass).
+negattval(a55, 1, 1, 0, 1, 1, 1, dummyclass).
+
+% negattval(a56, 1, 1, 1, 0, 0, 0, dummyclass).
+% negattval(a57, 1, 1, 1, 0, 0, 1, dummyclass).
+negattval(a58, 1, 1, 1, 0, 1, 0, dummyclass).
+negattval(a59, 1, 1, 1, 0, 1, 1, dummyclass).
+% negattval(a60, 1, 1, 1, 1, 0, 0, dummyclass).
+% negattval(a61, 1, 1, 1, 1, 0, 1, dummyclass).
+negattval(a62, 1, 1, 1, 1, 1, 0, dummyclass).
+negattval(a63, 1, 1, 1, 1, 1, 1, dummyclass).
+
+% outliers
+negattval(o8,  0, 0, 1, 0, 0, 0, dummyclass).
+negattval(o61, 1, 1, 1, 1, 0, 1, dummyclass).
