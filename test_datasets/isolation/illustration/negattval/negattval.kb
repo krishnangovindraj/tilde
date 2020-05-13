@@ -1,80 +1,140 @@
-% (a2 & !a4) 
+% 44 regular and 2 outliers ; total = 46
+example(e016, dummyclass).
+example(e017, dummyclass).
+example(e018, dummyclass).
+example(e019, dummyclass).
+example(e024, dummyclass).
+example(e025, dummyclass).
+example(e026, dummyclass).
+example(e027, dummyclass).
+example(e040, dummyclass).
+example(e041, dummyclass).
+example(e044, dummyclass).
+example(e045, dummyclass).
+example(e048, dummyclass).
+example(e049, dummyclass).
+example(e050, dummyclass).
+example(e051, dummyclass).
+example(e056, dummyclass).
+example(e057, dummyclass).
+example(e058, dummyclass).
+example(e059, dummyclass).
+example(e060, dummyclass).
+example(e061, dummyclass).
+example(e080, dummyclass).
+example(e081, dummyclass).
+example(e082, dummyclass).
+example(e083, dummyclass).
+example(e088, dummyclass).
+example(e089, dummyclass).
+example(e090, dummyclass).
+example(e091, dummyclass).
+example(e104, dummyclass).
+example(e105, dummyclass).
+example(e108, dummyclass).
+example(e109, dummyclass).
+example(e112, dummyclass).
+example(e113, dummyclass).
+example(e114, dummyclass).
+example(e115, dummyclass).
+example(e120, dummyclass).
+example(e121, dummyclass).
+example(e122, dummyclass).
+example(e123, dummyclass).
+example(e124, dummyclass).
+example(e125, dummyclass).
+example(o118, dummyclass).
+example(o119, dummyclass).
 
-negattval(a0, 0, 0, 0, 0, 0, 0, dummyclass).
-negattval(a1, 0, 0, 0, 0, 0, 1, dummyclass).
-negattval(a2, 0, 0, 0, 0, 1, 0, dummyclass).
-negattval(a3, 0, 0, 0, 0, 1, 1, dummyclass).
-negattval(a4, 0, 0, 0, 1, 0, 0, dummyclass).
-negattval(a5, 0, 0, 0, 1, 0, 1, dummyclass).
-negattval(a6, 0, 0, 0, 1, 1, 0, dummyclass).
-negattval(a7, 0, 0, 0, 1, 1, 1, dummyclass).
+instance(e016, 0, 0, 1, 0, 0, 0, 0).
 
-% negattval(a8,  0, 0, 1, 0, 0, 0, dummyclass).
-% negattval(a9,  0, 0, 1, 0, 0, 1, dummyclass).
-negattval(a10, 0, 0, 1, 0, 1, 0, dummyclass).
-negattval(a11, 0, 0, 1, 0, 1, 1, dummyclass).
-% negattval(a12, 0, 0, 1, 1, 0, 0, dummyclass).
-% negattval(a13, 0, 0, 1, 1, 0, 1, dummyclass).
-negattval(a14, 0, 0, 1, 1, 1, 0, dummyclass).
-negattval(a15, 0, 0, 1, 1, 1, 1, dummyclass).
+instance(e017, 0, 0, 1, 0, 0, 0, 1).
 
+instance(e018, 0, 0, 1, 0, 0, 1, 0).
 
-negattval(a16, 0, 1, 0, 0, 0, 0, dummyclass).
-negattval(a17, 0, 1, 0, 0, 0, 1, dummyclass).
-negattval(a18, 0, 1, 0, 0, 1, 0, dummyclass).
-negattval(a19, 0, 1, 0, 0, 1, 1, dummyclass).
-negattval(a20, 0, 1, 0, 1, 0, 0, dummyclass).
-negattval(a21, 0, 1, 0, 1, 0, 1, dummyclass).
-negattval(a22, 0, 1, 0, 1, 1, 0, dummyclass).
-negattval(a23, 0, 1, 0, 1, 1, 1, dummyclass).
+instance(e019, 0, 0, 1, 0, 0, 1, 1).
 
-% negattval(a24, 0, 1, 1, 0, 0, 0, dummyclass).
-% negattval(a25, 0, 1, 1, 0, 0, 1, dummyclass).
-negattval(a26, 0, 1, 1, 0, 1, 0, dummyclass).
-negattval(a27, 0, 1, 1, 0, 1, 1, dummyclass).
-% negattval(a28, 0, 1, 1, 1, 0, 0, dummyclass).
-% negattval(a29, 0, 1, 1, 1, 0, 1, dummyclass).
-negattval(a30, 0, 1, 1, 1, 1, 0, dummyclass).
-negattval(a31, 0, 1, 1, 1, 1, 1, dummyclass).
+instance(e024, 0, 0, 1, 1, 0, 0, 0).
 
+instance(e025, 0, 0, 1, 1, 0, 0, 1).
 
-negattval(a32, 1, 0, 0, 0, 0, 0, dummyclass).
-negattval(a33, 1, 0, 0, 0, 0, 1, dummyclass).
-negattval(a34, 1, 0, 0, 0, 1, 0, dummyclass).
-negattval(a35, 1, 0, 0, 0, 1, 1, dummyclass).
-negattval(a36, 1, 0, 0, 1, 0, 0, dummyclass).
-negattval(a37, 1, 0, 0, 1, 0, 1, dummyclass).
-negattval(a38, 1, 0, 0, 1, 1, 0, dummyclass).
-negattval(a39, 1, 0, 0, 1, 1, 1, dummyclass).
+instance(e026, 0, 0, 1, 1, 0, 1, 0).
 
-% negattval(a40, 1, 0, 1, 0, 0, 0, dummyclass).
-% negattval(a41, 1, 0, 1, 0, 0, 1, dummyclass).
-negattval(a42, 1, 0, 1, 0, 1, 0, dummyclass).
-negattval(a43, 1, 0, 1, 0, 1, 1, dummyclass).
-% negattval(a44, 1, 0, 1, 1, 0, 0, dummyclass).
-% negattval(a45, 1, 0, 1, 1, 0, 1, dummyclass).
-negattval(a46, 1, 0, 1, 1, 1, 0, dummyclass).
-negattval(a47, 1, 0, 1, 1, 1, 1, dummyclass).
+instance(e027, 0, 0, 1, 1, 0, 1, 1).
 
+instance(e040, 0, 1, 0, 1, 0, 0, 0).
 
-negattval(a48, 1, 1, 0, 0, 0, 0, dummyclass).
-negattval(a49, 1, 1, 0, 0, 0, 1, dummyclass).
-negattval(a50, 1, 1, 0, 0, 1, 0, dummyclass).
-negattval(a51, 1, 1, 0, 0, 1, 1, dummyclass).
-negattval(a52, 1, 1, 0, 1, 0, 0, dummyclass).
-negattval(a53, 1, 1, 0, 1, 0, 1, dummyclass).
-negattval(a54, 1, 1, 0, 1, 1, 0, dummyclass).
-negattval(a55, 1, 1, 0, 1, 1, 1, dummyclass).
+instance(e041, 0, 1, 0, 1, 0, 0, 1).
 
-% negattval(a56, 1, 1, 1, 0, 0, 0, dummyclass).
-% negattval(a57, 1, 1, 1, 0, 0, 1, dummyclass).
-negattval(a58, 1, 1, 1, 0, 1, 0, dummyclass).
-negattval(a59, 1, 1, 1, 0, 1, 1, dummyclass).
-% negattval(a60, 1, 1, 1, 1, 0, 0, dummyclass).
-% negattval(a61, 1, 1, 1, 1, 0, 1, dummyclass).
-negattval(a62, 1, 1, 1, 1, 1, 0, dummyclass).
-negattval(a63, 1, 1, 1, 1, 1, 1, dummyclass).
+instance(e044, 0, 1, 0, 1, 1, 0, 0).
 
-% outliers
-negattval(o8,  0, 0, 1, 0, 0, 0, dummyclass).
-negattval(o61, 1, 1, 1, 1, 0, 1, dummyclass).
+instance(e045, 0, 1, 0, 1, 1, 0, 1).
+
+instance(e048, 0, 1, 1, 0, 0, 0, 0).
+
+instance(e049, 0, 1, 1, 0, 0, 0, 1).
+
+instance(e050, 0, 1, 1, 0, 0, 1, 0).
+
+instance(e051, 0, 1, 1, 0, 0, 1, 1).
+
+instance(e056, 0, 1, 1, 1, 0, 0, 0).
+
+instance(e057, 0, 1, 1, 1, 0, 0, 1).
+
+instance(e058, 0, 1, 1, 1, 0, 1, 0).
+
+instance(e059, 0, 1, 1, 1, 0, 1, 1).
+
+instance(e060, 0, 1, 1, 1, 1, 0, 0).
+
+instance(e061, 0, 1, 1, 1, 1, 0, 1).
+
+instance(e080, 1, 0, 1, 0, 0, 0, 0).
+
+instance(e081, 1, 0, 1, 0, 0, 0, 1).
+
+instance(e082, 1, 0, 1, 0, 0, 1, 0).
+
+instance(e083, 1, 0, 1, 0, 0, 1, 1).
+
+instance(e088, 1, 0, 1, 1, 0, 0, 0).
+
+instance(e089, 1, 0, 1, 1, 0, 0, 1).
+
+instance(e090, 1, 0, 1, 1, 0, 1, 0).
+
+instance(e091, 1, 0, 1, 1, 0, 1, 1).
+
+instance(e104, 1, 1, 0, 1, 0, 0, 0).
+
+instance(e105, 1, 1, 0, 1, 0, 0, 1).
+
+instance(e108, 1, 1, 0, 1, 1, 0, 0).
+
+instance(e109, 1, 1, 0, 1, 1, 0, 1).
+
+instance(e112, 1, 1, 1, 0, 0, 0, 0).
+
+instance(e113, 1, 1, 1, 0, 0, 0, 1).
+
+instance(e114, 1, 1, 1, 0, 0, 1, 0).
+
+instance(e115, 1, 1, 1, 0, 0, 1, 1).
+
+instance(e120, 1, 1, 1, 1, 0, 0, 0).
+
+instance(e121, 1, 1, 1, 1, 0, 0, 1).
+
+instance(e122, 1, 1, 1, 1, 0, 1, 0).
+
+instance(e123, 1, 1, 1, 1, 0, 1, 1).
+
+instance(e124, 1, 1, 1, 1, 1, 0, 0).
+
+instance(e125, 1, 1, 1, 1, 1, 0, 1).
+
+instance(o118, 1, 1, 1, 0, 1, 1, 0).
+
+instance(o119, 1, 1, 1, 0, 1, 1, 1).
+

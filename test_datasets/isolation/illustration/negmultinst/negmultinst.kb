@@ -1,0 +1,470 @@
+% 50 regular and 2 outliers ; total = 52
+example(e00, dummyclass).
+example(e01, dummyclass).
+example(e02, dummyclass).
+example(e03, dummyclass).
+example(e04, dummyclass).
+example(e05, dummyclass).
+example(e06, dummyclass).
+example(e07, dummyclass).
+example(e08, dummyclass).
+example(e09, dummyclass).
+example(e10, dummyclass).
+example(e11, dummyclass).
+example(e12, dummyclass).
+example(e13, dummyclass).
+example(e14, dummyclass).
+example(e15, dummyclass).
+example(e16, dummyclass).
+example(e17, dummyclass).
+example(e18, dummyclass).
+example(e19, dummyclass).
+example(e20, dummyclass).
+example(e21, dummyclass).
+example(e22, dummyclass).
+example(e23, dummyclass).
+example(e24, dummyclass).
+example(e25, dummyclass).
+example(e26, dummyclass).
+example(e27, dummyclass).
+example(e28, dummyclass).
+example(e29, dummyclass).
+example(e30, dummyclass).
+example(e31, dummyclass).
+example(e32, dummyclass).
+example(e33, dummyclass).
+example(e34, dummyclass).
+example(e35, dummyclass).
+example(e36, dummyclass).
+example(e37, dummyclass).
+example(e38, dummyclass).
+example(e39, dummyclass).
+example(e40, dummyclass).
+example(e41, dummyclass).
+example(e42, dummyclass).
+example(e43, dummyclass).
+example(e44, dummyclass).
+example(e45, dummyclass).
+example(e46, dummyclass).
+example(e47, dummyclass).
+example(e48, dummyclass).
+example(e49, dummyclass).
+example(o00, dummyclass).
+example(o01, dummyclass).
+
+instance(e00, 1, 0, 1, 1, 0, 1).
+instance(e00, 1, 1, 1, 1, 0, 0).
+instance(e00, 1, 1, 1, 0, 0, 0).
+instance(e00, 1, 0, 1, 0, 0, 0).
+instance(e00, 1, 0, 1, 0, 0, 1).
+instance(e00, 0, 0, 1, 1, 0, 1).
+instance(e00, 0, 1, 1, 1, 0, 1).
+
+instance(e01, 0, 1, 1, 1, 0, 1).
+instance(e01, 1, 1, 1, 1, 0, 1).
+instance(e01, 0, 1, 1, 0, 0, 0).
+instance(e01, 1, 0, 1, 1, 0, 0).
+instance(e01, 0, 0, 1, 1, 0, 0).
+instance(e01, 0, 0, 1, 1, 0, 1).
+instance(e01, 1, 0, 1, 0, 0, 0).
+
+instance(e02, 0, 0, 1, 0, 0, 0).
+instance(e02, 0, 1, 0, 1, 0, 0).
+instance(e02, 1, 1, 0, 1, 1, 0).
+instance(e02, 1, 0, 1, 0, 0, 0).
+instance(e02, 0, 1, 1, 1, 0, 0).
+instance(e02, 1, 0, 1, 1, 0, 0).
+instance(e02, 1, 0, 1, 1, 0, 1).
+
+instance(e03, 1, 0, 1, 0, 0, 0).
+instance(e03, 0, 0, 1, 0, 0, 0).
+instance(e03, 0, 1, 1, 1, 1, 0).
+instance(e03, 0, 0, 1, 0, 0, 1).
+instance(e03, 0, 1, 1, 1, 0, 1).
+instance(e03, 0, 0, 1, 1, 0, 0).
+instance(e03, 1, 1, 1, 0, 0, 0).
+
+instance(e04, 0, 0, 1, 0, 0, 0).
+instance(e04, 0, 1, 0, 1, 0, 0).
+instance(e04, 0, 1, 1, 1, 0, 0).
+instance(e04, 0, 1, 1, 1, 0, 1).
+instance(e04, 1, 0, 1, 0, 0, 1).
+instance(e04, 1, 0, 1, 1, 0, 1).
+instance(e04, 1, 0, 1, 1, 0, 0).
+
+instance(e05, 1, 0, 1, 0, 0, 0).
+instance(e05, 1, 1, 1, 0, 0, 0).
+instance(e05, 1, 1, 1, 1, 0, 1).
+instance(e05, 1, 0, 1, 0, 0, 1).
+instance(e05, 0, 1, 1, 1, 0, 1).
+instance(e05, 0, 0, 1, 0, 0, 1).
+instance(e05, 1, 1, 0, 1, 0, 0).
+
+instance(e06, 1, 0, 1, 1, 0, 0).
+instance(e06, 0, 1, 1, 1, 1, 0).
+instance(e06, 0, 1, 1, 1, 0, 0).
+instance(e06, 1, 1, 0, 1, 1, 0).
+instance(e06, 1, 0, 1, 0, 0, 0).
+instance(e06, 1, 1, 1, 1, 0, 0).
+instance(e06, 0, 1, 1, 1, 0, 1).
+
+instance(e07, 1, 0, 1, 0, 0, 1).
+instance(e07, 0, 1, 0, 1, 1, 0).
+instance(e07, 0, 0, 1, 0, 0, 0).
+instance(e07, 1, 1, 1, 1, 0, 1).
+instance(e07, 1, 1, 1, 1, 1, 0).
+instance(e07, 1, 0, 1, 0, 0, 0).
+instance(e07, 1, 1, 0, 1, 0, 0).
+
+instance(e08, 0, 0, 1, 1, 0, 1).
+instance(e08, 1, 1, 1, 0, 0, 1).
+instance(e08, 1, 1, 1, 0, 0, 0).
+instance(e08, 0, 0, 1, 0, 0, 0).
+instance(e08, 1, 1, 0, 1, 1, 0).
+instance(e08, 0, 0, 1, 0, 0, 1).
+instance(e08, 0, 0, 1, 1, 0, 0).
+
+instance(e09, 1, 0, 1, 1, 0, 0).
+instance(e09, 0, 0, 1, 0, 0, 1).
+instance(e09, 1, 1, 0, 1, 1, 0).
+instance(e09, 0, 0, 1, 1, 0, 0).
+instance(e09, 1, 1, 1, 0, 0, 1).
+instance(e09, 0, 0, 1, 1, 0, 1).
+instance(e09, 0, 1, 1, 1, 0, 0).
+
+instance(e10, 1, 1, 0, 1, 0, 0).
+instance(e10, 1, 1, 1, 1, 0, 1).
+instance(e10, 0, 1, 1, 0, 0, 0).
+instance(e10, 1, 1, 1, 0, 0, 1).
+instance(e10, 0, 1, 1, 1, 0, 1).
+instance(e10, 1, 1, 1, 1, 0, 0).
+instance(e10, 0, 0, 1, 1, 0, 1).
+
+instance(e11, 0, 0, 1, 1, 0, 1).
+instance(e11, 0, 1, 0, 1, 0, 0).
+instance(e11, 0, 0, 1, 0, 0, 1).
+instance(e11, 1, 1, 0, 1, 1, 0).
+instance(e11, 0, 1, 1, 0, 0, 1).
+instance(e11, 1, 1, 1, 1, 1, 0).
+instance(e11, 0, 0, 1, 0, 0, 0).
+
+instance(e12, 1, 0, 1, 0, 0, 0).
+instance(e12, 0, 0, 1, 0, 0, 1).
+instance(e12, 0, 0, 1, 1, 0, 0).
+instance(e12, 1, 1, 1, 1, 0, 1).
+instance(e12, 0, 1, 1, 0, 0, 1).
+instance(e12, 0, 1, 1, 0, 0, 0).
+instance(e12, 1, 1, 1, 0, 0, 0).
+
+instance(e13, 0, 0, 1, 1, 0, 1).
+instance(e13, 1, 1, 1, 1, 0, 0).
+instance(e13, 1, 1, 1, 0, 0, 0).
+instance(e13, 0, 0, 1, 0, 0, 1).
+instance(e13, 0, 0, 1, 0, 0, 0).
+instance(e13, 0, 1, 1, 0, 0, 0).
+instance(e13, 0, 1, 1, 0, 0, 1).
+
+instance(e14, 0, 1, 1, 1, 1, 0).
+instance(e14, 1, 0, 1, 0, 0, 0).
+instance(e14, 0, 1, 1, 0, 0, 1).
+instance(e14, 0, 1, 1, 1, 0, 1).
+instance(e14, 1, 1, 0, 1, 1, 0).
+instance(e14, 0, 1, 0, 1, 0, 0).
+instance(e14, 0, 0, 1, 0, 0, 1).
+
+instance(e15, 0, 0, 1, 1, 0, 1).
+instance(e15, 0, 1, 1, 1, 0, 0).
+instance(e15, 1, 1, 0, 1, 1, 0).
+instance(e15, 0, 0, 1, 1, 0, 0).
+instance(e15, 1, 1, 1, 1, 0, 0).
+instance(e15, 1, 1, 1, 0, 0, 0).
+instance(e15, 0, 0, 1, 0, 0, 1).
+
+instance(e16, 1, 1, 1, 1, 0, 0).
+instance(e16, 1, 0, 1, 0, 0, 0).
+instance(e16, 1, 1, 0, 1, 1, 0).
+instance(e16, 1, 0, 1, 0, 0, 1).
+instance(e16, 1, 0, 1, 1, 0, 1).
+instance(e16, 0, 1, 1, 1, 0, 0).
+instance(e16, 0, 0, 1, 0, 0, 1).
+
+instance(e17, 1, 0, 1, 1, 0, 0).
+instance(e17, 1, 0, 1, 1, 0, 1).
+instance(e17, 1, 1, 1, 0, 0, 0).
+instance(e17, 1, 1, 1, 1, 1, 0).
+instance(e17, 1, 1, 0, 1, 0, 0).
+instance(e17, 0, 0, 1, 0, 0, 1).
+instance(e17, 1, 0, 1, 0, 0, 0).
+
+instance(e18, 1, 0, 1, 1, 0, 1).
+instance(e18, 0, 1, 1, 0, 0, 1).
+instance(e18, 1, 1, 1, 1, 1, 0).
+instance(e18, 1, 0, 1, 0, 0, 1).
+instance(e18, 1, 0, 1, 1, 0, 0).
+instance(e18, 1, 1, 1, 0, 0, 0).
+instance(e18, 0, 0, 1, 0, 0, 1).
+
+instance(e19, 1, 1, 1, 1, 0, 0).
+instance(e19, 0, 0, 1, 0, 0, 1).
+instance(e19, 1, 1, 1, 0, 0, 0).
+instance(e19, 1, 0, 1, 0, 0, 0).
+instance(e19, 1, 0, 1, 1, 0, 1).
+instance(e19, 0, 1, 1, 1, 0, 1).
+instance(e19, 1, 1, 1, 1, 0, 1).
+
+instance(e20, 1, 0, 1, 1, 0, 0).
+instance(e20, 1, 1, 1, 0, 0, 0).
+instance(e20, 0, 1, 1, 1, 0, 0).
+instance(e20, 0, 0, 1, 1, 0, 1).
+instance(e20, 1, 1, 1, 1, 0, 0).
+instance(e20, 1, 1, 1, 0, 0, 1).
+instance(e20, 0, 0, 1, 0, 0, 1).
+
+instance(e21, 0, 1, 1, 0, 0, 0).
+instance(e21, 0, 0, 1, 1, 0, 1).
+instance(e21, 1, 1, 1, 0, 0, 1).
+instance(e21, 0, 0, 1, 0, 0, 0).
+instance(e21, 1, 0, 1, 0, 0, 1).
+instance(e21, 1, 1, 0, 1, 0, 0).
+instance(e21, 0, 1, 0, 1, 1, 0).
+
+instance(e22, 0, 1, 1, 1, 0, 0).
+instance(e22, 0, 1, 1, 0, 0, 1).
+instance(e22, 0, 0, 1, 0, 0, 1).
+instance(e22, 1, 1, 1, 0, 0, 1).
+instance(e22, 1, 0, 1, 1, 0, 1).
+instance(e22, 1, 1, 1, 1, 0, 0).
+instance(e22, 0, 1, 1, 0, 0, 0).
+
+instance(e23, 1, 0, 1, 1, 0, 1).
+instance(e23, 1, 1, 1, 1, 1, 0).
+instance(e23, 0, 0, 1, 0, 0, 0).
+instance(e23, 0, 0, 1, 1, 0, 1).
+instance(e23, 0, 0, 1, 1, 0, 0).
+instance(e23, 1, 1, 1, 0, 0, 1).
+instance(e23, 0, 1, 1, 0, 0, 1).
+
+instance(e24, 1, 1, 0, 1, 1, 0).
+instance(e24, 1, 1, 1, 1, 0, 1).
+instance(e24, 1, 0, 1, 0, 0, 1).
+instance(e24, 1, 0, 1, 0, 0, 0).
+instance(e24, 1, 1, 0, 1, 0, 0).
+instance(e24, 1, 1, 1, 1, 0, 0).
+instance(e24, 1, 1, 1, 0, 0, 0).
+
+instance(e25, 0, 0, 1, 0, 0, 0).
+instance(e25, 0, 1, 0, 1, 0, 0).
+instance(e25, 0, 1, 0, 1, 1, 0).
+instance(e25, 1, 0, 1, 0, 0, 0).
+instance(e25, 0, 1, 1, 0, 0, 0).
+instance(e25, 1, 0, 1, 1, 0, 0).
+instance(e25, 1, 0, 1, 1, 0, 1).
+
+instance(e26, 1, 1, 1, 0, 0, 0).
+instance(e26, 0, 1, 0, 1, 0, 0).
+instance(e26, 0, 0, 1, 1, 0, 0).
+instance(e26, 0, 0, 1, 0, 0, 1).
+instance(e26, 1, 1, 0, 1, 1, 0).
+instance(e26, 1, 1, 1, 1, 0, 0).
+instance(e26, 0, 1, 1, 0, 0, 1).
+
+instance(e27, 0, 1, 0, 1, 1, 0).
+instance(e27, 0, 1, 1, 1, 0, 0).
+instance(e27, 0, 0, 1, 1, 0, 0).
+instance(e27, 0, 0, 1, 1, 0, 1).
+instance(e27, 1, 1, 1, 0, 0, 1).
+instance(e27, 1, 1, 1, 0, 0, 0).
+instance(e27, 1, 0, 1, 1, 0, 1).
+
+instance(e28, 1, 1, 1, 0, 0, 1).
+instance(e28, 0, 0, 1, 0, 0, 1).
+instance(e28, 0, 0, 1, 1, 0, 0).
+instance(e28, 1, 0, 1, 0, 0, 1).
+instance(e28, 1, 1, 1, 1, 1, 0).
+instance(e28, 1, 0, 1, 0, 0, 0).
+instance(e28, 0, 1, 1, 1, 0, 1).
+
+instance(e29, 0, 1, 1, 0, 0, 0).
+instance(e29, 1, 1, 1, 1, 0, 0).
+instance(e29, 1, 0, 1, 1, 0, 0).
+instance(e29, 1, 0, 1, 1, 0, 1).
+instance(e29, 0, 1, 1, 1, 0, 0).
+instance(e29, 1, 1, 1, 1, 0, 1).
+instance(e29, 1, 1, 1, 1, 1, 0).
+
+instance(e30, 0, 1, 1, 1, 0, 0).
+instance(e30, 1, 1, 0, 1, 0, 0).
+instance(e30, 1, 0, 1, 1, 0, 0).
+instance(e30, 1, 0, 1, 0, 0, 0).
+instance(e30, 0, 0, 1, 1, 0, 1).
+instance(e30, 0, 0, 1, 0, 0, 0).
+instance(e30, 1, 1, 1, 0, 0, 1).
+
+instance(e31, 0, 1, 1, 1, 0, 1).
+instance(e31, 1, 0, 1, 1, 0, 1).
+instance(e31, 0, 1, 0, 1, 1, 0).
+instance(e31, 1, 1, 1, 0, 0, 0).
+instance(e31, 1, 0, 1, 0, 0, 0).
+instance(e31, 0, 1, 1, 1, 0, 0).
+instance(e31, 1, 1, 1, 1, 0, 0).
+
+instance(e32, 1, 1, 0, 1, 1, 0).
+instance(e32, 0, 1, 1, 1, 0, 0).
+instance(e32, 0, 0, 1, 1, 0, 0).
+instance(e32, 1, 1, 0, 1, 0, 0).
+instance(e32, 1, 0, 1, 1, 0, 0).
+instance(e32, 1, 0, 1, 0, 0, 1).
+instance(e32, 1, 0, 1, 0, 0, 0).
+
+instance(e33, 0, 1, 1, 0, 0, 1).
+instance(e33, 1, 1, 0, 1, 0, 0).
+instance(e33, 0, 1, 1, 1, 0, 1).
+instance(e33, 1, 1, 1, 1, 0, 0).
+instance(e33, 1, 0, 1, 1, 0, 1).
+instance(e33, 0, 1, 1, 0, 0, 0).
+instance(e33, 0, 1, 0, 1, 1, 0).
+
+instance(e34, 1, 0, 1, 1, 0, 1).
+instance(e34, 0, 1, 1, 1, 0, 1).
+instance(e34, 1, 0, 1, 0, 0, 0).
+instance(e34, 1, 1, 1, 1, 1, 0).
+instance(e34, 0, 1, 0, 1, 0, 0).
+instance(e34, 0, 0, 1, 1, 0, 1).
+instance(e34, 1, 0, 1, 1, 0, 0).
+
+instance(e35, 1, 0, 1, 1, 0, 1).
+instance(e35, 1, 1, 1, 1, 0, 0).
+instance(e35, 0, 0, 1, 1, 0, 0).
+instance(e35, 0, 1, 1, 1, 1, 0).
+instance(e35, 1, 1, 0, 1, 1, 0).
+instance(e35, 1, 0, 1, 0, 0, 1).
+instance(e35, 1, 0, 1, 0, 0, 0).
+
+instance(e36, 0, 0, 1, 1, 0, 1).
+instance(e36, 1, 1, 1, 0, 0, 1).
+instance(e36, 0, 0, 1, 0, 0, 0).
+instance(e36, 0, 1, 1, 1, 0, 0).
+instance(e36, 1, 1, 0, 1, 1, 0).
+instance(e36, 1, 0, 1, 1, 0, 1).
+instance(e36, 0, 1, 0, 1, 0, 0).
+
+instance(e37, 0, 1, 1, 1, 0, 1).
+instance(e37, 1, 1, 1, 0, 0, 0).
+instance(e37, 1, 0, 1, 1, 0, 1).
+instance(e37, 1, 1, 0, 1, 0, 0).
+instance(e37, 0, 1, 0, 1, 0, 0).
+instance(e37, 1, 1, 1, 1, 0, 1).
+instance(e37, 0, 1, 0, 1, 1, 0).
+
+instance(e38, 0, 0, 1, 0, 0, 1).
+instance(e38, 0, 1, 1, 1, 1, 0).
+instance(e38, 1, 1, 1, 0, 0, 1).
+instance(e38, 1, 0, 1, 0, 0, 0).
+instance(e38, 0, 0, 1, 1, 0, 1).
+instance(e38, 0, 1, 1, 1, 0, 1).
+instance(e38, 1, 1, 1, 1, 0, 1).
+
+instance(e39, 0, 0, 1, 0, 0, 1).
+instance(e39, 1, 1, 0, 1, 1, 0).
+instance(e39, 1, 0, 1, 0, 0, 1).
+instance(e39, 1, 0, 1, 0, 0, 0).
+instance(e39, 1, 1, 1, 0, 0, 1).
+instance(e39, 1, 1, 0, 1, 0, 0).
+instance(e39, 1, 0, 1, 1, 0, 0).
+
+instance(e40, 0, 0, 1, 0, 0, 0).
+instance(e40, 1, 1, 1, 1, 1, 0).
+instance(e40, 1, 0, 1, 0, 0, 1).
+instance(e40, 0, 1, 1, 1, 1, 0).
+instance(e40, 1, 0, 1, 0, 0, 0).
+instance(e40, 1, 0, 1, 1, 0, 1).
+instance(e40, 1, 1, 1, 1, 0, 0).
+
+instance(e41, 0, 1, 1, 1, 0, 1).
+instance(e41, 1, 1, 1, 1, 0, 0).
+instance(e41, 1, 0, 1, 0, 0, 0).
+instance(e41, 0, 1, 1, 0, 0, 1).
+instance(e41, 1, 1, 0, 1, 0, 0).
+instance(e41, 0, 0, 1, 0, 0, 0).
+instance(e41, 1, 1, 0, 1, 1, 0).
+
+instance(e42, 1, 0, 1, 1, 0, 0).
+instance(e42, 1, 1, 0, 1, 1, 0).
+instance(e42, 0, 1, 1, 1, 0, 1).
+instance(e42, 0, 1, 1, 1, 1, 0).
+instance(e42, 1, 1, 0, 1, 0, 0).
+instance(e42, 0, 0, 1, 0, 0, 0).
+instance(e42, 0, 0, 1, 1, 0, 1).
+
+instance(e43, 1, 1, 1, 0, 0, 1).
+instance(e43, 0, 1, 0, 1, 0, 0).
+instance(e43, 1, 1, 0, 1, 1, 0).
+instance(e43, 1, 0, 1, 1, 0, 0).
+instance(e43, 0, 0, 1, 0, 0, 1).
+instance(e43, 1, 0, 1, 1, 0, 1).
+instance(e43, 0, 1, 1, 1, 0, 0).
+
+instance(e44, 1, 0, 1, 1, 0, 1).
+instance(e44, 1, 0, 1, 0, 0, 1).
+instance(e44, 0, 0, 1, 1, 0, 0).
+instance(e44, 0, 1, 0, 1, 0, 0).
+instance(e44, 1, 1, 1, 1, 0, 0).
+instance(e44, 0, 1, 0, 1, 1, 0).
+instance(e44, 1, 1, 1, 1, 0, 1).
+
+instance(e45, 0, 1, 1, 1, 0, 1).
+instance(e45, 1, 0, 1, 1, 0, 1).
+instance(e45, 0, 1, 0, 1, 1, 0).
+instance(e45, 0, 0, 1, 1, 0, 0).
+instance(e45, 1, 0, 1, 0, 0, 0).
+instance(e45, 0, 1, 1, 1, 1, 0).
+instance(e45, 1, 1, 1, 1, 0, 0).
+
+instance(e46, 0, 1, 1, 1, 0, 1).
+instance(e46, 1, 1, 1, 1, 1, 0).
+instance(e46, 0, 1, 1, 1, 0, 0).
+instance(e46, 1, 1, 1, 1, 0, 0).
+instance(e46, 0, 0, 1, 1, 0, 1).
+instance(e46, 0, 1, 1, 0, 0, 1).
+instance(e46, 0, 1, 0, 1, 0, 0).
+
+instance(e47, 0, 1, 1, 1, 0, 1).
+instance(e47, 0, 1, 1, 1, 0, 0).
+instance(e47, 1, 1, 0, 1, 1, 0).
+instance(e47, 1, 1, 1, 1, 0, 0).
+instance(e47, 1, 1, 1, 0, 0, 1).
+instance(e47, 1, 1, 0, 1, 0, 0).
+instance(e47, 1, 0, 1, 1, 0, 1).
+
+instance(e48, 0, 0, 1, 0, 0, 1).
+instance(e48, 0, 0, 1, 1, 0, 0).
+instance(e48, 0, 0, 1, 1, 0, 1).
+instance(e48, 1, 1, 1, 1, 0, 0).
+instance(e48, 1, 0, 1, 1, 0, 1).
+instance(e48, 1, 1, 1, 0, 0, 0).
+instance(e48, 0, 1, 0, 1, 1, 0).
+
+instance(e49, 0, 1, 0, 1, 0, 0).
+instance(e49, 0, 1, 1, 1, 0, 1).
+instance(e49, 1, 1, 0, 1, 0, 0).
+instance(e49, 1, 0, 1, 0, 0, 0).
+instance(e49, 1, 0, 1, 1, 0, 1).
+instance(e49, 1, 1, 1, 1, 0, 0).
+instance(e49, 1, 0, 1, 0, 0, 1).
+
+instance(o00, 0, 1, 0, 1, 1, 0).
+instance(o00, 0, 0, 1, 1, 0, 0).
+instance(o00, 1, 1, 1, 1, 1, 0).
+instance(o00, 1, 0, 1, 0, 0, 0).
+instance(o00, 0, 1, 1, 1, 0, 0).
+instance(o00, 1, 0, 1, 0, 0, 1).
+instance(o00, 1, 0, 1, 0, 1, 1).
+
+instance(o01, 1, 1, 0, 1, 0, 0).
+instance(o01, 1, 1, 1, 1, 0, 0).
+instance(o01, 1, 1, 1, 1, 0, 1).
+instance(o01, 1, 0, 1, 1, 0, 1).
+instance(o01, 1, 1, 1, 1, 1, 0).
+instance(o01, 1, 0, 1, 0, 0, 0).
+instance(o01, 1, 1, 1, 0, 1, 1).
+

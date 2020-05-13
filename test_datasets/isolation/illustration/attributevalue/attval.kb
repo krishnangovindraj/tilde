@@ -1,42 +1,260 @@
-% (a1 & a3 & !a5) || (a2 & !a4) 
+% 84 regular and 2 outliers ; total = 86
+example(e000, dummyclass).
+example(e001, dummyclass).
+example(e002, dummyclass).
+example(e003, dummyclass).
+example(e004, dummyclass).
+example(e005, dummyclass).
+example(e006, dummyclass).
+example(e007, dummyclass).
+example(e008, dummyclass).
+example(e009, dummyclass).
+example(e010, dummyclass).
+example(e011, dummyclass).
+example(e012, dummyclass).
+example(e013, dummyclass).
+example(e014, dummyclass).
+example(e015, dummyclass).
+example(e020, dummyclass).
+example(e021, dummyclass).
+example(e022, dummyclass).
+example(e023, dummyclass).
+example(e028, dummyclass).
+example(e029, dummyclass).
+example(e030, dummyclass).
+example(e031, dummyclass).
+example(e032, dummyclass).
+example(e033, dummyclass).
+example(e034, dummyclass).
+example(e035, dummyclass).
+example(e036, dummyclass).
+example(e037, dummyclass).
+example(e038, dummyclass).
+example(e039, dummyclass).
+example(e042, dummyclass).
+example(e043, dummyclass).
+example(e046, dummyclass).
+example(e047, dummyclass).
+example(e052, dummyclass).
+example(e053, dummyclass).
+example(e054, dummyclass).
+example(e055, dummyclass).
+example(e062, dummyclass).
+example(e063, dummyclass).
+example(e064, dummyclass).
+example(e065, dummyclass).
+example(e066, dummyclass).
+example(e067, dummyclass).
+example(e068, dummyclass).
+example(e069, dummyclass).
+example(e070, dummyclass).
+example(e071, dummyclass).
+example(e072, dummyclass).
+example(e073, dummyclass).
+example(e074, dummyclass).
+example(e075, dummyclass).
+example(e076, dummyclass).
+example(e077, dummyclass).
+example(e078, dummyclass).
+example(e079, dummyclass).
+example(e084, dummyclass).
+example(e085, dummyclass).
+example(e086, dummyclass).
+example(e087, dummyclass).
+example(e092, dummyclass).
+example(e093, dummyclass).
+example(e094, dummyclass).
+example(e095, dummyclass).
+example(e096, dummyclass).
+example(e097, dummyclass).
+example(e098, dummyclass).
+example(e099, dummyclass).
+example(e100, dummyclass).
+example(e101, dummyclass).
+example(e102, dummyclass).
+example(e103, dummyclass).
+example(e106, dummyclass).
+example(e107, dummyclass).
+example(e110, dummyclass).
+example(e111, dummyclass).
+example(e116, dummyclass).
+example(e117, dummyclass).
+example(e118, dummyclass).
+example(e119, dummyclass).
+example(e126, dummyclass).
+example(e127, dummyclass).
+example(o059, dummyclass).
+example(o108, dummyclass).
 
-% (a1 & a3 & !a5)
-attval(a0, 0, 1, 0, 1, 0, 0, dummyclass).
-attval(a1, 0, 1, 0, 1, 1, 0, dummyclass).
-attval(a2, 0, 1, 1, 1, 0, 0, dummyclass).
-attval(a3, 0, 1, 1, 1, 1, 0, dummyclass).
+instance(e000, 0, 0, 0, 0, 0, 0, 0).
 
-% (a2 & !a4)
-attval(b0, 0, 0, 1, 0, 0, 0, dummyclass).
-attval(b1, 0, 0, 1, 0, 0, 1, dummyclass).
-attval(b2, 0, 0, 1, 1, 0, 0, dummyclass).
-attval(b3, 0, 0, 1, 1, 0, 1, dummyclass).
+instance(e001, 0, 0, 0, 0, 0, 0, 1).
 
-attval(b4, 0, 1, 1, 0, 0, 0, dummyclass).
-attval(b5, 0, 1, 1, 0, 0, 1, dummyclass).
-attval(b6, 0, 1, 1, 1, 0, 0, dummyclass).
-attval(b7, 0, 1, 1, 1, 0, 1, dummyclass).
+instance(e002, 0, 0, 0, 0, 0, 1, 0).
 
+instance(e003, 0, 0, 0, 0, 0, 1, 1).
 
-% Some more. Uncomment these for a cleaner performance
-% (a1 & a3 & !a5)
-attval(a4, 1, 1, 0, 1, 0, 0, dummyclass).
-attval(a5, 1, 1, 0, 1, 1, 0, dummyclass).
-attval(a6, 1, 1, 1, 1, 0, 0, dummyclass).
-attval(a7, 1, 1, 1, 1, 1, 0, dummyclass).
+instance(e004, 0, 0, 0, 0, 1, 0, 0).
 
-% (a2 & !a4)
-attval(b8, 1, 0, 1, 0, 0, 0, dummyclass).
-attval(b9, 1, 0, 1, 0, 0, 1, dummyclass).
-attval(b10, 1, 0, 1, 1, 0, 0, dummyclass).
-attval(b11, 1, 0, 1, 1, 0, 1, dummyclass).
+instance(e005, 0, 0, 0, 0, 1, 0, 1).
 
-attval(b12, 1, 1, 1, 0, 0, 0, dummyclass).
-attval(b13, 1, 1, 1, 0, 0, 1, dummyclass).
-attval(b14, 1, 1, 1, 1, 0, 0, dummyclass).
-attval(b15, 1, 1, 1, 1, 0, 1, dummyclass).
+instance(e006, 0, 0, 0, 0, 1, 1, 0).
 
+instance(e007, 0, 0, 0, 0, 1, 1, 1).
 
-% outliers
-attval(o0, 0, 0, 0, 0, 0, 0, dummyclass).
-attval(o63,1, 1, 1, 1, 1, 1, dummyclass).
+instance(e008, 0, 0, 0, 1, 0, 0, 0).
+
+instance(e009, 0, 0, 0, 1, 0, 0, 1).
+
+instance(e010, 0, 0, 0, 1, 0, 1, 0).
+
+instance(e011, 0, 0, 0, 1, 0, 1, 1).
+
+instance(e012, 0, 0, 0, 1, 1, 0, 0).
+
+instance(e013, 0, 0, 0, 1, 1, 0, 1).
+
+instance(e014, 0, 0, 0, 1, 1, 1, 0).
+
+instance(e015, 0, 0, 0, 1, 1, 1, 1).
+
+instance(e020, 0, 0, 1, 0, 1, 0, 0).
+
+instance(e021, 0, 0, 1, 0, 1, 0, 1).
+
+instance(e022, 0, 0, 1, 0, 1, 1, 0).
+
+instance(e023, 0, 0, 1, 0, 1, 1, 1).
+
+instance(e028, 0, 0, 1, 1, 1, 0, 0).
+
+instance(e029, 0, 0, 1, 1, 1, 0, 1).
+
+instance(e030, 0, 0, 1, 1, 1, 1, 0).
+
+instance(e031, 0, 0, 1, 1, 1, 1, 1).
+
+instance(e032, 0, 1, 0, 0, 0, 0, 0).
+
+instance(e033, 0, 1, 0, 0, 0, 0, 1).
+
+instance(e034, 0, 1, 0, 0, 0, 1, 0).
+
+instance(e035, 0, 1, 0, 0, 0, 1, 1).
+
+instance(e036, 0, 1, 0, 0, 1, 0, 0).
+
+instance(e037, 0, 1, 0, 0, 1, 0, 1).
+
+instance(e038, 0, 1, 0, 0, 1, 1, 0).
+
+instance(e039, 0, 1, 0, 0, 1, 1, 1).
+
+instance(e042, 0, 1, 0, 1, 0, 1, 0).
+
+instance(e043, 0, 1, 0, 1, 0, 1, 1).
+
+instance(e046, 0, 1, 0, 1, 1, 1, 0).
+
+instance(e047, 0, 1, 0, 1, 1, 1, 1).
+
+instance(e052, 0, 1, 1, 0, 1, 0, 0).
+
+instance(e053, 0, 1, 1, 0, 1, 0, 1).
+
+instance(e054, 0, 1, 1, 0, 1, 1, 0).
+
+instance(e055, 0, 1, 1, 0, 1, 1, 1).
+
+instance(e062, 0, 1, 1, 1, 1, 1, 0).
+
+instance(e063, 0, 1, 1, 1, 1, 1, 1).
+
+instance(e064, 1, 0, 0, 0, 0, 0, 0).
+
+instance(e065, 1, 0, 0, 0, 0, 0, 1).
+
+instance(e066, 1, 0, 0, 0, 0, 1, 0).
+
+instance(e067, 1, 0, 0, 0, 0, 1, 1).
+
+instance(e068, 1, 0, 0, 0, 1, 0, 0).
+
+instance(e069, 1, 0, 0, 0, 1, 0, 1).
+
+instance(e070, 1, 0, 0, 0, 1, 1, 0).
+
+instance(e071, 1, 0, 0, 0, 1, 1, 1).
+
+instance(e072, 1, 0, 0, 1, 0, 0, 0).
+
+instance(e073, 1, 0, 0, 1, 0, 0, 1).
+
+instance(e074, 1, 0, 0, 1, 0, 1, 0).
+
+instance(e075, 1, 0, 0, 1, 0, 1, 1).
+
+instance(e076, 1, 0, 0, 1, 1, 0, 0).
+
+instance(e077, 1, 0, 0, 1, 1, 0, 1).
+
+instance(e078, 1, 0, 0, 1, 1, 1, 0).
+
+instance(e079, 1, 0, 0, 1, 1, 1, 1).
+
+instance(e084, 1, 0, 1, 0, 1, 0, 0).
+
+instance(e085, 1, 0, 1, 0, 1, 0, 1).
+
+instance(e086, 1, 0, 1, 0, 1, 1, 0).
+
+instance(e087, 1, 0, 1, 0, 1, 1, 1).
+
+instance(e092, 1, 0, 1, 1, 1, 0, 0).
+
+instance(e093, 1, 0, 1, 1, 1, 0, 1).
+
+instance(e094, 1, 0, 1, 1, 1, 1, 0).
+
+instance(e095, 1, 0, 1, 1, 1, 1, 1).
+
+instance(e096, 1, 1, 0, 0, 0, 0, 0).
+
+instance(e097, 1, 1, 0, 0, 0, 0, 1).
+
+instance(e098, 1, 1, 0, 0, 0, 1, 0).
+
+instance(e099, 1, 1, 0, 0, 0, 1, 1).
+
+instance(e100, 1, 1, 0, 0, 1, 0, 0).
+
+instance(e101, 1, 1, 0, 0, 1, 0, 1).
+
+instance(e102, 1, 1, 0, 0, 1, 1, 0).
+
+instance(e103, 1, 1, 0, 0, 1, 1, 1).
+
+instance(e106, 1, 1, 0, 1, 0, 1, 0).
+
+instance(e107, 1, 1, 0, 1, 0, 1, 1).
+
+instance(e110, 1, 1, 0, 1, 1, 1, 0).
+
+instance(e111, 1, 1, 0, 1, 1, 1, 1).
+
+instance(e116, 1, 1, 1, 0, 1, 0, 0).
+
+instance(e117, 1, 1, 1, 0, 1, 0, 1).
+
+instance(e118, 1, 1, 1, 0, 1, 1, 0).
+
+instance(e119, 1, 1, 1, 0, 1, 1, 1).
+
+instance(e126, 1, 1, 1, 1, 1, 1, 0).
+
+instance(e127, 1, 1, 1, 1, 1, 1, 1).
+
+instance(o059, 0, 1, 1, 1, 0, 1, 1).
+
+instance(o108, 1, 1, 0, 1, 1, 0, 0).
+
