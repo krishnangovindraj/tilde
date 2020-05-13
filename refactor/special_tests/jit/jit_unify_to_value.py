@@ -10,9 +10,9 @@ from problog.logic import Term, Constant, Not, Clause
 from refactor.logic_manipulation_utils import TermManipulationUtils, PartialSubstitutionDict
 from .special_test import SpecialTest, TildeTestResult
 """ A really simple 'auto' mode for constants """
-class UnifyToValueTest(SpecialTest):
+class JITUnifyToValueTest(SpecialTest):
 
-    TEST_FUNCTOR_PREFIX = "tilde__unifyval_"
+    TEST_FUNCTOR_PREFIX = "tilde__jit_unifyval_"
     ARG_MODES = ('+', 'c')
 
     def __init__(self, test_functor, type_name):
@@ -28,6 +28,11 @@ class UnifyToValueTest(SpecialTest):
     """
     def run(self, placeholder_tilde_query: TILDEQuery, examples: List[Example], test_evaluator: 'TestEvaluator', split_criterion: SplitCriterion) \
         -> TildeTestResult:
+        conj_list = TermManipulationUtils.conjunction_to_list(placeholder_tilde_query.literal)
+        matches = [ t for t in conj_list if TermManipulationUtils.term_is_functor_or_negation(t, self.test_functor) ]
+
+        for m in matches:       
+            self._augment_examples(examples, m.args[1])
         return TildeTestResult(placeholder_tilde_query, [])
 
     """
@@ -78,8 +83,6 @@ class UnifyToValueTest(SpecialTest):
         # All work done here:
         language.add_values(self.test_functor+'_1', *self.all_values)
 
-        self._saturate_examples(examples)
-
     """
      If the test is stable, we can chain it with later ones.
      Else, an exception is thrown if chaining is attempted.
@@ -87,16 +90,16 @@ class UnifyToValueTest(SpecialTest):
     def is_stable(self):
         return True
 
-    def _saturate_examples(self, examples: List[Example]):
+    def _augment_examples(self, examples: List[Example], value: float):
+        value_constant = Constant(value)
+
         for e in examples:
-            visible_values = self.all_values
-            new_facts = [Term(self.test_functor, g, g) for g in self.all_values]
+            new_facts = [ Term(self.test_functor, value_constant, value_constant)]
             if self._needs_presaturation(e):
                 with e.extension_context() as ec:
                     ec.extend(new_facts)
             else:
                 e.add_facts(new_facts)
-
 
     def _needs_presaturation(self, example: Example):
         from refactor.query_testing_back_end.django.django_example import DjangoExample
