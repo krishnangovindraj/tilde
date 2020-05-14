@@ -45,6 +45,25 @@ def create_from_settings_term(special_test_term: 'Tuple[problog.logic.Term]', fu
 
         return UnifyToValueTest(functor_name, target_typename)
 
+    elif special_test_term.functor == 'unify_vars':
+        from .unify_variables import UnifyVariablesTest
+        assert(special_test_term.arity >= 1)
+        target_typename = str(special_test_term.args[0])
+        if functor_name is None:
+            functor_name = UnifyVariablesTest.TEST_FUNCTOR_PREFIX + target_typename
+
+        return UnifyVariablesTest(functor_name, target_typename)
+
+    elif special_test_term.functor == 'diff_vars':
+        from .differentiate_variables import DifferentiateVariablesTest
+        assert(special_test_term.arity >= 1)
+        target_typename = str(special_test_term.args[0])
+        if functor_name is None:
+            functor_name = DifferentiateVariablesTest.TEST_FUNCTOR_PREFIX + target_typename
+
+        return DifferentiateVariablesTest(functor_name, target_typename)
+
+
     elif special_test_term.functor == 'jit_realtype_leq_test':
         from .jit.jit_real_leq_test import JitRealNumberLEQTest
         assert(special_test_term.arity == 1)
@@ -65,4 +84,4 @@ def create_from_settings_term(special_test_term: 'Tuple[problog.logic.Term]', fu
         return JitRandomChoiceRealNumberLEQTest(functor_name, real_typename, max_retries)
 
     else:
-        raise ValueError("Unknown special_test" + special_test_term.functor)
+        raise ValueError("Unknown special_test " + special_test_term.functor)
