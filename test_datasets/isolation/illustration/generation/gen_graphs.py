@@ -102,15 +102,16 @@ def main():
     elif graph_type == 'tree':
         graphs = [ GraphGenerator.gen_tree(n_nodes)  for _ in range(n_graphs)]
     elif graph_type == 'dag':
-        if len(argv) < 5 : print("Expected 4th argument for n_edges", file=stderr); quit()
+        if len(argv) < 5 : print("Expected 4th argument for n_edges", file=stderr); return
         n_edges = int(argv[4])
         graphs = [ GraphGenerator.gen_dag(n_nodes, n_edges)  for _ in range(n_graphs)]
     elif graph_type == 'looped':
-        if len(argv) < 5 : print("Expected 4th argument for n_edges", file=stderr); quit()
+        if len(argv) < 5 : print("Expected 4th argument for n_edges", file=stderr); return
         n_edges = int(argv[4])
         graphs = [ GraphGenerator.gen_single_cycled(n_nodes, n_edges) for _ in range(n_graphs)]
     else:
         print("Unrecognized graph type %s"%graph_type, file=stderr)
+        return
 
     
     outf = stdout
