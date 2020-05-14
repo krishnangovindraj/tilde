@@ -1,0 +1,224 @@
+graph(t_0, dummyclass).
+edge(t_0, 0, 1).
+edge(t_0, 0, 2).
+edge(t_0, 0, 3).
+edge(t_0, 1, 4).
+edge(t_0, 2, 5).
+edge(t_0, 3, 6).
+edge(t_0, 4, 7).
+edge(t_0, 7, 8).
+
+graph(t_1, dummyclass).
+edge(t_1, 0, 1).
+edge(t_1, 0, 2).
+edge(t_1, 1, 4).
+edge(t_1, 2, 3).
+edge(t_1, 2, 6).
+edge(t_1, 2, 7).
+edge(t_1, 2, 8).
+edge(t_1, 4, 5).
+
+graph(t_2, dummyclass).
+edge(t_2, 0, 1).
+edge(t_2, 0, 8).
+edge(t_2, 1, 2).
+edge(t_2, 1, 4).
+edge(t_2, 2, 3).
+edge(t_2, 3, 5).
+edge(t_2, 4, 6).
+edge(t_2, 5, 7).
+
+graph(t_3, dummyclass).
+edge(t_3, 0, 1).
+edge(t_3, 0, 2).
+edge(t_3, 0, 3).
+edge(t_3, 0, 6).
+edge(t_3, 1, 4).
+edge(t_3, 1, 5).
+edge(t_3, 1, 7).
+edge(t_3, 4, 8).
+
+graph(t_4, dummyclass).
+edge(t_4, 0, 1).
+edge(t_4, 0, 2).
+edge(t_4, 0, 3).
+edge(t_4, 0, 8).
+edge(t_4, 2, 4).
+edge(t_4, 2, 6).
+edge(t_4, 2, 7).
+edge(t_4, 3, 5).
+
+graph(t_5, dummyclass).
+edge(t_5, 0, 1).
+edge(t_5, 0, 4).
+edge(t_5, 0, 6).
+edge(t_5, 1, 2).
+edge(t_5, 1, 3).
+edge(t_5, 1, 7).
+edge(t_5, 2, 5).
+edge(t_5, 6, 8).
+
+graph(t_6, dummyclass).
+edge(t_6, 0, 1).
+edge(t_6, 0, 2).
+edge(t_6, 0, 3).
+edge(t_6, 0, 6).
+edge(t_6, 1, 4).
+edge(t_6, 1, 7).
+edge(t_6, 3, 5).
+edge(t_6, 6, 8).
+
+graph(t_7, dummyclass).
+edge(t_7, 0, 1).
+edge(t_7, 0, 2).
+edge(t_7, 1, 3).
+edge(t_7, 2, 4).
+edge(t_7, 2, 5).
+edge(t_7, 2, 7).
+edge(t_7, 4, 6).
+edge(t_7, 4, 8).
+
+graph(t_8, dummyclass).
+edge(t_8, 0, 1).
+edge(t_8, 1, 2).
+edge(t_8, 1, 3).
+edge(t_8, 1, 4).
+edge(t_8, 1, 8).
+edge(t_8, 2, 6).
+edge(t_8, 3, 5).
+edge(t_8, 3, 7).
+
+graph(t_9, dummyclass).
+edge(t_9, 0, 1).
+edge(t_9, 0, 2).
+edge(t_9, 0, 5).
+edge(t_9, 1, 3).
+edge(t_9, 1, 4).
+edge(t_9, 1, 6).
+edge(t_9, 3, 7).
+edge(t_9, 5, 8).
+
+graph(t_10, dummyclass).
+edge(t_10, 0, 1).
+edge(t_10, 0, 3).
+edge(t_10, 0, 5).
+edge(t_10, 1, 2).
+edge(t_10, 1, 6).
+edge(t_10, 2, 4).
+edge(t_10, 2, 7).
+edge(t_10, 5, 8).
+
+graph(t_11, dummyclass).
+edge(t_11, 0, 1).
+edge(t_11, 0, 2).
+edge(t_11, 0, 4).
+edge(t_11, 0, 8).
+edge(t_11, 1, 3).
+edge(t_11, 1, 5).
+edge(t_11, 1, 7).
+edge(t_11, 3, 6).
+
+graph(t_12, dummyclass).
+edge(t_12, 0, 1).
+edge(t_12, 0, 3).
+edge(t_12, 0, 7).
+edge(t_12, 1, 2).
+edge(t_12, 1, 4).
+edge(t_12, 1, 8).
+edge(t_12, 3, 5).
+edge(t_12, 4, 6).
+
+graph(t_13, dummyclass).
+edge(t_13, 0, 1).
+edge(t_13, 0, 8).
+edge(t_13, 1, 2).
+edge(t_13, 1, 3).
+edge(t_13, 1, 4).
+edge(t_13, 1, 6).
+edge(t_13, 1, 7).
+edge(t_13, 3, 5).
+
+graph(t_14, dummyclass).
+edge(t_14, 0, 1).
+edge(t_14, 1, 2).
+edge(t_14, 1, 5).
+edge(t_14, 1, 6).
+edge(t_14, 1, 7).
+edge(t_14, 2, 3).
+edge(t_14, 3, 4).
+edge(t_14, 4, 8).
+
+graph(t_15, dummyclass).
+edge(t_15, 0, 1).
+edge(t_15, 0, 6).
+edge(t_15, 1, 2).
+edge(t_15, 1, 3).
+edge(t_15, 1, 5).
+edge(t_15, 2, 4).
+edge(t_15, 2, 8).
+edge(t_15, 5, 7).
+
+graph(t_16, dummyclass).
+edge(t_16, 0, 1).
+edge(t_16, 0, 2).
+edge(t_16, 1, 3).
+edge(t_16, 1, 4).
+edge(t_16, 1, 5).
+edge(t_16, 1, 6).
+edge(t_16, 1, 7).
+edge(t_16, 4, 8).
+
+graph(t_17, dummyclass).
+edge(t_17, 0, 1).
+edge(t_17, 0, 2).
+edge(t_17, 0, 5).
+edge(t_17, 0, 7).
+edge(t_17, 2, 3).
+edge(t_17, 2, 4).
+edge(t_17, 5, 6).
+edge(t_17, 7, 8).
+
+graph(t_18, dummyclass).
+edge(t_18, 0, 1).
+edge(t_18, 0, 3).
+edge(t_18, 0, 5).
+edge(t_18, 1, 2).
+edge(t_18, 2, 4).
+edge(t_18, 2, 7).
+edge(t_18, 2, 8).
+edge(t_18, 4, 6).
+
+graph(t_19, dummyclass).
+edge(t_19, 0, 1).
+edge(t_19, 0, 2).
+edge(t_19, 0, 4).
+edge(t_19, 1, 3).
+edge(t_19, 2, 6).
+edge(t_19, 3, 5).
+edge(t_19, 3, 8).
+edge(t_19, 4, 7).
+
+graph(d_0, dummyclass).
+edge(d_0, 0, 1).
+edge(d_0, 0, 2).
+edge(d_0, 0, 4).
+edge(d_0, 0, 5).
+edge(d_0, 1, 4).
+edge(d_0, 1, 6).
+edge(d_0, 2, 3).
+edge(d_0, 4, 7).
+edge(d_0, 5, 8).
+edge(d_0, 7, 8).
+
+graph(d_1, dummyclass).
+edge(d_1, 0, 1).
+edge(d_1, 0, 4).
+edge(d_1, 1, 2).
+edge(d_1, 1, 3).
+edge(d_1, 2, 6).
+edge(d_1, 4, 5).
+edge(d_1, 4, 7).
+edge(d_1, 5, 3).
+edge(d_1, 6, 3).
+edge(d_1, 7, 8).
+
