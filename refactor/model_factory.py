@@ -99,16 +99,21 @@ class ModelFactory:
 
         tree_builder = self.get_default_decision_tree_builder()
         tree_builder.stop_criterion = IsolationForestStopCriterion(isolation_forest_options.max_branch_depth)
+        from refactor.tilde_essentials.leaf_strategies import DummyLeafBuilder
+        tree_builder.leaf_builder = DummyLeafBuilder()
         tree_builder.splitter = IsolationForestRandomRetrySplitter(tree_builder.splitter.test_evaluator, tree_builder.splitter.test_generator_builder, isolation_forest_options.n_tests_before_giveup)
+
+        # from refactor.random_forest.splitters.isolation_forest_with_empty_splits import IsolationForestSimpleSplitter
+        # tree_builder.splitter = IsolationForestSimpleSplitter(tree_builder.splitter.test_evaluator, tree_builder.splitter.test_generator_builder, isolation_forest_options.n_tests_before_giveup)
 
         return tree_builder
 
     def create_isolation_forest(self, isolation_forest_options: IsolationForestOptions):
         from refactor.random_forest.isolation_forest import IsolationForest, ResultStoringIsolationForest
         if isolation_forest_options.store_length_distribution:
-            isolation_forest = IsolationForest(isolation_forest_options.n_trees)
-        else:
             isolation_forest = ResultStoringIsolationForest(isolation_forest_options.n_trees)
+        else:
+            isolation_forest = IsolationForest(isolation_forest_options.n_trees)
         return isolation_forest
 
     # Some useful statics
