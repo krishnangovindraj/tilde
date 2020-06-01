@@ -16,19 +16,26 @@ class TildeConfig:
         _kb_file_key = 'KB_FILE'
         _bg_file_key = 'BG_FILE'
 
+        _fold_file_key = 'FOLD_FILE'
+        
         _backend_choice = 'BACKEND'
         _subtle_path_key = 'SUBTLE_PATH'
+
 
     DEFAULT_CONFIG_FILE_PATH = _default_config_file_path
     # Removed all the ones which should cause failure if they don't exist.
     _default_settings = {SettingsKeys._split_criterion_key: 'entropy', SettingsKeys._leaf_strategy_key: "majority_class",
-                        SettingsKeys._kb_file_key: None, SettingsKeys._bg_file_key: None, SettingsKeys._backend_choice: 'PROBLOG' }
+                        SettingsKeys._kb_file_key: None, SettingsKeys._bg_file_key: None, SettingsKeys._fold_file_key: None,
+                        SettingsKeys._backend_choice: 'PROBLOG' }
 
 
 
     @staticmethod
     def none_if_emptystr(s):
-        return s if s.strip() else None
+        if s is None:
+            return None
+        else:
+            return s if s.strip() else None
 
     @staticmethod
     def from_dict(config_data):
@@ -104,3 +111,7 @@ class TildeConfig:
             raise ValueError("Unrecognized backend " + backend_choice_str)
         else:
             return BackendChoice[backend_choice_str]
+
+    @property
+    def fold_file(self):
+        return self._get_setting(self.SettingsKeys._fold_file_key)

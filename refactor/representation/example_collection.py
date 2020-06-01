@@ -124,7 +124,7 @@ class ExampleCollection:
             filtered_clausedb = []
 
             for ex_index, ex_sp in enumerate(example_wrappers_sp):
-                if ex_sp.key in key_set:
+                if str(ex_sp.key) in key_set:
                     filtered_sp.append(ex_sp)
                     filtered_clausedb.append(example_wrappers_clausedb[ex_index])
             filtered_collection.set_example_wrappers_sp(filtered_sp)
@@ -162,7 +162,7 @@ class ExampleCollection:
             filtered_clausedb = []
 
             for ex_index, ex_sp in enumerate(example_wrappers_sp):
-                if ex_sp.key not in key_set:
+                if str(ex_sp.key) not in key_set:
                     filtered_sp.append(ex_sp)
                     filtered_clausedb.append(example_wrappers_clausedb[ex_index])
             filtered_collection.set_example_wrappers_sp(filtered_sp)

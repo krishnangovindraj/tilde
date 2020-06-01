@@ -93,8 +93,8 @@ class TestNumericalAttributes(unittest.TestCase):
 
     def test_onedimensional_range_exact(self):
         expected_tree = \
-            (('tilde__realnumber_leq_functor__realnum_x(A,10)',),
-                (('tilde__realnumber_leq_functor__realnum_x(A,5)',),
+            (('realnum_x_leq(A,10)',),
+                (('realnum_x_leq(A,5)',),
                     (('pos', [('pos', '1.0')]), None, None),
                     (('neg', [('neg', '1.0')]), None, None)),
                 (('pos', [('pos', '1.0')]), None, None)

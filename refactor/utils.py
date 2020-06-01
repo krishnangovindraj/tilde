@@ -131,11 +131,17 @@ def print_model_summary(model, examples):
         print("Unrecognized model type:" + type(model) )
 
 def _print_isolation_forest_summary(model: 'IsolationForest', examples:'List[Example]'):
-    dist = model.get_length_distribution(examples)
-    for t in model.trees:
-        print(t)
+    dist = {}
+    score = {}
+    for e in examples:
+        score[e], distances = model.predict(e)
+        dist[e] = distances
+
+    # dist = model.get_length_distribution(examples)
+    # for t in model.trees:
+    #     print(t)
     for e in examples :
-        print(str(e.classification_term) + " : " + str([round(x,3) for x in dist[e]]))
+        print("%s[%f]: %s"%(str(e.classification_term), score[e],  str([round(x,3) for x in dist[e]])))
 
 
 def _print_random_forest_summary(model: 'RandomForest', examples:'List[Example]'):
@@ -161,3 +167,9 @@ def _print_random_forest_summary(model: 'RandomForest', examples:'List[Example]'
 
 def _print_decision_tree_summary(model: 'DecisionTree', examples:'List[Example]'):
     print(model)
+    truth = [e.label for e in examples]
+    predictions = [ model.predict(e) for e in examples]
+    legend, mat = confusion_matrix(truth, predictions)
+    correct, all = sum(mat[i][i] for i in range(len(legend))), sum(mat[i][j] for j in range(len(legend)) for i in range(len(legend)))
+    print_confusion_matrix(legend, mat)
+    print("Accuracy: %d/%d = %f"%(correct, all, correct/all))
