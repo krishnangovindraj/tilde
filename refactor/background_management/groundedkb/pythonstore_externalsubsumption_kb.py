@@ -228,7 +228,7 @@ class PythonStoreForSubsumptionBasedGroundedKB(GroundedKB):
         self.out_arg_indices = {}
         self.const_arg_indices = {}
         for functor,arity,modes in self.language.get_refinement_modes():
-            self.in_arg_indices[(functor, arity)] = [i for i in range(len(modes)) if '+'==modes[i]] # + == instead of + in, because these are COMPULSORY in args
+            self.in_arg_indices[(functor, arity)] = [i for i in range(len(modes)) if '+' in modes[i]] # Following I now disagree with: + == instead of + in, because these are COMPULSORY in args
             self.out_arg_indices[(functor, arity)] = [i for i in range(len(modes)) if '-' in modes[i]]
             self.const_arg_indices[(functor, arity)] = [i for i in range(len(modes)) if 'c'==modes[i]]
 
