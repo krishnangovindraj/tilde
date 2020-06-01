@@ -96,16 +96,17 @@ class Splitter:
         return current_best_split_info
 
     def _split_examples(self, test, examples, split_criterion):
-        examples_satisfying_test = set()
-        examples_not_satifying_test = set()
+        # I see no reason for these to be sets. Changing to lists for subsampling.
+        examples_satisfying_test = list()
+        examples_not_satifying_test = list()
 
         test_result = self.test_evaluator.evaluate_test(test, examples, split_criterion)
         test_result_dict = {r[0]:r[1] for r in test_result.test_results}
         for example in examples:
             succeeds_test = test_result_dict[example] # self.test_evaluator.evaluate(example, test)
             if succeeds_test:
-                examples_satisfying_test.add(example)
+                examples_satisfying_test.append(example)
             else:
-                examples_not_satifying_test.add(example)
+                examples_not_satifying_test.append(example)
         return examples_satisfying_test, examples_not_satifying_test
 
