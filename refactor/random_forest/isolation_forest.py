@@ -20,7 +20,7 @@ class IsolationForest:
         self.n_examples = len(examples)
         self.tree_builder = tree_builder
         self.test_evaluator = self.tree_builder.splitter.test_evaluator
-        
+
         self._trees_left = self.n_trees
         self.trees = [self._build_one_tree(examples, tree_builder) for _ in range(self.n_trees)]
 
@@ -39,7 +39,7 @@ class IsolationForest:
         return decision_tree
 
     def _c(self, n):
-        from math import log
+        from math import log # ln
         return 2 * (log(n-1) + 0.5772156649) - (2*(n-1)/n)
 
     def predict(self, example):
@@ -63,17 +63,6 @@ class IsolationForest:
             for e in examples:
                 dist[e].append(len_dict[e])
         return dist
-
-
-    def _get_example_branch_lengths(self, tree: TreeNode, examples, len_dict):
-        if tree.is_leaf_node():
-            # nonseparability_penalty = log2(len(tree.examples)) if len(tree.examples) > 0 else 0
-            nonseparability_penalty = self._c(len(tree.examples))-1 if len(tree.examples) > 1 else 0
-            for e in tree.examples:
-                len_dict[e] = tree.depth + nonseparability_penalty
-        else:
-            self._get_example_branch_lengths(tree.left_child, examples, len_dict)
-            self._get_example_branch_lengths(tree.right_child, examples, len_dict)
 
     def prune(self, pruning_function):
         pass # No prune. Only build >:(
