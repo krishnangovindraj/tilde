@@ -41,6 +41,7 @@ def run_task(config: TildeConfig):
         tilde_task.background_knowledge_wrapper.get_full_background_knowledge_simple_program()  # type: Optional[SimpleProgram]
 
     training_examples_collection = tilde_task.training_examples  # type: ExampleCollection
+    test_examples_collection = tilde_task.test_examples
     # =================================================================================================================
 
     # Saturate the examples with background knowledge (using prolog for now).
@@ -49,14 +50,22 @@ def run_task(config: TildeConfig):
     tree_builder = model_factory.get_default_decision_tree_builder()
     rule_grounder = model_factory.get_rule_grounder(full_background_knowledge_sp, language, prediction_goal_handler)
     rule_grounder.setup()
-    rule_grounder.saturate_examples(training_examples_collection.get_example_wrappers_sp())
 
+    rule_grounder.saturate_examples(training_examples_collection.get_example_wrappers_sp())
     examples = tree_builder.splitter.test_evaluator.get_transformed_example_list(training_examples_collection.get_example_wrappers_sp())
+
+    if test_examples_collection is not None:        
+        rule_grounder.saturate_examples(test_examples_collection.get_example_wrappers_sp())
+        test_examples = tree_builder.splitter.test_evaluator.get_transformed_example_list(test_examples_collection.get_example_wrappers_sp())
+        all_examples = examples + test_examples
+    else:
+        test_examples = None
+        all_examples = examples
 
     # TODO: Move all this stuff to some controller
     for k in language.special_tests:
         special_test = language.special_tests[k]
-        special_test.setup(prediction_goal_handler, language, examples, full_background_knowledge_sp)
+        special_test.setup(prediction_goal_handler, language, all_examples, full_background_knowledge_sp)
 
     # =================================================================================================================
 
@@ -84,10 +93,16 @@ def run_task(config: TildeConfig):
         run_time_list.append(run_time_ms)
         print("run time (ms):", run_time_ms)
         print('=== END tree building ===')
-
-        from refactor.utils import print_model_summary
-        print_model_summary(model, examples)
         
+        print(model)
+        
+        from refactor.utils import print_model_summary            
+        if test_examples is not None:
+            # Test phase:
+            print_model_summary(model, test_examples)
+        else:
+            print_model_summary(model, examples)
+            
         print("=== start destructing tree queries ===")
         model.destruct()
         print("=== end destructing tree queries ===\n")

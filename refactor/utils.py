@@ -167,3 +167,9 @@ def _print_random_forest_summary(model: 'RandomForest', examples:'List[Example]'
 
 def _print_decision_tree_summary(model: 'DecisionTree', examples:'List[Example]'):
     print(model)
+    truth = [e.label for e in examples]
+    predictions = [ model.predict(e) for e in examples]
+    legend, mat = confusion_matrix(truth, predictions)
+    correct, all = sum(mat[i][i] for i in range(len(legend))), sum(mat[i][j] for j in range(len(legend)) for i in range(len(legend)))
+    print_confusion_matrix(legend, mat)
+    print("Accuracy: %d/%d = %f"%(correct, all, correct/all))

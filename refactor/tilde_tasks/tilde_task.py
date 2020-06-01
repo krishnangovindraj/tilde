@@ -84,5 +84,14 @@ class TildeTask:
         print('=== END collecting labels ===\n')
 
         # =================================================================================================================
-        return TildeTask(parsed_settings, training_examples_collection, bg_wrapper=background_knowledge_wrapper)
+        if config.fold_file is None:
+            training_set = training_examples_collection
+            test_set = None
+        else:
+            from problog.logic import Constant
+            test_keys = set([ l.strip().split(':')[0] for l in open(config.fold_file,'r') if l.strip()])
+            training_set = training_examples_collection.filter_examples_not_in_key_set(test_keys)
+            test_set = training_examples_collection.filter_examples(test_keys)
+        
+        return TildeTask(parsed_settings, training_set, test_set, bg_wrapper=background_knowledge_wrapper)
 
