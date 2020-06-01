@@ -28,6 +28,7 @@ class IsolationForest:
 
         resample_size = self.resample_size if self.resample_size > 0 else len(examples)
         resampled_examples = random_choices(examples, k=resample_size)
+        # resampled_examples = examples
 
         decision_tree = IsolationTree()
         decision_tree.fit(resampled_examples, tree_builder)

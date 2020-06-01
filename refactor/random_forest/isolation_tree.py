@@ -20,7 +20,7 @@ class IsolationTree(DecisionTree):
     """ Returns the height of the [null] node which the example is sorted to """
     def predict(self, example):
         return self._compute_weighted_depth(example, self.tree)
-        # return self._predict_recursive(example, self.tree, 1)
+        # return self._predict_non_weighted(example, self.tree)
 
     def fit(self, examples, tree_builder: TreeBuilder):
         super().fit(examples, tree_builder)
@@ -75,6 +75,18 @@ class IsolationTree(DecisionTree):
     def _c(self, n):
         from math import log # ln
         return 2 * (log(n-1) + 0.5772156649) - (2*(n-1)/n)
+
+
+    # This is what I normalize against and is to demonstrate the issues with no-normalizations in sparse split-spaces
+    def _predict_non_weighted(self, example: Example, tree_node: TreeNode):
+        if tree_node.is_leaf_node():
+            return 1
+        else:
+            succeeds_test = self.test_evaluator.evaluate(example, tree_node.test)
+            if succeeds_test:
+                return 1 + self._predict_non_weighted(example, tree_node.left_child)
+            else:
+                return 1 + self._predict_non_weighted(example, tree_node.right_child)
 
 
     def _compute_weighted_depth(self, example: Example, tree_node: TreeNode):
