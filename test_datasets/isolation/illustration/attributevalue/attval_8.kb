@@ -1,8 +1,9 @@
-% 120 regular and 2 outliers ; total = 122
+% 168 regular and 2 outliers ; total = 170
 example(e000, dummyclass).
 example(e001, dummyclass).
 example(e002, dummyclass).
 example(e003, dummyclass).
+example(e004, dummyclass).
 example(e005, dummyclass).
 example(e006, dummyclass).
 example(e007, dummyclass).
@@ -10,23 +11,35 @@ example(e008, dummyclass).
 example(e009, dummyclass).
 example(e010, dummyclass).
 example(e011, dummyclass).
+example(e012, dummyclass).
 example(e013, dummyclass).
 example(e014, dummyclass).
+example(e015, dummyclass).
 example(e016, dummyclass).
 example(e017, dummyclass).
 example(e018, dummyclass).
 example(e019, dummyclass).
+example(e020, dummyclass).
 example(e021, dummyclass).
+example(e022, dummyclass).
+example(e023, dummyclass).
+example(e024, dummyclass).
+example(e025, dummyclass).
 example(e026, dummyclass).
 example(e027, dummyclass).
 example(e028, dummyclass).
 example(e029, dummyclass).
 example(e030, dummyclass).
+example(e031, dummyclass).
 example(e040, dummyclass).
 example(e041, dummyclass).
+example(e042, dummyclass).
+example(e043, dummyclass).
 example(e044, dummyclass).
 example(e045, dummyclass).
 example(e046, dummyclass).
+example(e047, dummyclass).
+example(e056, dummyclass).
 example(e057, dummyclass).
 example(e058, dummyclass).
 example(e059, dummyclass).
@@ -41,28 +54,45 @@ example(e067, dummyclass).
 example(e068, dummyclass).
 example(e069, dummyclass).
 example(e070, dummyclass).
+example(e071, dummyclass).
 example(e072, dummyclass).
 example(e073, dummyclass).
 example(e074, dummyclass).
 example(e075, dummyclass).
+example(e076, dummyclass).
 example(e077, dummyclass).
+example(e078, dummyclass).
 example(e079, dummyclass).
+example(e084, dummyclass).
 example(e085, dummyclass).
 example(e086, dummyclass).
 example(e087, dummyclass).
+example(e092, dummyclass).
 example(e093, dummyclass).
 example(e094, dummyclass).
 example(e095, dummyclass).
+example(e104, dummyclass).
+example(e105, dummyclass).
+example(e106, dummyclass).
+example(e107, dummyclass).
 example(e108, dummyclass).
 example(e109, dummyclass).
+example(e110, dummyclass).
+example(e111, dummyclass).
+example(e124, dummyclass).
 example(e125, dummyclass).
 example(e126, dummyclass).
 example(e127, dummyclass).
+example(e128, dummyclass).
 example(e129, dummyclass).
+example(e130, dummyclass).
 example(e131, dummyclass).
+example(e132, dummyclass).
+example(e133, dummyclass).
 example(e134, dummyclass).
 example(e135, dummyclass).
 example(e136, dummyclass).
+example(e137, dummyclass).
 example(e138, dummyclass).
 example(e139, dummyclass).
 example(e140, dummyclass).
@@ -71,26 +101,37 @@ example(e142, dummyclass).
 example(e143, dummyclass).
 example(e144, dummyclass).
 example(e145, dummyclass).
+example(e146, dummyclass).
 example(e147, dummyclass).
 example(e148, dummyclass).
 example(e149, dummyclass).
 example(e150, dummyclass).
 example(e151, dummyclass).
 example(e152, dummyclass).
+example(e153, dummyclass).
+example(e154, dummyclass).
 example(e155, dummyclass).
 example(e156, dummyclass).
+example(e157, dummyclass).
+example(e158, dummyclass).
 example(e159, dummyclass).
 example(e168, dummyclass).
+example(e169, dummyclass).
 example(e170, dummyclass).
 example(e171, dummyclass).
+example(e172, dummyclass).
+example(e173, dummyclass).
 example(e174, dummyclass).
 example(e175, dummyclass).
+example(e184, dummyclass).
 example(e185, dummyclass).
+example(e186, dummyclass).
 example(e187, dummyclass).
 example(e188, dummyclass).
 example(e189, dummyclass).
 example(e190, dummyclass).
 example(e191, dummyclass).
+example(e192, dummyclass).
 example(e193, dummyclass).
 example(e194, dummyclass).
 example(e195, dummyclass).
@@ -98,15 +139,22 @@ example(e196, dummyclass).
 example(e197, dummyclass).
 example(e198, dummyclass).
 example(e199, dummyclass).
+example(e200, dummyclass).
 example(e201, dummyclass).
+example(e202, dummyclass).
 example(e203, dummyclass).
 example(e204, dummyclass).
 example(e205, dummyclass).
 example(e206, dummyclass).
+example(e207, dummyclass).
 example(e212, dummyclass).
+example(e213, dummyclass).
 example(e214, dummyclass).
+example(e215, dummyclass).
 example(e220, dummyclass).
+example(e221, dummyclass).
 example(e222, dummyclass).
+example(e223, dummyclass).
 example(e232, dummyclass).
 example(e233, dummyclass).
 example(e234, dummyclass).
@@ -119,8 +167,8 @@ example(e252, dummyclass).
 example(e253, dummyclass).
 example(e254, dummyclass).
 example(e255, dummyclass).
-example(o055, dummyclass).
-example(o121, dummyclass).
+example(o117, dummyclass).
+example(o216, dummyclass).
 
 instance(e000, 0, 0, 0, 0, 0, 0, 0, 0).
 
@@ -129,6 +177,8 @@ instance(e001, 0, 0, 0, 0, 0, 0, 0, 1).
 instance(e002, 0, 0, 0, 0, 0, 0, 1, 0).
 
 instance(e003, 0, 0, 0, 0, 0, 0, 1, 1).
+
+instance(e004, 0, 0, 0, 0, 0, 1, 0, 0).
 
 instance(e005, 0, 0, 0, 0, 0, 1, 0, 1).
 
@@ -144,9 +194,13 @@ instance(e010, 0, 0, 0, 0, 1, 0, 1, 0).
 
 instance(e011, 0, 0, 0, 0, 1, 0, 1, 1).
 
+instance(e012, 0, 0, 0, 0, 1, 1, 0, 0).
+
 instance(e013, 0, 0, 0, 0, 1, 1, 0, 1).
 
 instance(e014, 0, 0, 0, 0, 1, 1, 1, 0).
+
+instance(e015, 0, 0, 0, 0, 1, 1, 1, 1).
 
 instance(e016, 0, 0, 0, 1, 0, 0, 0, 0).
 
@@ -156,7 +210,17 @@ instance(e018, 0, 0, 0, 1, 0, 0, 1, 0).
 
 instance(e019, 0, 0, 0, 1, 0, 0, 1, 1).
 
+instance(e020, 0, 0, 0, 1, 0, 1, 0, 0).
+
 instance(e021, 0, 0, 0, 1, 0, 1, 0, 1).
+
+instance(e022, 0, 0, 0, 1, 0, 1, 1, 0).
+
+instance(e023, 0, 0, 0, 1, 0, 1, 1, 1).
+
+instance(e024, 0, 0, 0, 1, 1, 0, 0, 0).
+
+instance(e025, 0, 0, 0, 1, 1, 0, 0, 1).
 
 instance(e026, 0, 0, 0, 1, 1, 0, 1, 0).
 
@@ -168,15 +232,25 @@ instance(e029, 0, 0, 0, 1, 1, 1, 0, 1).
 
 instance(e030, 0, 0, 0, 1, 1, 1, 1, 0).
 
+instance(e031, 0, 0, 0, 1, 1, 1, 1, 1).
+
 instance(e040, 0, 0, 1, 0, 1, 0, 0, 0).
 
 instance(e041, 0, 0, 1, 0, 1, 0, 0, 1).
+
+instance(e042, 0, 0, 1, 0, 1, 0, 1, 0).
+
+instance(e043, 0, 0, 1, 0, 1, 0, 1, 1).
 
 instance(e044, 0, 0, 1, 0, 1, 1, 0, 0).
 
 instance(e045, 0, 0, 1, 0, 1, 1, 0, 1).
 
 instance(e046, 0, 0, 1, 0, 1, 1, 1, 0).
+
+instance(e047, 0, 0, 1, 0, 1, 1, 1, 1).
+
+instance(e056, 0, 0, 1, 1, 1, 0, 0, 0).
 
 instance(e057, 0, 0, 1, 1, 1, 0, 0, 1).
 
@@ -206,6 +280,8 @@ instance(e069, 0, 1, 0, 0, 0, 1, 0, 1).
 
 instance(e070, 0, 1, 0, 0, 0, 1, 1, 0).
 
+instance(e071, 0, 1, 0, 0, 0, 1, 1, 1).
+
 instance(e072, 0, 1, 0, 0, 1, 0, 0, 0).
 
 instance(e073, 0, 1, 0, 0, 1, 0, 0, 1).
@@ -214,9 +290,15 @@ instance(e074, 0, 1, 0, 0, 1, 0, 1, 0).
 
 instance(e075, 0, 1, 0, 0, 1, 0, 1, 1).
 
+instance(e076, 0, 1, 0, 0, 1, 1, 0, 0).
+
 instance(e077, 0, 1, 0, 0, 1, 1, 0, 1).
 
+instance(e078, 0, 1, 0, 0, 1, 1, 1, 0).
+
 instance(e079, 0, 1, 0, 0, 1, 1, 1, 1).
+
+instance(e084, 0, 1, 0, 1, 0, 1, 0, 0).
 
 instance(e085, 0, 1, 0, 1, 0, 1, 0, 1).
 
@@ -224,15 +306,31 @@ instance(e086, 0, 1, 0, 1, 0, 1, 1, 0).
 
 instance(e087, 0, 1, 0, 1, 0, 1, 1, 1).
 
+instance(e092, 0, 1, 0, 1, 1, 1, 0, 0).
+
 instance(e093, 0, 1, 0, 1, 1, 1, 0, 1).
 
 instance(e094, 0, 1, 0, 1, 1, 1, 1, 0).
 
 instance(e095, 0, 1, 0, 1, 1, 1, 1, 1).
 
+instance(e104, 0, 1, 1, 0, 1, 0, 0, 0).
+
+instance(e105, 0, 1, 1, 0, 1, 0, 0, 1).
+
+instance(e106, 0, 1, 1, 0, 1, 0, 1, 0).
+
+instance(e107, 0, 1, 1, 0, 1, 0, 1, 1).
+
 instance(e108, 0, 1, 1, 0, 1, 1, 0, 0).
 
 instance(e109, 0, 1, 1, 0, 1, 1, 0, 1).
+
+instance(e110, 0, 1, 1, 0, 1, 1, 1, 0).
+
+instance(e111, 0, 1, 1, 0, 1, 1, 1, 1).
+
+instance(e124, 0, 1, 1, 1, 1, 1, 0, 0).
 
 instance(e125, 0, 1, 1, 1, 1, 1, 0, 1).
 
@@ -240,15 +338,25 @@ instance(e126, 0, 1, 1, 1, 1, 1, 1, 0).
 
 instance(e127, 0, 1, 1, 1, 1, 1, 1, 1).
 
+instance(e128, 1, 0, 0, 0, 0, 0, 0, 0).
+
 instance(e129, 1, 0, 0, 0, 0, 0, 0, 1).
 
+instance(e130, 1, 0, 0, 0, 0, 0, 1, 0).
+
 instance(e131, 1, 0, 0, 0, 0, 0, 1, 1).
+
+instance(e132, 1, 0, 0, 0, 0, 1, 0, 0).
+
+instance(e133, 1, 0, 0, 0, 0, 1, 0, 1).
 
 instance(e134, 1, 0, 0, 0, 0, 1, 1, 0).
 
 instance(e135, 1, 0, 0, 0, 0, 1, 1, 1).
 
 instance(e136, 1, 0, 0, 0, 1, 0, 0, 0).
+
+instance(e137, 1, 0, 0, 0, 1, 0, 0, 1).
 
 instance(e138, 1, 0, 0, 0, 1, 0, 1, 0).
 
@@ -266,6 +374,8 @@ instance(e144, 1, 0, 0, 1, 0, 0, 0, 0).
 
 instance(e145, 1, 0, 0, 1, 0, 0, 0, 1).
 
+instance(e146, 1, 0, 0, 1, 0, 0, 1, 0).
+
 instance(e147, 1, 0, 0, 1, 0, 0, 1, 1).
 
 instance(e148, 1, 0, 0, 1, 0, 1, 0, 0).
@@ -278,23 +388,41 @@ instance(e151, 1, 0, 0, 1, 0, 1, 1, 1).
 
 instance(e152, 1, 0, 0, 1, 1, 0, 0, 0).
 
+instance(e153, 1, 0, 0, 1, 1, 0, 0, 1).
+
+instance(e154, 1, 0, 0, 1, 1, 0, 1, 0).
+
 instance(e155, 1, 0, 0, 1, 1, 0, 1, 1).
 
 instance(e156, 1, 0, 0, 1, 1, 1, 0, 0).
+
+instance(e157, 1, 0, 0, 1, 1, 1, 0, 1).
+
+instance(e158, 1, 0, 0, 1, 1, 1, 1, 0).
 
 instance(e159, 1, 0, 0, 1, 1, 1, 1, 1).
 
 instance(e168, 1, 0, 1, 0, 1, 0, 0, 0).
 
+instance(e169, 1, 0, 1, 0, 1, 0, 0, 1).
+
 instance(e170, 1, 0, 1, 0, 1, 0, 1, 0).
 
 instance(e171, 1, 0, 1, 0, 1, 0, 1, 1).
+
+instance(e172, 1, 0, 1, 0, 1, 1, 0, 0).
+
+instance(e173, 1, 0, 1, 0, 1, 1, 0, 1).
 
 instance(e174, 1, 0, 1, 0, 1, 1, 1, 0).
 
 instance(e175, 1, 0, 1, 0, 1, 1, 1, 1).
 
+instance(e184, 1, 0, 1, 1, 1, 0, 0, 0).
+
 instance(e185, 1, 0, 1, 1, 1, 0, 0, 1).
+
+instance(e186, 1, 0, 1, 1, 1, 0, 1, 0).
 
 instance(e187, 1, 0, 1, 1, 1, 0, 1, 1).
 
@@ -305,6 +433,8 @@ instance(e189, 1, 0, 1, 1, 1, 1, 0, 1).
 instance(e190, 1, 0, 1, 1, 1, 1, 1, 0).
 
 instance(e191, 1, 0, 1, 1, 1, 1, 1, 1).
+
+instance(e192, 1, 1, 0, 0, 0, 0, 0, 0).
 
 instance(e193, 1, 1, 0, 0, 0, 0, 0, 1).
 
@@ -320,7 +450,11 @@ instance(e198, 1, 1, 0, 0, 0, 1, 1, 0).
 
 instance(e199, 1, 1, 0, 0, 0, 1, 1, 1).
 
+instance(e200, 1, 1, 0, 0, 1, 0, 0, 0).
+
 instance(e201, 1, 1, 0, 0, 1, 0, 0, 1).
+
+instance(e202, 1, 1, 0, 0, 1, 0, 1, 0).
 
 instance(e203, 1, 1, 0, 0, 1, 0, 1, 1).
 
@@ -330,13 +464,23 @@ instance(e205, 1, 1, 0, 0, 1, 1, 0, 1).
 
 instance(e206, 1, 1, 0, 0, 1, 1, 1, 0).
 
+instance(e207, 1, 1, 0, 0, 1, 1, 1, 1).
+
 instance(e212, 1, 1, 0, 1, 0, 1, 0, 0).
+
+instance(e213, 1, 1, 0, 1, 0, 1, 0, 1).
 
 instance(e214, 1, 1, 0, 1, 0, 1, 1, 0).
 
+instance(e215, 1, 1, 0, 1, 0, 1, 1, 1).
+
 instance(e220, 1, 1, 0, 1, 1, 1, 0, 0).
 
+instance(e221, 1, 1, 0, 1, 1, 1, 0, 1).
+
 instance(e222, 1, 1, 0, 1, 1, 1, 1, 0).
+
+instance(e223, 1, 1, 0, 1, 1, 1, 1, 1).
 
 instance(e232, 1, 1, 1, 0, 1, 0, 0, 0).
 
@@ -362,7 +506,7 @@ instance(e254, 1, 1, 1, 1, 1, 1, 1, 0).
 
 instance(e255, 1, 1, 1, 1, 1, 1, 1, 1).
 
-instance(o055, 0, 0, 1, 1, 0, 1, 1, 1).
+instance(o117, 0, 1, 1, 1, 0, 1, 0, 1).
 
-instance(o121, 0, 1, 1, 1, 1, 0, 0, 1).
+instance(o216, 1, 1, 0, 1, 1, 0, 0, 0).
 

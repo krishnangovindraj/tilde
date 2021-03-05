@@ -1,7 +1,7 @@
-N_REGULAR = 84 # 44 if inverted 
+N_REGULAR = 400 # 84/44 if inverted 
 N_OUTLIER = 2
-N_VARIABLES = 7
-FORMULA = [ [2,4,-6], [3, -5] ]
+N_VARIABLES = 10
+FORMULA = [ [2,4,-6], [3, -5] ] # 1 indexed
 INVERT = False
 
 

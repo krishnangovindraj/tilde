@@ -1,4 +1,4 @@
-tilde_mode(isolation_forest(10, 55, 5)).
+tilde_mode(isolation_forest(50, 9, 5)).
 typed_language(yes).
 
 predict(example(+key, -dummyclass)).

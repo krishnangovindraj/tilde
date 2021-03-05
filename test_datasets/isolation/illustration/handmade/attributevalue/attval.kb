@@ -1,0 +1,42 @@
+% (a1 & a3 & !a5) || (a2 & !a4) 
+
+% (a1 & a3 & !a5)
+attval(a0, 0, 1, 0, 1, 0, 0, dummyclass).
+attval(a1, 0, 1, 0, 1, 1, 0, dummyclass).
+attval(a2, 0, 1, 1, 1, 0, 0, dummyclass).
+attval(a3, 0, 1, 1, 1, 1, 0, dummyclass).
+
+% (a2 & !a4)
+attval(b0, 0, 0, 1, 0, 0, 0, dummyclass).
+attval(b1, 0, 0, 1, 0, 0, 1, dummyclass).
+attval(b2, 0, 0, 1, 1, 0, 0, dummyclass).
+attval(b3, 0, 0, 1, 1, 0, 1, dummyclass).
+
+attval(b4, 0, 1, 1, 0, 0, 0, dummyclass).
+attval(b5, 0, 1, 1, 0, 0, 1, dummyclass).
+attval(b6, 0, 1, 1, 1, 0, 0, dummyclass).
+attval(b7, 0, 1, 1, 1, 0, 1, dummyclass).
+
+
+% Some more. Uncomment these for a cleaner performance
+% (a1 & a3 & !a5)
+attval(a4, 1, 1, 0, 1, 0, 0, dummyclass).
+attval(a5, 1, 1, 0, 1, 1, 0, dummyclass).
+attval(a6, 1, 1, 1, 1, 0, 0, dummyclass).
+attval(a7, 1, 1, 1, 1, 1, 0, dummyclass).
+
+% (a2 & !a4)
+attval(b8, 1, 0, 1, 0, 0, 0, dummyclass).
+attval(b9, 1, 0, 1, 0, 0, 1, dummyclass).
+attval(b10, 1, 0, 1, 1, 0, 0, dummyclass).
+attval(b11, 1, 0, 1, 1, 0, 1, dummyclass).
+
+attval(b12, 1, 1, 1, 0, 0, 0, dummyclass).
+attval(b13, 1, 1, 1, 0, 0, 1, dummyclass).
+attval(b14, 1, 1, 1, 1, 0, 0, dummyclass).
+attval(b15, 1, 1, 1, 1, 0, 1, dummyclass).
+
+
+% outliers
+attval(o0, 0, 0, 0, 0, 0, 0, dummyclass).
+attval(o63,1, 1, 1, 1, 1, 1, dummyclass).

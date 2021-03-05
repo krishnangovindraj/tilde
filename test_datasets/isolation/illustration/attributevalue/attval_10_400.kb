@@ -1,0 +1,1208 @@
+% 400 regular and 2 outliers ; total = 402
+example(e0000, dummyclass).
+example(e0001, dummyclass).
+example(e0002, dummyclass).
+example(e0003, dummyclass).
+example(e0004, dummyclass).
+example(e0005, dummyclass).
+example(e0007, dummyclass).
+example(e0009, dummyclass).
+example(e0010, dummyclass).
+example(e0011, dummyclass).
+example(e0012, dummyclass).
+example(e0013, dummyclass).
+example(e0014, dummyclass).
+example(e0015, dummyclass).
+example(e0017, dummyclass).
+example(e0019, dummyclass).
+example(e0020, dummyclass).
+example(e0023, dummyclass).
+example(e0025, dummyclass).
+example(e0029, dummyclass).
+example(e0032, dummyclass).
+example(e0034, dummyclass).
+example(e0035, dummyclass).
+example(e0037, dummyclass).
+example(e0040, dummyclass).
+example(e0041, dummyclass).
+example(e0045, dummyclass).
+example(e0048, dummyclass).
+example(e0051, dummyclass).
+example(e0052, dummyclass).
+example(e0055, dummyclass).
+example(e0059, dummyclass).
+example(e0061, dummyclass).
+example(e0062, dummyclass).
+example(e0064, dummyclass).
+example(e0065, dummyclass).
+example(e0066, dummyclass).
+example(e0068, dummyclass).
+example(e0069, dummyclass).
+example(e0070, dummyclass).
+example(e0071, dummyclass).
+example(e0073, dummyclass).
+example(e0074, dummyclass).
+example(e0076, dummyclass).
+example(e0078, dummyclass).
+example(e0079, dummyclass).
+example(e0080, dummyclass).
+example(e0081, dummyclass).
+example(e0084, dummyclass).
+example(e0088, dummyclass).
+example(e0089, dummyclass).
+example(e0090, dummyclass).
+example(e0091, dummyclass).
+example(e0093, dummyclass).
+example(e0095, dummyclass).
+example(e0097, dummyclass).
+example(e0101, dummyclass).
+example(e0104, dummyclass).
+example(e0106, dummyclass).
+example(e0107, dummyclass).
+example(e0108, dummyclass).
+example(e0109, dummyclass).
+example(e0110, dummyclass).
+example(e0111, dummyclass).
+example(e0112, dummyclass).
+example(e0113, dummyclass).
+example(e0114, dummyclass).
+example(e0118, dummyclass).
+example(e0119, dummyclass).
+example(e0120, dummyclass).
+example(e0122, dummyclass).
+example(e0123, dummyclass).
+example(e0124, dummyclass).
+example(e0125, dummyclass).
+example(e0126, dummyclass).
+example(e0127, dummyclass).
+example(e0160, dummyclass).
+example(e0162, dummyclass).
+example(e0163, dummyclass).
+example(e0164, dummyclass).
+example(e0165, dummyclass).
+example(e0166, dummyclass).
+example(e0167, dummyclass).
+example(e0168, dummyclass).
+example(e0169, dummyclass).
+example(e0170, dummyclass).
+example(e0171, dummyclass).
+example(e0172, dummyclass).
+example(e0175, dummyclass).
+example(e0179, dummyclass).
+example(e0180, dummyclass).
+example(e0181, dummyclass).
+example(e0183, dummyclass).
+example(e0184, dummyclass).
+example(e0185, dummyclass).
+example(e0188, dummyclass).
+example(e0189, dummyclass).
+example(e0191, dummyclass).
+example(e0226, dummyclass).
+example(e0227, dummyclass).
+example(e0228, dummyclass).
+example(e0231, dummyclass).
+example(e0233, dummyclass).
+example(e0234, dummyclass).
+example(e0236, dummyclass).
+example(e0238, dummyclass).
+example(e0239, dummyclass).
+example(e0240, dummyclass).
+example(e0241, dummyclass).
+example(e0244, dummyclass).
+example(e0246, dummyclass).
+example(e0250, dummyclass).
+example(e0251, dummyclass).
+example(e0252, dummyclass).
+example(e0253, dummyclass).
+example(e0255, dummyclass).
+example(e0257, dummyclass).
+example(e0258, dummyclass).
+example(e0259, dummyclass).
+example(e0262, dummyclass).
+example(e0264, dummyclass).
+example(e0268, dummyclass).
+example(e0269, dummyclass).
+example(e0270, dummyclass).
+example(e0271, dummyclass).
+example(e0272, dummyclass).
+example(e0273, dummyclass).
+example(e0274, dummyclass).
+example(e0275, dummyclass).
+example(e0277, dummyclass).
+example(e0278, dummyclass).
+example(e0279, dummyclass).
+example(e0281, dummyclass).
+example(e0286, dummyclass).
+example(e0288, dummyclass).
+example(e0290, dummyclass).
+example(e0291, dummyclass).
+example(e0292, dummyclass).
+example(e0294, dummyclass).
+example(e0296, dummyclass).
+example(e0297, dummyclass).
+example(e0302, dummyclass).
+example(e0303, dummyclass).
+example(e0305, dummyclass).
+example(e0306, dummyclass).
+example(e0308, dummyclass).
+example(e0309, dummyclass).
+example(e0311, dummyclass).
+example(e0312, dummyclass).
+example(e0315, dummyclass).
+example(e0316, dummyclass).
+example(e0318, dummyclass).
+example(e0319, dummyclass).
+example(e0336, dummyclass).
+example(e0337, dummyclass).
+example(e0338, dummyclass).
+example(e0341, dummyclass).
+example(e0342, dummyclass).
+example(e0346, dummyclass).
+example(e0348, dummyclass).
+example(e0349, dummyclass).
+example(e0350, dummyclass).
+example(e0368, dummyclass).
+example(e0369, dummyclass).
+example(e0371, dummyclass).
+example(e0373, dummyclass).
+example(e0374, dummyclass).
+example(e0376, dummyclass).
+example(e0378, dummyclass).
+example(e0379, dummyclass).
+example(e0382, dummyclass).
+example(e0383, dummyclass).
+example(e0417, dummyclass).
+example(e0419, dummyclass).
+example(e0423, dummyclass).
+example(e0424, dummyclass).
+example(e0428, dummyclass).
+example(e0429, dummyclass).
+example(e0430, dummyclass).
+example(e0431, dummyclass).
+example(e0433, dummyclass).
+example(e0434, dummyclass).
+example(e0435, dummyclass).
+example(e0437, dummyclass).
+example(e0438, dummyclass).
+example(e0441, dummyclass).
+example(e0442, dummyclass).
+example(e0443, dummyclass).
+example(e0444, dummyclass).
+example(e0445, dummyclass).
+example(e0446, dummyclass).
+example(e0496, dummyclass).
+example(e0497, dummyclass).
+example(e0498, dummyclass).
+example(e0501, dummyclass).
+example(e0503, dummyclass).
+example(e0505, dummyclass).
+example(e0508, dummyclass).
+example(e0509, dummyclass).
+example(e0510, dummyclass).
+example(e0511, dummyclass).
+example(e0512, dummyclass).
+example(e0513, dummyclass).
+example(e0514, dummyclass).
+example(e0516, dummyclass).
+example(e0519, dummyclass).
+example(e0520, dummyclass).
+example(e0521, dummyclass).
+example(e0522, dummyclass).
+example(e0523, dummyclass).
+example(e0524, dummyclass).
+example(e0530, dummyclass).
+example(e0531, dummyclass).
+example(e0534, dummyclass).
+example(e0535, dummyclass).
+example(e0536, dummyclass).
+example(e0537, dummyclass).
+example(e0539, dummyclass).
+example(e0540, dummyclass).
+example(e0541, dummyclass).
+example(e0542, dummyclass).
+example(e0543, dummyclass).
+example(e0545, dummyclass).
+example(e0546, dummyclass).
+example(e0547, dummyclass).
+example(e0548, dummyclass).
+example(e0551, dummyclass).
+example(e0552, dummyclass).
+example(e0554, dummyclass).
+example(e0555, dummyclass).
+example(e0556, dummyclass).
+example(e0557, dummyclass).
+example(e0558, dummyclass).
+example(e0559, dummyclass).
+example(e0560, dummyclass).
+example(e0562, dummyclass).
+example(e0563, dummyclass).
+example(e0565, dummyclass).
+example(e0566, dummyclass).
+example(e0567, dummyclass).
+example(e0568, dummyclass).
+example(e0571, dummyclass).
+example(e0572, dummyclass).
+example(e0573, dummyclass).
+example(e0579, dummyclass).
+example(e0580, dummyclass).
+example(e0582, dummyclass).
+example(e0584, dummyclass).
+example(e0588, dummyclass).
+example(e0589, dummyclass).
+example(e0590, dummyclass).
+example(e0592, dummyclass).
+example(e0594, dummyclass).
+example(e0595, dummyclass).
+example(e0597, dummyclass).
+example(e0598, dummyclass).
+example(e0599, dummyclass).
+example(e0603, dummyclass).
+example(e0604, dummyclass).
+example(e0607, dummyclass).
+example(e0608, dummyclass).
+example(e0609, dummyclass).
+example(e0610, dummyclass).
+example(e0612, dummyclass).
+example(e0613, dummyclass).
+example(e0614, dummyclass).
+example(e0615, dummyclass).
+example(e0617, dummyclass).
+example(e0619, dummyclass).
+example(e0620, dummyclass).
+example(e0622, dummyclass).
+example(e0624, dummyclass).
+example(e0625, dummyclass).
+example(e0626, dummyclass).
+example(e0627, dummyclass).
+example(e0628, dummyclass).
+example(e0631, dummyclass).
+example(e0632, dummyclass).
+example(e0636, dummyclass).
+example(e0637, dummyclass).
+example(e0638, dummyclass).
+example(e0639, dummyclass).
+example(e0672, dummyclass).
+example(e0675, dummyclass).
+example(e0676, dummyclass).
+example(e0677, dummyclass).
+example(e0679, dummyclass).
+example(e0682, dummyclass).
+example(e0683, dummyclass).
+example(e0686, dummyclass).
+example(e0688, dummyclass).
+example(e0689, dummyclass).
+example(e0692, dummyclass).
+example(e0694, dummyclass).
+example(e0695, dummyclass).
+example(e0696, dummyclass).
+example(e0697, dummyclass).
+example(e0702, dummyclass).
+example(e0703, dummyclass).
+example(e0737, dummyclass).
+example(e0738, dummyclass).
+example(e0739, dummyclass).
+example(e0740, dummyclass).
+example(e0742, dummyclass).
+example(e0747, dummyclass).
+example(e0749, dummyclass).
+example(e0750, dummyclass).
+example(e0751, dummyclass).
+example(e0752, dummyclass).
+example(e0753, dummyclass).
+example(e0756, dummyclass).
+example(e0757, dummyclass).
+example(e0763, dummyclass).
+example(e0764, dummyclass).
+example(e0765, dummyclass).
+example(e0768, dummyclass).
+example(e0769, dummyclass).
+example(e0771, dummyclass).
+example(e0772, dummyclass).
+example(e0775, dummyclass).
+example(e0777, dummyclass).
+example(e0778, dummyclass).
+example(e0781, dummyclass).
+example(e0782, dummyclass).
+example(e0783, dummyclass).
+example(e0784, dummyclass).
+example(e0785, dummyclass).
+example(e0786, dummyclass).
+example(e0788, dummyclass).
+example(e0789, dummyclass).
+example(e0790, dummyclass).
+example(e0793, dummyclass).
+example(e0794, dummyclass).
+example(e0796, dummyclass).
+example(e0797, dummyclass).
+example(e0799, dummyclass).
+example(e0800, dummyclass).
+example(e0802, dummyclass).
+example(e0803, dummyclass).
+example(e0804, dummyclass).
+example(e0805, dummyclass).
+example(e0806, dummyclass).
+example(e0808, dummyclass).
+example(e0813, dummyclass).
+example(e0817, dummyclass).
+example(e0822, dummyclass).
+example(e0824, dummyclass).
+example(e0826, dummyclass).
+example(e0830, dummyclass).
+example(e0848, dummyclass).
+example(e0849, dummyclass).
+example(e0852, dummyclass).
+example(e0853, dummyclass).
+example(e0854, dummyclass).
+example(e0855, dummyclass).
+example(e0856, dummyclass).
+example(e0859, dummyclass).
+example(e0861, dummyclass).
+example(e0880, dummyclass).
+example(e0882, dummyclass).
+example(e0883, dummyclass).
+example(e0885, dummyclass).
+example(e0887, dummyclass).
+example(e0888, dummyclass).
+example(e0889, dummyclass).
+example(e0890, dummyclass).
+example(e0891, dummyclass).
+example(e0892, dummyclass).
+example(e0893, dummyclass).
+example(e0894, dummyclass).
+example(e0895, dummyclass).
+example(e0928, dummyclass).
+example(e0930, dummyclass).
+example(e0932, dummyclass).
+example(e0933, dummyclass).
+example(e0934, dummyclass).
+example(e0935, dummyclass).
+example(e0936, dummyclass).
+example(e0938, dummyclass).
+example(e0940, dummyclass).
+example(e0941, dummyclass).
+example(e0942, dummyclass).
+example(e0943, dummyclass).
+example(e0944, dummyclass).
+example(e0945, dummyclass).
+example(e0946, dummyclass).
+example(e0948, dummyclass).
+example(e0950, dummyclass).
+example(e0951, dummyclass).
+example(e0952, dummyclass).
+example(e0953, dummyclass).
+example(e0957, dummyclass).
+example(e0959, dummyclass).
+example(e1013, dummyclass).
+example(e1014, dummyclass).
+example(e1015, dummyclass).
+example(e1016, dummyclass).
+example(e1017, dummyclass).
+example(e1018, dummyclass).
+example(e1022, dummyclass).
+example(o0466, dummyclass).
+example(o0644, dummyclass).
+
+instance(e0000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0).
+
+instance(e0001, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1).
+
+instance(e0002, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0).
+
+instance(e0003, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1).
+
+instance(e0004, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0).
+
+instance(e0005, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1).
+
+instance(e0007, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1).
+
+instance(e0009, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1).
+
+instance(e0010, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0).
+
+instance(e0011, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1).
+
+instance(e0012, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0).
+
+instance(e0013, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1).
+
+instance(e0014, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0).
+
+instance(e0015, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1).
+
+instance(e0017, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1).
+
+instance(e0019, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1).
+
+instance(e0020, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0).
+
+instance(e0023, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1).
+
+instance(e0025, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1).
+
+instance(e0029, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1).
+
+instance(e0032, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0).
+
+instance(e0034, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0).
+
+instance(e0035, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1).
+
+instance(e0037, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1).
+
+instance(e0040, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0).
+
+instance(e0041, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1).
+
+instance(e0045, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1).
+
+instance(e0048, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0).
+
+instance(e0051, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1).
+
+instance(e0052, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0).
+
+instance(e0055, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1).
+
+instance(e0059, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1).
+
+instance(e0061, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1).
+
+instance(e0062, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0).
+
+instance(e0064, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0).
+
+instance(e0065, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1).
+
+instance(e0066, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0).
+
+instance(e0068, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0).
+
+instance(e0069, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1).
+
+instance(e0070, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0).
+
+instance(e0071, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1).
+
+instance(e0073, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1).
+
+instance(e0074, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0).
+
+instance(e0076, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0).
+
+instance(e0078, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0).
+
+instance(e0079, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1).
+
+instance(e0080, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0).
+
+instance(e0081, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1).
+
+instance(e0084, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0).
+
+instance(e0088, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0).
+
+instance(e0089, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1).
+
+instance(e0090, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0).
+
+instance(e0091, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1).
+
+instance(e0093, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1).
+
+instance(e0095, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1).
+
+instance(e0097, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1).
+
+instance(e0101, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1).
+
+instance(e0104, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0).
+
+instance(e0106, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0).
+
+instance(e0107, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1).
+
+instance(e0108, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0).
+
+instance(e0109, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1).
+
+instance(e0110, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0).
+
+instance(e0111, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1).
+
+instance(e0112, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0).
+
+instance(e0113, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1).
+
+instance(e0114, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0).
+
+instance(e0118, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0).
+
+instance(e0119, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1).
+
+instance(e0120, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0).
+
+instance(e0122, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0).
+
+instance(e0123, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1).
+
+instance(e0124, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0).
+
+instance(e0125, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1).
+
+instance(e0126, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0).
+
+instance(e0127, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1).
+
+instance(e0160, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0).
+
+instance(e0162, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0).
+
+instance(e0163, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1).
+
+instance(e0164, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0).
+
+instance(e0165, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1).
+
+instance(e0166, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0).
+
+instance(e0167, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1).
+
+instance(e0168, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0).
+
+instance(e0169, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1).
+
+instance(e0170, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0).
+
+instance(e0171, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1).
+
+instance(e0172, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0).
+
+instance(e0175, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1).
+
+instance(e0179, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1).
+
+instance(e0180, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0).
+
+instance(e0181, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1).
+
+instance(e0183, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1).
+
+instance(e0184, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0).
+
+instance(e0185, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1).
+
+instance(e0188, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0).
+
+instance(e0189, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1).
+
+instance(e0191, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1).
+
+instance(e0226, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0).
+
+instance(e0227, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1).
+
+instance(e0228, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0).
+
+instance(e0231, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1).
+
+instance(e0233, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1).
+
+instance(e0234, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0).
+
+instance(e0236, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0).
+
+instance(e0238, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0).
+
+instance(e0239, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1).
+
+instance(e0240, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0).
+
+instance(e0241, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1).
+
+instance(e0244, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0).
+
+instance(e0246, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0).
+
+instance(e0250, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0).
+
+instance(e0251, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1).
+
+instance(e0252, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0).
+
+instance(e0253, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1).
+
+instance(e0255, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1).
+
+instance(e0257, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1).
+
+instance(e0258, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0).
+
+instance(e0259, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1).
+
+instance(e0262, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0).
+
+instance(e0264, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0).
+
+instance(e0268, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0).
+
+instance(e0269, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1).
+
+instance(e0270, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0).
+
+instance(e0271, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1).
+
+instance(e0272, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0).
+
+instance(e0273, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1).
+
+instance(e0274, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0).
+
+instance(e0275, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1).
+
+instance(e0277, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1).
+
+instance(e0278, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0).
+
+instance(e0279, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1).
+
+instance(e0281, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1).
+
+instance(e0286, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0).
+
+instance(e0288, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0).
+
+instance(e0290, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0).
+
+instance(e0291, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1).
+
+instance(e0292, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0).
+
+instance(e0294, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0).
+
+instance(e0296, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0).
+
+instance(e0297, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1).
+
+instance(e0302, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0).
+
+instance(e0303, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1).
+
+instance(e0305, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1).
+
+instance(e0306, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0).
+
+instance(e0308, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0).
+
+instance(e0309, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1).
+
+instance(e0311, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1).
+
+instance(e0312, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0).
+
+instance(e0315, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1).
+
+instance(e0316, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0).
+
+instance(e0318, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0).
+
+instance(e0319, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1).
+
+instance(e0336, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0).
+
+instance(e0337, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1).
+
+instance(e0338, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0).
+
+instance(e0341, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1).
+
+instance(e0342, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0).
+
+instance(e0346, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0).
+
+instance(e0348, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0).
+
+instance(e0349, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1).
+
+instance(e0350, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0).
+
+instance(e0368, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0).
+
+instance(e0369, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1).
+
+instance(e0371, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1).
+
+instance(e0373, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1).
+
+instance(e0374, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0).
+
+instance(e0376, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0).
+
+instance(e0378, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0).
+
+instance(e0379, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1).
+
+instance(e0382, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0).
+
+instance(e0383, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1).
+
+instance(e0417, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1).
+
+instance(e0419, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1).
+
+instance(e0423, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1).
+
+instance(e0424, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0).
+
+instance(e0428, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0).
+
+instance(e0429, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1).
+
+instance(e0430, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0).
+
+instance(e0431, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1).
+
+instance(e0433, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1).
+
+instance(e0434, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0).
+
+instance(e0435, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1).
+
+instance(e0437, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1).
+
+instance(e0438, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0).
+
+instance(e0441, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1).
+
+instance(e0442, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0).
+
+instance(e0443, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1).
+
+instance(e0444, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0).
+
+instance(e0445, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1).
+
+instance(e0446, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0).
+
+instance(e0496, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0).
+
+instance(e0497, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1).
+
+instance(e0498, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0).
+
+instance(e0501, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1).
+
+instance(e0503, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1).
+
+instance(e0505, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1).
+
+instance(e0508, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0).
+
+instance(e0509, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1).
+
+instance(e0510, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0).
+
+instance(e0511, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1).
+
+instance(e0512, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0).
+
+instance(e0513, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1).
+
+instance(e0514, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0).
+
+instance(e0516, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0).
+
+instance(e0519, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1).
+
+instance(e0520, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0).
+
+instance(e0521, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1).
+
+instance(e0522, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0).
+
+instance(e0523, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1).
+
+instance(e0524, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0).
+
+instance(e0530, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0).
+
+instance(e0531, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1).
+
+instance(e0534, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0).
+
+instance(e0535, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1).
+
+instance(e0536, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0).
+
+instance(e0537, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1).
+
+instance(e0539, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1).
+
+instance(e0540, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0).
+
+instance(e0541, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1).
+
+instance(e0542, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0).
+
+instance(e0543, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1).
+
+instance(e0545, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1).
+
+instance(e0546, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0).
+
+instance(e0547, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1).
+
+instance(e0548, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0).
+
+instance(e0551, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1).
+
+instance(e0552, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0).
+
+instance(e0554, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0).
+
+instance(e0555, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1).
+
+instance(e0556, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0).
+
+instance(e0557, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1).
+
+instance(e0558, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0).
+
+instance(e0559, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1).
+
+instance(e0560, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0).
+
+instance(e0562, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0).
+
+instance(e0563, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1).
+
+instance(e0565, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1).
+
+instance(e0566, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0).
+
+instance(e0567, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1).
+
+instance(e0568, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0).
+
+instance(e0571, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1).
+
+instance(e0572, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0).
+
+instance(e0573, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1).
+
+instance(e0579, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1).
+
+instance(e0580, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0).
+
+instance(e0582, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0).
+
+instance(e0584, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0).
+
+instance(e0588, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0).
+
+instance(e0589, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1).
+
+instance(e0590, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0).
+
+instance(e0592, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0).
+
+instance(e0594, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0).
+
+instance(e0595, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1).
+
+instance(e0597, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1).
+
+instance(e0598, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0).
+
+instance(e0599, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1).
+
+instance(e0603, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1).
+
+instance(e0604, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0).
+
+instance(e0607, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1).
+
+instance(e0608, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0).
+
+instance(e0609, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1).
+
+instance(e0610, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0).
+
+instance(e0612, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0).
+
+instance(e0613, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1).
+
+instance(e0614, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0).
+
+instance(e0615, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1).
+
+instance(e0617, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1).
+
+instance(e0619, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1).
+
+instance(e0620, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0).
+
+instance(e0622, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0).
+
+instance(e0624, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0).
+
+instance(e0625, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1).
+
+instance(e0626, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0).
+
+instance(e0627, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1).
+
+instance(e0628, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0).
+
+instance(e0631, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1).
+
+instance(e0632, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0).
+
+instance(e0636, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0).
+
+instance(e0637, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1).
+
+instance(e0638, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0).
+
+instance(e0639, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1).
+
+instance(e0672, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0).
+
+instance(e0675, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1).
+
+instance(e0676, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0).
+
+instance(e0677, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1).
+
+instance(e0679, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1).
+
+instance(e0682, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0).
+
+instance(e0683, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1).
+
+instance(e0686, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0).
+
+instance(e0688, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0).
+
+instance(e0689, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1).
+
+instance(e0692, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0).
+
+instance(e0694, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0).
+
+instance(e0695, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1).
+
+instance(e0696, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0).
+
+instance(e0697, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1).
+
+instance(e0702, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0).
+
+instance(e0703, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1).
+
+instance(e0737, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1).
+
+instance(e0738, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0).
+
+instance(e0739, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1).
+
+instance(e0740, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0).
+
+instance(e0742, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0).
+
+instance(e0747, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1).
+
+instance(e0749, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1).
+
+instance(e0750, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0).
+
+instance(e0751, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1).
+
+instance(e0752, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0).
+
+instance(e0753, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1).
+
+instance(e0756, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0).
+
+instance(e0757, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1).
+
+instance(e0763, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1).
+
+instance(e0764, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0).
+
+instance(e0765, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1).
+
+instance(e0768, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0).
+
+instance(e0769, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1).
+
+instance(e0771, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1).
+
+instance(e0772, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0).
+
+instance(e0775, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1).
+
+instance(e0777, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1).
+
+instance(e0778, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0).
+
+instance(e0781, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1).
+
+instance(e0782, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0).
+
+instance(e0783, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1).
+
+instance(e0784, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0).
+
+instance(e0785, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1).
+
+instance(e0786, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0).
+
+instance(e0788, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0).
+
+instance(e0789, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1).
+
+instance(e0790, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0).
+
+instance(e0793, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1).
+
+instance(e0794, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0).
+
+instance(e0796, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0).
+
+instance(e0797, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1).
+
+instance(e0799, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1).
+
+instance(e0800, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0).
+
+instance(e0802, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0).
+
+instance(e0803, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1).
+
+instance(e0804, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0).
+
+instance(e0805, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1).
+
+instance(e0806, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0).
+
+instance(e0808, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0).
+
+instance(e0813, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1).
+
+instance(e0817, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1).
+
+instance(e0822, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0).
+
+instance(e0824, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0).
+
+instance(e0826, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0).
+
+instance(e0830, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0).
+
+instance(e0848, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0).
+
+instance(e0849, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1).
+
+instance(e0852, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0).
+
+instance(e0853, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1).
+
+instance(e0854, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0).
+
+instance(e0855, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1).
+
+instance(e0856, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0).
+
+instance(e0859, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1).
+
+instance(e0861, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1).
+
+instance(e0880, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0).
+
+instance(e0882, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0).
+
+instance(e0883, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1).
+
+instance(e0885, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1).
+
+instance(e0887, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1).
+
+instance(e0888, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0).
+
+instance(e0889, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1).
+
+instance(e0890, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0).
+
+instance(e0891, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1).
+
+instance(e0892, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0).
+
+instance(e0893, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1).
+
+instance(e0894, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0).
+
+instance(e0895, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1).
+
+instance(e0928, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0).
+
+instance(e0930, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0).
+
+instance(e0932, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0).
+
+instance(e0933, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1).
+
+instance(e0934, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0).
+
+instance(e0935, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1).
+
+instance(e0936, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0).
+
+instance(e0938, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0).
+
+instance(e0940, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0).
+
+instance(e0941, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1).
+
+instance(e0942, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0).
+
+instance(e0943, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1).
+
+instance(e0944, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0).
+
+instance(e0945, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1).
+
+instance(e0946, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0).
+
+instance(e0948, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0).
+
+instance(e0950, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0).
+
+instance(e0951, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1).
+
+instance(e0952, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0).
+
+instance(e0953, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1).
+
+instance(e0957, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1).
+
+instance(e0959, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1).
+
+instance(e1013, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1).
+
+instance(e1014, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0).
+
+instance(e1015, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1).
+
+instance(e1016, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0).
+
+instance(e1017, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1).
+
+instance(e1018, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0).
+
+instance(e1022, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0).
+
+instance(o0466, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0).
+
+instance(o0644, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0).
+

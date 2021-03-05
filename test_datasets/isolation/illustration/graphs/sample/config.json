@@ -1,0 +1,8 @@
+{
+    "SUBTLE_PATH": "test_datasets/theta-subsumption-engines/subtle/subtle-2.2.pl",
+    "KB_FILE": "test_datasets/isolation/illustration/graphs/sample/sample.kb",
+    "S_FILE": "test_datasets/isolation/illustration/graphs/common/graphs.s",
+    "BG_FILE": "test_datasets/isolation/illustration/graphs/common/graphs.bg",
+    "FOLD_FILE" : "test_datasets/isolation/illustration/graphs/sample/sample.fold",
+    "BACKEND": "DJANGO"
+}
