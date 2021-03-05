@@ -1,0 +1,7 @@
+{
+    "SUBTLE_PATH": "/mnt/d/workcode/subtle/subtle-2.2.pl",
+    "SPLIT_CRITERION": "entropy",
+    "KB_FILE": "/mnt/e/courses/thesis/datasets/toy/even/even.kb",
+    "S_FILE": "/mnt/e/courses/thesis/datasets/toy/even/even.s",
+    "BG_FILE": "/mnt/e/courses/thesis/datasets/toy/even/even.bg"
+}

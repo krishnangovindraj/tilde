@@ -1,0 +1,7 @@
+{
+    "SUBTLE_PATH": "D:\\workcode\\subtle\\subtle-2.2.pl",
+    "SPLIT_CRITERION": "variance_reduction",
+    "KB_FILE": "E:\\courses\\thesis\\datasets\\regression\\toy\\noisy_lines\\noisy_lines.kb",
+    "S_FILE": "E:\\courses\\thesis\\datasets\\regression\\toy\\noisy_lines\\noisy_lines.s",
+    "BG_FILE": "E:\\courses\\thesis\\datasets\\regression\\toy\\noisy_lines\\noisy_lines.bg"
+}

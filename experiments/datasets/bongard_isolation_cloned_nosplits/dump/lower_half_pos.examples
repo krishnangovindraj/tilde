@@ -1,0 +1,87 @@
+
+
+
+% Non-empty triangle, Empty circle
+bongard(d_2, dope).
+triangle(d_2,o5). 
+config(d_2,o5,up).
+square(d_2,o4).
+in(d_2,o4,o5).
+circle(d_2,o3). % Empty circle
+triangle(d_2,o2).
+config(d_2,o2,up).
+in(d_2,o2,o3). % Non-empty triangle
+triangle(d_2,o1).
+config(d_2,o1,up).
+
+% Triangle in triangle (o4,o5) + Non-empty triangle, empty circle
+bongard(d_6, dope).
+triangle(d_6,o5). 
+config(d_6,o5,down).
+triangle(d_6,o4). % Non-empty triangle
+config(d_6,o4,up).
+in(d_6,o4,o5).
+circle(d_6,o3). % Empty circle 
+square(d_6,o2).
+in(d_6,o2,o3).
+triangle(d_6,o1).
+config(d_6,o1,up).
+
+bongard(d_95, dope). 
+circle(d_95,o6). % Empty circle
+square(d_95,o5).
+in(d_95,o5,o6).
+square(d_95,o4).
+triangle(d_95,o3). % non-empty triangle
+config(d_95,o3,up).
+in(d_95,o3,o4).
+square(d_95,o2).
+triangle(d_95,o1).
+config(d_95,o1,down).
+in(d_95,o1,o2).
+
+bongard(d_319, dope).
+triangle(d_319,o5).
+config(d_319,o5,down).
+triangle(d_319,o4). % non-empty triangle
+config(d_319,o4,down).
+in(d_319,o4,o5).
+square(d_319,o3).
+square(d_319,o2).
+in(d_319,o2,o3).
+circle(d_319,o1). % empty circle
+
+
+% Empty triangles + Empty circles
+bongard(d_642, dope).
+circle(d_642,o6).
+square(d_642,o5).
+in(d_642,o5,o6).
+triangle(d_642,o4). % empty triangle
+config(d_642,o4,up).
+square(d_642,o3).
+in(d_642,o3,o4).
+circle(d_642,o2). % empty circles
+square(d_642,o1).
+in(d_642,o1,o2).
+
+% Triangle in Triangle
+bongard(d_909, dope).
+circle(d_909,o6).
+square(d_909,o5).
+in(d_909,o5,o6).
+triangle(d_909,o4).
+config(d_909,o4,up).
+triangle(d_909,o3). % Triangle in triangle
+config(d_909,o3,up).
+in(d_909,o3,o4).
+square(d_909,o2).
+circle(d_909,o1).
+in(d_909,o1,o2).
+
+% Non empty triangle + empty circle
+bongard(d_979, dope).
+circle(d_979,o2).
+triangle(d_979,o1).
+config(d_979,o1,up).
+in(d_979,o1,o2).

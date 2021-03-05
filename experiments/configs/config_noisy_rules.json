@@ -1,0 +1,7 @@
+{
+    "SUBTLE_PATH": "/mnt/d/workcode/subtle/subtle-2.2.pl",
+    "SPLIT_CRITERION": "variance_reduction",
+    "KB_FILE": "/mnt/e/courses/thesis/datasets/regression/toy/noisy_lines_good/noisy_lines.kb",
+    "S_FILE": "/mnt/e/courses/thesis/datasets/regression/toy/noisy_lines_good/noisy_lines.s",
+    "BG_FILE": "/mnt/e/courses/thesis/datasets/regression/toy/noisy_lines_good/noisy_lines.bg"
+}

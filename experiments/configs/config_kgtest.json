@@ -1,0 +1,7 @@
+{
+    "SUBTLE_PATH": "/mnt/d/workcode/subtle/subtle-2.2.pl",
+    "SPLIT_CRITERION": "entropy",
+    "KB_FILE": "/mnt/e/courses/thesis/datasets/ace-examples/ace/bongard/keys/bongard.kb",
+    "S_FILE": "/mnt/e/courses/thesis/datasets/ace-examples/ace/bongard/keys/bongard.s",
+    "BG_FILE": ""
+}

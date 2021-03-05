@@ -1,0 +1,2 @@
+sbond(M,X,Y,Z) :- bond(M,X,Y,Z); bond(M,Y,X,Z).
+

@@ -1,0 +1,2336 @@
+
+bongard(224, pos).
+circle(224,o6).
+square(224,o5).
+in(224,o5,o6).
+square(224,o4).
+square(224,o3).
+in(224,o3,o4).
+circle(224,o2).
+config(224,o2,up).
+square(224,o1).
+in(224,o1,o2).
+triangle(224,o7).
+in(224,o5,o7).
+in(224,o6,o7).
+circle(224,o8).
+in(224, o2, o8).
+
+
+bongard(3, neg).
+circle(3,o4).
+circle(3,o3).
+in(3,o3,o4).
+square(3,o2).
+circle(3,o1).
+in(3,o1,o2).
+
+bongard(5, neg).
+square(5,o3).
+square(5,o2).
+in(5,o2,o3).
+square(5,o1).
+
+bongard(12, neg).
+circle(12,o5).
+config(12,o5,down).
+square(12,o4).
+in(12,o4,o5).
+circle(12,o3).
+circle(12,o2).
+in(12,o2,o3).
+circle(12,o1).
+config(12,o1,down).
+
+bongard(14, neg).
+circle(14,o3).
+config(14,o3,down).
+circle(14,o2).
+in(14,o2,o3).
+circle(14,o1).
+config(14,o1,down).
+
+bongard(15, neg).
+circle(15,o4).
+config(15,o4,down).
+circle(15,o3).
+in(15,o3,o4).
+circle(15,o2).
+config(15,o2,up).
+circle(15,o1).
+in(15,o1,o2).
+
+
+bongard(25, neg).
+square(25,o2).
+square(25,o1).
+in(25,o1,o2).
+
+bongard(28, neg).
+square(28,o5).
+square(28,o4).
+in(28,o4,o5).
+circle(28,o3).
+circle(28,o2).
+in(28,o2,o3).
+circle(28,o1).
+config(28,o1,up).
+
+bongard(29, neg).
+circle(29,o2).
+config(29,o2,up).
+square(29,o1).
+in(29,o1,o2).
+
+bongard(31, neg).
+circle(31,o4).
+square(31,o3).
+in(31,o3,o4).
+square(31,o2).
+circle(31,o1).
+in(31,o1,o2).
+
+bongard(36, neg).
+circle(36,o3).
+config(36,o3,up).
+circle(36,o2).
+in(36,o2,o3).
+circle(36,o1).
+
+bongard(37, neg).
+square(37,o6).
+circle(37,o5).
+in(37,o5,o6).
+square(37,o4).
+circle(37,o3).
+in(37,o3,o4).
+square(37,o2).
+circle(37,o1).
+config(37,o1,down).
+in(37,o1,o2).
+
+bongard(40, neg).
+circle(40,o4).
+square(40,o3).
+in(40,o3,o4).
+square(40,o2).
+circle(40,o1).
+in(40,o1,o2).
+
+bongard(41, neg).
+square(41,o3).
+circle(41,o2).
+in(41,o2,o3).
+circle(41,o1).
+config(41,o1,down).
+
+
+bongard(52, neg).
+square(52,o3).
+circle(52,o2).
+in(52,o2,o3).
+circle(52,o1).
+
+bongard(55, neg).
+circle(55,o2).
+config(55,o2,down).
+square(55,o1).
+in(55,o1,o2).
+
+bongard(56, neg).
+circle(56,o5).
+circle(56,o4).
+in(56,o4,o5).
+circle(56,o3).
+circle(56,o2).
+in(56,o2,o3).
+circle(56,o1).
+
+bongard(57, neg).
+circle(57,o4).
+circle(57,o3).
+in(57,o3,o4).
+square(57,o2).
+circle(57,o1).
+config(57,o1,up).
+in(57,o1,o2).
+
+bongard(59, neg).
+square(59,o5).
+circle(59,o4).
+config(59,o4,up).
+in(59,o4,o5).
+circle(59,o3).
+config(59,o3,down).
+circle(59,o2).
+in(59,o2,o3).
+circle(59,o1).
+
+
+bongard(63, neg).
+circle(63,o2).
+config(63,o2,up).
+square(63,o1).
+in(63,o1,o2).
+
+bongard(65, neg).
+circle(65,o6).
+circle(65,o5).
+in(65,o5,o6).
+circle(65,o4).
+circle(65,o3).
+in(65,o3,o4).
+square(65,o2).
+square(65,o1).
+in(65,o1,o2).
+
+bongard(66, neg).
+circle(66,o2).
+config(66,o2,up).
+circle(66,o1).
+in(66,o1,o2).
+
+bongard(67, neg).
+circle(67,o4).
+circle(67,o3).
+in(67,o3,o4).
+square(67,o2).
+circle(67,o1).
+config(67,o1,down).
+in(67,o1,o2).
+
+
+
+
+bongard(77, neg).
+square(77,o3).
+circle(77,o2).
+config(77,o2,up).
+in(77,o2,o3).
+square(77,o1).
+
+
+
+bongard(93, neg).
+square(93,o4).
+circle(93,o3).
+config(93,o3,up).
+in(93,o3,o4).
+circle(93,o2).
+circle(93,o1).
+in(93,o1,o2).
+
+
+bongard(99, neg).
+circle(99,o4).
+config(99,o4,down).
+square(99,o3).
+in(99,o3,o4).
+square(99,o2).
+circle(99,o1).
+in(99,o1,o2).
+
+bongard(101, neg).
+square(101,o6).
+square(101,o5).
+in(101,o5,o6).
+circle(101,o4).
+config(101,o4,down).
+circle(101,o3).
+in(101,o3,o4).
+circle(101,o2).
+config(101,o2,down).
+circle(101,o1).
+in(101,o1,o2).
+
+
+
+bongard(105, neg).
+circle(105,o2).
+config(105,o2,up).
+square(105,o1).
+in(105,o1,o2).
+
+
+
+bongard(109, neg).
+square(109,o4).
+circle(109,o3).
+in(109,o3,o4).
+square(109,o2).
+circle(109,o1).
+config(109,o1,up).
+in(109,o1,o2).
+
+bongard(110, neg).
+circle(110,o3).
+config(110,o3,up).
+circle(110,o2).
+in(110,o2,o3).
+circle(110,o1).
+config(110,o1,up).
+
+bongard(111, neg).
+square(111,o6).
+circle(111,o5).
+in(111,o5,o6).
+square(111,o4).
+square(111,o3).
+in(111,o3,o4).
+circle(111,o2).
+config(111,o2,up).
+square(111,o1).
+in(111,o1,o2).
+
+bongard(112, neg).
+square(112,o4).
+circle(112,o3).
+in(112,o3,o4).
+square(112,o2).
+circle(112,o1).
+in(112,o1,o2).
+
+bongard(117, neg).
+square(117,o2).
+square(117,o1).
+in(117,o1,o2).
+
+
+bongard(121, neg).
+circle(121,o3).
+config(121,o3,down).
+square(121,o2).
+in(121,o2,o3).
+circle(121,o1).
+config(121,o1,down).
+
+bongard(125, neg).
+circle(125,o4).
+circle(125,o3).
+in(125,o3,o4).
+square(125,o2).
+square(125,o1).
+in(125,o1,o2).
+
+bongard(126, neg).
+circle(126,o3).
+circle(126,o2).
+in(126,o2,o3).
+square(126,o1).
+
+bongard(127, neg).
+circle(127,o3).
+config(127,o3,up).
+square(127,o2).
+in(127,o2,o3).
+square(127,o1).
+
+bongard(128, neg).
+circle(128,o3).
+circle(128,o2).
+in(128,o2,o3).
+square(128,o1).
+
+bongard(131, neg).
+circle(131,o2).
+circle(131,o1).
+in(131,o1,o2).
+
+
+bongard(137, neg).
+square(137,o6).
+circle(137,o5).
+in(137,o5,o6).
+circle(137,o4).
+circle(137,o3).
+in(137,o3,o4).
+circle(137,o2).
+circle(137,o1).
+in(137,o1,o2).
+
+bongard(140, neg).
+square(140,o3).
+circle(140,o2).
+config(140,o2,down).
+in(140,o2,o3).
+circle(140,o1).
+config(140,o1,down).
+
+bongard(143, neg).
+circle(143,o4).
+circle(143,o3).
+config(143,o3,down).
+in(143,o3,o4).
+circle(143,o2).
+circle(143,o1).
+in(143,o1,o2).
+
+bongard(144, neg).
+circle(144,o5).
+config(144,o5,down).
+circle(144,o4).
+in(144,o4,o5).
+square(144,o3).
+square(144,o2).
+in(144,o2,o3).
+square(144,o1).
+
+bongard(151, neg).
+circle(151,o3).
+circle(151,o2).
+in(151,o2,o3).
+square(151,o1).
+
+bongard(154, neg).
+circle(154,o4).
+square(154,o3).
+in(154,o3,o4).
+circle(154,o2).
+circle(154,o1).
+in(154,o1,o2).
+
+bongard(155, neg).
+square(155,o3).
+circle(155,o2).
+in(155,o2,o3).
+square(155,o1).
+
+bongard(156, neg).
+square(156,o6).
+square(156,o5).
+in(156,o5,o6).
+circle(156,o4).
+config(156,o4,down).
+square(156,o3).
+in(156,o3,o4).
+circle(156,o2).
+circle(156,o1).
+in(156,o1,o2).
+
+bongard(159, neg).
+circle(159,o6).
+config(159,o6,up).
+square(159,o5).
+in(159,o5,o6).
+circle(159,o4).
+config(159,o4,down).
+square(159,o3).
+in(159,o3,o4).
+square(159,o2).
+circle(159,o1).
+config(159,o1,up).
+in(159,o1,o2).
+
+
+
+bongard(169, neg).
+circle(169,o6).
+config(169,o6,up).
+square(169,o5).
+in(169,o5,o6).
+circle(169,o4).
+circle(169,o3).
+config(169,o3,down).
+in(169,o3,o4).
+circle(169,o2).
+circle(169,o1).
+in(169,o1,o2).
+
+bongard(172, neg).
+square(172,o4).
+circle(172,o3).
+in(172,o3,o4).
+circle(172,o2).
+config(172,o2,up).
+circle(172,o1).
+in(172,o1,o2).
+
+bongard(175, neg).
+circle(175,o2).
+circle(175,o1).
+in(175,o1,o2).
+
+bongard(176, neg).
+circle(176,o5).
+circle(176,o4).
+in(176,o4,o5).
+circle(176,o3).
+square(176,o2).
+in(176,o2,o3).
+circle(176,o1).
+
+bongard(177, neg).
+circle(177,o4).
+circle(177,o3).
+in(177,o3,o4).
+square(177,o2).
+circle(177,o1).
+in(177,o1,o2).
+
+
+bongard(181, neg).
+circle(181,o2).
+config(181,o2,up).
+circle(181,o1).
+in(181,o1,o2).
+
+bongard(184, neg).
+square(184,o2).
+circle(184,o1).
+in(184,o1,o2).
+
+bongard(188, neg).
+circle(188,o2).
+circle(188,o1).
+in(188,o1,o2).
+
+bongard(190, neg).
+square(190,o2).
+circle(190,o1).
+config(190,o1,up).
+in(190,o1,o2).
+
+
+bongard(193, neg).
+circle(193,o4).
+config(193,o4,up).
+circle(193,o3).
+in(193,o3,o4).
+square(193,o2).
+circle(193,o1).
+in(193,o1,o2).
+
+bongard(194, neg).
+circle(194,o4).
+square(194,o3).
+in(194,o3,o4).
+circle(194,o2).
+circle(194,o1).
+in(194,o1,o2).
+
+bongard(196, neg).
+square(196,o3).
+circle(196,o2).
+in(196,o2,o3).
+circle(196,o1).
+config(196,o1,up).
+
+
+bongard(202, neg).
+circle(202,o5).
+circle(202,o4).
+in(202,o4,o5).
+square(202,o3).
+square(202,o2).
+in(202,o2,o3).
+circle(202,o1).
+config(202,o1,down).
+
+bongard(206, neg).
+circle(206,o3).
+circle(206,o2).
+in(206,o2,o3).
+circle(206,o1).
+
+bongard(208, neg).
+square(208,o4).
+square(208,o3).
+in(208,o3,o4).
+circle(208,o2).
+config(208,o2,down).
+circle(208,o1).
+in(208,o1,o2).
+
+bongard(209, neg).
+square(209,o5).
+square(209,o4).
+in(209,o4,o5).
+circle(209,o3).
+circle(209,o2).
+in(209,o2,o3).
+circle(209,o1).
+
+
+
+
+
+
+
+
+
+bongard(230, neg).
+square(230,o5).
+square(230,o4).
+in(230,o4,o5).
+square(230,o3).
+circle(230,o2).
+config(230,o2,up).
+in(230,o2,o3).
+circle(230,o1).
+config(230,o1,down).
+
+
+bongard(233, neg).
+square(233,o2).
+circle(233,o1).
+in(233,o1,o2).
+
+
+bongard(241, neg).
+circle(241,o5).
+config(241,o5,up).
+circle(241,o4).
+in(241,o4,o5).
+square(241,o3).
+circle(241,o2).
+in(241,o2,o3).
+circle(241,o1).
+config(241,o1,down).
+
+bongard(243, neg).
+circle(243,o2).
+circle(243,o1).
+in(243,o1,o2).
+
+
+
+bongard(249, neg).
+circle(249,o5).
+circle(249,o4).
+in(249,o4,o5).
+square(249,o3).
+circle(249,o2).
+in(249,o2,o3).
+circle(249,o1).
+config(249,o1,down).
+
+bongard(250, neg).
+square(250,o6).
+circle(250,o5).
+in(250,o5,o6).
+circle(250,o4).
+square(250,o3).
+in(250,o3,o4).
+circle(250,o2).
+square(250,o1).
+in(250,o1,o2).
+
+
+
+
+bongard(268, neg).
+square(268,o5).
+circle(268,o4).
+in(268,o4,o5).
+circle(268,o3).
+square(268,o2).
+in(268,o2,o3).
+square(268,o1).
+
+
+bongard(273, neg).
+square(273,o4).
+circle(273,o3).
+config(273,o3,down).
+in(273,o3,o4).
+square(273,o2).
+square(273,o1).
+in(273,o1,o2).
+
+bongard(280, neg).
+square(280,o3).
+square(280,o2).
+in(280,o2,o3).
+square(280,o1).
+
+
+bongard(286, neg).
+circle(286,o4).
+config(286,o4,down).
+circle(286,o3).
+in(286,o3,o4).
+circle(286,o2).
+config(286,o2,down).
+square(286,o1).
+in(286,o1,o2).
+
+bongard(287, neg).
+circle(287,o4).
+config(287,o4,up).
+square(287,o3).
+in(287,o3,o4).
+circle(287,o2).
+config(287,o2,down).
+circle(287,o1).
+in(287,o1,o2).
+
+
+bongard(289, neg).
+circle(289,o6).
+config(289,o6,up).
+square(289,o5).
+in(289,o5,o6).
+circle(289,o4).
+config(289,o4,up).
+square(289,o3).
+in(289,o3,o4).
+square(289,o2).
+circle(289,o1).
+in(289,o1,o2).
+
+bongard(290, neg).
+circle(290,o5).
+config(290,o5,down).
+circle(290,o4).
+in(290,o4,o5).
+circle(290,o3).
+config(290,o3,up).
+circle(290,o2).
+in(290,o2,o3).
+square(290,o1).
+
+
+bongard(300, neg).
+square(300,o3).
+circle(300,o2).
+config(300,o2,down).
+in(300,o2,o3).
+circle(300,o1).
+config(300,o1,down).
+
+bongard(301, neg).
+square(301,o6).
+circle(301,o5).
+config(301,o5,up).
+in(301,o5,o6).
+square(301,o4).
+square(301,o3).
+in(301,o3,o4).
+circle(301,o2).
+config(301,o2,up).
+circle(301,o1).
+in(301,o1,o2).
+
+bongard(303, neg).
+circle(303,o3).
+circle(303,o2).
+in(303,o2,o3).
+circle(303,o1).
+config(303,o1,up).
+
+bongard(304, neg).
+square(304,o3).
+square(304,o2).
+in(304,o2,o3).
+circle(304,o1).
+config(304,o1,up).
+
+bongard(307, neg).
+square(307,o3).
+circle(307,o2).
+in(307,o2,o3).
+square(307,o1).
+
+bongard(309, neg).
+circle(309,o3).
+config(309,o3,down).
+circle(309,o2).
+in(309,o2,o3).
+circle(309,o1).
+
+
+bongard(316, neg).
+square(316,o4).
+circle(316,o3).
+config(316,o3,up).
+in(316,o3,o4).
+circle(316,o2).
+config(316,o2,up).
+circle(316,o1).
+in(316,o1,o2).
+
+
+bongard(321, neg).
+circle(321,o2).
+config(321,o2,down).
+circle(321,o1).
+in(321,o1,o2).
+
+bongard(324, neg).
+square(324,o5).
+square(324,o4).
+in(324,o4,o5).
+circle(324,o3).
+config(324,o3,down).
+square(324,o2).
+in(324,o2,o3).
+square(324,o1).
+
+bongard(326, neg).
+square(326,o6).
+circle(326,o5).
+in(326,o5,o6).
+circle(326,o4).
+square(326,o3).
+in(326,o3,o4).
+square(326,o2).
+circle(326,o1).
+in(326,o1,o2).
+
+bongard(327, neg).
+square(327,o2).
+circle(327,o1).
+in(327,o1,o2).
+
+bongard(328, neg).
+square(328,o2).
+circle(328,o1).
+in(328,o1,o2).
+
+bongard(329, neg).
+circle(329,o3).
+config(329,o3,up).
+circle(329,o2).
+in(329,o2,o3).
+square(329,o1).
+
+
+bongard(334, neg).
+circle(334,o4).
+config(334,o4,up).
+circle(334,o3).
+in(334,o3,o4).
+square(334,o2).
+square(334,o1).
+in(334,o1,o2).
+
+bongard(337, neg).
+circle(337,o4).
+circle(337,o3).
+in(337,o3,o4).
+circle(337,o2).
+config(337,o2,down).
+square(337,o1).
+in(337,o1,o2).
+
+
+
+bongard(348, neg).
+square(348,o4).
+square(348,o3).
+in(348,o3,o4).
+square(348,o2).
+circle(348,o1).
+in(348,o1,o2).
+
+bongard(352, neg).
+circle(352,o6).
+config(352,o6,down).
+circle(352,o5).
+in(352,o5,o6).
+circle(352,o4).
+config(352,o4,up).
+circle(352,o3).
+in(352,o3,o4).
+square(352,o2).
+square(352,o1).
+in(352,o1,o2).
+
+bongard(353, neg).
+square(353,o2).
+square(353,o1).
+in(353,o1,o2).
+
+bongard(355, neg).
+square(355,o2).
+circle(355,o1).
+config(355,o1,up).
+in(355,o1,o2).
+
+
+
+bongard(369, neg).
+circle(369,o6).
+config(369,o6,down).
+circle(369,o5).
+in(369,o5,o6).
+square(369,o4).
+square(369,o3).
+in(369,o3,o4).
+circle(369,o2).
+config(369,o2,up).
+square(369,o1).
+in(369,o1,o2).
+
+bongard(370, neg).
+circle(370,o6).
+circle(370,o5).
+in(370,o5,o6).
+square(370,o4).
+circle(370,o3).
+config(370,o3,down).
+in(370,o3,o4).
+square(370,o2).
+square(370,o1).
+in(370,o1,o2).
+
+
+
+bongard(376, neg).
+square(376,o4).
+circle(376,o3).
+config(376,o3,down).
+in(376,o3,o4).
+square(376,o2).
+square(376,o1).
+in(376,o1,o2).
+
+bongard(378, neg).
+square(378,o3).
+circle(378,o2).
+in(378,o2,o3).
+square(378,o1).
+
+
+
+
+
+bongard(393, neg).
+circle(393,o3).
+config(393,o3,up).
+square(393,o2).
+in(393,o2,o3).
+square(393,o1).
+
+
+bongard(404, neg).
+square(404,o3).
+circle(404,o2).
+in(404,o2,o3).
+circle(404,o1).
+
+bongard(408, neg).
+square(408,o2).
+square(408,o1).
+in(408,o1,o2).
+
+bongard(411, neg).
+circle(411,o5).
+circle(411,o4).
+config(411,o4,down).
+in(411,o4,o5).
+circle(411,o3).
+circle(411,o2).
+in(411,o2,o3).
+square(411,o1).
+
+bongard(412, neg).
+circle(412,o6).
+circle(412,o5).
+in(412,o5,o6).
+square(412,o4).
+circle(412,o3).
+in(412,o3,o4).
+circle(412,o2).
+square(412,o1).
+in(412,o1,o2).
+
+bongard(416, neg).
+circle(416,o4).
+square(416,o3).
+in(416,o3,o4).
+square(416,o2).
+circle(416,o1).
+in(416,o1,o2).
+
+bongard(417, neg).
+circle(417,o6).
+config(417,o6,up).
+square(417,o5).
+in(417,o5,o6).
+square(417,o4).
+circle(417,o3).
+in(417,o3,o4).
+circle(417,o2).
+config(417,o2,up).
+square(417,o1).
+in(417,o1,o2).
+
+bongard(419, neg).
+square(419,o2).
+circle(419,o1).
+in(419,o1,o2).
+
+
+bongard(421, neg).
+square(421,o2).
+circle(421,o1).
+config(421,o1,up).
+in(421,o1,o2).
+
+bongard(424, neg).
+square(424,o2).
+circle(424,o1).
+in(424,o1,o2).
+
+bongard(425, neg).
+circle(425,o3).
+config(425,o3,up).
+circle(425,o2).
+in(425,o2,o3).
+square(425,o1).
+
+
+
+bongard(431, neg).
+square(431,o2).
+circle(431,o1).
+config(431,o1,up).
+in(431,o1,o2).
+
+bongard(432, neg).
+square(432,o3).
+circle(432,o2).
+in(432,o2,o3).
+circle(432,o1).
+
+
+bongard(437, neg).
+circle(437,o2).
+config(437,o2,up).
+circle(437,o1).
+in(437,o1,o2).
+
+bongard(444, neg).
+circle(444,o3).
+config(444,o3,down).
+circle(444,o2).
+in(444,o2,o3).
+circle(444,o1).
+config(444,o1,up).
+
+bongard(445, neg).
+square(445,o5).
+circle(445,o4).
+config(445,o4,up).
+in(445,o4,o5).
+circle(445,o3).
+config(445,o3,down).
+square(445,o2).
+in(445,o2,o3).
+square(445,o1).
+
+bongard(447, neg).
+square(447,o5).
+square(447,o4).
+in(447,o4,o5).
+square(447,o3).
+circle(447,o2).
+config(447,o2,up).
+in(447,o2,o3).
+circle(447,o1).
+config(447,o1,down).
+
+
+
+bongard(457, neg).
+square(457,o4).
+circle(457,o3).
+config(457,o3,up).
+in(457,o3,o4).
+circle(457,o2).
+config(457,o2,up).
+square(457,o1).
+in(457,o1,o2).
+
+
+bongard(462, neg).
+square(462,o2).
+circle(462,o1).
+config(462,o1,down).
+in(462,o1,o2).
+
+
+
+
+bongard(468, neg).
+circle(468,o2).
+circle(468,o1).
+in(468,o1,o2).
+
+bongard(470, neg).
+circle(470,o4).
+config(470,o4,down).
+square(470,o3).
+in(470,o3,o4).
+circle(470,o2).
+circle(470,o1).
+in(470,o1,o2).
+
+bongard(473, neg).
+square(473,o4).
+circle(473,o3).
+config(473,o3,up).
+in(473,o3,o4).
+square(473,o2).
+circle(473,o1).
+in(473,o1,o2).
+
+bongard(474, neg).
+circle(474,o6).
+config(474,o6,up).
+square(474,o5).
+in(474,o5,o6).
+square(474,o4).
+circle(474,o3).
+in(474,o3,o4).
+square(474,o2).
+circle(474,o1).
+in(474,o1,o2).
+
+bongard(476, neg).
+circle(476,o5).
+config(476,o5,down).
+square(476,o4).
+in(476,o4,o5).
+circle(476,o3).
+circle(476,o2).
+in(476,o2,o3).
+square(476,o1).
+
+bongard(477, neg).
+square(477,o4).
+circle(477,o3).
+config(477,o3,up).
+in(477,o3,o4).
+square(477,o2).
+circle(477,o1).
+config(477,o1,up).
+in(477,o1,o2).
+
+
+bongard(481, neg).
+circle(481,o2).
+config(481,o2,down).
+circle(481,o1).
+in(481,o1,o2).
+
+
+bongard(483, neg).
+circle(483,o4).
+circle(483,o3).
+in(483,o3,o4).
+square(483,o2).
+square(483,o1).
+in(483,o1,o2).
+
+bongard(485, neg).
+circle(485,o2).
+config(485,o2,down).
+circle(485,o1).
+in(485,o1,o2).
+
+bongard(488, neg).
+circle(488,o4).
+config(488,o4,down).
+circle(488,o3).
+in(488,o3,o4).
+square(488,o2).
+circle(488,o1).
+in(488,o1,o2).
+
+bongard(489, neg).
+circle(489,o3).
+config(489,o3,down).
+square(489,o2).
+in(489,o2,o3).
+square(489,o1).
+
+bongard(490, neg).
+circle(490,o5).
+config(490,o5,down).
+circle(490,o4).
+in(490,o4,o5).
+circle(490,o3).
+circle(490,o2).
+in(490,o2,o3).
+square(490,o1).
+
+bongard(491, neg).
+circle(491,o2).
+config(491,o2,up).
+square(491,o1).
+in(491,o1,o2).
+
+bongard(494, neg).
+circle(494,o2).
+config(494,o2,up).
+square(494,o1).
+in(494,o1,o2).
+
+bongard(497, neg).
+circle(497,o2).
+config(497,o2,up).
+square(497,o1).
+in(497,o1,o2).
+
+bongard(499, neg).
+square(499,o5).
+circle(499,o4).
+config(499,o4,down).
+in(499,o4,o5).
+square(499,o3).
+square(499,o2).
+in(499,o2,o3).
+square(499,o1).
+
+bongard(500, neg).
+circle(500,o3).
+circle(500,o2).
+in(500,o2,o3).
+square(500,o1).
+
+bongard(512, neg).
+square(512,o2).
+circle(512,o1).
+config(512,o1,down).
+in(512,o1,o2).
+
+bongard(513, neg).
+circle(513,o6).
+config(513,o6,up).
+square(513,o5).
+in(513,o5,o6).
+square(513,o4).
+circle(513,o3).
+config(513,o3,up).
+in(513,o3,o4).
+circle(513,o2).
+config(513,o2,up).
+square(513,o1).
+in(513,o1,o2).
+
+
+bongard(517, neg).
+square(517,o5).
+square(517,o4).
+in(517,o4,o5).
+circle(517,o3).
+config(517,o3,down).
+square(517,o2).
+in(517,o2,o3).
+square(517,o1).
+
+
+bongard(521, neg).
+circle(521,o6).
+circle(521,o5).
+in(521,o5,o6).
+square(521,o4).
+square(521,o3).
+in(521,o3,o4).
+circle(521,o2).
+square(521,o1).
+in(521,o1,o2).
+
+
+bongard(529, neg).
+square(529,o4).
+circle(529,o3).
+config(529,o3,up).
+in(529,o3,o4).
+square(529,o2).
+circle(529,o1).
+in(529,o1,o2).
+
+bongard(531, neg).
+circle(531,o2).
+circle(531,o1).
+in(531,o1,o2).
+
+bongard(533, neg).
+circle(533,o4).
+config(533,o4,up).
+square(533,o3).
+in(533,o3,o4).
+square(533,o2).
+square(533,o1).
+in(533,o1,o2).
+
+bongard(534, neg).
+circle(534,o2).
+circle(534,o1).
+in(534,o1,o2).
+
+
+bongard(540, neg).
+circle(540,o2).
+circle(540,o1).
+in(540,o1,o2).
+
+bongard(542, neg).
+square(542,o5).
+square(542,o4).
+in(542,o4,o5).
+circle(542,o3).
+config(542,o3,up).
+circle(542,o2).
+in(542,o2,o3).
+circle(542,o1).
+config(542,o1,down).
+
+bongard(543, neg).
+circle(543,o4).
+config(543,o4,up).
+square(543,o3).
+in(543,o3,o4).
+circle(543,o2).
+circle(543,o1).
+in(543,o1,o2).
+
+bongard(544, neg).
+circle(544,o6).
+circle(544,o5).
+in(544,o5,o6).
+square(544,o4).
+circle(544,o3).
+in(544,o3,o4).
+circle(544,o2).
+square(544,o1).
+in(544,o1,o2).
+
+bongard(546, neg).
+square(546,o3).
+circle(546,o2).
+in(546,o2,o3).
+circle(546,o1).
+
+
+
+bongard(553, neg).
+circle(553,o2).
+circle(553,o1).
+in(553,o1,o2).
+
+bongard(555, neg).
+square(555,o4).
+circle(555,o3).
+config(555,o3,down).
+in(555,o3,o4).
+square(555,o2).
+circle(555,o1).
+in(555,o1,o2).
+
+bongard(559, neg).
+square(559,o3).
+circle(559,o2).
+in(559,o2,o3).
+circle(559,o1).
+config(559,o1,up).
+
+
+
+
+
+bongard(578, neg).
+square(578,o2).
+circle(578,o1).
+config(578,o1,up).
+in(578,o1,o2).
+
+
+bongard(583, neg).
+square(583,o3).
+circle(583,o2).
+in(583,o2,o3).
+square(583,o1).
+
+bongard(591, neg).
+square(591,o2).
+circle(591,o1).
+config(591,o1,up).
+in(591,o1,o2).
+
+
+
+bongard(600, neg).
+square(600,o2).
+square(600,o1).
+in(600,o1,o2).
+
+
+bongard(609, neg).
+circle(609,o2).
+circle(609,o1).
+in(609,o1,o2).
+
+bongard(612, neg).
+circle(612,o5).
+config(612,o5,down).
+circle(612,o4).
+in(612,o4,o5).
+square(612,o3).
+square(612,o2).
+in(612,o2,o3).
+square(612,o1).
+
+bongard(614, neg).
+circle(614,o3).
+config(614,o3,up).
+square(614,o2).
+in(614,o2,o3).
+square(614,o1).
+
+bongard(615, neg).
+square(615,o2).
+circle(615,o1).
+config(615,o1,up).
+in(615,o1,o2).
+
+bongard(616, neg).
+circle(616,o2).
+circle(616,o1).
+in(616,o1,o2).
+
+bongard(617, neg).
+square(617,o5).
+circle(617,o4).
+config(617,o4,down).
+in(617,o4,o5).
+square(617,o3).
+square(617,o2).
+in(617,o2,o3).
+square(617,o1).
+
+
+bongard(625, neg).
+circle(625,o2).
+circle(625,o1).
+in(625,o1,o2).
+
+bongard(628, neg).
+circle(628,o5).
+config(628,o5,down).
+circle(628,o4).
+in(628,o4,o5).
+square(628,o3).
+square(628,o2).
+in(628,o2,o3).
+square(628,o1).
+
+
+bongard(635, neg).
+circle(635,o5).
+config(635,o5,down).
+circle(635,o4).
+in(635,o4,o5).
+circle(635,o3).
+config(635,o3,up).
+square(635,o2).
+in(635,o2,o3).
+circle(635,o1).
+
+bongard(637, neg).
+square(637,o2).
+circle(637,o1).
+config(637,o1,up).
+in(637,o1,o2).
+
+
+
+
+
+
+
+
+
+bongard(654, neg).
+circle(654,o4).
+config(654,o4,up).
+circle(654,o3).
+in(654,o3,o4).
+circle(654,o2).
+circle(654,o1).
+in(654,o1,o2).
+
+bongard(656, neg).
+square(656,o2).
+circle(656,o1).
+config(656,o1,down).
+in(656,o1,o2).
+
+
+bongard(658, neg).
+square(658,o4).
+circle(658,o3).
+in(658,o3,o4).
+square(658,o2).
+circle(658,o1).
+in(658,o1,o2).
+
+bongard(662, neg).
+square(662,o3).
+circle(662,o2).
+in(662,o2,o3).
+circle(662,o1).
+
+
+bongard(669, neg).
+square(669,o4).
+square(669,o3).
+in(669,o3,o4).
+square(669,o2).
+circle(669,o1).
+config(669,o1,down).
+in(669,o1,o2).
+
+bongard(671, neg).
+square(671,o5).
+square(671,o4).
+in(671,o4,o5).
+circle(671,o3).
+config(671,o3,up).
+circle(671,o2).
+in(671,o2,o3).
+square(671,o1).
+
+bongard(679, neg).
+circle(679,o2).
+config(679,o2,up).
+square(679,o1).
+in(679,o1,o2).
+
+bongard(682, neg).
+circle(682,o4).
+config(682,o4,up).
+square(682,o3).
+in(682,o3,o4).
+circle(682,o2).
+config(682,o2,up).
+square(682,o1).
+in(682,o1,o2).
+
+bongard(683, neg).
+square(683,o4).
+circle(683,o3).
+in(683,o3,o4).
+circle(683,o2).
+config(683,o2,down).
+circle(683,o1).
+in(683,o1,o2).
+
+
+
+bongard(691, neg).
+square(691,o5).
+circle(691,o4).
+in(691,o4,o5).
+circle(691,o3).
+config(691,o3,up).
+square(691,o2).
+in(691,o2,o3).
+circle(691,o1).
+
+bongard(693, neg).
+circle(693,o6).
+config(693,o6,up).
+square(693,o5).
+in(693,o5,o6).
+square(693,o4).
+circle(693,o3).
+in(693,o3,o4).
+square(693,o2).
+circle(693,o1).
+config(693,o1,down).
+in(693,o1,o2).
+
+bongard(698, neg).
+circle(698,o6).
+config(698,o6,up).
+circle(698,o5).
+in(698,o5,o6).
+square(698,o4).
+square(698,o3).
+in(698,o3,o4).
+square(698,o2).
+square(698,o1).
+in(698,o1,o2).
+
+bongard(700, neg).
+circle(700,o2).
+config(700,o2,down).
+circle(700,o1).
+in(700,o1,o2).
+
+bongard(701, neg).
+circle(701,o5).
+square(701,o4).
+in(701,o4,o5).
+circle(701,o3).
+circle(701,o2).
+in(701,o2,o3).
+circle(701,o1).
+
+bongard(705, neg).
+circle(705,o5).
+circle(705,o4).
+in(705,o4,o5).
+circle(705,o3).
+config(705,o3,up).
+circle(705,o2).
+in(705,o2,o3).
+circle(705,o1).
+
+bongard(708, neg).
+circle(708,o5).
+config(708,o5,up).
+square(708,o4).
+in(708,o4,o5).
+circle(708,o3).
+circle(708,o2).
+in(708,o2,o3).
+square(708,o1).
+
+bongard(709, neg).
+circle(709,o5).
+circle(709,o4).
+in(709,o4,o5).
+circle(709,o3).
+config(709,o3,down).
+circle(709,o2).
+in(709,o2,o3).
+square(709,o1).
+
+bongard(710, neg).
+square(710,o4).
+circle(710,o3).
+config(710,o3,down).
+in(710,o3,o4).
+square(710,o2).
+circle(710,o1).
+config(710,o1,down).
+in(710,o1,o2).
+
+bongard(719, neg).
+square(719,o4).
+square(719,o3).
+in(719,o3,o4).
+circle(719,o2).
+config(719,o2,down).
+circle(719,o1).
+in(719,o1,o2).
+
+bongard(722, neg).
+circle(722,o4).
+config(722,o4,down).
+square(722,o3).
+in(722,o3,o4).
+circle(722,o2).
+config(722,o2,up).
+square(722,o1).
+in(722,o1,o2).
+
+bongard(723, neg).
+circle(723,o4).
+circle(723,o3).
+in(723,o3,o4).
+circle(723,o2).
+config(723,o2,down).
+circle(723,o1).
+in(723,o1,o2).
+
+
+bongard(728, neg).
+circle(728,o4).
+circle(728,o3).
+in(728,o3,o4).
+square(728,o2).
+circle(728,o1).
+in(728,o1,o2).
+
+bongard(732, neg).
+circle(732,o5).
+circle(732,o4).
+config(732,o4,down).
+in(732,o4,o5).
+circle(732,o3).
+config(732,o3,up).
+circle(732,o2).
+in(732,o2,o3).
+circle(732,o1).
+
+bongard(734, neg).
+square(734,o4).
+circle(734,o3).
+in(734,o3,o4).
+circle(734,o2).
+config(734,o2,down).
+circle(734,o1).
+in(734,o1,o2).
+
+bongard(737, neg).
+square(737,o4).
+circle(737,o3).
+in(737,o3,o4).
+square(737,o2).
+circle(737,o1).
+config(737,o1,down).
+in(737,o1,o2).
+
+bongard(740, neg).
+square(740,o2).
+square(740,o1).
+in(740,o1,o2).
+
+bongard(741, neg).
+circle(741,o5).
+config(741,o5,up).
+circle(741,o4).
+in(741,o4,o5).
+square(741,o3).
+circle(741,o2).
+in(741,o2,o3).
+circle(741,o1).
+config(741,o1,down).
+
+bongard(743, neg).
+circle(743,o2).
+config(743,o2,down).
+square(743,o1).
+in(743,o1,o2).
+
+bongard(744, neg).
+circle(744,o5).
+config(744,o5,down).
+square(744,o4).
+in(744,o4,o5).
+circle(744,o3).
+config(744,o3,down).
+square(744,o2).
+in(744,o2,o3).
+circle(744,o1).
+config(744,o1,down).
+
+
+bongard(747, neg).
+square(747,o2).
+square(747,o1).
+in(747,o1,o2).
+
+bongard(748, neg).
+square(748,o5).
+circle(748,o4).
+in(748,o4,o5).
+circle(748,o3).
+config(748,o3,down).
+circle(748,o2).
+in(748,o2,o3).
+circle(748,o1).
+config(748,o1,up).
+
+bongard(750, neg).
+square(750,o4).
+circle(750,o3).
+config(750,o3,up).
+in(750,o3,o4).
+circle(750,o2).
+config(750,o2,up).
+square(750,o1).
+in(750,o1,o2).
+
+bongard(751, neg).
+circle(751,o2).
+config(751,o2,down).
+square(751,o1).
+in(751,o1,o2).
+
+
+bongard(754, neg).
+square(754,o3).
+circle(754,o2).
+config(754,o2,up).
+in(754,o2,o3).
+circle(754,o1).
+config(754,o1,up).
+
+bongard(755, neg).
+circle(755,o2).
+config(755,o2,up).
+circle(755,o1).
+in(755,o1,o2).
+
+bongard(765, neg).
+circle(765,o2).
+config(765,o2,down).
+square(765,o1).
+in(765,o1,o2).
+
+bongard(766, neg).
+circle(766,o3).
+config(766,o3,up).
+square(766,o2).
+in(766,o2,o3).
+circle(766,o1).
+config(766,o1,down).
+
+
+bongard(769, neg).
+circle(769,o2).
+circle(769,o1).
+in(769,o1,o2).
+
+bongard(772, neg).
+square(772,o5).
+circle(772,o4).
+in(772,o4,o5).
+square(772,o3).
+circle(772,o2).
+config(772,o2,down).
+in(772,o2,o3).
+circle(772,o1).
+config(772,o1,down).
+
+bongard(773, neg).
+square(773,o5).
+circle(773,o4).
+config(773,o4,up).
+in(773,o4,o5).
+square(773,o3).
+circle(773,o2).
+in(773,o2,o3).
+square(773,o1).
+
+bongard(777, neg).
+circle(777,o3).
+config(777,o3,up).
+circle(777,o2).
+in(777,o2,o3).
+circle(777,o1).
+
+bongard(779, neg).
+square(779,o5).
+circle(779,o4).
+config(779,o4,down).
+in(779,o4,o5).
+circle(779,o3).
+config(779,o3,up).
+square(779,o2).
+in(779,o2,o3).
+square(779,o1).
+
+bongard(780, neg).
+square(780,o5).
+square(780,o4).
+in(780,o4,o5).
+circle(780,o3).
+circle(780,o2).
+in(780,o2,o3).
+circle(780,o1).
+
+bongard(781, neg).
+circle(781,o6).
+config(781,o6,up).
+square(781,o5).
+in(781,o5,o6).
+square(781,o4).
+circle(781,o3).
+config(781,o3,up).
+in(781,o3,o4).
+circle(781,o2).
+config(781,o2,up).
+circle(781,o1).
+in(781,o1,o2).
+
+
+bongard(794, neg).
+circle(794,o3).
+config(794,o3,up).
+square(794,o2).
+in(794,o2,o3).
+circle(794,o1).
+config(794,o1,down).
+
+bongard(795, neg).
+circle(795,o3).
+config(795,o3,down).
+circle(795,o2).
+in(795,o2,o3).
+circle(795,o1).
+config(795,o1,up).
+
+bongard(797, neg).
+circle(797,o5).
+circle(797,o4).
+in(797,o4,o5).
+circle(797,o3).
+square(797,o2).
+in(797,o2,o3).
+circle(797,o1).
+
+bongard(803, neg).
+circle(803,o4).
+config(803,o4,up).
+circle(803,o3).
+in(803,o3,o4).
+square(803,o2).
+square(803,o1).
+in(803,o1,o2).
+
+
+bongard(807, neg).
+square(807,o5).
+circle(807,o4).
+config(807,o4,up).
+in(807,o4,o5).
+circle(807,o3).
+config(807,o3,down).
+circle(807,o2).
+in(807,o2,o3).
+circle(807,o1).
+
+bongard(814, neg).
+square(814,o2).
+square(814,o1).
+in(814,o1,o2).
+
+bongard(815, neg).
+circle(815,o5).
+circle(815,o4).
+in(815,o4,o5).
+square(815,o3).
+circle(815,o2).
+in(815,o2,o3).
+square(815,o1).
+
+
+bongard(818, neg).
+square(818,o2).
+circle(818,o1).
+config(818,o1,up).
+in(818,o1,o2).
+
+bongard(819, neg).
+circle(819,o5).
+circle(819,o4).
+in(819,o4,o5).
+square(819,o3).
+square(819,o2).
+in(819,o2,o3).
+circle(819,o1).
+
+bongard(822, neg).
+square(822,o3).
+square(822,o2).
+in(822,o2,o3).
+square(822,o1).
+
+bongard(829, neg).
+square(829,o3).
+square(829,o2).
+in(829,o2,o3).
+circle(829,o1).
+config(829,o1,down).
+
+bongard(832, neg).
+square(832,o5).
+circle(832,o4).
+in(832,o4,o5).
+circle(832,o3).
+config(832,o3,down).
+circle(832,o2).
+in(832,o2,o3).
+square(832,o1).
+
+bongard(833, neg).
+circle(833,o3).
+config(833,o3,up).
+circle(833,o2).
+in(833,o2,o3).
+circle(833,o1).
+
+
+bongard(836, neg).
+square(836,o6).
+square(836,o5).
+in(836,o5,o6).
+circle(836,o4).
+square(836,o3).
+in(836,o3,o4).
+square(836,o2).
+circle(836,o1).
+in(836,o1,o2).
+
+
+bongard(838, neg).
+square(838,o4).
+circle(838,o3).
+config(838,o3,up).
+in(838,o3,o4).
+circle(838,o2).
+config(838,o2,up).
+square(838,o1).
+in(838,o1,o2).
+
+
+
+bongard(845, neg).
+circle(845,o4).
+config(845,o4,up).
+circle(845,o3).
+in(845,o3,o4).
+circle(845,o2).
+config(845,o2,down).
+circle(845,o1).
+in(845,o1,o2).
+
+bongard(846, neg).
+square(846,o5).
+square(846,o4).
+in(846,o4,o5).
+square(846,o3).
+square(846,o2).
+in(846,o2,o3).
+square(846,o1).
+
+bongard(847, neg).
+circle(847,o6).
+circle(847,o5).
+in(847,o5,o6).
+circle(847,o4).
+square(847,o3).
+in(847,o3,o4).
+circle(847,o2).
+square(847,o1).
+in(847,o1,o2).
+
+bongard(848, neg).
+circle(848,o3).
+config(848,o3,down).
+circle(848,o2).
+in(848,o2,o3).
+circle(848,o1).
+config(848,o1,down).
+
+
+bongard(856, neg).
+circle(856,o2).
+config(856,o2,down).
+square(856,o1).
+in(856,o1,o2).
+
+bongard(859, neg).
+square(859,o2).
+circle(859,o1).
+in(859,o1,o2).
+
+bongard(862, neg).
+square(862,o3).
+circle(862,o2).
+config(862,o2,down).
+in(862,o2,o3).
+square(862,o1).
+
+
+bongard(867, neg).
+circle(867,o5).
+circle(867,o4).
+in(867,o4,o5).
+square(867,o3).
+circle(867,o2).
+config(867,o2,up).
+in(867,o2,o3).
+circle(867,o1).
+
+bongard(872, neg).
+square(872,o3).
+circle(872,o2).
+in(872,o2,o3).
+circle(872,o1).
+
+
+bongard(876, neg).
+square(876,o2).
+circle(876,o1).
+in(876,o1,o2).
+
+
+bongard(882, neg).
+circle(882,o4).
+config(882,o4,down).
+circle(882,o3).
+in(882,o3,o4).
+circle(882,o2).
+circle(882,o1).
+in(882,o1,o2).
+
+bongard(887, neg).
+circle(887,o4).
+config(887,o4,down).
+square(887,o3).
+in(887,o3,o4).
+circle(887,o2).
+config(887,o2,up).
+square(887,o1).
+in(887,o1,o2).
+
+bongard(890, neg).
+circle(890,o3).
+config(890,o3,down).
+square(890,o2).
+in(890,o2,o3).
+square(890,o1).
+
+bongard(892, neg).
+circle(892,o5).
+config(892,o5,down).
+circle(892,o4).
+in(892,o4,o5).
+square(892,o3).
+circle(892,o2).
+config(892,o2,up).
+in(892,o2,o3).
+square(892,o1).
+
+
+bongard(897, neg).
+square(897,o6).
+square(897,o5).
+in(897,o5,o6).
+circle(897,o4).
+config(897,o4,up).
+square(897,o3).
+in(897,o3,o4).
+circle(897,o2).
+config(897,o2,up).
+square(897,o1).
+in(897,o1,o2).
+
+bongard(899, neg).
+circle(899,o2).
+circle(899,o1).
+in(899,o1,o2).
+
+bongard(900, neg).
+square(900,o6).
+circle(900,o5).
+config(900,o5,down).
+in(900,o5,o6).
+square(900,o4).
+circle(900,o3).
+config(900,o3,up).
+in(900,o3,o4).
+square(900,o2).
+square(900,o1).
+in(900,o1,o2).
+
+bongard(904, neg).
+circle(904,o5).
+circle(904,o4).
+in(904,o4,o5).
+square(904,o3).
+circle(904,o2).
+in(904,o2,o3).
+circle(904,o1).
+
+
+
+bongard(912, neg).
+circle(912,o6).
+circle(912,o5).
+config(912,o5,down).
+in(912,o5,o6).
+circle(912,o4).
+config(912,o4,up).
+square(912,o3).
+in(912,o3,o4).
+circle(912,o2).
+config(912,o2,up).
+circle(912,o1).
+in(912,o1,o2).
+
+bongard(915, neg).
+circle(915,o5).
+config(915,o5,up).
+square(915,o4).
+in(915,o4,o5).
+circle(915,o3).
+config(915,o3,down).
+circle(915,o2).
+in(915,o2,o3).
+circle(915,o1).
+
+bongard(917, neg).
+circle(917,o3).
+config(917,o3,up).
+square(917,o2).
+in(917,o2,o3).
+circle(917,o1).
+config(917,o1,up).
+
+bongard(926, neg).
+square(926,o4).
+square(926,o3).
+in(926,o3,o4).
+square(926,o2).
+circle(926,o1).
+in(926,o1,o2).
+
+bongard(927, neg).
+circle(927,o5).
+config(927,o5,down).
+circle(927,o4).
+in(927,o4,o5).
+circle(927,o3).
+config(927,o3,up).
+circle(927,o2).
+in(927,o2,o3).
+circle(927,o1).
+
+bongard(929, neg).
+square(929,o2).
+circle(929,o1).
+in(929,o1,o2).
+
+
+bongard(931, neg).
+square(931,o2).
+circle(931,o1).
+config(931,o1,up).
+in(931,o1,o2).
+
+
+bongard(933, neg).
+square(933,o3).
+square(933,o2).
+in(933,o2,o3).
+circle(933,o1).
+config(933,o1,down).
+
+
+bongard(939, neg).
+circle(939,o2).
+config(939,o2,up).
+square(939,o1).
+in(939,o1,o2).
+
+
+bongard(941, neg).
+circle(941,o3).
+config(941,o3,down).
+circle(941,o2).
+in(941,o2,o3).
+square(941,o1).
+
+bongard(944, neg).
+circle(944,o4).
+circle(944,o3).
+in(944,o3,o4).
+circle(944,o2).
+circle(944,o1).
+config(944,o1,down).
+in(944,o1,o2).
+
+bongard(945, neg).
+square(945,o5).
+square(945,o4).
+in(945,o4,o5).
+square(945,o3).
+circle(945,o2).
+in(945,o2,o3).
+circle(945,o1).
+config(945,o1,down).
+
+
+
+bongard(955, neg).
+circle(955,o6).
+circle(955,o5).
+config(955,o5,down).
+in(955,o5,o6).
+square(955,o4).
+circle(955,o3).
+config(955,o3,up).
+in(955,o3,o4).
+square(955,o2).
+circle(955,o1).
+in(955,o1,o2).
+
+
+bongard(961, neg).
+square(961,o4).
+circle(961,o3).
+in(961,o3,o4).
+circle(961,o2).
+circle(961,o1).
+in(961,o1,o2).
+
+
+bongard(973, neg).
+square(973,o4).
+circle(973,o3).
+in(973,o3,o4).
+circle(973,o2).
+config(973,o2,down).
+circle(973,o1).
+in(973,o1,o2).
+
+bongard(974, neg).
+circle(974,o6).
+circle(974,o5).
+in(974,o5,o6).
+square(974,o4).
+circle(974,o3).
+in(974,o3,o4).
+circle(974,o2).
+circle(974,o1).
+in(974,o1,o2).
+
+bongard(975, neg).
+square(975,o3).
+circle(975,o2).
+config(975,o2,down).
+in(975,o2,o3).
+circle(975,o1).
+config(975,o1,up).
+
+bongard(977, neg).
+circle(977,o2).
+circle(977,o1).
+in(977,o1,o2).
+
+
+
+bongard(984, neg).
+square(984,o2).
+circle(984,o1).
+in(984,o1,o2).
+
+bongard(989, neg).
+circle(989,o2).
+config(989,o2,up).
+circle(989,o1).
+in(989,o1,o2).
+
+
+
+bongard(997, neg).
+square(997,o3).
+square(997,o2).
+in(997,o2,o3).
+circle(997,o1).
+config(997,o1,down).
+
+bongard(1000, neg).
+square(1000,o6).
+circle(1000,o5).
+config(1000,o5,up).
+in(1000,o5,o6).
+circle(1000,o4).
+config(1000,o4,up).
+circle(1000,o3).
+in(1000,o3,o4).
+circle(1000,o2).
+config(1000,o2,down).
+circle(1000,o1).
+in(1000,o1,o2).
+

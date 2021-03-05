@@ -1,0 +1,5 @@
+
+sbond(M,X,Y,Z) :- bond(M,X,Y,Z); bond(M,Y,X,Z).
+
+allnum(X,A,B,C) :- logmutag(X,A), logp(X,B), lumo(X,C).
+

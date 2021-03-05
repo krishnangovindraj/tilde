@@ -3,6 +3,8 @@ config.json
 !test_datasets/**/config.json
 libs/
 data-mai-experiments/*/output/**
+experiments/**/*.txt
+experiments/**/*.dist
 # Created by https://www.gitignore.io/api/pycharm,python,intellij
 
 ### PyCharm ###
