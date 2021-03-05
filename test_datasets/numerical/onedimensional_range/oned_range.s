@@ -11,4 +11,4 @@ minfreq(0.2).
 
 typed_language(yes).
 
-special_test(realtype_leq_test(realnum_x)).
+special_test(jit_realtype_leq_test(realnum_x), realnum_x_leq).

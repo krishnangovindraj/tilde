@@ -1,0 +1,265 @@
+friends(X,Y):- friends(Y,X).
+
+unify_country(X,X):- continent(X,Y).
+
+
+% Geography background:
+continent(india,asia).
+continent(china,asia).
+continent(japan,asia).
+continent(iran,asia).
+continent(kazakhstan,asia).
+continent(belgium,europe).
+continent(france,europe).
+continent(netherlands,europe).
+continent(italy,europe).
+continent(spain,europe).
+continent(germany,europe).
+
+% Nationality:
+nationality(p_0_china, china).
+nationality(p_1_japan, japan).
+nationality(p_2_netherlands, netherlands).
+nationality(p_3_china, china).
+nationality(p_4_germany, germany).
+nationality(p_5_italy, italy).
+nationality(p_6_india, india).
+nationality(p_7_netherlands, netherlands).
+nationality(p_8_china, china).
+nationality(p_9_china, china).
+nationality(p_10_belgium, belgium).
+nationality(p_11_iran, iran).
+nationality(p_12_france, france).
+nationality(p_13_india, india).
+nationality(p_14_netherlands, netherlands).
+nationality(p_15_spain, spain).
+nationality(p_16_france, france).
+nationality(p_17_italy, italy).
+nationality(p_18_iran, iran).
+nationality(p_19_germany, germany).
+nationality(p_20_france, france).
+nationality(p_21_india, india).
+nationality(p_22_china, china).
+nationality(p_23_italy, italy).
+nationality(p_24_iran, iran).
+nationality(p_25_italy, italy).
+nationality(p_26_japan, japan).
+nationality(p_27_spain, spain).
+nationality(p_28_china, china).
+nationality(p_29_netherlands, netherlands).
+nationality(p_30_belgium, belgium).
+nationality(p_31_china, china).
+nationality(p_32_france, france).
+nationality(p_33_kazakhstan, kazakhstan).
+nationality(p_34_germany, germany).
+nationality(p_35_china, china).
+nationality(p_36_india, india).
+nationality(p_37_japan, japan).
+nationality(p_38_india, india).
+nationality(p_39_france, france).
+
+
+% Friends:
+friends(p_37_japan,p_31_china).
+friends(p_0_china,p_36_india).
+friends(p_13_india,p_37_japan).
+friends(p_27_spain,p_39_france).
+friends(p_19_germany,p_15_spain).
+friends(p_15_spain,p_20_france).
+friends(p_32_france,p_14_netherlands).
+friends(p_2_netherlands,p_4_germany).
+friends(p_22_china,p_37_japan).
+friends(p_27_spain,p_10_belgium).
+friends(p_15_spain,p_32_france).
+friends(p_4_germany,p_21_india). % outlier
+friends(p_27_spain,p_4_germany).
+friends(p_33_kazakhstan,p_26_japan).
+friends(p_30_belgium,p_38_india). % outlier
+friends(p_3_china,p_1_japan).
+friends(p_20_france,p_5_italy).
+friends(p_29_netherlands,p_23_italy).
+friends(p_14_netherlands,p_5_italy).
+friends(p_10_belgium,p_14_netherlands).
+friends(p_37_japan,p_13_india).
+friends(p_24_iran,p_38_india).
+friends(p_1_japan,p_9_china).
+friends(p_4_germany,p_30_belgium).
+friends(p_27_spain,p_14_netherlands).
+friends(p_27_spain,p_25_italy).
+friends(p_3_china,p_21_india).
+friends(p_6_india,p_18_iran).
+friends(p_35_china,p_11_iran).
+friends(p_6_india,p_35_china).
+friends(p_26_japan,p_0_china).
+friends(p_4_germany,p_23_italy).
+friends(p_38_india,p_0_china).
+friends(p_26_japan,p_31_china).
+friends(p_19_germany,p_27_spain).
+friends(p_11_iran,p_3_china).
+friends(p_37_japan,p_25_italy). % outlier
+friends(p_4_germany,p_16_france).
+friends(p_19_germany,p_14_netherlands).
+friends(p_1_japan,p_38_india).
+friends(p_14_netherlands,p_23_italy).
+friends(p_4_germany,p_32_france).
+friends(p_5_italy,p_15_spain).
+friends(p_7_netherlands,p_23_italy).
+friends(p_4_germany,p_10_belgium).
+friends(p_25_italy,p_34_germany).
+friends(p_26_japan,p_35_china).
+friends(p_6_india,p_0_china).
+friends(p_3_china,p_11_iran).
+friends(p_0_china,p_18_iran).
+friends(p_4_germany,p_20_france).
+friends(p_29_netherlands,p_15_spain).
+friends(p_33_kazakhstan,p_6_india).
+friends(p_11_iran,p_9_china).
+friends(p_21_india,p_11_iran).
+friends(p_6_india,p_31_china).
+friends(p_24_iran,p_6_india).
+friends(p_4_germany,p_7_netherlands).
+friends(p_36_india,p_8_china).
+friends(p_11_iran,p_26_japan).
+friends(p_26_japan,p_9_china).
+friends(p_10_belgium,p_17_italy).
+friends(p_32_france,p_19_germany).
+friends(p_21_india,p_8_china).
+friends(p_19_germany,p_16_france).
+friends(p_33_kazakhstan,p_9_china).
+friends(p_29_netherlands,p_5_italy).
+friends(p_7_netherlands,p_30_belgium).
+friends(p_32_france,p_7_netherlands).
+friends(p_18_iran,p_31_china).
+friends(p_23_italy,p_32_france).
+friends(p_8_china,p_21_india).
+friends(p_20_france,p_29_netherlands).
+friends(p_13_india,p_9_china).
+friends(p_8_china,p_13_india).
+friends(p_38_india,p_26_japan).
+friends(p_27_spain,p_32_france).
+friends(p_8_china,p_38_india).
+friends(p_1_japan,p_18_iran).
+friends(p_16_france,p_10_belgium).
+friends(p_8_china,p_33_kazakhstan).
+friends(p_5_italy,p_39_france).
+friends(p_23_italy,p_7_netherlands).
+friends(p_13_india,p_18_iran).
+friends(p_12_france,p_29_netherlands).
+friends(p_16_france,p_23_italy).
+friends(p_23_italy,p_27_spain).
+friends(p_18_iran,p_21_india).
+friends(p_5_italy,p_14_netherlands).
+friends(p_27_spain,p_5_italy).
+friends(p_36_india,p_31_china).
+friends(p_24_iran,p_8_china).
+friends(p_39_france,p_25_italy).
+friends(p_39_france,p_17_italy).
+friends(p_20_france,p_14_netherlands).
+friends(p_16_france,p_14_netherlands).
+friends(p_3_china,p_6_india).
+friends(p_16_france,p_27_spain).
+friends(p_13_india,p_1_japan).
+friends(p_5_italy,p_19_germany).
+friends(p_24_iran,p_37_japan).
+friends(p_21_india,p_22_china).
+friends(p_24_iran,p_3_china).
+friends(p_31_china,p_18_iran).
+friends(p_23_italy,p_16_france).
+friends(p_9_china,p_24_iran).
+friends(p_37_japan,p_33_kazakhstan).
+friends(p_39_france,p_10_belgium).
+friends(p_8_china,p_24_iran).
+friends(p_1_japan,p_35_china).
+friends(p_36_india,p_33_kazakhstan).
+friends(p_38_india,p_11_iran).
+friends(p_21_india,p_28_china).
+friends(p_36_india,p_1_japan).
+friends(p_21_india,p_24_iran).
+friends(p_23_italy,p_14_netherlands).
+friends(p_26_japan,p_38_india).
+friends(p_17_italy,p_12_france).
+friends(p_15_spain,p_14_netherlands).
+friends(p_32_france,p_2_netherlands).
+friends(p_13_india,p_0_china).
+friends(p_33_kazakhstan,p_18_iran).
+friends(p_13_india,p_3_china).
+friends(p_24_iran,p_0_china).
+friends(p_0_china,p_21_india).
+friends(p_35_china,p_26_japan).
+friends(p_0_china,p_1_japan).
+friends(p_20_france,p_10_belgium).
+friends(p_33_kazakhstan,p_3_china).
+friends(p_17_italy,p_29_netherlands).
+friends(p_34_germany,p_14_netherlands).
+friends(p_16_france,p_29_netherlands).
+friends(p_38_india,p_31_china).
+friends(p_13_india,p_33_kazakhstan).
+friends(p_39_france,p_15_spain).
+friends(p_20_france,p_4_germany).
+friends(p_30_belgium,p_16_france).
+friends(p_14_netherlands,p_34_germany).
+friends(p_11_iran,p_35_china).
+friends(p_22_china,p_36_india).
+friends(p_8_china,p_11_iran).
+friends(p_37_japan,p_22_china).
+friends(p_9_china,p_18_iran).
+friends(p_7_netherlands,p_20_france).
+friends(p_14_netherlands,p_25_italy).
+friends(p_4_germany,p_14_netherlands).
+friends(p_39_france,p_5_italy).
+friends(p_26_japan,p_6_india).
+friends(p_8_china,p_37_japan).
+friends(p_19_germany,p_7_netherlands).
+friends(p_24_iran,p_33_kazakhstan).
+friends(p_1_japan,p_22_china).
+friends(p_20_france,p_30_belgium).
+friends(p_21_india,p_37_japan).
+friends(p_0_china,p_11_iran).
+friends(p_10_belgium,p_16_france).
+friends(p_37_japan,p_6_india).
+friends(p_30_belgium,p_20_france).
+friends(p_13_india,p_22_china).
+friends(p_20_france,p_25_italy).
+friends(p_8_china,p_1_japan).
+friends(p_38_india,p_18_iran).
+friends(p_25_italy,p_32_france).
+friends(p_1_japan,p_13_india).
+friends(p_34_germany,p_32_france).
+friends(p_32_france,p_34_germany).
+friends(p_34_germany,p_16_france).
+friends(p_29_netherlands,p_34_germany).
+friends(p_21_india,p_31_china).
+friends(p_30_belgium,p_25_italy).
+friends(p_14_netherlands,p_19_germany).
+friends(p_6_india,p_3_china).
+friends(p_10_belgium,p_27_spain).
+friends(p_24_iran,p_35_china).
+friends(p_11_iran,p_22_china).
+friends(p_5_italy,p_20_france).
+friends(p_31_china,p_13_india).
+friends(p_29_netherlands,p_17_italy).
+friends(p_18_iran,p_22_china).
+friends(p_14_netherlands,p_32_france).
+friends(p_15_spain,p_25_italy).
+friends(p_20_france,p_27_spain).
+friends(p_15_spain,p_16_france).
+friends(p_27_spain,p_17_italy).
+friends(p_34_germany,p_30_belgium).
+friends(p_30_belgium,p_4_germany).
+friends(p_23_italy,p_4_germany).
+friends(p_10_belgium,p_5_italy).
+friends(p_22_china,p_11_iran).
+friends(p_26_japan,p_11_iran).
+friends(p_36_india,p_3_china).
+friends(p_7_netherlands,p_39_france).
+friends(p_4_germany,p_15_spain).
+friends(p_38_india,p_37_japan).
+friends(p_8_china,p_6_india).
+friends(p_32_france,p_10_belgium).
+friends(p_32_france,p_15_spain).
+friends(p_7_netherlands,p_17_italy).
+friends(p_36_india,p_9_china).
+friends(p_4_germany,p_39_france).
+
+
+% end

@@ -1,0 +1,7 @@
+{
+    "SUBTLE_PATH": "test_datasets/theta-subsumption-engines/subtle/subtle-2.2.pl",
+    "SPLIT_CRITERION": "entropy",
+    "KB_FILE": "test_datasets/features/unify_value/unify_value.kb",
+    "S_FILE": "test_datasets/features/unify_value/unify_value.s",
+    "BG_FILE": "test_datasets/features/unify_value/unify_value.bg"
+}

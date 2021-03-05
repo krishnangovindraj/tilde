@@ -1,0 +1,2 @@
+% reachable(K, X, Y):- edge(K, X, Y).
+% reachable(K, X, Y):- edge(K, X, Z), reachable(K, Z, Y).

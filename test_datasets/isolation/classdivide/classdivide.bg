@@ -1,0 +1,260 @@
+friends(X,Y):- friends(Y,X).
+
+
+% Wealth:
+wealth(p_0_0, 450).
+wealth(p_1_1, 1784).
+wealth(p_2_0, 536).
+wealth(p_3_1, 2271).
+wealth(p_4_1, 2008).
+wealth(p_5_1, 1975).
+wealth(p_6_0, 538).
+wealth(p_7_0, 561).
+wealth(p_8_0, 531).
+wealth(p_9_0, 568).
+wealth(p_10_1, 1949).
+wealth(p_11_1, 2215).
+wealth(p_12_0, 497).
+wealth(p_13_0, 541).
+wealth(p_14_1, 2073).
+wealth(p_15_1, 2173).
+wealth(p_16_0, 487).
+wealth(p_17_1, 2148).
+wealth(p_18_0, 488).
+wealth(p_19_0, 529).
+wealth(p_20_0, 472).
+wealth(p_21_1, 1620).
+wealth(p_22_0, 520).
+wealth(p_23_1, 2353).
+wealth(p_24_1, 2044).
+wealth(p_25_1, 2080).
+wealth(p_26_0, 534).
+wealth(p_27_0, 463).
+wealth(p_28_1, 1712).
+wealth(p_29_0, 451).
+wealth(p_30_1, 2073).
+wealth(p_31_1, 1664).
+wealth(p_32_0, 506).
+wealth(p_33_1, 1848).
+wealth(p_34_1, 2006).
+wealth(p_35_0, 437).
+wealth(p_36_1, 1872).
+wealth(p_37_1, 2078).
+wealth(p_38_0, 540).
+wealth(p_39_0, 441).
+wealth(p_40_0, 534).
+wealth(p_41_0, 450).
+wealth(p_42_1, 1965).
+wealth(p_43_1, 1949).
+wealth(p_44_0, 465).
+wealth(p_45_0, 514).
+wealth(p_46_1, 1867).
+wealth(p_47_0, 497).
+wealth(p_48_0, 426).
+wealth(p_49_0, 486).
+
+
+% Links:
+friends(p_0_0,p_26_0).
+friends(p_16_0,p_16_0).
+friends(p_5_1,p_31_1).
+friends(p_7_0,p_2_0).
+friends(p_24_1,p_31_1).
+friends(p_13_0,p_35_0).
+friends(p_38_0,p_0_0).
+friends(p_3_1,p_24_1).
+friends(p_4_1,p_34_1).
+friends(p_13_0,p_27_0).
+friends(p_31_1,p_34_1).
+friends(p_29_0,p_39_0).
+friends(p_46_1,p_15_1).
+friends(p_1_1,p_11_1).
+friends(p_37_1,p_4_1).
+friends(p_2_0,p_48_0).
+friends(p_29_0,p_22_0).
+friends(p_42_1,p_34_1).
+friends(p_14_1,p_4_1).
+friends(p_18_0,p_47_0).
+friends(p_40_0,p_48_0).
+friends(p_25_1,p_46_1).
+friends(p_4_1,p_46_1).
+friends(p_1_1,p_43_1).
+friends(p_45_0,p_44_0).
+friends(p_15_1,p_1_1).
+friends(p_27_0,p_9_0).
+friends(p_12_0,p_8_0).
+friends(p_36_1,p_34_1).
+friends(p_11_1,p_33_1).
+friends(p_46_1,p_23_1).
+friends(p_43_1,p_14_1).
+friends(p_37_1,p_17_1).
+friends(p_40_0,p_16_0).
+friends(p_37_1,p_23_1).
+friends(p_43_1,p_15_1).
+friends(p_20_0,p_39_0).
+friends(p_44_0,p_2_0).
+friends(p_30_1,p_21_1).
+friends(p_8_0,p_49_0).
+friends(p_49_0,p_40_0).
+friends(p_34_1,p_33_1).
+friends(p_3_1,p_36_1).
+friends(p_18_0,p_27_0).
+friends(p_44_0,p_41_0).
+friends(p_24_1,p_43_1).
+friends(p_22_0,p_35_0).
+friends(p_11_1,p_15_1).
+friends(p_28_1,p_1_1).
+friends(p_35_0,p_47_0).
+friends(p_4_1,p_43_1).
+friends(p_2_0,p_32_0).
+friends(p_1_1,p_23_1).
+friends(p_49_0,p_6_0).
+friends(p_10_1,p_36_1).
+friends(p_6_0,p_29_0).
+friends(p_4_1,p_28_1).
+friends(p_41_0,p_39_0).
+friends(p_4_1,p_1_1).
+friends(p_13_0,p_49_0).
+friends(p_10_1,p_1_1).
+friends(p_9_0,p_29_0).
+friends(p_33_1,p_28_1).
+friends(p_22_0,p_2_0).
+friends(p_48_0,p_29_0).
+friends(p_33_1,p_42_1).
+friends(p_33_1,p_17_1).
+friends(p_28_1,p_36_1).
+friends(p_18_0,p_35_0).
+friends(p_36_1,p_37_1).
+friends(p_25_1,p_24_1).
+friends(p_19_0,p_13_0).
+friends(p_22_0,p_44_0).
+friends(p_38_0,p_29_0).
+friends(p_13_0,p_9_0).
+% friends(p_30_1,p_18_0). % outlier
+friends(p_0_0,p_8_0).
+friends(p_28_1,p_10_1).
+friends(p_0_0,p_29_0).
+friends(p_28_1,p_21_1).
+friends(p_47_0,p_49_0).
+friends(p_40_0,p_35_0).
+friends(p_38_0,p_32_0).
+friends(p_32_0,p_2_0).
+friends(p_27_0,p_48_0).
+friends(p_25_1,p_23_1).
+friends(p_3_1,p_3_1).
+friends(p_27_0,p_47_0).
+friends(p_37_1,p_15_1).
+friends(p_43_1,p_24_1).
+friends(p_5_1,p_10_1).
+friends(p_19_0,p_6_0).
+friends(p_49_0,p_27_0).
+friends(p_16_0,p_6_0).
+friends(p_36_1,p_1_1).
+friends(p_14_1,p_36_1).
+friends(p_38_0,p_2_0).
+friends(p_27_0,p_45_0).
+friends(p_35_0,p_44_0).
+friends(p_27_0,p_19_0).
+friends(p_3_1,p_37_1).
+friends(p_38_0,p_19_0).
+friends(p_47_0,p_7_0).
+friends(p_22_0,p_20_0).
+friends(p_24_1,p_15_1).
+friends(p_32_0,p_9_0).
+friends(p_15_1,p_10_1).
+friends(p_24_1,p_28_1).
+friends(p_22_0,p_12_0).
+friends(p_27_0,p_40_0).
+friends(p_37_1,p_30_1).
+friends(p_1_1,p_21_1).
+friends(p_21_1,p_4_1).
+friends(p_20_0,p_19_0).
+friends(p_20_0,p_35_0).
+friends(p_26_0,p_13_0).
+friends(p_12_0,p_45_0).
+friends(p_39_0,p_32_0).
+friends(p_0_0,p_27_0).
+friends(p_9_0,p_44_0).
+friends(p_20_0,p_40_0).
+friends(p_49_0,p_12_0).
+friends(p_14_1,p_30_1).
+friends(p_17_1,p_42_1).
+friends(p_13_0,p_40_0).
+friends(p_11_1,p_11_1).
+friends(p_26_0,p_20_0).
+friends(p_26_0,p_9_0).
+friends(p_6_0,p_20_0).
+% friends(p_44_0,p_5_1). % outlier
+friends(p_30_1,p_1_1).
+friends(p_0_0,p_38_0).
+friends(p_43_1,p_33_1).
+friends(p_10_1,p_33_1).
+friends(p_30_1,p_30_1).
+friends(p_6_0,p_18_0).
+friends(p_19_0,p_41_0).
+friends(p_41_0,p_35_0).
+friends(p_49_0,p_0_0).
+friends(p_42_1,p_5_1).
+friends(p_5_1,p_33_1).
+friends(p_37_1,p_43_1).
+friends(p_25_1,p_25_1).
+friends(p_7_0,p_27_0).
+friends(p_35_0,p_29_0).
+friends(p_3_1,p_23_1).
+friends(p_34_1,p_5_1).
+friends(p_25_1,p_10_1).
+friends(p_1_1,p_14_1).
+friends(p_31_1,p_3_1).
+friends(p_23_1,p_11_1).
+friends(p_49_0,p_2_0).
+friends(p_12_0,p_13_0).
+friends(p_5_1,p_3_1).
+friends(p_25_1,p_14_1).
+friends(p_1_1,p_34_1).
+friends(p_33_1,p_1_1).
+friends(p_46_1,p_17_1).
+friends(p_35_0,p_40_0).
+friends(p_30_1,p_15_1).
+friends(p_31_1,p_25_1).
+friends(p_49_0,p_8_0).
+friends(p_29_0,p_20_0).
+friends(p_10_1,p_21_1).
+friends(p_23_1,p_1_1).
+% friends(p_4_1,p_9_0). % outlier
+friends(p_5_1,p_25_1).
+friends(p_22_0,p_26_0).
+friends(p_34_1,p_42_1).
+friends(p_29_0,p_7_0).
+friends(p_14_1,p_31_1).
+friends(p_36_1,p_31_1).
+friends(p_33_1,p_11_1).
+friends(p_17_1,p_33_1).
+friends(p_15_1,p_14_1).
+friends(p_2_0,p_12_0).
+friends(p_3_1,p_31_1).
+friends(p_46_1,p_25_1).
+friends(p_34_1,p_15_1).
+friends(p_26_0,p_29_0).
+friends(p_11_1,p_21_1).
+friends(p_7_0,p_16_0).
+friends(p_48_0,p_45_0).
+friends(p_32_0,p_8_0).
+friends(p_36_1,p_33_1).
+friends(p_30_1,p_5_1).
+friends(p_21_1,p_24_1).
+friends(p_33_1,p_46_1).
+friends(p_32_0,p_16_0).
+friends(p_42_1,p_1_1).
+friends(p_7_0,p_40_0).
+friends(p_32_0,p_35_0).
+friends(p_42_1,p_10_1).
+friends(p_47_0,p_26_0).
+friends(p_36_1,p_14_1).
+friends(p_37_1,p_1_1).
+friends(p_30_1,p_14_1).
+% friends(p_9_0,p_10_1). % outlier
+friends(p_2_0,p_49_0).
+friends(p_19_0,p_8_0).
+
+
+% end

@@ -29,7 +29,10 @@ class LeafBuilder:
     
     def encode_to_tuple(self):
         raise NotImplementedError('abstract method')
-    
+
+    def is_classification(self):
+        raise NotImplementedError('abstract method')
+
     @staticmethod
     def get_leaf_builder(leaf_strategy: str):
         if leaf_strategy == 'mean_value':
@@ -38,5 +41,8 @@ class LeafBuilder:
         elif leaf_strategy == 'majority_class':
             from refactor.tilde_essentials.leaf_strategies import MajorityClassLeafBuilder 
             return MajorityClassLeafBuilder()
+        elif leaf_strategy == 'dummy':
+            from refactor.tilde_essentials.leaf_strategies import DummyLeafBuilder
+            return DummyLeafBuilder()
         else:
             raise KeyError("Unknown leaf strategy: " + leaf_strategy)

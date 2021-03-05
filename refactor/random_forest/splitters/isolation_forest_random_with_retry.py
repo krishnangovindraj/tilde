@@ -20,17 +20,23 @@ class IsolationForestRandomRetrySplitter(GenerateAndSampleSplitter):
         self.split_criterion = DummyAllEqual()
 
     def _sample_tests(self, all_tests: List[TILDEQuery], examples: List[Example]) -> List[TILDEQuery]:
-        from random import randint
         assert(len(examples) > 1)
         split_criterion = self.split_criterion
-        # failed_tests = []
-        tests_tried = 0 
+        tests_tried = 0
+        
+        # print("--start tests--")
+        # for t in all_tests:
+        #     print(t)  
+        # print("--end tests--")
+        from .test_samplers import HierarchicalTestSampler, UniformRandomTestSampler
+        # test_sampler = HierarchicalTestSampler(all_tests)
+        test_sampler = UniformRandomTestSampler(all_tests)
         while len(all_tests)>0 and tests_tried != self.n_retry_before_giveup:
-            i = randint(0, len(all_tests)-1)
+            candidate_test = test_sampler.pop_random()
             # Now i need to evaluate this to make sure it works.
-            candidate_test = all_tests[i]
-            all_tests[i] = all_tests[-1]
-            all_tests.pop()
+            if candidate_test is None:
+                break
+
             examples_satisfying_test, examples_not_satisfying_test = self._split_examples(candidate_test, examples, self.split_criterion)
             if len(examples_satisfying_test) > 0 and len(examples_not_satisfying_test) > 0:
                 
@@ -43,8 +49,6 @@ class IsolationForestRandomRetrySplitter(GenerateAndSampleSplitter):
                                 score=candidate_test_score,
                                 threshold=split_criterion.get_threshold(),
                                 split_criterion=split_criterion.get_name())]
-            # else:
-            #     failed_tests.append(str(candidate_test))
             tests_tried += 1
 
         # The examples could not be separated

@@ -18,6 +18,7 @@ class DecisionTree(Destructible):
         self.tree_builder = None  # type: Optional[TreeBuilder]
         self.test_evaluator = None  # type: Optional[TestEvaluator]
         self.tree_pruner = None
+        self.HAX_PREDICTING_NODE = {} # Example -> TreeNode
 
     def fit(self, examples, tree_builder: TreeBuilder):
         self.tree_builder = tree_builder
@@ -35,6 +36,7 @@ class DecisionTree(Destructible):
 
     def _predict_recursive(self, example, tree_node: TreeNode):
         if tree_node.is_leaf_node():
+            self.HAX_PREDICTING_NODE[example] = tree_node
             return tree_node.leaf_strategy.predict(example)
         else:
             succeeds_test = self.test_evaluator.evaluate(example, tree_node.test)

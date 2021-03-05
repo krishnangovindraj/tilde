@@ -1,0 +1,8 @@
+{
+    "SUBTLE_PATH": "test_datasets/theta-subsumption-engines/subtle/subtle-2.2.pl",
+    "SPLIT_CRITERION": "entropy",
+    "KB_FILE": "test_datasets/isolation/faraway_friends/faraway_friends.kb",
+    "S_FILE": "test_datasets/isolation/faraway_friends/faraway_friends.s",
+    "BG_FILE": "test_datasets/isolation/faraway_friends/faraway_friends.bg",
+    "BACKEND": "DJANGO"
+}

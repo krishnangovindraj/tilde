@@ -23,7 +23,8 @@ class SampleNSelectBestGSSplitter(GenerateAndSampleSplitter):
         self.verbose=verbose    
     
     def _sample_tests(self, all_tests: List[TILDEQuery], examples: List[Example]) -> List[TILDEQuery]:
-        return random_sample(all_tests, min(len(all_tests), self.n_tests_to_sample))
+        sample_size = int(self.n_tests_to_sample * len(all_tests))
+        return random_sample(all_tests, min(len(all_tests), sample_size))
 
     def _select_test(self, candidate_tests: Iterable[TILDEQuery], examples: List[Example], split_criterion: SplitCriterion)-> SplitInfo:
         current_best_split_info = None

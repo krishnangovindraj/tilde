@@ -28,10 +28,12 @@ class ModelFactory:
 
     class IsolationForestOptions(ModelOptions):
         DEFAULT_MAX_DEPTH = 15; DEFAULT_TESTS_TO_SAMPLE = 20
-        def __init__(self, n_trees: int, max_branch_depth: int, n_tests_before_giveup: int):
+    class IsolationForestOptions:
+        def __init__(self, n_trees: int, max_branch_depth: int, n_tests_before_giveup: int, store_length_distribution : bool = False):
             self.n_trees = n_trees
             self.max_branch_depth = max_branch_depth
             self.n_tests_before_giveup = n_tests_before_giveup
+            self.store_length_distribution = store_length_distribution
 
     # The actual class
 
@@ -67,7 +69,7 @@ class ModelFactory:
         splitter = Splitter(split_criterion_str=self.tilde_config.split_criterion, test_evaluator=test_evaluator,
                             test_generator_builder=test_generator_builder)
         leaf_builder = LeafBuilder.get_leaf_builder(self.tilde_config.leaf_strategy)
-        stop_criterion = StopCriterion()
+        stop_criterion = StopCriterion() # , min_samples_split=8)
         tree_builder = TreeBuilder(splitter=splitter, leaf_builder=leaf_builder, stop_criterion=stop_criterion)
         return tree_builder
 
@@ -93,17 +95,26 @@ class ModelFactory:
     def get_default_isolation_forest_tree_builder(self, isolation_forest_options: IsolationForestOptions):
         from refactor.random_forest.isolation_forest_stop_criterion import IsolationForestStopCriterion
         from refactor.random_forest.isolation_forest import IsolationForest
-        from refactor.random_forest.splitters.isolation_forest_random_with_retry import IsolationForestRandomRetrySplitter
 
         tree_builder = self.get_default_decision_tree_builder()
         tree_builder.stop_criterion = IsolationForestStopCriterion(isolation_forest_options.max_branch_depth)
-        tree_builder.splitter = IsolationForestRandomRetrySplitter(tree_builder.splitter.test_evaluator, tree_builder.splitter.test_generator_builder, isolation_forest_options.n_tests_before_giveup)
+        from refactor.tilde_essentials.leaf_strategies import DummyLeafBuilder
+        tree_builder.leaf_builder = DummyLeafBuilder()
+
+        # from refactor.random_forest.splitters.isolation_forest_random_with_retry import IsolationForestRandomRetrySplitter
+        # tree_builder.splitter = IsolationForestRandomRetrySplitter(tree_builder.splitter.test_evaluator, tree_builder.splitter.test_generator_builder, isolation_forest_options.n_tests_before_giveup)
+        
+        from refactor.random_forest.splitters.isolation_forest_with_empty_splits import IsolationForestSimpleSplitter
+        tree_builder.splitter = IsolationForestSimpleSplitter(tree_builder.splitter.test_evaluator, tree_builder.splitter.test_generator_builder, isolation_forest_options.n_tests_before_giveup)
 
         return tree_builder
 
     def create_isolation_forest(self, isolation_forest_options: IsolationForestOptions):
-        from refactor.random_forest.isolation_forest import IsolationForest
-        isolation_forest = IsolationForest(isolation_forest_options.n_trees)
+        from refactor.random_forest.isolation_forest import IsolationForest, ResultStoringIsolationForest
+        if isolation_forest_options.store_length_distribution:
+            isolation_forest = ResultStoringIsolationForest(isolation_forest_options.n_trees)
+        else:
+            isolation_forest = IsolationForest(isolation_forest_options.n_trees)
         return isolation_forest
 
     # Some useful statics
@@ -116,8 +127,9 @@ class ModelFactory:
         elif tilde_mode_term.functor == 'random_forest_classification':
             if tilde_mode_term.arity > 0:
                 n_trees = int(tilde_mode_term.args[0])
-                resample_size = int(tilde_mode_terms.args[1] if tilde_mode_term.arity > 1 else ModelFactory.RandomForestOptions.DEFAULT_RESAMPLE_SIZE)
-                tests_to_sample = int(tilde_mode_terms.args[1] if tilde_mode_term.arity > 2 else ModelFactory.RandomForestOptions.DEFAULT_TESTS_TO_SAMPLE)
+                resample_size = int(tilde_mode_term.args[1] if tilde_mode_term.arity > 1 else ModelFactory.RandomForestOptions.DEFAULT_RESAMPLE_SIZE)
+                #tests_to_sample = int(tilde_mode_term.args[2] if tilde_mode_term.arity > 2 else ModelFactory.RandomForestOptions.DEFAULT_TESTS_TO_SAMPLE)
+                tests_to_sample = float(tilde_mode_term.args[2] if tilde_mode_term.arity > 2 else ModelFactory.RandomForestOptions.DEFAULT_TESTS_TO_SAMPLE)
                 return ModelFactory.RandomForestOptions(n_trees, resample_size, tests_to_sample)
             else:
                 raise Exception("Tilde_mode random_forest_classification(n_trees, [resample_size, n_tests]) expects >= 1 arg")
@@ -125,7 +137,7 @@ class ModelFactory:
             if tilde_mode_term.arity > 0:
                 n_trees = int(tilde_mode_term.args[0])
                 max_branch_depth = int(tilde_mode_term.args[1] if tilde_mode_term.arity > 1 else ModelFactory.IsolationForestOptions.DEFAULT_MAX_DEPTH)
-                tests_to_sample = int(tilde_mode_term.args[1] if tilde_mode_term.arity > 2 else ModelFactory.IsolationForestOptions.DEFAULT_TESTS_TO_SAMPLE)
+                tests_to_sample = int(tilde_mode_term.args[2] if tilde_mode_term.arity > 2 else ModelFactory.IsolationForestOptions.DEFAULT_TESTS_TO_SAMPLE)
                 return ModelFactory.IsolationForestOptions(n_trees, max_branch_depth, tests_to_sample)
             else:
                 raise Exception("Tilde_mode isolation_forest(n_trees, [max_branch_depth, n_tests_to_sample]) expects >= 1 arg")

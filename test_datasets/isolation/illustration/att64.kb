@@ -1,0 +1,74 @@
+att64(a0, 0, 0, 0, 0, 0, 0, dummyclass).
+att64(a1, 0, 0, 0, 0, 0, 1, dummyclass).
+att64(a2, 0, 0, 0, 0, 1, 0, dummyclass).
+att64(a3, 0, 0, 0, 0, 1, 1, dummyclass).
+att64(a4, 0, 0, 0, 1, 0, 0, dummyclass).
+att64(a5, 0, 0, 0, 1, 0, 1, dummyclass).
+att64(a6, 0, 0, 0, 1, 1, 0, dummyclass).
+att64(a7, 0, 0, 0, 1, 1, 1, dummyclass).
+
+att64(a8,  0, 0, 1, 0, 0, 0, dummyclass).
+att64(a9,  0, 0, 1, 0, 0, 1, dummyclass).
+att64(a10, 0, 0, 1, 0, 1, 0, dummyclass).
+att64(a11, 0, 0, 1, 0, 1, 1, dummyclass).
+att64(a12, 0, 0, 1, 1, 0, 0, dummyclass).
+att64(a13, 0, 0, 1, 1, 0, 1, dummyclass).
+att64(a14, 0, 0, 1, 1, 1, 0, dummyclass).
+att64(a15, 0, 0, 1, 1, 1, 1, dummyclass).
+
+
+att64(a16, 0, 1, 0, 0, 0, 0, dummyclass).
+att64(a17, 0, 1, 0, 0, 0, 1, dummyclass).
+att64(a18, 0, 1, 0, 0, 1, 0, dummyclass).
+att64(a19, 0, 1, 0, 0, 1, 1, dummyclass).
+att64(a20, 0, 1, 0, 1, 0, 0, dummyclass).
+att64(a21, 0, 1, 0, 1, 0, 1, dummyclass).
+att64(a22, 0, 1, 0, 1, 1, 0, dummyclass).
+att64(a23, 0, 1, 0, 1, 1, 1, dummyclass).
+
+att64(a24, 0, 1, 1, 0, 0, 0, dummyclass).
+att64(a25, 0, 1, 1, 0, 0, 1, dummyclass).
+att64(a26, 0, 1, 1, 0, 1, 0, dummyclass).
+att64(a27, 0, 1, 1, 0, 1, 1, dummyclass).
+att64(a28, 0, 1, 1, 1, 0, 0, dummyclass).
+att64(a29, 0, 1, 1, 1, 0, 1, dummyclass).
+att64(a30, 0, 1, 1, 1, 1, 0, dummyclass).
+att64(a31, 0, 1, 1, 1, 1, 1, dummyclass).
+
+
+att64(a32, 1, 0, 0, 0, 0, 0, dummyclass).
+att64(a33, 1, 0, 0, 0, 0, 1, dummyclass).
+att64(a34, 1, 0, 0, 0, 1, 0, dummyclass).
+att64(a35, 1, 0, 0, 0, 1, 1, dummyclass).
+att64(a36, 1, 0, 0, 1, 0, 0, dummyclass).
+att64(a37, 1, 0, 0, 1, 0, 1, dummyclass).
+att64(a38, 1, 0, 0, 1, 1, 0, dummyclass).
+att64(a39, 1, 0, 0, 1, 1, 1, dummyclass).
+
+att64(a40, 1, 0, 1, 0, 0, 0, dummyclass).
+att64(a41, 1, 0, 1, 0, 0, 1, dummyclass).
+att64(a42, 1, 0, 1, 0, 1, 0, dummyclass).
+att64(a43, 1, 0, 1, 0, 1, 1, dummyclass).
+att64(a44, 1, 0, 1, 1, 0, 0, dummyclass).
+att64(a45, 1, 0, 1, 1, 0, 1, dummyclass).
+att64(a46, 1, 0, 1, 1, 1, 0, dummyclass).
+att64(a47, 1, 0, 1, 1, 1, 1, dummyclass).
+
+
+att64(a48, 1, 1, 0, 0, 0, 0, dummyclass).
+att64(a49, 1, 1, 0, 0, 0, 1, dummyclass).
+att64(a50, 1, 1, 0, 0, 1, 0, dummyclass).
+att64(a51, 1, 1, 0, 0, 1, 1, dummyclass).
+att64(a52, 1, 1, 0, 1, 0, 0, dummyclass).
+att64(a53, 1, 1, 0, 1, 0, 1, dummyclass).
+att64(a54, 1, 1, 0, 1, 1, 0, dummyclass).
+att64(a55, 1, 1, 0, 1, 1, 1, dummyclass).
+
+att64(a56, 1, 1, 1, 0, 0, 0, dummyclass).
+att64(a57, 1, 1, 1, 0, 0, 1, dummyclass).
+att64(a58, 1, 1, 1, 0, 1, 0, dummyclass).
+att64(a59, 1, 1, 1, 0, 1, 1, dummyclass).
+att64(a60, 1, 1, 1, 1, 0, 0, dummyclass).
+att64(a61, 1, 1, 1, 1, 0, 1, dummyclass).
+att64(a62, 1, 1, 1, 1, 1, 0, dummyclass).
+att64(a63, 1, 1, 1, 1, 1, 1, dummyclass).

@@ -5,31 +5,66 @@ from refactor.tilde_essentials.evaluation import TestEvaluator
 from refactor.tilde_essentials.tree_builder import TreeBuilder
 from refactor.tilde_essentials.tree_node import TreeNode
 
-from refactor.tilde_essentials.tree import DecisionTree
+#from refactor.tilde_essentials.tree import DecisionTree
+from refactor.random_forest.isolation_tree import IsolationTree
+
 
 class IsolationForest:
-    def __init__(self, n_trees):
+    def __init__(self, n_trees, resample_size=0):
         self.n_trees = n_trees
+        self.n_examples = 0
         self._trees_left = 0
+        self.resample_size = resample_size
 
     def fit(self, examples, tree_builder: TreeBuilder):
+        self.n_examples = len(examples)
         self.tree_builder = tree_builder
         self.test_evaluator = self.tree_builder.splitter.test_evaluator
-        
+
         self._trees_left = self.n_trees
         self.trees = [self._build_one_tree(examples, tree_builder) for _ in range(self.n_trees)]
 
-    def _build_one_tree(self, examples, tree_builder: TreeBuilder) -> DecisionTree:
-        decision_tree = DecisionTree()
-        decision_tree.fit(examples, tree_builder)
+    def _build_one_tree(self, examples, tree_builder: TreeBuilder) -> IsolationTree:
+
+        resample_size = self.resample_size if self.resample_size > 0 else len(examples)
+        resampled_examples = random_choices(examples, k=resample_size)
+        resampled_examples = examples
+
+        decision_tree = IsolationTree()
+        decision_tree.fit(resampled_examples, tree_builder)
         self._trees_left -= 1
 
         if self._trees_left % (self.n_trees/10)==0:
-            print("Built ~%d%% of trees"%( 100*(1-float(self._trees_left)/self.n_trees)))
+            from sys import stderr as sys_stderr
+            print("Built ~%d%% of trees"%( 100*(1-float(self._trees_left)/self.n_trees)), file=sys_stderr)
         # print("--- %d left --"%self._trees_left)
         return decision_tree
 
-    def get_length_distribution(self, examples):
+    def _c(self, n):
+        from math import log # ln
+        return 2 * (log(n-1) + 0.5772156649) - (2*(n-1)/n)
+
+    def predict(self, example):
+        from math import pow
+        def anomaly_score(heights, n_examples):
+            avg_height = sum(heights)/len(heights)
+            pp = avg_height/self._c(self.n_examples)
+            return pow(2, -pp)
+
+        heights = []
+        for t in self.trees:
+            heights.append( t.predict(example) )
+
+        return anomaly_score(heights, self.n_examples) # , heights
+
+    def explain(self, example, top_k=0):
+        all_explanations = [t.explain(example, t.tree) for t in self.trees]
+        if top_k == 0:
+            top_k = len(all_explanations)
+        sorted_explanations = sorted([e for e in all_explanations if e[1]>0], key=lambda x: x[1])
+        return [e for e in sorted_explanations[:top_k]]
+
+    def get_training_example_length_distribution(self, examples):
         dist = {e: [] for e in examples}
         for t in self.trees:
             len_dict = {}
@@ -37,14 +72,6 @@ class IsolationForest:
             for e in examples:
                 dist[e].append(len_dict[e])
         return dist
-
-    def _get_example_branch_lengths(self, tree: TreeNode, examples, len_dict):
-        if tree.is_leaf_node():
-            for e in tree.examples:
-                len_dict[e] = tree.depth
-        else:
-            self._get_example_branch_lengths(tree.left_child, examples, len_dict)
-            self._get_example_branch_lengths(tree.right_child, examples, len_dict)
 
     def prune(self, pruning_function):
         pass # No prune. Only build >:(
