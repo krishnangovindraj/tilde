@@ -1,0 +1,82 @@
+specialnum(1, dummyclass).
+specialnum(2, dummyclass).
+specialnum(3, dummyclass).
+specialnum(4, dummyclass).
+specialnum(5, dummyclass).
+specialnum(6, dummyclass).
+specialnum(7, dummyclass).
+specialnum(8, dummyclass).
+specialnum(9, dummyclass).
+specialnum(10,dummyclass).
+specialnum(11,dummyclass).
+specialnum(12,dummyclass).
+specialnum(13,dummyclass).
+specialnum(14,dummyclass).
+specialnum(15,dummyclass).
+specialnum(16,dummyclass).
+specialnum(17,dummyclass).
+specialnum(18,dummyclass).
+specialnum(19,dummyclass).
+specialnum(20,dummyclass).
+specialnum(21,dummyclass).
+specialnum(22,dummyclass).
+specialnum(23,dummyclass).
+specialnum(24,dummyclass).
+specialnum(25,dummyclass).
+specialnum(26,dummyclass).
+specialnum(27,dummyclass).
+specialnum(28,dummyclass).
+specialnum(29,dummyclass).
+specialnum(30,dummyclass).
+specialnum(31,dummyclass).
+specialnum(32,dummyclass).
+specialnum(33,dummyclass).
+specialnum(34,dummyclass).
+specialnum(35,dummyclass).
+specialnum(36,dummyclass).
+specialnum(37,dummyclass).
+specialnum(38,dummyclass).
+specialnum(39,dummyclass).
+specialnum(40,dummyclass).
+
+
+divides(1,1,1).
+divides(2,2,1).
+divides(3,3,1).
+divides(4,2,2).
+divides(5,5,1).
+divides(6,2,3).
+divides(7,7,1).
+divides(8,2,4).
+divides(9,3,3).
+divides(10,2,5).
+divides(11,11,1).
+divides(12,2,6).
+divides(13,13,1).
+divides(14,2,7).
+divides(15,15,1).
+divides(16,2,8).
+divides(17,17,1).
+divides(18,2,9).
+divides(19,19,1).
+divides(20,2,10).
+divides(21,3,7).
+divides(22,2,11).
+divides(23,23,1).
+divides(24,2,12).
+divides(25,5,5).
+divides(26,2,13).
+divides(27,3,9).
+divides(28,2,14).
+divides(29,29,1).
+divides(30,2,15).
+divides(31,31,1).
+divides(32,2,16).
+divides(33,3,11).
+divides(34,2,17).
+divides(35,35,1).
+divides(36,2,18).
+divides(37,37,1).
+divides(38,2,19).
+divides(39,3,13).
+divides(40,2,10).
