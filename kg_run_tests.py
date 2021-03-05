@@ -2,7 +2,7 @@ import unittest
 from contextlib import redirect_stdout
 from io import StringIO as io_StringIO
 
-from kg_main import main as run_kg_main
+from main import main as run_kg_main
 from refactor.tilde_config import TildeConfig
 
 from refactor.tilde_essentials.query_wrapping import QueryWrapper
@@ -106,6 +106,7 @@ class TestNumericalAttributes(unittest.TestCase):
 class TestIsolationForest: # (unittest.TestCase):
 
     def test_gaussian2d_outliers(self):
+        print("This test doesn't work because I removed the isolation_forest.stored_length_distribution")
         min_outliers_to_pass, actual_outliers, in_how_many = 7, 10, 12
         test_passed = False
         max_tries = 2

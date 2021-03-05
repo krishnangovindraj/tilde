@@ -243,7 +243,7 @@ class JitRealNumberLEQTest(SpecialTest):
         e = example.clone()
         for i in range(len(candidate_points)):
             for j in range(i,len(candidate_points)): # i, not i+1 because leq
-                if candidate_points[i] <= candidate_points[j]:
+                if candidate_points[i].value <= candidate_points[j].value:
                     e.add_fact(Term(self.test_functor, Constant(candidate_points[i]), Constant(candidate_points[j])))
         e.lock_example()
         return e

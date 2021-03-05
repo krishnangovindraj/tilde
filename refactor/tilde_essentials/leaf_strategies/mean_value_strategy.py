@@ -16,7 +16,7 @@ class MeanValueLS(DeterministicLeafStrategy):
             self.variance) + " ; n_examples= " + str(self.n_examples) + "]" + '\n'
 
     def to_string_compact(self):
-        return '[' + self.mean_value + " +- " + str(
+        return '[' + str(self.mean_value) + " +- " + str(
             self.variance) + " ; #" +  str(self.n_examples) + "]" + '\n'
 
     def predict(self, example):

@@ -8,6 +8,10 @@ class MajorityClassLeafBuilder(LeafBuilder):
         from .majority_class_strategy import MajorityClassLS
         return MajorityClassLS(examples)
 
+
+    def is_classification(self):
+        return True
+
 class MeanValueLeafBuilder(LeafBuilder):
     def __init__(self):
         pass
@@ -16,6 +20,9 @@ class MeanValueLeafBuilder(LeafBuilder):
         from .mean_value_strategy import MeanValueLS
         return MeanValueLS(examples)
 
+    def is_classification(self):
+        return False
+
 class DummyLeafBuilder(LeafBuilder):
     def __init__(self):
         pass
@@ -23,3 +30,6 @@ class DummyLeafBuilder(LeafBuilder):
     def build(self, examples):
         from .dummy_strategy import DummyStrategy
         return DummyStrategy(examples)
+
+    def is_classification(self):
+        return False

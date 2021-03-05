@@ -80,7 +80,7 @@ class TildeTask:
         label_collector.extract_labels(training_examples_collection)
 
         possible_labels = label_collector.get_labels()  # type: Set[Label]
-        possible_labels = list(possible_labels)
+        # possible_labels = list(   )
         print('=== END collecting labels ===\n')
 
         # =================================================================================================================

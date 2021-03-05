@@ -145,9 +145,10 @@ def _print_isolation_forest_summary(model: 'IsolationForest', examples:'List[Exa
     #     print("%s[%f]: %s"%(str(e.classification_term), score[e],  str([round(x,3) for x in dist[e]])))
 
     sorted_examples = sorted(examples, key=lambda e: score[e], reverse=True)
-    triple = [(str(e.classification_term.args[0]), str(score[e]), str(i+1) ) for i,e in enumerate(sorted_examples)]
-    sorted_triple = sorted(triple)
-    print("Printing top%d out of %d"%(topk, len(examples)))
+    triple = [(str(i+1), str(round(score[e],3)), str(e.classification_term) ) for i,e in enumerate(sorted_examples)]
+    sorted_triple = triple # sorted(triple)
+    print("Printing top-%d out of %d"%(topk, len(examples)))
+    print("Rank\tScore\tKey")
     for st in sorted_triple:
         print('\t'.join(st))
     # for e in sorted_examples[:topk]:
@@ -176,10 +177,11 @@ def _print_random_forest_summary(model: 'RandomForest', examples:'List[Example]'
 
 
 def _print_decision_tree_summary(model: 'DecisionTree', examples:'List[Example]'):
-    print(model)
-    truth = [e.label for e in examples]
-    predictions = [ model.predict(e) for e in examples]
-    legend, mat = confusion_matrix(truth, predictions)
-    correct, all = sum(mat[i][i] for i in range(len(legend))), sum(mat[i][j] for j in range(len(legend)) for i in range(len(legend)))
-    print_confusion_matrix(legend, mat)
-    print("Accuracy: %d/%d = %f"%(correct, all, correct/all))
+    if model.tree_builder.leaf_builder.is_classification():
+        print(model)
+        truth = [e.label for e in examples]
+        predictions = [ model.predict(e) for e in examples]
+        legend, mat = confusion_matrix(truth, predictions)
+        correct, all = sum(mat[i][i] for i in range(len(legend))), sum(mat[i][j] for j in range(len(legend)) for i in range(len(legend)))
+        print_confusion_matrix(legend, mat)
+        print("Accuracy: %d/%d = %f"%(correct, all, correct/all))
