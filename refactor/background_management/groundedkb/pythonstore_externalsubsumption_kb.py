@@ -37,7 +37,7 @@ class RuleInstance:
 
 class PythonStoreForSubsumptionBasedGroundedKB(GroundedKB):
 
-    def __init__(self, bg_program_sp: LogicProgram, language: TypeModeLanguage, prediction_goal_handler, max_lhm_iterations= 10):
+    def __init__(self, bg_program_sp: LogicProgram, language: TypeModeLanguage, prediction_goal_handler, max_lhm_iterations= 100):
 
         self._bg_program_sp = bg_program_sp
         self.language = language
@@ -185,7 +185,7 @@ class PythonStoreForSubsumptionBasedGroundedKB(GroundedKB):
 
         subbed_heads = set() 
         for renamed_body_terms in self.generate_groundfactrenamed_bodies(rule.body, groundfact):
-            substitutions = self.thetasubsumption(renamed_body_terms, [renamed_groundfact])
+            substitutions = self.thetasubsumption(renamed_body_terms, db_extension)# [renamed_groundfact])
             subbed_heads.update(rule.ground_head(s) for s in substitutions)
         
         # Remove renamed_groundfact from db_extension

@@ -78,14 +78,14 @@ class TreeNodePrinter:
     Pretty prints a TreeNode tree structure.
     """
 
-    setting = "full"
+    setting = "compact"#  "full"
 
     @staticmethod
     def to_string(tree_node: TreeNode) -> str:
         if TreeNodePrinter.setting == "full":
             return TreeNodePrinter.to_string_full_query(tree_node)
         if TreeNodePrinter.setting == "compact":
-            TreeNodePrinter.to_string_compact(tree_node)
+            return TreeNodePrinter.to_string_compact(tree_node)
 
     @staticmethod
     def to_string_full_query(tree_node: TreeNode, indentation='', current_node_number=0) -> str:
@@ -159,18 +159,18 @@ class TreeNodePrinter:
         else:
             if current_node_number == 0:
                 # TODO: remove dependency from TILDEQueryHiddenLiteral
-                if tree_node.test.parent is not None:
+                if tree_node.test.tilde_query.parent is not None:
                 # if tree_node.test.parent is not None and isinstance(tree_node.test.parent, TILDEQueryHiddenLiteral):
-                    result = str(tree_node.test.parent.literal) + '\n'
+                    result = str(tree_node.test.tilde_query.parent.literal) + '\n'
                 else:
                     result = ""
 
-                result = result + str(tree_node.test.get_literal()) + ' ?\n'
+                result = result + str(tree_node.test.tilde_query.get_literal()) + ' ?\n'
 
             elif current_node_number == 1:
-                result = node_indentation + 'yes: ' + str(tree_node.test.get_literal()) + ' ?\n'
+                result = node_indentation + 'yes: ' + str(tree_node.test.tilde_query.get_literal()) + ' ?\n'
             else:
-                result = node_indentation + 'no: ' + str(tree_node.test.get_literal()) + ' ?\n'
+                result = node_indentation + 'no: ' + str(tree_node.test.tilde_query.get_literal()) + ' ?\n'
 
             # result = node_indentation + 'INode, query: ' + str(self.query) + '\n'
 

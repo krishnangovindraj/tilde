@@ -28,14 +28,15 @@ class IsolationForest:
 
         resample_size = self.resample_size if self.resample_size > 0 else len(examples)
         resampled_examples = random_choices(examples, k=resample_size)
-        # resampled_examples = examples
+        resampled_examples = examples
 
         decision_tree = IsolationTree()
         decision_tree.fit(resampled_examples, tree_builder)
         self._trees_left -= 1
 
         if self._trees_left % (self.n_trees/10)==0:
-            print("Built ~%d%% of trees"%( 100*(1-float(self._trees_left)/self.n_trees)))
+            from sys import stderr as sys_stderr
+            print("Built ~%d%% of trees"%( 100*(1-float(self._trees_left)/self.n_trees)), file=sys_stderr)
         # print("--- %d left --"%self._trees_left)
         return decision_tree
 
@@ -54,7 +55,14 @@ class IsolationForest:
         for t in self.trees:
             heights.append( t.predict(example) )
 
-        return anomaly_score(heights, self.n_examples), heights
+        return anomaly_score(heights, self.n_examples) # , heights
+
+    def explain(self, example, top_k=0):
+        all_explanations = [t.explain(example, t.tree) for t in self.trees]
+        if top_k == 0:
+            top_k = len(all_explanations)
+        sorted_explanations = sorted([e for e in all_explanations if e[1]>0], key=lambda x: x[1])
+        return [e for e in sorted_explanations[:top_k]]
 
     def get_training_example_length_distribution(self, examples):
         dist = {e: [] for e in examples}

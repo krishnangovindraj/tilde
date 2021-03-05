@@ -10,13 +10,14 @@ class ConversionException(Exception):
 
 
 class ClauseWrapper(Destructible):
-    __ajoute_tete = lib_django.AjouteTete
-    __ajoute_clause = lib_django.AjouteClause
+    if lib_django is not None:
+        __ajoute_tete = lib_django.AjouteTete
+        __ajoute_clause = lib_django.AjouteClause
 
-    __termine_clause = lib_django.TermineClause
+        __termine_clause = lib_django.TermineClause
 
-    __libere_clause = lib_django.LibereClause
-    __affice_clause_fol = lib_django.AfficheClauseFOL
+        __libere_clause = lib_django.LibereClause
+        __affice_clause_fol = lib_django.AfficheClauseFOL
 
     def __init__(self, clause_id=None):
         self.clause = lib_django.NewClause()
@@ -97,9 +98,10 @@ class ClauseWrapper(Destructible):
 
 
 class HypothesisWrapper(Destructible):
-    __new_hypothese_base = lib_django.NewHypotheseBase
+    if lib_django is not None:
+        __new_hypothese_base = lib_django.NewHypotheseBase
 
-    __libere_hypothese = lib_django.LibereHypothese
+        __libere_hypothese = lib_django.LibereHypothese
 
     def __init__(self, clause_wrapper: ClauseWrapper):
         if clause_wrapper.is_destructed:

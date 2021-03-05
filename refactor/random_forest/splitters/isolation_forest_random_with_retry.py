@@ -23,7 +23,11 @@ class IsolationForestRandomRetrySplitter(GenerateAndSampleSplitter):
         assert(len(examples) > 1)
         split_criterion = self.split_criterion
         tests_tried = 0
-
+        
+        # print("--start tests--")
+        # for t in all_tests:
+        #     print(t)  
+        # print("--end tests--")
         from .test_samplers import HierarchicalTestSampler, UniformRandomTestSampler
         # test_sampler = HierarchicalTestSampler(all_tests)
         test_sampler = UniformRandomTestSampler(all_tests)

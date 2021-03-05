@@ -93,5 +93,16 @@ class TildeTask:
             training_set = training_examples_collection.filter_examples_not_in_key_set(test_keys)
             test_set = training_examples_collection.filter_examples(test_keys)
         
+        # from sys import stderr as sys_stderr
+        # print("WARNING: YOU HAXED TILDE_TASK FOR RANDOM TEST_SET", file=sys_stderr)
+        # from problog.logic import Constant
+        # from random import sample as random_sample
+        # all_keys = [e.key for e in training_examples_collection.get_example_wrappers_sp()]
+        # print("ALL_KEYS_LENGTH=%d"%len(all_keys))
+        # test_keys = random_sample(all_keys, int(0.1 * len(all_keys)))
+        # training_set = training_examples_collection.filter_examples_not_in_key_set(test_keys)
+        # test_set = training_examples_collection.filter_examples(test_keys)
+    
+
         return TildeTask(parsed_settings, training_set, test_set, bg_wrapper=background_knowledge_wrapper)
 

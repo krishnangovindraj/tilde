@@ -57,7 +57,7 @@ class UnifyToValueTest(SpecialTest):
 
 
         for e in examples:
-            for d in list(e.data) + [e.classification_term]:
+            for d in list(e.data) + ([e.classification_term] if e.classification_term is not None else []):
                 if (d.functor, d.arity) in value_locations:
                     for i in value_locations[(d.functor, d.arity)]:
                         self.all_values.add( d.args[i] )

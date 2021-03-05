@@ -19,8 +19,7 @@ class IsolationTree(DecisionTree):
 
     """ Returns the height of the [null] node which the example is sorted to """
     def predict(self, example):
-        return self._compute_weighted_depth(example, self.tree)
-        # return self._predict_non_weighted(example, self.tree)
+        return self.pred_function( example, self.tree )
 
     def fit(self, examples, tree_builder: TreeBuilder):
         super().fit(examples, tree_builder)
@@ -80,7 +79,9 @@ class IsolationTree(DecisionTree):
     # This is what I normalize against and is to demonstrate the issues with no-normalizations in sparse split-spaces
     def _predict_non_weighted(self, example: Example, tree_node: TreeNode):
         if tree_node.is_leaf_node():
-            return 1
+            from math import log2
+            # return 1 +  log2(len(tree_node.examples))
+            return 1 + (self._c(len(tree_node.examples)) if len(tree_node.examples) > 1 else 0)
         else:
             succeeds_test = self.test_evaluator.evaluate(example, tree_node.test)
             if succeeds_test:
@@ -89,32 +90,33 @@ class IsolationTree(DecisionTree):
                 return 1 + self._predict_non_weighted(example, tree_node.right_child)
 
 
-    def _compute_weighted_depth(self, example: Example, tree_node: TreeNode):
+    # This is what I normalize against and is to demonstrate the issues with no-normalizations in sparse split-spaces
+    def pred_function(self, example: Example, tree_node: TreeNode):
         if tree_node.is_leaf_node():
-            return self.weights[tree_node]
+            return 1 + (self._c(len(tree_node.examples)) if len(tree_node.examples) > 1 else 0)
+        else:
+            if tree_node.left_child.is_leaf_node() and len(tree_node.left_child.examples) == 0:
+                my_weight = 0
+            elif tree_node.right_child.is_leaf_node() and len(tree_node.right_child.examples) == 0:
+                my_weight = 0
+            else:
+                my_weight = 1
+            
+            succeeds_test = self.test_evaluator.evaluate(example, tree_node.test)
+            if succeeds_test:
+                return my_weight + self.pred_function(example, tree_node.left_child)
+            else:
+                return my_weight + self.pred_function(example, tree_node.right_child)
+
+    def explain(self, example, tree_node):
+        if tree_node.is_leaf_node():
+            return [], 0
         else:
             succeeds_test = self.test_evaluator.evaluate(example, tree_node.test)
             if succeeds_test:
-                return self.weights[tree_node] + self._compute_weighted_depth(example, tree_node.left_child)
+                query_tail, leaf_depth = self.explain(example, tree_node.left_child)
+                return [str(tree_node.test.tilde_query.get_literal())] + query_tail , leaf_depth+1
             else:
-                return self.weights[tree_node] + self._compute_weighted_depth(example, tree_node.right_child)
+                query_tail , leaf_depth = self.explain(example, tree_node.right_child)
+                return ["fail(%s)"%(str(tree_node.test.tilde_query.get_literal()))]  + query_tail , leaf_depth+1
 
-    def dump_weights(self):
-        self.weight_sum = 0
-        dw = self._dump_weights_rec(self.tree)
-        print("WEIGHT_SUM=%f v/s Expected=%f"%(self.weight_sum, self._expected_nodes_for_n_examples(self.subtree_examples[self.tree])))
-
-        self.weight_sum = 0
-        return dw
-
-    def _dump_weights_rec(self, tree_node, cumulative_weight = 0, indent = ''):
-        if tree_node.is_leaf_node():
-            self.weight_sum += self.weights[tree_node] * self.subtree_examples[tree_node]
-            return indent+ "%f[%d/%d](%f)"%(self.weights[tree_node], self.subtree_examples[tree_node], self.subtree_nodes[tree_node],  cumulative_weight + self.weights[tree_node])
-        else:
-            self.weight_sum += self.weights[tree_node]
-            return '\n'.join([
-                indent+str(self.weights[tree_node]),
-                self._dump_weights_rec(tree_node.left_child, cumulative_weight + self.weights[tree_node], indent+'\t'), 
-                self._dump_weights_rec(tree_node.right_child, cumulative_weight + self.weights[tree_node], indent+'\t')
-            ])

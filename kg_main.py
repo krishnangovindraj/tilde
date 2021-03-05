@@ -58,10 +58,11 @@ def run_task(config: TildeConfig):
         rule_grounder.saturate_examples(test_examples_collection.get_example_wrappers_sp())
         test_examples = tree_builder.splitter.test_evaluator.get_transformed_example_list(test_examples_collection.get_example_wrappers_sp())
         all_examples = examples + test_examples
+        print("Training-test split: %d:%d"%(len(examples), len(test_examples)))
     else:
         test_examples = None
-        all_examples = examples
-
+        all_examples = [e for e in examples]
+    
     # TODO: Move all this stuff to some controller
     for k in language.special_tests:
         special_test = language.special_tests[k]
@@ -72,7 +73,16 @@ def run_task(config: TildeConfig):
     average_run_time_list = []
     run_time_list = []
 
-    for _trial_i in range(0, 1):
+    for _trial_i in range(0, 5):
+
+        if isinstance(model_options, ModelFactory.IsolationForestOptions):
+            print("run kg_main_isolation instead")
+            
+        # from random import sample as random_sample
+        # test_examples_set = random_sample(all_examples, int(0.1 * len(examples)))
+        # examples = [e for e in all_examples if e not in test_examples_set]
+        # test_examples = list(test_examples_set)
+
         print('=== START tree building ===')
 
         if isinstance(model_options, ModelFactory.RandomForestOptions):
@@ -94,7 +104,8 @@ def run_task(config: TildeConfig):
         print("run time (ms):", run_time_ms)
         print('=== END tree building ===')
         
-        print(model)
+        # print(model)
+        # for t in model.trees: print("-----------\n"+t.dump_weights())
         
         from refactor.utils import print_model_summary            
         if test_examples is not None:
@@ -158,3 +169,4 @@ def main(argv):
 if __name__ == '__main__':
     from sys import argv as sys_argv
     main(sys_argv)
+    # [main(sys_argv) for _ in range(5)]

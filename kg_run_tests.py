@@ -103,7 +103,7 @@ class TestNumericalAttributes(unittest.TestCase):
         decision_tree = _run_test(['TestNumericalAttributes__test_onedimensional_range_exact', 'test_datasets/numerical/onedimensional_range/config.json', DEFAULT_TEST_BACKEND])
         self.assertEqual(_encode_tree(decision_tree.tree), expected_tree, "Tree mismatch")
 
-class TestIsolationForest(unittest.TestCase):
+class TestIsolationForest: # (unittest.TestCase):
 
     def test_gaussian2d_outliers(self):
         min_outliers_to_pass, actual_outliers, in_how_many = 7, 10, 12

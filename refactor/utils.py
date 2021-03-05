@@ -131,17 +131,27 @@ def print_model_summary(model, examples):
         print("Unrecognized model type:" + type(model) )
 
 def _print_isolation_forest_summary(model: 'IsolationForest', examples:'List[Example]'):
+    topk = len(examples) # 10
     dist = {}
     score = {}
     for e in examples:
-        score[e], distances = model.predict(e)
-        dist[e] = distances
+        score[e] = model.predict(e)
+        # score[e], distances = model.predict(e)
+        # dist[e] = distances
 
     # dist = model.get_length_distribution(examples)
-    # for t in model.trees:
-    #     print(t)
-    for e in examples :
-        print("%s[%f]: %s"%(str(e.classification_term), score[e],  str([round(x,3) for x in dist[e]])))
+    # for t in model.trees: print(t)
+    # for e in examples :
+    #     print("%s[%f]: %s"%(str(e.classification_term), score[e],  str([round(x,3) for x in dist[e]])))
+
+    sorted_examples = sorted(examples, key=lambda e: score[e], reverse=True)
+    triple = [(str(e.classification_term.args[0]), str(score[e]), str(i+1) ) for i,e in enumerate(sorted_examples)]
+    sorted_triple = sorted(triple)
+    print("Printing top%d out of %d"%(topk, len(examples)))
+    for st in sorted_triple:
+        print('\t'.join(st))
+    # for e in sorted_examples[:topk]:
+    #     print("%s[%f]"%(str(e.classification_term), score[e]))
 
 
 def _print_random_forest_summary(model: 'RandomForest', examples:'List[Example]'):
